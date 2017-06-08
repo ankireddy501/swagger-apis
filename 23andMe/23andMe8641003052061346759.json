@@ -1,0 +1,951 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : 23andMe's OAuth 2.0 API lets developers build apps and tools on the human genome. Our customers are genotyped for over 1,000,000 SNPs, conveniently accessible through our free REST API. Not genotyped? We have demo endpoints. No need for a Ph.D. Our scientists have analyzed disease risk, calculated ancestry, and found relatives for genotyped customers. You could use this data without even knowing what a gene is!",
+    "version" : "1",
+    "title" : "23andMe"
+  },
+  "host" : "api.23andme.com",
+  "basePath" : "/1",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/demo/ancestry/{profile_id}" : {
+      "get" : {
+        "summary" : "Ancestral breakdown for the user's profile. Each population has an absolute proportion of the genome. A population with sub_populations has an unassigned proportion — the ancestry we couldn't classify in it. \r\n\r\nthreshold is optional, default 0.51 and range (0.5, 1.0) exclusive. 0.51 means a speculative estimate, 0.75 standard, and 0.90 conservative. A higher threshold would increase the unassigned proportions, a lower would speculate. \r\n\r\nIf the user's ancestry hasn't been computed yet, you'll see \"ancestry\": null.\r\n",
+        "description" : "Ancestral breakdown for the user's profile. Each population ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ancestryResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/carriers/{profile_id}" : {
+      "get" : {
+        "summary" : "Our analysis of whether or not each profile is a carrier for these diseases (starred reports). The person has 0, 1, or 2 mutations, or null if they're not analyzed at any of the markers. Normally, with one mutation, the person is considered a \"carrier\" and can pass the mutation to children; with two, the person is likely to be affected by the disease.\r\n",
+        "description" : "Our analysis of whether or not each profile is a carrier for...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/carriersResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/drug_responses/{profile_id}" : {
+      "get" : {
+        "summary" : "Our analysis of how each profile responds to these drugs (starred reports). status is reduced, typical, or increased for a person, not_applicable if the drug is not applicable to them (e.g., the oral contraceptives report is for women only), or null if they're not analyzed at any of the markers.",
+        "description" : "Our analysis of how each profile responds to these drugs (st...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/drugResponsesResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/family_members" : {
+      "get" : {
+        "summary" : "All Family Members in an account's family tree as entered in the family tree tool. Every profile has a family tree member node created automatically, so even users who have never used the family tree tool will have some data here.\r\n\r\nThe response is formed to return the account id, and pagination information limit offset and count. Since the account can have thousands of family tree members, limit defaults to 10, and offset to 0. You can override the limit (or not limit it at all with limit = 0, but be careful, the user may have thousands of family tree members). count gives the total number of matches after filtering. The limit and offset values in the response will represent the pagination values used by this request.\r\n\r\nFamily Members:\r\nA family member in the members array will have a member id field id. Any family member that is associated with a profile will also have non empty profile_id. The sex field can be set to \"m\" or \"f\" to represent male and female respectively. The adopted and deceased fields will both contain true or false. The first_name, middle_name, last_name, birth_surname, name_suffix and nickname fields will only be sent if the account has given you the 'names' scope. The partners and parents fields are arrays of member ids. Finally, the events field contains an array of events for the family member as shown in the example below.\r\n",
+        "description" : "All Family Members in an account's family tree as entered in...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "count",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/familyMembersResponse"
+            }
+          }
+        }
+      }
+    },
+    "/demo/genomes/{profile_id}" : {
+      "get" : {
+        "summary" : "Returns the entire profile's genome as a packed string of base pairs \"AACTGA...\". This ~2MB request returns over a million SNP locations, so you must specify profile_id. See the /genotypes endpoint for possible values. Each SNP is represented with two base pairs, and to know which SNP corresponds to which index, see this key. \r\n\r\nThe unfiltered parameter can be used for completely sex-unfiltered data. \r\n\r\nWhen our genotyping chip is upgraded, the packed string and corresponding key will grow, but the changes will be backwards-compatible additions.\r\n",
+        "description" : "Returns the entire profile's genome as a packed string of ba...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "unfiltered",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/genomeResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/genotypes/{profile_id}" : {
+      "get" : {
+        "summary" : "For the user's profile, returns the base-pairs, like AA, for the given locations. The value can have Ds or Is for deletions and insertions (for example, DD or DI). It can be __ if the customer is not on a chip that calls that location, or hasn't yet unlocked their call since it corresponds to a sensitive report. It can be -- if the customer is on a chip that calls that location, but we could not determine it. To keep consistency with the /genomes endoint, which always returns two base pairs, hemizygous calls (such as on X-linked genes in males) will also return two base pairs. \r\n\r\nThe scope of your token must include each location you request (i.e., getting the below data requires a scope of at least rs3094315 i3000001). This list of SNPs (31MB) shows which SNPs our customers are genotyped for. \r\n\r\nThe unfiltered parameter can be used for completely sex-unfiltered data. \r\n\r\nThe format parameter can be used to alter the JSON output format of this endpoint. \r\n\r\nSince this is a GET endpoint, you may hit the browser-imposed URL limit with a lot of SNPs. We recommend splitting your requests into 100-SNP chunks.\r\n",
+        "description" : "For the user's profile, returns the base-pairs, like AA, for...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "format",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "unfiltered",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "locations",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/genotypeResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/grfs/{profile_id}" : {
+      "get" : {
+        "summary" : "Our analysis for each profile for genetic risk factors. mutations is positive if the profile contains a mutation which corresponds to the condition denoted by description.",
+        "description" : "Our analysis for each profile for genetic risk factors. muta...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/gfrsResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/haplogroups/{profile_id}" : {
+      "get" : {
+        "summary" : "For the user's profile, gets maternal and paternal haplogroups, as well as terminal SNPs. Maternal terminal SNPs include the rsid and rCRS reference position, while the paternal ones include the rsid and ISOGG SNP.\r\n\r\nNote: if the profile belongs to a female, the paternal (y) haplogroup and terminal SNP information will be null.\r\n",
+        "description" : "For the user's profile, gets maternal and paternal haplogrou...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/haplogroupsResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/introduction/{profile_id}/{match_id}" : {
+      "post" : {
+        "summary" : "Users can send introductions to other users who we've identified as genetic matches per the /relatives endpoint. The match_id must be a match of the profile_id (it must show up in /relatives endpoint.)\r\n\r\nParameters are message_text and visibility.\r\n\r\nmessage_text may be customized, and defaults to:\r\nHi, Through our shared DNA, 23andMe has identified us as relatives. Our predicted relationship is <your_relationship>. Would you like to explore our relationship?\r\n\r\nValues for visibility are the same as those of the PATCH method. If no parameter is supplied, visibility defaults to anonymous.\r\n",
+        "description" : "Users can send introductions to other users who we've identi...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "visibility",
+          "in" : "query",
+          "description" : "Visibility",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "message_text",
+          "in" : "query",
+          "description" : "Introduction message",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/createIntroductionResponse"
+            }
+          }
+        }
+      },
+      "patch" : {
+        "summary" : "Users can see the status of introductions between themselves and other relatives as identified by /relatives. If an introduction exists between the two users, the endpoint returns a JSON representation of the introduction and can_send. If can_send is true, the user can send another introduction via a POST /introduction.\r\n\r\nPossible values for status are those settable by the PATCH method as well as sent and received. An introduction is sent before being accepted, rejected, read, or cancelled. An introduction is sent and received at exactly the same time depending on whether the person querying is the sender or the recipient.\r\n\r\nStatuses listed above are relative to you. For instance, if user B sends an introduction to you, cancels it, and then you query this endpoint, you will find that no introduction exists between you and user B. If user B then queries the endpoint, she will find an introduction between herself and you with the status cancelled.\r\n\r\nYou may send an introduction if there is no outstanding introduction between you and the user, if you've sent and cancelled an introduction, or if an invitation between you and the user has been rejected. A minimum time interval between introduction resends is also imposed. These cases are abstracted away for you -- just check if can_send is true.\r\n\r\nIf there is no outstanding introduction between you and the user represented by match_id, then you will receive an empty dict.\r\n",
+        "description" : "Users can see the status of introductions between themselves...",
+        "operationId" : "PATCH",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/introductionStateResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "match_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/names/{profile_id}" : {
+      "get" : {
+        "summary" : "For the user and user's profile, gets first and last names. If your user wants to remain anonymous, you shouldn't request this scope. You can optionally filter by profile_id to get the names for just that profile.",
+        "description" : "For the user and user's profile, gets first and last names. ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/profileResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/neanderthal/{profile_id}" : {
+      "get" : {
+        "summary" : "Estimated genome-wide proportion of Neanderthal ancestry for the user's profile. Most users have between 0.01 and 0.04 Neanderthal ancestry -- read a full explanation of the science. proportion is -1 for un-genotyped (or as-of-yet uncomputed) profiles.",
+        "description" : "Estimated genome-wide proportion of Neanderthal ancestry for...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/neanderthalResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/phenotypes/{profile_id}/{phenotype_id}" : {
+      "get" : {
+        "summary" : "For the user's profile, returns the requested phenotype.\r\nFor the /phenotypes read and write endpoints, your phenotype_id can be any of the following:\r\n\r\nfamily_tree_url: family tree url\r\ndate_of_birth: date of birth (YYYY-MM-DD)\r\nweight_g: weight in grams\r\nheight_mm: height in millimeters\r\nsex: sex\r\n",
+        "description" : "For the user's profile, returns the requested phenotype.\r\nFor...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/phenotypeResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "phenotype_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/relatives/{profile_id}" : {
+      "get" : {
+        "summary" : "Relatives on 23andMe, for the user's profile. shared_segments is the total number of shared IBD segments; similarity is the actual proportion (1.00 being you, or an identical twin). maternal/paternal_side are True if this match is a relative from your mom or dad's side. range is defined if we couldn't pinpoint the relatedness of the match.\r\n\r\nmatch_id is a unique identifier for matches for a given profile, but not across profiles. For example, if profile A has a relative C1, and profile B has relative C2, then any C1.match_id = C2.match_id is coincidental and does not mean C1 and C2 represent the same person. We cannot expose globally unique match_ids. match_id is null if the match is you.\r\n\r\nSince you could have thousands of matches, limit defaults to 10, and offset to 0. You can override the limit (or not limit it at all with limit = 0, but be careful, the user may have thousands of relatives). count gives the total number of matches after filtering. Results are sorted by updated, descending. You can also get results that have been updated or added since a timestamp.\r\n\r\nYou can also filter matches by their intro_status and share_status. Note that you will have to URL-encode these parameters (i.e., Introduction%20Sent). The possible values are:\r\n\r\nintro_status\r\nIntroduction Received\r\nIntroduction Accepted\r\nIntroduction Sent\r\nIntroduction Cancelled\r\nIntroduction Declined\r\nshare_status\r\nOwned Profile\r\nSharing Genomes\r\nPublic Match\r\n\r\nYou can provide an optional match_id parameter to limit the results returned to that of an individual match. In this case, match_id overrides any other conflicting parameters. For instance, if you provide both a match_id and a since parameter, the match's information will be returned regardless of whether the match was updated or added since the timestamp specified by the since parameter. The count returned will be 1 when the match_id parameter is specified. Example usage is as follows: https://api.23andme.com/1/relatives/c44.../?match_id=48f...\r\n",
+        "description" : "Relatives on 23andMe, for the user's profile. shared_segment...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "share_status",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "intro_status",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "since",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/relativesResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/relatives/{profile_id}/{match_id}" : {
+      "patch" : {
+        "summary" : "Updates a relative match. In our DNA Relatives feature, we calculate a predicted relationship based on your overlapping DNA segments. But if you know for sure, you can update the match with a known user_relationship_code (see below). You can also add notes about the match.",
+        "description" : "Updates a relative match. In our DNA Relatives feature, we c...",
+        "operationId" : "PATCH",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "user_relationship_code",
+          "in" : "query",
+          "description" : "If you know for sure, you can update the match with a known user_relationship_code (see below).\r\n\r\n0 You\r\n1 Identical Twin\r\n2 Father\r\n3 Mother\r\n4 Son\r\n5 Daughter\r\n6 Brother\r\n7 Sister\r\n8 Half Brother\r\n9 Half Sister\r\n10 Grandfather\r\n11 Grandmother\r\n12 Grandson\r\n13 Granddaughter\r\n14 Uncle\r\n15 Aunt\r\n16 Nephew\r\n17 Niece\r\n18 Great Grandfather\r\n19 Great Grandson\r\n20 Great Grandmother\r\n21 Great Granddaughter\r\n22 Great Uncle\r\n23 Great Aunt\r\n24 Great Nephew\r\n25 Great Niece\r\n26 1st Cousin\r\n27 1st Cousin, Once Removed\r\n28 1st Cousin, Twice Removed\r\n29 2nd Cousin\r\n30 2nd Cousin, Once Removed\r\n31 2nd Cousin, Twice Removed\r\n32 3rd Cousin\r\n33 3rd Cousin, Once Removed\r\n34 3rd Cousin, Twice Removed\r\n35 4th Cousin\r\n38 5th Cousin\r\n41 6th Cousin\r\n44 Distant Cousin\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "notes",
+          "in" : "query",
+          "description" : "Add notes about the match.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "match_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/risks/{profile_id}" : {
+      "get" : {
+        "summary" : "Our analysis for each profile's lifetime risk of these diseases (starred reports). population_risk is the average risk for the population for which the analysis applies, and risk is the profile's risk.",
+        "description" : "Our analysis for each profile's lifetime risk of these disea...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/risksResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/traits/{profile_id}" : {
+      "get" : {
+        "summary" : "Our analysis for each profile for these traits (starred reports). trait is a value in possible_traits, or null if the profile's not analyzed at those markers.",
+        "description" : "Our analysis for each profile for these traits (starred repo...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/traitsResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/demo/user" : {
+      "get" : {
+        "summary" : "Gets the user id, and a list of profiles (an account can have multiple genotyped people) with ids, whether or not they're genotyped.\r\n\r\nThe optional email parameter can be used to request the email for this account. Requires the \"email\" scope.\r\n\r\nThe optional services parameter can be used to request the endpoint to return what services are available to the profiles.\r\n\r\nA service model object is made up of a unique service id, a service label, and a user-readable description of the service. All genotyped profiles should have \"pgs_ancestry\". Customers with access to health data will have \"pgs_health\". Demo profiles will have no services.\r\n\r\nThis endpoint is great for using an app anonymously because there is no personally identifying information.\r\n",
+        "description" : "Gets the user id, and a list of profiles (an account can hav...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "email",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "services",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/usersResponse"
+            }
+          }
+        }
+      }
+    },
+    "/profile_picture/{profile_id}" : {
+      "get" : {
+        "summary" : "Gets the user's profile picture for a few sizes",
+        "description" : "Gets the user's profile picture for a few sizes",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/pictureResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Uploads a picture, < 5MB, and crops it.  For the POST, set Content-Type: multipart/form-data and upload the image with parameter <image>.",
+        "description" : "Uploads a picture, < 5MB, and crops it.  For the POST, set C...",
+        "operationId" : "POST",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model133"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/pictureResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/publish/{profile_id}/{feature_id}" : {
+      "get" : {
+        "summary" : "Users can publish and share certain features publicly, for example on social networks, with a special link. Anyone with the link, if active, can view that person's results for the following feature_ids:\r\n\r\nmusic: DNA Music \r\nneanderthal: Neanderthal Ancestry \r\nmaternal: Maternal Haplogroup \r\ncomposition: Ancestry Composition \r\npaternal: Paternal Haplogroup \r\n",
+        "description" : "Users can publish and share certain features publicly, for e...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/featureResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Users can publish and share certain features publicly, for example on social networks, with a special link. Anyone with the link, if active, can view that person's results for the following feature_ids:\r\n\r\nmusic: DNA Music \r\nneanderthal: Neanderthal Ancestry \r\nmaternal: Maternal Haplogroup \r\ncomposition: Ancestry Composition \r\npaternal: Paternal Haplogroup \r\n",
+        "description" : "Users can publish and share certain features publicly, for e...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/featureResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "feature_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/publish/{profile_id}/{feature_id}/{link_id}" : {
+      "get" : {
+        "summary" : "Users can publish and share certain features publicly, for example on social networks, with a special link. Anyone with the link, if active, can view that person's results for the following feature_ids:\r\n\r\nmusic: DNA Music \r\nneanderthal: Neanderthal Ancestry \r\nmaternal: Maternal Haplogroup \r\ncomposition: Ancestry Composition \r\npaternal: Paternal Haplogroup \r\n",
+        "description" : "Users can publish and share certain features publicly, for e...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/featureResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Users can publish and share certain features publicly, for example on social networks, with a special link. This method set status to published or unpublished.",
+        "description" : "Users can publish and share certain features publicly, for e...",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/featureResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "feature_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "profile_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "link_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "haplogroupsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "paternal_terminal_snps" : {
+          "type" : "array"
+        },
+        "maternal" : {
+          "type" : "string"
+        },
+        "paternal" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "phenotypeResponse" : {
+      "type" : "object",
+      "properties" : {
+        "phenotype_id" : {
+          "type" : "string"
+        },
+        "value" : {
+          "type" : "string"
+        },
+        "profile_id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "neanderthalResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "neanderthal" : {
+          "type" : "object",
+          "properties" : {
+            "proportion" : {
+              "type" : "number"
+            },
+            "ancestry" : {
+              "type" : "string"
+            },
+            "average" : {
+              "type" : "number"
+            },
+            "percentile" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "usersResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "drugResponsesResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "createIntroductionResponse" : {
+      "type" : "object",
+      "properties" : {
+        "introduction" : {
+          "type" : "object",
+          "properties" : {
+            "status" : {
+              "type" : "string"
+            },
+            "visibility" : {
+              "type" : "string"
+            },
+            "message_text" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "featureResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "link_id" : {
+          "type" : "string"
+        },
+        "feature_id" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        }
+      }
+    },
+    "traitsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "relativesResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "count" : {
+          "type" : "number"
+        }
+      }
+    },
+    "introductionStateResponse" : {
+      "type" : "object",
+      "properties" : {
+        "introduction" : {
+          "type" : "object",
+          "properties" : {
+            "status" : {
+              "type" : "string"
+            },
+            "visibility" : {
+              "type" : "string"
+            },
+            "message_text" : {
+              "type" : "string"
+            }
+          }
+        },
+        "can_send" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "pictureResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "url_size_40_40" : {
+          "type" : "string"
+        },
+        "url_size_60_60" : {
+          "type" : "string"
+        },
+        "url_size_200_200" : {
+          "type" : "string"
+        }
+      }
+    },
+    "risksResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ancestryResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "ancestry" : {
+          "type" : "object",
+          "properties" : {
+            "label" : {
+              "type" : "string"
+            },
+            "proportion" : {
+              "type" : "number"
+            },
+            "unassigned" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "genomeResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "genome" : {
+          "type" : "string"
+        }
+      }
+    },
+    "genotypeResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "gfrsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "profileResponse" : {
+      "type" : "object",
+      "properties" : {
+        "first_name" : {
+          "type" : "string"
+        },
+        "last_name" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "carriersResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "familyMembersResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "limit" : {
+          "type" : "number"
+        },
+        "offset" : {
+          "type" : "number"
+        },
+        "count" : {
+          "type" : "number"
+        }
+      }
+    }
+  }
+}
