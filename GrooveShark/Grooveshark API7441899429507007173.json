@@ -1,0 +1,37 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Grooveshark is a Web-based music streaming service. Users upload digital audio files, which can then be streamed and organized in playlists. The Grooveshark website has a search engine, music streaming features, and a music recommendation system.",
+    "version" : "3",
+    "title" : "Grooveshark API"
+  },
+  "host" : "api.grooveshark.com",
+  "basePath" : "/ws3.php",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/" : {
+      "post" : {
+        "summary" : "All possible methods are send with this POST request.\r\n",
+        "description" : "All possible methods are send with this POST request.\r\n",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "sig",
+          "in" : "query",
+          "description" : "Signature.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/grooveshark"
+          }
+        } ],
+        "responses" : { }
+      }
+    }
+  }
+}

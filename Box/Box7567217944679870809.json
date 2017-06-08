@@ -1,0 +1,3447 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : The Box Content API gives you access to the content management features you see in our web app and lets you extend them for use in your own app. It strives to be RESTful and is organized around the main resources you're familiar with from the Box web interface.",
+    "version" : "2.0",
+    "title" : "Box"
+  },
+  "host" : "api.box.com",
+  "basePath" : "/2.0/",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/comments/{commentId}" : {
+      "get" : {
+        "summary" : "Used to retrieve the message and metadata about a specific comment.\r\nInformation about the user who created the comment is also included.\r\n",
+        "description" : "Used to retrieve the message and metadata about a specific c...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/Comment"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Used to update the message of the comment. The full updated comment object\r\nis returned if the ID is valid and if the user has access to the comment.\r\n",
+        "description" : "Used to update the message of the comment. The full updated ...",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CommentUpdate"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "updated item",
+            "schema" : {
+              "$ref" : "#/definitions/Comment"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Permanently deletes a comment. An empty 204 response is returned to confirm\r\ndeletion of the comment. Errors can be thrown if the ID is invalid or if the\r\nuser is not authorized to delete this particular comment.\r\n",
+        "description" : "Permanently deletes a comment. An empty 204 response is retu...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "commentId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this comment.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/events" : {
+      "get" : {
+        "summary" : "Use this to get events for a given user. A chunk of event objects is\r\nreturned for the user based on the parameters passed in. Parameters\r\nindicating how many chunks are left as well as the next stream_position\r\nare also returned.\r\n",
+        "description" : "Use this to get events for a given user. A chunk of event ob...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Limits the number of events returned",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "stream_position",
+          "in" : "query",
+          "description" : "The location in the event stream at which you want to start receiving\r\nevents. Can specify special case _now_ to get 0 events and the lates\r\nstream position for initialization. A collection of events is returned.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "stream_type",
+          "in" : "query",
+          "description" : "Limits the type of events returned",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/EventsCollection"
+            }
+          }
+        }
+      },
+      "options" : {
+        "summary" : "Long polling. To get real-time notification of activity in a Box account,\r\nuse the long poll feature of the /events API.\r\nTo do so, first call the `/events` API with an OPTIONS call to retrieve the\r\nlong poll URL to use.\r\nNext, make a GET request to the provided URL to begin listening for events.\r\nIf an event occurs within an account you are monitoring, you will receive a\r\nresponse with the value new_change.\r\nIt's important to note that this response will not come with any other\r\ndetails, but should serve as a prompt to take further action such as calling\r\nthe `/events` endpoint with your last known `stream_position`. After sending\r\nthis response, the server will close the connection and you will need to\r\nrepeat the long poll process to begin listening for events again.\r\nIf no events occur for a period of time after you make the GET request to\r\nthe long poll URL, you will receive a response with the value reconnect. When\r\nyou receive this response, you'll make another OPTIONS call to the /events\r\nendpoint and repeat the long poll process.\r\n",
+        "description" : "Long polling. To get real-time notification of activity in a...",
+        "operationId" : "OPTIONS",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/EventsPollInformation"
+            }
+          }
+        }
+      }
+    },
+    "/files/{fileId}" : {
+      "get" : {
+        "summary" : "Used to retrieve the metadata about a file.",
+        "description" : "Used to retrieve the metadata about a file.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/File"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Restores an item that has been moved to the trash. Default behavior is to\r\nrestore the item to the folder it was in before it was moved to the trash.\r\nIf that parent folder no longer exists or if there is now an item with the\r\nsame name in that parent folder, the new parent folder and/or new name will\r\nneed to be included in the request.\r\n",
+        "description" : "Restores an item that has been moved to the trash. Default b...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Content-MD5",
+          "in" : "header",
+          "description" : "The SHA1 hash of the file.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/NewItem"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/File"
+            }
+          },
+          "201" : {
+            "description" : "The request has been fulfilled and resulted in a new resource being\r\ncreated.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/File"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Used to update individual or multiple fields in the file object, including\r\nrenaming the file, changing its description, and creating a shared link\r\nfor the file. To move a file, change the ID of its parent folder. An optional\r\n`If-Match` header can be included to ensure that client only updates the file\r\nif it knows about the latest version.\r\n",
+        "description" : "Used to update individual or multiple fields in the file obj...",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/FileInformationUpdate"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "updated item",
+            "schema" : {
+              "$ref" : "#/definitions/File"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Discards a file to the trash. The 'etag' of the file can be included as an\r\n`If-Match` header to prevent race conditions.\r\nTrash: Depending on the enterprise settings for this user, the item will\r\neither be actually deleted from Box or moved to the trash.\r\n",
+        "description" : "Discards a file to the trash. The 'etag' of the file can be ...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "fileId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this file.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/files/{fileId}/comments" : {
+      "get" : {
+        "summary" : "Retrieves the comments on a particular file, if any exist. A collection of\r\ncomment objects are returned. If there are no comments on the file, an empty\r\ncomments array is returned.\r\n",
+        "description" : "Retrieves the comments on a particular file, if any exist. A...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/CommentsCollection"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "fileId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this file.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/files/{fileId}/content" : {
+      "get" : {
+        "summary" : "Retrieves the actual data of the file. An optional version parameter can be\r\nset to download a previous version of the file.\r\n",
+        "description" : "Retrieves the actual data of the file. An optional version p...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "version",
+          "in" : "query",
+          "description" : "The ID specific version of this file to download.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "fileId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this file.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/files/{fileId}/tasks" : {
+      "get" : {
+        "summary" : "Retrieves all of the tasks for given file. A collection of mini task objects\r\nis returned. If there are no tasks, an empty collection will be returned.\r\n",
+        "description" : "Retrieves all of the tasks for given file. A collection of m...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/TaskSummariesCollection"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "fileId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this file.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/files/{fileId}/thumbnail{extension}" : {
+      "get" : {
+        "summary" : "Retrieves a thumbnail, or smaller image representation, of this file. Sizes\r\nof 32x32, 64x64, 128x128, and 256x256 can be returned.\r\nCurrently thumbnails are only available in .png format and will only be\r\ngenerated for image file formats.\r\nThere are three success cases that your application needs to account for:\r\n  - If the thumbnail isn't available yet, a 202 Accepted HTTP status will\r\n      be returned, including a 'Location' header pointing to a placeholder\r\n      graphic that can be used until the thumbnail is returned. A `Retry-After`\r\n      header will also be returned, indicating the time in seconds after which\r\n      the thumbnail will be available. Your application should only attempt to\r\n      get the thumbnail again after Retry-After time.\r\n  - If Box can't generate a thumbnail for this file type, a 302 Found\r\n      response will be returned, redirecting to a placeholder graphic in the\r\n      requested size for this particular file type.\r\n  - If Box is unable to generate a thumbnail for this particular file, a\r\n      404 'Not Found' response will be returned with a code of\r\n      preview_cannot_be_generated. If there are any bad parameters sent in, a\r\n      standard 400 'Bad Request' will be returned.\r\n",
+        "description" : "Retrieves a thumbnail, or smaller image representation, of t...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "min_width",
+          "in" : "query",
+          "description" : "The minimum width of the thumbnail.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "max_height",
+          "in" : "query",
+          "description" : "The maximum height of the thumbnail",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "min_height",
+          "in" : "query",
+          "description" : "The minimum height of the thumbnail.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "max_width",
+          "in" : "query",
+          "description" : "The maximum width of the thumbnail",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "extension",
+        "in" : "path",
+        "description" : "Generated file's extension. Currently thumbnails are only available in .png format\r\nand will only be generated for image file formats.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "fileId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this file.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/files/{fileId}/versions" : {
+      "get" : {
+        "summary" : "If there are previous versions of this file, this method can be used to\r\nretrieve metadata about the older versions.\r\n**ALERT: Versions are only tracked for Box users with premium accounts.**\r\n",
+        "description" : "If there are previous versions of this file, this method can...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "An array of version objects are returned. If there are no previous\r\nversions of this file, then an empty array will be returned.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/VersionsCollection"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "fileId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this file.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/files/{fileId}/versions/current" : {
+      "post" : {
+        "summary" : "Promote an Old Version of a File\r\nIf there are previous versions of this file, this method can be used to promote one of the older versions to the top of the stack. This actually mints a copy of the old version and puts it on the top of the versions stack. The file will have the exact same contents, the same SHA1/etag, and the same name as the original. Other properties such as comments do not get updated to their former values.\r\n",
+        "description" : "Promote an Old Version of a File\r\nIf there are previous versi...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Content-MD5",
+          "in" : "header",
+          "description" : "The SHA1 hash of the file.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/FileVersionPromote"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "The request has been fulfilled and resulted in a new resource being\r\ncreated.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/FileVersion"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "fileId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this file.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/files/{fileId}/versions/{version_id}" : {
+      "delete" : {
+        "summary" : "Discards a specific file version to the trash.\r\n\r\nTrash: Depending on the enterprise settings for this user, the item will either be actually deleted from Box or moved to the trash.\r\n",
+        "description" : "Discards a specific file version to the trash.\r\n\r\nTrash: Depen...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "version_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "fileId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this file.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/folders" : {
+      "post" : {
+        "summary" : "Allows to create new Folder",
+        "description" : "Allows to create new Folder",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/NewFolder"
+          }
+        }, {
+          "name" : "Content-MD5",
+          "in" : "header",
+          "description" : "The SHA1 hash of the file.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "The request has been fulfilled and resulted in a new resource being\r\ncreated.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/Folder"
+            }
+          }
+        }
+      }
+    },
+    "/folders/trash/items" : {
+      "get" : {
+        "summary" : "Retrieves the files and/or folders that have been moved to the trash. Any\r\nattribute in the full files or folders objects can be passed in with the\r\nfields parameter to get specific attributes, and only those specific\r\nattributes back; otherwise, the mini format is returned for each item by\r\ndefault.\r\nMultiple attributes can be passed in separated by commas e.g.\r\n`fields=name,created_at`. Paginated results can be retrieved using the limit\r\nand offset parameters.\r\n",
+        "description" : "Retrieves the files and/or folders that have been moved to t...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The number of items to return",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "The item at which to begin the response",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Attribute(s) to include in the response",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/ItemsCollection"
+            }
+          }
+        }
+      }
+    },
+    "/folders/{folderId}" : {
+      "get" : {
+        "summary" : "Retrieves the full metadata about a folder, including information about\r\nwhen it was last updated as well as the files and folders contained in it.\r\nThe root folder of a Box account is always represented by the id **0**.\r\n",
+        "description" : "Retrieves the full metadata about a folder, including inform...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/Folder"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Restores an item that has been moved to the trash. Default behavior is to\r\nrestore the item to the folder it was in before it was moved to the trash.\r\nIf that parent folder no longer exists or if there is now an item with the\r\nsame name in that parent folder, the new parent folder and/or new name\r\nwill need to be included in the request.\r\n",
+        "description" : "Restores an item that has been moved to the trash. Default b...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Content-MD5",
+          "in" : "header",
+          "description" : "The SHA1 hash of the file.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/NewFolder"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/Folder"
+            }
+          },
+          "201" : {
+            "description" : "Item was succesfully created.",
+            "schema" : {
+              "$ref" : "#/definitions/Folder"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Used to update information about the folder. To move a folder, update the ID\r\nof its parent. To enable an email address that can be used to upload files\r\nto this folder, update the `folder_upload_email` attribute. An optional\r\nIf-Match header can be included to ensure that client only updates the folder\r\nif it knows about the latest version.\r\n",
+        "description" : "Used to update information about the folder. To move a folde...",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/FolderUpdate"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "updated item",
+            "schema" : {
+              "$ref" : "#/definitions/Folder"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Used to delete a folder. A recursive parameter must be included in order to\r\ndelete folders that have items inside of them. An optional `If-Match` header\r\ncan be included to ensure that client only deletes the folder if it knows\r\nabout the latest version.\r\n",
+        "description" : "Used to delete a folder. A recursive parameter must be inclu...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "recursive",
+          "in" : "query",
+          "description" : "Whether to delete this folder if it has items inside of it.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "folderId",
+        "in" : "path",
+        "description" : "The ID of the parent folder\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/folders/{folderId}/copy" : {
+      "post" : {
+        "summary" : "Used to create a copy of a folder in another folder. The original version\r\nof the folder will not be altered.\r\n",
+        "description" : "Used to create a copy of a folder in another folder. The ori...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/NewItem"
+          }
+        }, {
+          "name" : "Content-MD5",
+          "in" : "header",
+          "description" : "The SHA1 hash of the file.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/Folder"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "folderId",
+        "in" : "path",
+        "description" : "The ID of the parent folder\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/folders/{folderId}/items" : {
+      "get" : {
+        "summary" : "Retrieves the files and/or folders contained within this folder\r\nwithout any other metadata about the folder.\r\n",
+        "description" : "Retrieves the files and/or folders contained within this fol...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The number of items to return",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Attribute(s) to include in the response",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "The item at which to begin the response",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/ItemsCollection"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "folderId",
+        "in" : "path",
+        "description" : "The ID of the parent folder\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/folders/{folderId}/trash" : {
+      "get" : {
+        "summary" : "Retrieves an item that has been moved to the trash. The full item will be\r\nreturned, including information about when the it was moved to the trash.\r\n",
+        "description" : "Retrieves an item that has been moved to the trash. The full...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/Folder"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Permanently deletes an item that is in the trash. The item will no longer\r\nexist in Box. This action cannot be undone.\r\n",
+        "description" : "Permanently deletes an item that is in the trash. The item w...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "folderId",
+        "in" : "path",
+        "description" : "The ID of the parent folder\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/group_memberships" : {
+      "post" : {
+        "summary" : "Used to add a member to a Group.",
+        "description" : "Used to add a member to a Group.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/NewGroupMembership"
+          }
+        }, {
+          "name" : "Content-MD5",
+          "in" : "header",
+          "description" : "The SHA1 hash of the file.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "The request has been fulfilled and resulted in a new resource being\r\ncreated.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/GroupMembershipEntry"
+            }
+          }
+        }
+      }
+    },
+    "/group_memberships/{id}" : {
+      "get" : {
+        "summary" : "Fetches a specific group membership entry.",
+        "description" : "Fetches a specific group membership entry.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "A new group membership object will be returned upon success.",
+            "schema" : {
+              "$ref" : "#/definitions/GroupMembershipEntry"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Used to update a group membership.",
+        "description" : "Used to update a group membership.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateMembership"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A new group membership object will be returned upon success.",
+            "schema" : {
+              "$ref" : "#/definitions/GroupMembershipEntry"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a specific group membership.",
+        "description" : "Deletes a specific group membership.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/groups" : {
+      "get" : {
+        "summary" : "Retrieves all of the groups for given user.",
+        "description" : "Retrieves all of the groups for given user.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "A collection of mini group objects is returned. If there are no groups, an empty collection will be returned.",
+            "schema" : {
+              "$ref" : "#/definitions/MiniGroups"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Allows to create new Group",
+        "description" : "Allows to create new Group",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Content-MD5",
+          "in" : "header",
+          "description" : "The SHA1 hash of the file.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/NewGroup"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "The request has been fulfilled and resulted in a new resource being\r\ncreated.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/Group"
+            }
+          }
+        }
+      }
+    },
+    "/groups/{id}/collaborations" : {
+      "get" : {
+        "summary" : "Retrieves all of the group collaborations for a given group. Note this is only available to group admins.",
+        "description" : "Retrieves all of the group collaborations for a given group....",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/CollaborationsCollection"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/groups/{id}/memberships" : {
+      "get" : {
+        "summary" : "Retrieves all of the members for a given group.",
+        "description" : "Retrieves all of the members for a given group.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieves all of the members for a given group.",
+            "schema" : {
+              "$ref" : "#/definitions/GroupMemberships"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/search" : {
+      "get" : {
+        "summary" : "Searching a User's Account. The search endpoint provides a simple way of\r\nfinding items that are accessible in a given user's Box account.\r\nA collection of search results is returned. If there are no matching search\r\nresults, the entries array will be empty.\r\nALERT: We'll be adding more types of items returned as search results and more\r\nfilters on search queries, so as you're parsing the results, be prepared to skip\r\nover any types of items your app does not recognize.\r\n",
+        "description" : "Searching a User's Account. The search endpoint provides a s...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The number of items to return",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "description" : "The string to search for; can be matched against item names, descriptions,\r\ntext content of a file, and other fields of the different item types.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "The item at which to begin the response",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/SearchResults"
+            }
+          }
+        }
+      }
+    },
+    "/shared_items" : {
+      "get" : {
+        "summary" : "Used to retrieve the metadata about a shared item when only given a shared\r\nlink. Because of varying permission levels for shared links, a password may\r\nbe required to retrieve the shared item. Once the item has been retrieved,\r\nyou can make API requests against the actual resource `/files/{id}` or\r\n`/folders/{id}` as long as the shared link and optional password are in the\r\nheader.\r\nA full file or folder object is returned if the shared link is valid and the\r\nuser has access to it. An error may be returned if the link is invalid, if a\r\npassword is required, or if the user does not have access to the file.\r\n",
+        "description" : "Used to retrieve the metadata about a shared item when only ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "BoxApi",
+          "in" : "header",
+          "description" : "A string containing the shared link and the password, it should be URL\r\nencoded, the format is:\r\n```\r\n  shared_link=[shared resource's link] shared_link_password=[password for the link]\r\n```\r\nshared_link is mandatory.\r\n",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A full file or folder object is returned if the shared link is valid and the user has access to it. An error may be returned if the link is invalid, if a password is required, or if the user does not have access to the file.",
+            "schema" : {
+              "$ref" : "#/definitions/File"
+            }
+          }
+        }
+      }
+    },
+    "/task_assignments" : {
+      "post" : {
+        "summary" : "Used to assign a task to a single user. There can be multiple assignments\r\non a given task.\r\nA new task assignment object will be returned upon success.\r\n",
+        "description" : "Used to assign a task to a single user. There can be multipl...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Content-MD5",
+          "in" : "header",
+          "description" : "The SHA1 hash of the file.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/NewTaskAssignment"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "The request has been fulfilled and resulted in a new resource being\r\ncreated.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/TaskAssignment"
+            }
+          }
+        }
+      }
+    },
+    "/task_assignments/{task_assignments_id}" : {
+      "get" : {
+        "summary" : "Fetches a specific task assignment.\r\nThe specified task assignment object will be returned upon success.\r\n",
+        "description" : "Fetches a specific task assignment.\r\nThe specified task assig...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/TaskAssignment"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Used to update a task assignment.\r\nA new task assignment object will be returned upon success.\r\n",
+        "description" : "Used to update a task assignment.\r\nA new task assignment obje...",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Task_assignmentUpdate"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "updated item",
+            "schema" : {
+              "$ref" : "#/definitions/TaskAssignment"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a specific task assignment.\r\nAn empty `204 No Content` response will be returned upon success.\r\n",
+        "description" : "Deletes a specific task assignment.\r\nAn empty `204 No Content...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "task_assignments_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/tasks/{taskId}" : {
+      "get" : {
+        "summary" : "Fetches a specific task.",
+        "description" : "Fetches a specific task.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/Task"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates a specific task.",
+        "description" : "Updates a specific task.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/TaskUpdate"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "updated item",
+            "schema" : {
+              "$ref" : "#/definitions/Task"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Permanently deletes a specific task. An empty 204 response will be\r\nreturned upon success.\r\n",
+        "description" : "Permanently deletes a specific task. An empty 204 response w...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "taskId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/tasks/{taskId}/assignments" : {
+      "get" : {
+        "summary" : "Retrieves all of the assignments for a given task.\r\nA collection of task assignment mini objects will be returned upon success.\r\n",
+        "description" : "Retrieves all of the assignments for a given task.\r\nA collect...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/AssignmentSummariesCollecton"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "taskId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users" : {
+      "get" : {
+        "summary" : "Get All Users in an Enterprise. Returns a list of all users for the\r\nEnterprise along with their user_id, public_name, and login.\r\n",
+        "description" : "Get All Users in an Enterprise. Returns a list of all users ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The number of items to return",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "The item at which to begin the response",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "filter_term",
+          "in" : "query",
+          "description" : "A string used to filter the results to only users starting with the\r\n`filter_term` in either the name or the login\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/UsersCollection"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Used to provision a new user in an enterprise. This method only works\r\nfor enterprise admins.\r\n",
+        "description" : "Used to provision a new user in an enterprise. This method o...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/NewUser"
+          }
+        }, {
+          "name" : "Content-MD5",
+          "in" : "header",
+          "description" : "The SHA1 hash of the file.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "The request has been fulfilled and resulted in a new resource being\r\ncreated.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/me" : {
+      "get" : {
+        "summary" : "Get the Current User's Information. Retrieves information about the user who\r\nis currently logged in i.e. the user for whom this auth token was generated.\r\nReturns a single complete user object.\r\nAn error is returned if a valid auth token is not included in the API request.\r\n",
+        "description" : "Get the Current User's Information. Retrieves information ab...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Returns a single complete user object. An error is returned if a valid auth token is not included in the API request.",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}" : {
+      "put" : {
+        "summary" : "Update a User's Information. Used to edit the settings and information abou\r\na user. This method only works for enterprise admins. To roll a user out of\r\nthe enterprise (and convert them to a standalone free user), update the\r\nspecial `enterprise` attribute to be `null`.\r\nReturns the a full user object for the updated user. Errors may be thrown when\r\nthe fields are invalid or this API call is made from a non-admin account.\r\n",
+        "description" : "Update a User's Information. Used to edit the settings and i...",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "notify",
+          "in" : "query",
+          "description" : "Whether the user should receive an email after update",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UserUpdate"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "updated item",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a user in an enterprise account. An empty 200 response is sent to\r\nconfirm deletion of the user. If the user still has files in their accoun\r\nand the `force` parameter is not sent, an error is returned.\r\n",
+        "description" : "Deletes a user in an enterprise account. An empty 200 respon...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "force",
+          "in" : "query",
+          "description" : "Whether or not the user should be deleted even if this user still own files.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "notify",
+          "in" : "query",
+          "description" : "Whether the user should receive an email after update",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this user.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/{userId}/email_aliases" : {
+      "get" : {
+        "summary" : "Get All Email Aliases for a User.\r\nRetrieves all email aliases for this user. The collection of email aliases\r\ndoes not include the primary login for the user; use GET /users/USER_ID to\r\nretrieve the login email address.\r\nIf the user_id is valid a collection of email aliases will be returned.\r\n",
+        "description" : "Get All Email Aliases for a User.\r\nRetrieves all email aliase...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded. The information returned with the response\r\nis dependent on the method used in the request.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/EmailAliasesCollection"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Add an Email Alias for a User.\r\nAdds a new email alias to the given user's account.\r\nReturns the newly created email_alias object. Errors will be thrown if the\r\nuser_id is not valid or the particular user's email alias cannot be modified.\r\n",
+        "description" : "Add an Email Alias for a User.\r\nAdds a new email alias to the...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Content-MD5",
+          "in" : "header",
+          "description" : "The SHA1 hash of the file.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/NewEmailAlias"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/EmailAlias"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this user.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/{userId}/email_aliases/{email_aliases_id}" : {
+      "delete" : {
+        "summary" : "Removes an email alias from a user. If the user has permission to remove\r\nthis email alias, an empty 204 No Content response will be returned to\r\n confirm deletion.\r\n",
+        "description" : "Removes an email alias from a user. If the user has permissi...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "email_aliases_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this user.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/{userId}/folders/{folderId}" : {
+      "put" : {
+        "summary" : "Move Folder into Another User's Folder.\r\nMoves all of the content from within one user's folder into a new folder in\r\nanother user's account. You can move folders across users as long as the you\r\nhave administrative permissions. To move everything from the root folder,\r\nuse \"0\" which always represents the root folder of a Box account.\r\n",
+        "description" : "Move Folder into Another User's Folder.\r\nMoves all of the con...",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "notify",
+          "in" : "query",
+          "description" : "Whether the user should receive an email after update",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UserFolderMove"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Returns the information for the newly created destination folder.. An error is thrown if you do not have the necessary permissions to move the folder",
+            "schema" : {
+              "$ref" : "#/definitions/Folder"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "folderId",
+        "in" : "path",
+        "description" : "Folder's identifier",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this user.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "NewGroup" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TaskUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "action" : {
+          "type" : "string",
+          "description" : "The action the task assignee will be prompted to do. Can be 'review'."
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "An optional message to include with the task."
+        },
+        "due_at" : {
+          "type" : "string",
+          "description" : "The day at which this task is due."
+        }
+      }
+    },
+    "FolderUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "The desired name for the folder."
+        },
+        "parent" : {
+          "type" : "object",
+          "description" : "The parent folder.",
+          "properties" : { }
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "The ID of the parent folder."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the folder."
+        },
+        "shared_link" : {
+          "type" : "object",
+          "description" : "An object representing this item's shared link and associated permissions.",
+          "properties" : { }
+        },
+        "access" : {
+          "type" : "object",
+          "description" : "The level of access required for this shared link.",
+          "properties" : { }
+        },
+        "unshared_at" : {
+          "type" : "object",
+          "description" : "The day that this link should be disabled at. Timestamps are rounded off to the given day.",
+          "properties" : { }
+        }
+      }
+    },
+    "Group" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "modified_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UpdateMembership" : {
+      "type" : "object",
+      "properties" : {
+        "role" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Task" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "item" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "sequence_id" : {
+              "type" : "string"
+            },
+            "etag" : {
+              "type" : "string"
+            },
+            "sha1" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "due_at" : {
+          "type" : "string"
+        },
+        "action" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "task_assignment_collection" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array"
+          }
+        },
+        "is_completed" : {
+          "type" : "boolean"
+        },
+        "created_by" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        },
+        "created_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CommentUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "The desired text for the comment message."
+        }
+      }
+    },
+    "FileVersionPromote" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UserFolderMove" : {
+      "type" : "object",
+      "properties" : {
+        "owned_by" : {
+          "type" : "string",
+          "description" : "The user who the folder will be transferred to."
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "The ID of the user who the folder will be transferred to."
+        }
+      }
+    },
+    "NewTaskAssignment" : {
+      "type" : "object",
+      "properties" : {
+        "task" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "type" : {
+              "type" : "string"
+            }
+          }
+        },
+        "assign_to" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "Folder" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "sequence_id" : {
+          "type" : "string"
+        },
+        "etag" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "modified_at" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "number"
+        },
+        "path_collection" : {
+          "type" : "object",
+          "properties" : {
+            "total_count" : {
+              "type" : "number"
+            },
+            "entries" : {
+              "type" : "array",
+              "items" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "type" : {
+                      "type" : "string"
+                    },
+                    "id" : {
+                      "type" : "string"
+                    },
+                    "sequence_id" : {
+                      "type" : "object",
+                      "properties" : { }
+                    },
+                    "etag" : {
+                      "type" : "object",
+                      "properties" : { }
+                    },
+                    "name" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "created_by" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        },
+        "modified_by" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        },
+        "owned_by" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        },
+        "shared_link" : {
+          "type" : "object",
+          "properties" : {
+            "url" : {
+              "type" : "string"
+            },
+            "download_url" : {
+              "type" : "string"
+            },
+            "vanity_url" : {
+              "type" : "object",
+              "properties" : { }
+            },
+            "is_password_enabled" : {
+              "type" : "boolean"
+            },
+            "unshared_at" : {
+              "type" : "object",
+              "properties" : { }
+            },
+            "download_count" : {
+              "type" : "number"
+            },
+            "preview_count" : {
+              "type" : "number"
+            },
+            "access" : {
+              "type" : "string"
+            },
+            "permissions" : {
+              "type" : "object",
+              "properties" : {
+                "can_download" : {
+                  "type" : "boolean"
+                },
+                "can_preview" : {
+                  "type" : "boolean"
+                }
+              }
+            }
+          }
+        },
+        "folder_upload_email" : {
+          "type" : "object",
+          "properties" : {
+            "access" : {
+              "type" : "string"
+            },
+            "email" : {
+              "type" : "string"
+            }
+          }
+        },
+        "parent" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "sequence_id" : {
+              "type" : "object",
+              "properties" : { }
+            },
+            "etag" : {
+              "type" : "object",
+              "properties" : { }
+            },
+            "name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "item_status" : {
+          "type" : "string"
+        },
+        "item_collection" : {
+          "type" : "object",
+          "properties" : {
+            "total_count" : {
+              "type" : "number"
+            },
+            "entries" : {
+              "type" : "array",
+              "items" : {
+                "type" : "array"
+              }
+            },
+            "offset" : {
+              "type" : "number"
+            },
+            "limit" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "SearchResults" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "integer"
+        },
+        "offset" : {
+          "type" : "integer"
+        },
+        "limit" : {
+          "type" : "integer"
+        },
+        "entries" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string",
+                "description" : "For files is 'file'"
+              },
+              "id" : {
+                "type" : "string",
+                "description" : "Box's unique string identifying this file."
+              },
+              "sequence_id" : {
+                "type" : "string",
+                "description" : "A unique ID for use with the /events endpoint."
+              },
+              "etag" : {
+                "type" : "string",
+                "description" : "A unique string identifying the version of this file."
+              },
+              "sha1" : {
+                "type" : "string",
+                "description" : "The sha1 hash of this file."
+              },
+              "name" : {
+                "type" : "string",
+                "description" : "The name of this file."
+              },
+              "description" : {
+                "type" : "string",
+                "description" : "The description of this file."
+              },
+              "size" : {
+                "type" : "integer",
+                "description" : "Size of this file in bytes."
+              },
+              "path_collection" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "array"
+                }
+              },
+              "created_at" : {
+                "type" : "string",
+                "description" : "When this file was created on Box's servers."
+              },
+              "modified_at" : {
+                "type" : "string",
+                "description" : "When this file was last updated on the Box servers."
+              },
+              "trashed_at" : {
+                "type" : "string",
+                "description" : "When this file was last moved to the trash."
+              },
+              "purged_at" : {
+                "type" : "string",
+                "description" : "When this file will be permanently deleted."
+              },
+              "content_created_at" : {
+                "type" : "string",
+                "description" : "When the content of this file was created."
+              },
+              "content_modified_at" : {
+                "type" : "string",
+                "description" : "When the content of this file was last modified."
+              },
+              "created_by" : {
+                "type" : "object",
+                "description" : "The user who first created file.",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "modified_by" : {
+                "type" : "object",
+                "description" : "The user who last updated this file.",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "owned_by" : {
+                "type" : "object",
+                "description" : "The user who owns this file.",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "shared_link" : {
+                "type" : "object",
+                "description" : "The shared link object for this file.",
+                "properties" : {
+                  "url" : {
+                    "type" : "string"
+                  },
+                  "download_url" : {
+                    "type" : "string"
+                  },
+                  "vanity_url" : {
+                    "type" : "string"
+                  },
+                  "is_password_enabled" : {
+                    "type" : "boolean"
+                  },
+                  "unshared_at" : {
+                    "type" : "string"
+                  },
+                  "download_count" : {
+                    "type" : "integer"
+                  },
+                  "preview_count" : {
+                    "type" : "integer"
+                  },
+                  "access" : {
+                    "type" : "string"
+                  },
+                  "permissions" : {
+                    "type" : "object",
+                    "properties" : {
+                      "can_download" : {
+                        "type" : "boolean"
+                      },
+                      "can_preview" : {
+                        "type" : "boolean"
+                      }
+                    }
+                  }
+                }
+              },
+              "parent" : {
+                "type" : "object",
+                "description" : "The folder this file is contained in.",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "sequence_id" : {
+                    "type" : "string"
+                  },
+                  "etag" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "item_status" : {
+                "type" : "string",
+                "description" : "Whether this item is deleted or not."
+              },
+              "version_number" : {
+                "type" : "string",
+                "description" : "Whether this folder will be synced by the Box sync clients or not."
+              },
+              "comment_count" : {
+                "type" : "integer",
+                "description" : "The number of comments on a file"
+              }
+            }
+          }
+        }
+      }
+    },
+    "FileInformationUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "parent" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            }
+          }
+        },
+        "shared_link" : {
+          "type" : "object",
+          "properties" : {
+            "access" : {
+              "type" : "string"
+            },
+            "unshared_at" : {
+              "type" : "string"
+            },
+            "permissions" : {
+              "type" : "object",
+              "properties" : { }
+            },
+            "permissions.download" : {
+              "type" : "boolean"
+            },
+            "permissions.preview" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      }
+    },
+    "MiniGroups" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "number"
+        },
+        "entries" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "limit" : {
+          "type" : "number"
+        },
+        "offset" : {
+          "type" : "number"
+        }
+      }
+    },
+    "Task_assignmentUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "A message from the assignee about this task."
+        },
+        "resolution_state" : {
+          "type" : "string",
+          "description" : "Can be 'completed', 'incomplete', 'approved', or 'rejected'."
+        }
+      }
+    },
+    "GroupMemberships" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "number"
+        },
+        "entries" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "user" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "group" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "role" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "offset" : {
+          "type" : "number"
+        },
+        "limit" : {
+          "type" : "number"
+        }
+      }
+    },
+    "VersionsCollection" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "integer"
+        },
+        "entries" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "sha1" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "size" : {
+                "type" : "integer"
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "modified_at" : {
+                "type" : "string"
+              },
+              "modified_by" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "FileVersion" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "sha1" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "number"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "modified_at" : {
+          "type" : "string"
+        },
+        "modified_by" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "EventsPollInformation" : {
+      "type" : "object",
+      "properties" : {
+        "chunk_size" : {
+          "type" : "integer"
+        },
+        "entries" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string"
+              },
+              "url" : {
+                "type" : "string"
+              },
+              "ttl" : {
+                "type" : "string"
+              },
+              "max_retries" : {
+                "type" : "string"
+              },
+              "retry_timeout" : {
+                "type" : "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "NewItem" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "The new name for this item."
+        },
+        "parent" : {
+          "type" : "object",
+          "description" : "The new parent folder for this item.",
+          "properties" : { }
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "The id of the new parent folder."
+        }
+      }
+    },
+    "NewUser" : {
+      "type" : "object",
+      "properties" : {
+        "login" : {
+          "type" : "string",
+          "description" : "The email address this user uses to login."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of this user."
+        },
+        "role" : {
+          "type" : "object",
+          "description" : "This user's enterprise role.",
+          "properties" : { }
+        },
+        "language" : {
+          "type" : "string",
+          "description" : "The language of this user. ISO 639-1 Language Code.",
+          "maxLength" : 2
+        },
+        "is_sync_enabled" : {
+          "type" : "boolean",
+          "description" : "Whether or not this user can use Box Sync."
+        },
+        "job_title" : {
+          "type" : "string",
+          "description" : "The user's job title."
+        },
+        "phone" : {
+          "type" : "string",
+          "description" : "The user's phone number."
+        },
+        "address" : {
+          "type" : "string",
+          "description" : "The user's address."
+        },
+        "space_amount" : {
+          "type" : "number",
+          "description" : "The user's total available space amount in bytes."
+        },
+        "tracking_codes" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "can_see_managed_users" : {
+          "type" : "boolean",
+          "description" : "Whether this user can see other enterprise users in its contact list."
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Can be 'active' or 'inactive'"
+        },
+        "is_exempt_from_device_limits" : {
+          "type" : "boolean",
+          "description" : "Whether to exempt this user from Enterprise device limits."
+        },
+        "is_exempt_from_login_verification" : {
+          "type" : "boolean",
+          "description" : "Whether or not this user must use two-factor authentication."
+        }
+      }
+    },
+    "TaskAssignment" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "item" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "sequence_id" : {
+              "type" : "string"
+            },
+            "etag" : {
+              "type" : "string"
+            },
+            "sha1" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "assigned_to" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "completed_at" : {
+          "type" : "string"
+        },
+        "assigned_at" : {
+          "type" : "string"
+        },
+        "reminded_at" : {
+          "type" : "string"
+        },
+        "resolution_state" : {
+          "type" : "string"
+        },
+        "assigned_by" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "Comment" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "description" : "For comments is 'comment'."
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "A unique string identifying this comment."
+        },
+        "is_reply_comment" : {
+          "type" : "boolean",
+          "description" : "Whether or not this comment is a reply to another comment."
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The comment text that the user typed."
+        },
+        "tagged_message" : {
+          "type" : "string",
+          "description" : "The string representing the comment text with @mentions included."
+        },
+        "created_by" : {
+          "type" : "object",
+          "description" : "A mini user object representing the author of the comment.",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        },
+        "created_at" : {
+          "type" : "string",
+          "description" : "The time this comment was created."
+        },
+        "item" : {
+          "type" : "object",
+          "description" : "The object this comment was placed on.",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "type" : {
+              "type" : "string"
+            }
+          }
+        },
+        "modified_at" : {
+          "type" : "string",
+          "description" : "The time this comment was last modified."
+        }
+      }
+    },
+    "NewEmailAlias" : {
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string",
+          "description" : "The email address to add to the account as an alias."
+        }
+      }
+    },
+    "GroupMembershipEntry" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "user" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        },
+        "group" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "role" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "modified_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CollaborationsCollection" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "integer"
+        },
+        "entries" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "created_by" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "modified_at" : {
+                "type" : "string"
+              },
+              "expires_at" : {
+                "type" : "string"
+              },
+              "status" : {
+                "type" : "string"
+              },
+              "accessible_by" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "role" : {
+                "type" : "string"
+              },
+              "acknowledged_at" : {
+                "type" : "string"
+              },
+              "item" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "EmailAliasesCollection" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "integer"
+        },
+        "entries" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "is_confirmed" : {
+                "type" : "boolean"
+              },
+              "email" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "NewGroupMembership" : {
+      "type" : "object",
+      "properties" : {
+        "user" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            }
+          }
+        },
+        "group" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "EmailAlias" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "is_confirmed" : {
+          "type" : "boolean"
+        },
+        "email" : {
+          "type" : "string"
+        }
+      }
+    },
+    "NewFolder" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "The new name for this item."
+        },
+        "parent" : {
+          "type" : "object",
+          "description" : "The new parent folder for this item.",
+          "properties" : { }
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "The id of the new parent folder."
+        }
+      }
+    },
+    "UserUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "enterprise" : {
+          "type" : "string",
+          "description" : "Setting this to 'null' will roll the user out of the enterprise and make them a free user."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of this user."
+        },
+        "role" : {
+          "type" : "string",
+          "description" : "This user's enterprise role. Can be 'coadmin' or 'user'."
+        },
+        "language" : {
+          "type" : "string",
+          "description" : "The language of this user. ISO 639-1 Language Code.",
+          "maxLength" : 2
+        },
+        "is_sync_enabled" : {
+          "type" : "boolean",
+          "description" : "Whether or not this user can use Box Sync."
+        },
+        "job_title" : {
+          "type" : "string",
+          "description" : "The user's job title."
+        },
+        "phone" : {
+          "type" : "string",
+          "description" : "The user's phone number."
+        },
+        "address" : {
+          "type" : "string",
+          "description" : "The user's address."
+        },
+        "space_amount" : {
+          "type" : "number",
+          "description" : "The user's total available space amount in byte. A value of '-1' grants unlimited storage."
+        },
+        "tracking_codes" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "can_see_managed_users" : {
+          "type" : "boolean",
+          "description" : "Whether this user can see other enterprise users in its contact list."
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Can be 'active' or 'inactive'."
+        },
+        "is_exempt_from_device_limits" : {
+          "type" : "boolean",
+          "description" : "Whether to exempt this user from Enterprise device limits."
+        },
+        "is_exempt_from_login_verification" : {
+          "type" : "boolean",
+          "description" : "Whether or not this user must use two-factor authentication."
+        },
+        "is_password_reset_required" : {
+          "type" : "boolean",
+          "description" : "Whether or not the user is required to reset password."
+        }
+      }
+    },
+    "ItemsCollection" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "integer"
+        },
+        "entries" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string",
+                "description" : "For files is 'file'"
+              },
+              "id" : {
+                "type" : "string",
+                "description" : "Box's unique string identifying this file."
+              },
+              "sequence_id" : {
+                "type" : "string",
+                "description" : "A unique ID for use with the /events endpoint."
+              },
+              "etag" : {
+                "type" : "string",
+                "description" : "A unique string identifying the version of this file."
+              },
+              "sha1" : {
+                "type" : "string",
+                "description" : "The sha1 hash of this file."
+              },
+              "name" : {
+                "type" : "string",
+                "description" : "The name of this file."
+              },
+              "description" : {
+                "type" : "string",
+                "description" : "The description of this file."
+              },
+              "size" : {
+                "type" : "integer",
+                "description" : "Size of this file in bytes."
+              },
+              "path_collection" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "array"
+                }
+              },
+              "created_at" : {
+                "type" : "string",
+                "description" : "When this file was created on Box's servers."
+              },
+              "modified_at" : {
+                "type" : "string",
+                "description" : "When this file was last updated on the Box servers."
+              },
+              "trashed_at" : {
+                "type" : "string",
+                "description" : "When this file was last moved to the trash."
+              },
+              "purged_at" : {
+                "type" : "string",
+                "description" : "When this file will be permanently deleted."
+              },
+              "content_created_at" : {
+                "type" : "string",
+                "description" : "When the content of this file was created."
+              },
+              "content_modified_at" : {
+                "type" : "string",
+                "description" : "When the content of this file was last modified."
+              },
+              "created_by" : {
+                "type" : "object",
+                "description" : "The user who first created file.",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "modified_by" : {
+                "type" : "object",
+                "description" : "The user who last updated this file.",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "owned_by" : {
+                "type" : "object",
+                "description" : "The user who owns this file.",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "shared_link" : {
+                "type" : "object",
+                "description" : "The shared link object for this file.",
+                "properties" : {
+                  "url" : {
+                    "type" : "string"
+                  },
+                  "download_url" : {
+                    "type" : "string"
+                  },
+                  "vanity_url" : {
+                    "type" : "string"
+                  },
+                  "is_password_enabled" : {
+                    "type" : "boolean"
+                  },
+                  "unshared_at" : {
+                    "type" : "string"
+                  },
+                  "download_count" : {
+                    "type" : "integer"
+                  },
+                  "preview_count" : {
+                    "type" : "integer"
+                  },
+                  "access" : {
+                    "type" : "string"
+                  },
+                  "permissions" : {
+                    "type" : "object",
+                    "properties" : {
+                      "can_download" : {
+                        "type" : "boolean"
+                      },
+                      "can_preview" : {
+                        "type" : "boolean"
+                      }
+                    }
+                  }
+                }
+              },
+              "parent" : {
+                "type" : "object",
+                "description" : "The folder this file is contained in.",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "sequence_id" : {
+                    "type" : "string"
+                  },
+                  "etag" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "item_status" : {
+                "type" : "string",
+                "description" : "Whether this item is deleted or not."
+              },
+              "version_number" : {
+                "type" : "string",
+                "description" : "Whether this folder will be synced by the Box sync clients or not."
+              },
+              "comment_count" : {
+                "type" : "integer",
+                "description" : "The number of comments on a file"
+              }
+            }
+          }
+        },
+        "offset" : {
+          "type" : "integer"
+        },
+        "limit" : {
+          "type" : "integer"
+        },
+        "order" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "by" : {
+                "type" : "string"
+              },
+              "direction" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "TaskSummariesCollection" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "integer"
+        },
+        "entries" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "item" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "sequence_id" : {
+                    "type" : "string"
+                  },
+                  "etag" : {
+                    "type" : "string"
+                  },
+                  "sha1" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "due_at" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "AssignmentSummariesCollecton" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "string"
+        },
+        "entries" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "item" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "sequence_id" : {
+                    "type" : "string"
+                  },
+                  "etag" : {
+                    "type" : "string"
+                  },
+                  "sha1" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "assigned_to" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "File" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "description" : "For files is 'file'"
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "Box's unique string identifying this file."
+        },
+        "sequence_id" : {
+          "type" : "string",
+          "description" : "A unique ID for use with the /events endpoint."
+        },
+        "etag" : {
+          "type" : "string",
+          "description" : "A unique string identifying the version of this file."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of this file."
+        },
+        "created_at" : {
+          "type" : "string",
+          "description" : "When this file was created on Box's servers."
+        },
+        "modified_at" : {
+          "type" : "string",
+          "description" : "When this file was last updated on the Box servers."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of this file."
+        },
+        "size" : {
+          "type" : "integer",
+          "description" : "Size of this file in bytes."
+        },
+        "path_collection" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array"
+          }
+        },
+        "trashed_at" : {
+          "type" : "string",
+          "description" : "When this file was last moved to the trash."
+        },
+        "purged_at" : {
+          "type" : "string",
+          "description" : "When this file will be permanently deleted."
+        },
+        "content_created_at" : {
+          "type" : "string",
+          "description" : "When the content of this file was created."
+        },
+        "content_modified_at" : {
+          "type" : "string",
+          "description" : "When the content of this file was last modified."
+        },
+        "sha1" : {
+          "type" : "string",
+          "description" : "The sha1 hash of this file."
+        },
+        "comment_count" : {
+          "type" : "integer",
+          "description" : "The number of comments on a file"
+        },
+        "version_number" : {
+          "type" : "string",
+          "description" : "Whether this folder will be synced by the Box sync clients or not."
+        },
+        "created_by" : {
+          "type" : "object",
+          "description" : "The user who first created file.",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        },
+        "modified_by" : {
+          "type" : "object",
+          "description" : "The user who last updated this file.",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        },
+        "owned_by" : {
+          "type" : "object",
+          "description" : "The user who owns this file.",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "login" : {
+              "type" : "string"
+            }
+          }
+        },
+        "shared_link" : {
+          "type" : "object",
+          "description" : "The shared link object for this file.",
+          "properties" : {
+            "url" : {
+              "type" : "string"
+            },
+            "download_url" : {
+              "type" : "string"
+            },
+            "vanity_url" : {
+              "type" : "string"
+            },
+            "is_password_enabled" : {
+              "type" : "boolean"
+            },
+            "unshared_at" : {
+              "type" : "string"
+            },
+            "download_count" : {
+              "type" : "integer"
+            },
+            "preview_count" : {
+              "type" : "integer"
+            },
+            "access" : {
+              "type" : "string"
+            },
+            "permissions" : {
+              "type" : "object",
+              "properties" : {
+                "can_download" : {
+                  "type" : "boolean"
+                },
+                "can_preview" : {
+                  "type" : "boolean"
+                }
+              }
+            }
+          }
+        },
+        "parent" : {
+          "type" : "object",
+          "description" : "The folder this file is contained in.",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "sequence_id" : {
+              "type" : "string"
+            },
+            "etag" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "item_status" : {
+          "type" : "string",
+          "description" : "Whether this item is deleted or not."
+        },
+        "folder_upload_email" : {
+          "type" : "object",
+          "properties" : {
+            "access" : {
+              "type" : "string"
+            },
+            "email" : {
+              "type" : "string"
+            }
+          }
+        },
+        "item_collection" : {
+          "type" : "object",
+          "properties" : {
+            "total_count" : {
+              "type" : "integer"
+            },
+            "entries" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "etag" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "sequence_id" : {
+                    "type" : "string"
+                  },
+                  "sha1" : {
+                    "type" : "string"
+                  },
+                  "type" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            },
+            "offset" : {
+              "type" : "integer"
+            },
+            "limit" : {
+              "type" : "integer"
+            }
+          }
+        }
+      }
+    },
+    "CommentsCollection" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "is_reply_comment" : {
+                "type" : "boolean"
+              },
+              "message" : {
+                "type" : "string"
+              },
+              "created_by" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "item" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "type" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "modified_at" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

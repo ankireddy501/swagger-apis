@@ -1,0 +1,1492 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : New Relic is the all-in-one web and mobile application performance management provider for the cloud and the datacenter. More than 70,000 organizations use them to optimize over 100 billion metrics in production each day. They provide 24x7 real user monitoring and code-level diagnostics for production apps deployed on dedicated infrastructures, the cloud, or hybrid environments and real time end-to-end monitoring for your iOS and Android app's. New Relic provides support for applications written in Ruby, Python, PHP, Java, .NET and Node.js and related frameworks. New Relic also partners with leading cloud management, platform, and hosting vendors to provide their customers with instant visibility into the performance of deployed applications. New Relic also has an open SaaS platform that enables its community of developers, partners and customers to build plugins using open API's to monitor any technology of their choice, from databases, networks, caching layers and more.",
+    "version" : "v2",
+    "title" : "NewRelic"
+  },
+  "host" : "api.newrelic.com",
+  "basePath" : "/v2",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/alert_policies{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This API endpoint returns a paginated list of the alert policies associated with your New Relic account.\r\nAlert policies can be filtered by their name, list of IDs, type (application, key_transaction, or server) or whether or not policies are archived (defaults to filtering archived policies).\r\n",
+        "description" : "This API endpoint returns a paginated list of the alert poli...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "filter[name]",
+          "in" : "query",
+          "description" : "Filter by policy name",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filter[enabled]",
+          "in" : "query",
+          "description" : "Select only enabled/disabled policies",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "filter[ids]",
+          "in" : "query",
+          "description" : "Filter by application policy ids. Separate multiple List entries with a comma.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filter[type]",
+          "in" : "query",
+          "description" : "Filter by policy types. Separate multiple List entries with a comma.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Pagination index",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/alertPoliciesList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/applications/{application_id}/hosts/{host_id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This API endpoint returns a single application host, identified by its ID.\r\n",
+        "description" : "This API endpoint returns a single application host, identif...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "host_id",
+        "in" : "path",
+        "description" : "Application host ID",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "application_id",
+        "in" : "path",
+        "description" : "Application ID",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/applications/{application_id}/hosts{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This API endpoint returns a paginated list of hosts associated with the given application.\r\nApplication hosts can be filtered by hostname, or the list of application host IDs.\r\n",
+        "description" : "This API endpoint returns a paginated list of hosts associat...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "filter[ids]",
+          "in" : "query",
+          "description" : "Filter by application host ids. Separate multiple List entries with a comma.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filter[hostname]",
+          "in" : "query",
+          "description" : "Filter by server hostname",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Pagination index",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "application_id",
+        "in" : "path",
+        "description" : "Application ID",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/applications/{application_id}/instances/{instance_id}/metrics/data{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This API endpoint returns a list of values for each of the requested metrics. The list of available metrics can be returned using the Metric Name API endpoint.",
+        "description" : "This API endpoint returns a list of values for each of the r...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "from",
+          "in" : "query",
+          "description" : "Retrieve metrics after this time",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "names[]",
+          "in" : "query",
+          "description" : "Retrieve specific metrics by name",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "to",
+          "in" : "query",
+          "description" : "Retrieve metrics before this time",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "values[]",
+          "in" : "query",
+          "description" : "Retrieve specific metric values",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "summarize",
+          "in" : "query",
+          "description" : "Summarize the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "instance_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "application_id",
+        "in" : "path",
+        "description" : "Application ID",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      } ]
+    },
+    "/applications/{application_id}/instances/{instance_id}/metrics{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Return a list of known metrics and their value names for the given resource.",
+        "description" : "Return a list of known metrics and their value names for the...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Pagination index",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Filter metrics by name",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/metricNames"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "instance_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "application_id",
+        "in" : "path",
+        "description" : "Application ID",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      } ]
+    },
+    "/applications/{application_id}/instances/{instance_id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This API endpoint returns a single application instance, identified by its ID.\r\n",
+        "description" : "This API endpoint returns a single application instance, ide...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "instance_id",
+        "in" : "path",
+        "description" : "Application instance ID",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "application_id",
+        "in" : "path",
+        "description" : "Application ID",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      } ]
+    },
+    "/applications/{application_id}/instances{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This API endpoint returns a paginated list of instances associated with the given application.\r\nApplication instances can be filtered by hostname, or the list of application instance IDs.\r\n",
+        "description" : "This API endpoint returns a paginated list of instances asso...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "filter[ids]",
+          "in" : "query",
+          "description" : "Filter by application application instance ids. Separate multiple List entries with a comma.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Pagination index",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "filter[hostname]",
+          "in" : "query",
+          "description" : "Filter by server hostname",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/instancesList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "application_id",
+        "in" : "path",
+        "description" : "Application ID",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/applications{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This API endpoint returns a paginated list of the Applications associated with your New Relic account.\r\nApplications can be filtered by their name, the list of application IDs or the application language as reported by the agents.\r\n",
+        "description" : "This API endpoint returns a paginated list of the Applicatio...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "filter[name]",
+          "in" : "query",
+          "description" : "Filter by application name",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filter[language]",
+          "in" : "query",
+          "description" : "Filter by application language",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filter[ids]",
+          "in" : "query",
+          "description" : "Filter by application application ids. Separate multiple List entries with a comma.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Pagination index",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/applicationsList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/key_transactions/{id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This endpoint returns a single key transaction, identified by ID\r\n",
+        "description" : "This endpoint returns a single key transaction, identified b...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "Key Transaction ID",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      } ]
+    },
+    "/key_transactions{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This API endpoint returns a paginated list of the key transactions associated with your New Relic account.\r\n",
+        "description" : "This API endpoint returns a paginated list of the key transa...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "filter[ids]",
+          "in" : "query",
+          "description" : "Filter by application key transaction ids. Separate multiple List entries with a comma.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filter[name]",
+          "in" : "query",
+          "description" : "Filter by key transaction name",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Pagination index",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/notification_channels{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This API endpoint returns a paginated list of the notification channels associated with your New Relic account.\r\nNotification channels can be filtered by their type or a list of IDs.\r\n",
+        "description" : "This API endpoint returns a paginated list of the notificati...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "filter[type]",
+          "in" : "query",
+          "description" : "Filter by notification channel types. Separate multiple List entries with a comma.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filter[ids]",
+          "in" : "query",
+          "description" : "Filter by application notification channel ids. Separate multiple List entries with a comma.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Pagination index",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notificationChannelsList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/servers/{server_id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This API endpoint returns a single Server, identified by ID.\r\n",
+        "description" : "This API endpoint returns a single Server, identified by ID....",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/server"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "This API endpoint allows you to rename your server.\r\nThe input is expected to be in JSON or XML format in the body parameter of the PUT request. The exact schema is defined below. Any extra parameters passed in the body will be ignored.\r\n",
+        "description" : "This API endpoint allows you to rename your server.\r\nThe inpu...",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/serverPut"
+          }
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/serverPut"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/server"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "This API endpoint deletes a server and all of its reported data.\r\n**WARNING**: Only servers that have stopped reporting can be deleted. This is an irreversible process which will delete all reported data for this server.\r\n",
+        "description" : "This API endpoint deletes a server and all of its reported d...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "server_id",
+        "in" : "path",
+        "description" : "Server ID",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/servers{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This API endpoint returns a paginated list of the Servers associated with your New Relic account.\r\nServers can be filtered by their name/hostname, or the list of server IDs.\r\n",
+        "description" : "This API endpoint returns a paginated list of the Servers as...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "filter[name]",
+          "in" : "query",
+          "description" : "Filter by server name",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filter[ids]",
+          "in" : "query",
+          "description" : "Filter by application server ids. Separate multiple List entries with a comma.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Pagination index",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/serversList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Show a list of all users\r\n",
+        "description" : "Show a list of all users\r\n",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Pagination index",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "filter[email]",
+          "in" : "query",
+          "description" : "Filter by user email",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filter[ids]",
+          "in" : "query",
+          "description" : "Filter by application user ids. Separate multiple List entries with a comma.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/usersList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "keyTransactionsList" : {
+      "type" : "object",
+      "properties" : {
+        "key_transaction" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "transaction_name" : {
+              "type" : "string"
+            },
+            "application_summaries" : {
+              "type" : "object",
+              "properties" : {
+                "response_time" : {
+                  "type" : "string"
+                },
+                "throughput" : {
+                  "type" : "string"
+                },
+                "error_rate" : {
+                  "type" : "string"
+                },
+                "apdex_target" : {
+                  "type" : "string"
+                },
+                "apdex_score" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "end_user_summaries" : {
+              "type" : "object",
+              "properties" : {
+                "response_time" : {
+                  "type" : "string"
+                },
+                "throughput" : {
+                  "type" : "string"
+                },
+                "apdex_target" : {
+                  "type" : "string"
+                },
+                "apdex_score" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "links" : {
+              "type" : "object",
+              "properties" : {
+                "application" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "metricNames" : {
+      "type" : "object",
+      "properties" : {
+        "metric" : {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string"
+            },
+            "values" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "server" : {
+      "type" : "object",
+      "properties" : {
+        "server" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "integer"
+            },
+            "account_id" : {
+              "type" : "integer"
+            },
+            "display_name" : {
+              "type" : "string"
+            },
+            "host" : {
+              "type" : "string"
+            },
+            "reporting" : {
+              "type" : "boolean"
+            },
+            "last_reported_at" : {
+              "type" : "string"
+            },
+            "summaries" : {
+              "type" : "object",
+              "properties" : {
+                "cpu" : {
+                  "type" : "number"
+                },
+                "cpu_stolen" : {
+                  "type" : "number"
+                },
+                "disk_io" : {
+                  "type" : "number"
+                },
+                "memory" : {
+                  "type" : "number"
+                },
+                "memory_used" : {
+                  "type" : "integer"
+                },
+                "memory_total" : {
+                  "type" : "integer"
+                },
+                "fullest_disk" : {
+                  "type" : "number"
+                },
+                "fullest_disk_free" : {
+                  "type" : "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "usersList" : {
+      "type" : "object",
+      "properties" : {
+        "users" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "user" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "integer"
+                  },
+                  "first_name" : {
+                    "type" : "string"
+                  },
+                  "last_name" : {
+                    "type" : "string"
+                  },
+                  "email" : {
+                    "type" : "string"
+                  },
+                  "role" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "instance" : {
+      "type" : "object",
+      "properties" : {
+        "application_instance" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "integer"
+            },
+            "application_name" : {
+              "type" : "string"
+            },
+            "host" : {
+              "type" : "string"
+            },
+            "port" : {
+              "type" : "integer"
+            },
+            "language" : {
+              "type" : "integer"
+            },
+            "health_status" : {
+              "type" : "string"
+            },
+            "application_summaries" : {
+              "type" : "object",
+              "properties" : {
+                "response_time" : {
+                  "type" : "number"
+                },
+                "throughput" : {
+                  "type" : "number"
+                },
+                "error_rate" : {
+                  "type" : "number"
+                },
+                "apdex_score" : {
+                  "type" : "number"
+                }
+              }
+            },
+            "end_user_summaries" : {
+              "type" : "object",
+              "properties" : {
+                "response_time" : {
+                  "type" : "number"
+                },
+                "throughput" : {
+                  "type" : "number"
+                },
+                "apdex_score" : {
+                  "type" : "number"
+                }
+              }
+            },
+            "links" : {
+              "type" : "object",
+              "properties" : {
+                "application" : {
+                  "type" : "integer"
+                },
+                "application_host" : {
+                  "type" : "integer"
+                },
+                "server" : {
+                  "type" : "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "alertPoliciesList" : {
+      "type" : "object",
+      "properties" : {
+        "alert_policies" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "alert_policy" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "integer"
+                  },
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "enabled" : {
+                    "type" : "boolean"
+                  },
+                  "conditions" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "object",
+                      "properties" : {
+                        "enabled" : {
+                          "type" : "boolean"
+                        },
+                        "id" : {
+                          "type" : "integer"
+                        },
+                        "severity" : {
+                          "type" : "string"
+                        },
+                        "threshold" : {
+                          "type" : "number"
+                        },
+                        "trigger_minutes" : {
+                          "type" : "integer"
+                        },
+                        "type" : {
+                          "type" : "string"
+                        }
+                      }
+                    }
+                  },
+                  "links" : {
+                    "type" : "object",
+                    "properties" : {
+                      "notification_channels" : {
+                        "type" : "array",
+                        "items" : {
+                          "type" : "integer"
+                        }
+                      },
+                      "applications" : {
+                        "type" : "array",
+                        "items" : {
+                          "type" : "integer"
+                        }
+                      },
+                      "key_transactions" : {
+                        "type" : "array",
+                        "items" : {
+                          "type" : "integer"
+                        }
+                      },
+                      "servers" : {
+                        "type" : "array",
+                        "items" : {
+                          "type" : "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "notificationChannelsList" : {
+      "type" : "object",
+      "properties" : {
+        "notification_channels" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "notification_channel" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "integer"
+                  },
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "downtime_only" : {
+                    "type" : "boolean"
+                  },
+                  "url" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "description" : {
+                    "type" : "string"
+                  },
+                  "email" : {
+                    "type" : "string"
+                  },
+                  "subdomain" : {
+                    "type" : "string"
+                  },
+                  "service" : {
+                    "type" : "string"
+                  },
+                  "mobile_alerts" : {
+                    "type" : "boolean"
+                  },
+                  "email_alerts" : {
+                    "type" : "boolean"
+                  },
+                  "room" : {
+                    "type" : "string"
+                  },
+                  "links" : {
+                    "type" : "object",
+                    "properties" : {
+                      "notification_channels" : {
+                        "type" : "array",
+                        "items" : {
+                          "type" : "integer"
+                        }
+                      },
+                      "user" : {
+                        "type" : "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "hostsList" : {
+      "type" : "object",
+      "properties" : {
+        "application_hosts" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "application_host" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "integer"
+                  },
+                  "application_name" : {
+                    "type" : "string"
+                  },
+                  "host" : {
+                    "type" : "string"
+                  },
+                  "language" : {
+                    "type" : "integer"
+                  },
+                  "health_status" : {
+                    "type" : "string"
+                  },
+                  "application_summaries" : {
+                    "type" : "object",
+                    "properties" : {
+                      "response_time" : {
+                        "type" : "number"
+                      },
+                      "throughput" : {
+                        "type" : "number"
+                      },
+                      "error_rate" : {
+                        "type" : "number"
+                      },
+                      "apdex_score" : {
+                        "type" : "number"
+                      }
+                    }
+                  },
+                  "end_user_summaries" : {
+                    "type" : "object",
+                    "properties" : {
+                      "response_time" : {
+                        "type" : "number"
+                      },
+                      "throughput" : {
+                        "type" : "number"
+                      },
+                      "apdex_score" : {
+                        "type" : "number"
+                      }
+                    }
+                  },
+                  "links" : {
+                    "type" : "object",
+                    "properties" : {
+                      "application" : {
+                        "type" : "integer"
+                      },
+                      "application_instances" : {
+                        "type" : "array",
+                        "items" : {
+                          "type" : "integer"
+                        }
+                      },
+                      "server" : {
+                        "type" : "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "applicationsList" : {
+      "type" : "object",
+      "properties" : {
+        "applications" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "application" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "integer"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "language" : {
+                    "type" : "integer"
+                  },
+                  "health_status" : {
+                    "type" : "string"
+                  },
+                  "reporting" : {
+                    "type" : "boolean"
+                  },
+                  "last_reported_at" : {
+                    "type" : "string"
+                  },
+                  "application_summaries" : {
+                    "type" : "object",
+                    "properties" : {
+                      "response_time" : {
+                        "type" : "number"
+                      },
+                      "throughput" : {
+                        "type" : "number"
+                      },
+                      "error_rate" : {
+                        "type" : "number"
+                      },
+                      "apdex_target" : {
+                        "type" : "number"
+                      },
+                      "apdex_score" : {
+                        "type" : "number"
+                      }
+                    }
+                  },
+                  "end_user_summaries" : {
+                    "type" : "object",
+                    "properties" : {
+                      "response_time" : {
+                        "type" : "number"
+                      },
+                      "throughput" : {
+                        "type" : "number"
+                      },
+                      "apdex_target" : {
+                        "type" : "number"
+                      },
+                      "apdex_score" : {
+                        "type" : "number"
+                      }
+                    }
+                  },
+                  "settings" : {
+                    "type" : "object",
+                    "properties" : {
+                      "app_apdex_threshold" : {
+                        "type" : "number"
+                      },
+                      "end_user_apdex_threshold" : {
+                        "type" : "number"
+                      },
+                      "enable_real_user_monitoring" : {
+                        "type" : "boolean"
+                      },
+                      "use_server_side_config" : {
+                        "type" : "boolean"
+                      }
+                    }
+                  },
+                  "links" : {
+                    "type" : "object",
+                    "properties" : {
+                      "servers" : {
+                        "type" : "array",
+                        "items" : {
+                          "type" : "integer"
+                        }
+                      },
+                      "application_hosts" : {
+                        "type" : "array",
+                        "items" : {
+                          "type" : "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "serverPut" : {
+      "type" : "object",
+      "properties" : {
+        "server" : {
+          "type" : "object",
+          "properties" : {
+            "display_name" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "host" : {
+      "type" : "object",
+      "properties" : {
+        "application_host" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "integer"
+            },
+            "application_name" : {
+              "type" : "string"
+            },
+            "host" : {
+              "type" : "string"
+            },
+            "language" : {
+              "type" : "integer"
+            },
+            "health_status" : {
+              "type" : "string"
+            },
+            "application_summaries" : {
+              "type" : "object",
+              "properties" : {
+                "response_time" : {
+                  "type" : "number"
+                },
+                "throughput" : {
+                  "type" : "number"
+                },
+                "error_rate" : {
+                  "type" : "number"
+                },
+                "apdex_score" : {
+                  "type" : "number"
+                }
+              }
+            },
+            "end_user_summaries" : {
+              "type" : "object",
+              "properties" : {
+                "response_time" : {
+                  "type" : "number"
+                },
+                "throughput" : {
+                  "type" : "number"
+                },
+                "apdex_score" : {
+                  "type" : "number"
+                }
+              }
+            },
+            "links" : {
+              "type" : "object",
+              "properties" : {
+                "application" : {
+                  "type" : "integer"
+                },
+                "application_instances" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "integer"
+                  }
+                },
+                "server" : {
+                  "type" : "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "instancesList" : {
+      "type" : "object",
+      "properties" : {
+        "application_instances" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "application_instance" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "integer"
+                  },
+                  "application_name" : {
+                    "type" : "string"
+                  },
+                  "host" : {
+                    "type" : "string"
+                  },
+                  "port" : {
+                    "type" : "integer"
+                  },
+                  "language" : {
+                    "type" : "integer"
+                  },
+                  "health_status" : {
+                    "type" : "string"
+                  },
+                  "application_summaries" : {
+                    "type" : "object",
+                    "properties" : {
+                      "response_time" : {
+                        "type" : "number"
+                      },
+                      "throughput" : {
+                        "type" : "number"
+                      },
+                      "error_rate" : {
+                        "type" : "number"
+                      },
+                      "apdex_score" : {
+                        "type" : "number"
+                      }
+                    }
+                  },
+                  "end_user_summaries" : {
+                    "type" : "object",
+                    "properties" : {
+                      "response_time" : {
+                        "type" : "number"
+                      },
+                      "throughput" : {
+                        "type" : "number"
+                      },
+                      "apdex_score" : {
+                        "type" : "number"
+                      }
+                    }
+                  },
+                  "links" : {
+                    "type" : "object",
+                    "properties" : {
+                      "application" : {
+                        "type" : "integer"
+                      },
+                      "application_host" : {
+                        "type" : "integer"
+                      },
+                      "server" : {
+                        "type" : "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "serversList" : {
+      "type" : "object",
+      "properties" : {
+        "servers" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "server" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "integer"
+                  },
+                  "account_id" : {
+                    "type" : "integer"
+                  },
+                  "display_name" : {
+                    "type" : "string"
+                  },
+                  "host" : {
+                    "type" : "string"
+                  },
+                  "reporting" : {
+                    "type" : "boolean"
+                  },
+                  "last_reported_at" : {
+                    "type" : "string"
+                  },
+                  "summaries" : {
+                    "type" : "object",
+                    "properties" : {
+                      "cpu" : {
+                        "type" : "number"
+                      },
+                      "cpu_stolen" : {
+                        "type" : "number"
+                      },
+                      "disk_io" : {
+                        "type" : "number"
+                      },
+                      "memory" : {
+                        "type" : "number"
+                      },
+                      "memory_used" : {
+                        "type" : "integer"
+                      },
+                      "memory_total" : {
+                        "type" : "integer"
+                      },
+                      "fullest_disk" : {
+                        "type" : "number"
+                      },
+                      "fullest_disk_free" : {
+                        "type" : "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

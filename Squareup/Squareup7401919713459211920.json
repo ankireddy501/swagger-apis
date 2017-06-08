@@ -1,0 +1,2662 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : As a Square merchant, you can retrieve activity reports for your processed payments, refunds, and deposits with the Square Connect API. You can also manage your item library by creating and modifying items with Square Connect. Pull this data into your own custom-made apps to help you manage your business.",
+    "version" : "v1",
+    "title" : "Squareup"
+  },
+  "host" : "connect.squareup.com",
+  "basePath" : "/v1",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/batch" : {
+      "post" : {
+        "summary" : "This endpoint's response is an array that contains the response for each batched request.",
+        "description" : "This endpoint's response is an array that contains the respo...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/batchRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/batchResponse"
+            }
+          }
+        }
+      }
+    },
+    "/{merchant_id}" : {
+      "get" : {
+        "summary" : "Provides a merchant's account information, such as business name and email address.",
+        "description" : "Provides a merchant's account information, such as business ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/merchant"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/bank-accounts" : {
+      "get" : {
+        "summary" : "Provides non-confidential details for all of a merchant's associated bank accounts.",
+        "description" : "Provides non-confidential details for all of a merchant's as...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/bankAccounts"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/bank-accounts/{bank_account_id}" : {
+      "get" : {
+        "summary" : "Provides non-confidential details for a merchant's associated bank account.",
+        "description" : "Provides non-confidential details for a merchant's associate...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/bankAccount"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "bank_account_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/business" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/merchantBusiness"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/categories" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/categories"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creates an item category.",
+        "description" : "Creates an item category.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/categoryReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/category"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/categories/{category_id}" : {
+      "put" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/categoryReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/category"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/success"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "category_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/discounts" : {
+      "get" : {
+        "summary" : "Lists all of a merchant's discounts.",
+        "description" : "Lists all of a merchant's discounts.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/discounts"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creates a discount.",
+        "description" : "Creates a discount.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/discountReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/discount"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/discounts/{discount_id}" : {
+      "put" : {
+        "summary" : "Modifies the details of an existing discount.",
+        "description" : "Modifies the details of an existing discount.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/discountReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/discount"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/success"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "discount_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/fees" : {
+      "get" : {
+        "summary" : "Lists all of a merchant's fees (taxes).",
+        "description" : "Lists all of a merchant's fees (taxes).",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "rel",
+          "in" : "query",
+          "description" : "List endpoints might paginate the results they return. This means that instead of returning all results in a single response, these endpoints might return some of the results, along with a response header that links to the next set of results.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/fees"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creates a fee (tax).",
+        "description" : "Creates a fee (tax).",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/feeReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/fee"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/fees/{fee_id}" : {
+      "put" : {
+        "summary" : "Modifies the details of an existing fee (tax).",
+        "description" : "Modifies the details of an existing fee (tax).",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/feeReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/fee"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/success"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "fee_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/inventory" : {
+      "get" : {
+        "summary" : "Provides inventory information for all of a merchant's inventory-enabled item variations.",
+        "description" : "Provides inventory information for all of a merchant's inven...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/inventoryEntrys"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/items" : {
+      "get" : {
+        "summary" : "Provides summary information for all of a merchant's items.",
+        "description" : "Provides summary information for all of a merchant's items.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/items"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creates an item and at least one variation for it.",
+        "description" : "Creates an item and at least one variation for it.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/itemReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/item"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/items/{item_id}" : {
+      "get" : {
+        "summary" : "Provides the details for a single item, including associated modifier lists and fees.",
+        "description" : "Provides the details for a single item, including associated...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/itemReq"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Modifies the core details of an existing item.",
+        "description" : "Modifies the core details of an existing item.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/itemReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/item"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes an existing item and all item variations associated with it.",
+        "description" : "Deletes an existing item and all item variations associated ...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/success"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "item_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/items/{item_id}/fees/{fee_id}" : {
+      "put" : {
+        "summary" : "Associates a fee with an item, meaning the fee is automatically applied to the item in Square Register.",
+        "description" : "Associates a fee with an item, meaning the fee is automatica...",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "Removes a fee assocation from an item, meaning the fee is no longer automatically applied to the item in Square Register.",
+        "description" : "Removes a fee assocation from an item, meaning the fee is no...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "item_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "fee_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/items/{item_id}/image" : {
+      "post" : {
+        "summary" : "Uploads a JPEG or PNG image and sets it as the master image for an item.",
+        "description" : "Uploads a JPEG or PNG image and sets it as the master image ...",
+        "operationId" : "POST",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model869"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/createImage"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "item_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/items/{item_id}/modifier-lists/{modifier_list_id}" : {
+      "put" : {
+        "summary" : "Associates a modifier list with an item, meaning modifier options from the list can be applied to the item.",
+        "description" : "Associates a modifier list with an item, meaning modifier op...",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/item"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/item"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "modifier_list_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "item_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/items/{item_id}/variations" : {
+      "post" : {
+        "summary" : "Creates an item variation for an existing item.",
+        "description" : "Creates an item variation for an existing item.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/itemVariationReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/itemVariation"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "item_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/items/{item_id}/variations/{variation_id}" : {
+      "put" : {
+        "summary" : "Modifies the details of an existing item variation.",
+        "description" : "Modifies the details of an existing item variation.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/itemVariationReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/itemVariation"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/success"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "item_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "variation_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/locations" : {
+      "get" : {
+        "summary" : "Retrieve an array of Merchant objects containing profile information for the business's locations.",
+        "description" : "Retrieve an array of Merchant objects containing profile inf...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/locations"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/modifier-lists" : {
+      "get" : {
+        "summary" : "Lists all of a merchant's modifier lists.",
+        "description" : "Lists all of a merchant's modifier lists.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/modifierLists"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creates an item modifier list and at least one modifier option for it.",
+        "description" : "Creates an item modifier list and at least one modifier opti...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/modifierListReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/modifierList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/modifier-lists/{modifier_list_id}" : {
+      "put" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/success"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "modifier_list_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/modifier-lists/{modifier_list_id}/modifier-options" : {
+      "post" : {
+        "summary" : "Creates an item modifier option and adds it to a modifier list.",
+        "description" : "Creates an item modifier option and adds it to a modifier li...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/modifierOptionReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/modifierOption"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "modifier_list_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/modifier-lists/{modifier_list_id}/modifier-options/{modifier_option_id}" : {
+      "put" : {
+        "summary" : "Modifies the details of an existing item modifier option.",
+        "description" : "Modifies the details of an existing item modifier option.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/modifierOptionReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/modifierOption"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes an existing item modifier option from a modifier list.",
+        "description" : "Deletes an existing item modifier option from a modifier lis...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/success"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "modifier_option_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "modifier_list_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/orders" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "rel",
+          "in" : "query",
+          "description" : "List endpoints might paginate the results they return. This means that instead of returning all results in a single response, these endpoints might return some of the results, along with a response header that links to the next set of results.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The maximum number of payments to return in a single response. This value cannot exceed 200. This value is always an integer.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "The order in which payments are listed in the response.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/orders/{order_id}" : {
+      "get" : {
+        "summary" : "Provides comprehensive information for a single Square Market order, including the order's history.",
+        "description" : "Provides comprehensive information for a single Square Marke...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates the details of a Square Market order.",
+        "description" : "Updates the details of a Square Market order.",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "order_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/pages" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/pages"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creates a Favorites page in Square Register.",
+        "description" : "Creates a Favorites page in Square Register.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/pageReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/page"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/pages/{page_id}" : {
+      "put" : {
+        "summary" : "Modifies the details of a Favorites page in Square Register.",
+        "description" : "Modifies the details of a Favorites page in Square Register.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/pageReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/page"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/success"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "page_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/pages/{page_id}/cells" : {
+      "put" : {
+        "summary" : "Modifies a cell of a Favorites page in Square Register.",
+        "description" : "Modifies a cell of a Favorites page in Square Register.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/pageCellReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/pageCell"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a cell from a Favorites page in Square Register.",
+        "description" : "Deletes a cell from a Favorites page in Square Register.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/success"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "page_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/payments" : {
+      "get" : {
+        "summary" : "Provides summary information for all payments taken by a merchant or any of the merchant's mobile staff during a date range.",
+        "description" : "Provides summary information for all payments taken by a mer...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "rel",
+          "in" : "query",
+          "description" : "List endpoints might paginate the results they return. This means that instead of returning all results in a single response, these endpoints might return some of the results, along with a response header that links to the next set of results.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The maximum number of payments to return in a single response. This value cannot exceed 200. This value is always an integer.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "The order in which payments are listed in the response.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "end_time",
+          "in" : "query",
+          "description" : "The end of the requested reporting period, in ISO 8601 format. If this value is more than one year greater than begin_time, this endpoint returns an error. Default value: The current time.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "begin_time",
+          "in" : "query",
+          "description" : "The beginning of the requested reporting period, in ISO 8601 format. If this value is before January 1, 2013 (2013-01-01T00:00:00Z), this endpoint returns an error. Default value: The current time minus one year.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/payments"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Your application is not authorized to make this request.",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "422" : {
+            "description" : "The request is well formed but has semantic errors. For example, this error occurs when you attempt to create an item variation with the same SKU as an existing variation.",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "500" : {
+            "description" : "Square encountered an unexpected error processing the request.",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "The requesting application does not have permission to access the resource, typically because the OAuth token's permission scope is insufficient.",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "503" : {
+            "description" : "The Connect API service is currently unavailable.",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "The resource specified in the request wasn't found.",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "429" : {
+            "description" : "The Connect API has received too many requests associated with the same access token or application in too short a time span. Try your request again later.",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/payments/{payment_id}" : {
+      "get" : {
+        "summary" : "Provides comprehensive information for a single payment.",
+        "description" : "Provides comprehensive information for a single payment.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/payment"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "payment_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/refunds" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The maximum number of payments to return in a single response. This value cannot exceed 200. This value is always an integer.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "rel",
+          "in" : "query",
+          "description" : "List endpoints might paginate the results they return. This means that instead of returning all results in a single response, these endpoints might return some of the results, along with a response header that links to the next set of results.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "The order in which payments are listed in the response.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "begin_time",
+          "in" : "query",
+          "description" : "The beginning of the requested reporting period, in ISO 8601 format. If this value is before January 1, 2013 (2013-01-01T00:00:00Z), this endpoint returns an error. Default value: The current time minus one year.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "end_time",
+          "in" : "query",
+          "description" : "The end of the requested reporting period, in ISO 8601 format. If this value is more than one year greater than begin_time, this endpoint returns an error. Default value: The current time.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/refunds"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/refundReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/refund"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "end_time",
+          "in" : "query",
+          "description" : "The end of the requested reporting period, in ISO 8601 format. If this value is more than one year greater than begin_time, this endpoint returns an error. Default value: The current time.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "begin_time",
+          "in" : "query",
+          "description" : "The beginning of the requested reporting period, in ISO 8601 format. If this value is before January 1, 2013 (2013-01-01T00:00:00Z), this endpoint returns an error. Default value: The current time minus one year.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "rel",
+          "in" : "query",
+          "description" : "List endpoints might paginate the results they return. This means that instead of returning all results in a single response, these endpoints might return some of the results, along with a response header that links to the next set of results.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "The order in which payments are listed in the response.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The maximum number of payments to return in a single response. This value cannot exceed 200. This value is always an integer.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/refunds"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/settlements" : {
+      "get" : {
+        "summary" : "Provides summary information for all deposits and withdrawals initiated by Square to a merchant's bank account during a date range.",
+        "description" : "Provides summary information for all deposits and withdrawal...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "rel",
+          "in" : "query",
+          "description" : "List endpoints might paginate the results they return. This means that instead of returning all results in a single response, these endpoints might return some of the results, along with a response header that links to the next set of results.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "begin_time",
+          "in" : "query",
+          "description" : "The beginning of the requested reporting period, in ISO 8601 format. If this value is before January 1, 2013 (2013-01-01T00:00:00Z), this endpoint returns an error. Default value: The current time minus one year.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "end_time",
+          "in" : "query",
+          "description" : "The end of the requested reporting period, in ISO 8601 format. If this value is more than one year greater than begin_time, this endpoint returns an error. Default value: The current time.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The maximum number of payments to return in a single response. This value cannot exceed 200. This value is always an integer.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Provide this parameter to retrieve only settlements with a particular status",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "The order in which payments are listed in the response.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/settlements"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{merchant_id}/settlements/{settlement_id}" : {
+      "get" : {
+        "summary" : "Provides comprehensive information for a single settlement, including the entries that contribute to the settlement's total.",
+        "description" : "Provides comprehensive information for a single settlement, ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/settlement"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "merchant_id",
+        "in" : "path",
+        "description" : "If you haven't, specify 'me' for the Connect API to automatically determine your merchant ID based on your request's access token.",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "settlement_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "settlements" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "status" : {
+                "type" : "string"
+              },
+              "bank_account_id" : {
+                "type" : "string"
+              },
+              "initiated_at" : {
+                "type" : "string"
+              },
+              "total_money" : {
+                "type" : "object",
+                "properties" : {
+                  "amount" : {
+                    "type" : "number"
+                  },
+                  "currency_code" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "fees" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "calculation_phase" : {
+                "type" : "string"
+              },
+              "adjustment_type" : {
+                "type" : "string"
+              },
+              "applies_to_custom_amounts" : {
+                "type" : "boolean"
+              },
+              "enabled" : {
+                "type" : "boolean"
+              },
+              "inclusion_type" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "rate" : {
+                "type" : "string"
+              },
+              "type" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "batchResponse" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "status_code" : {
+                "type" : "number"
+              },
+              "body" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "request_id" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "payments" : { },
+    "fee" : {
+      "type" : "object",
+      "properties" : {
+        "calculation_phase" : {
+          "type" : "string"
+        },
+        "adjustment_type" : {
+          "type" : "string"
+        },
+        "applies_to_custom_amounts" : {
+          "type" : "boolean"
+        },
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "inclusion_type" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "rate" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "bankAccounts" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "merchant_id" : {
+                "type" : "string"
+              },
+              "bank_name" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "type" : {
+                "type" : "string"
+              },
+              "routing_number" : {
+                "type" : "string"
+              },
+              "account_number_suffix" : {
+                "type" : "string"
+              },
+              "currency_code" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "discount" : {
+      "type" : "object",
+      "properties" : {
+        "pin_required" : {
+          "type" : "boolean"
+        },
+        "discount_type" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "rate" : {
+          "type" : "string"
+        }
+      }
+    },
+    "itemVariation" : {
+      "type" : "object",
+      "properties" : {
+        "pricing_type" : {
+          "type" : "string"
+        },
+        "track_inventory" : {
+          "type" : "boolean"
+        },
+        "inventory_alert_type" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "price_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "ordinal" : {
+          "type" : "number"
+        },
+        "item_id" : {
+          "type" : "string"
+        },
+        "inventory_alert_threshold" : {
+          "type" : "number"
+        },
+        "user_data" : {
+          "type" : "string"
+        }
+      }
+    },
+    "error" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "pageCellReq" : {
+      "type" : "object",
+      "properties" : {
+        "row" : {
+          "type" : "number"
+        },
+        "column" : {
+          "type" : "number"
+        },
+        "object_type" : {
+          "type" : "string"
+        },
+        "object_id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "refunds" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "processed_at" : {
+                "type" : "string"
+              },
+              "reason" : {
+                "type" : "string"
+              },
+              "refunded_money" : {
+                "type" : "object",
+                "properties" : {
+                  "currency_code" : {
+                    "type" : "string"
+                  },
+                  "amount" : {
+                    "type" : "number"
+                  }
+                }
+              },
+              "payment_id" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "settlement" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "bank_account_id" : {
+          "type" : "string"
+        },
+        "initiated_at" : {
+          "type" : "string"
+        },
+        "total_money" : {
+          "type" : "object",
+          "properties" : {
+            "amount" : {
+              "type" : "number"
+            },
+            "currency_code" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "pages" : { },
+    "discounts" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "pin_required" : {
+                "type" : "boolean"
+              },
+              "discount_type" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "rate" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "pageReq" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "page_index" : {
+          "type" : "number"
+        }
+      }
+    },
+    "merchantBusiness" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "country_code" : {
+          "type" : "string"
+        },
+        "language_code" : {
+          "type" : "string"
+        },
+        "account_type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "payment" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "merchant_id" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "creator_id" : {
+          "type" : "string"
+        },
+        "device" : {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "payment_url" : {
+          "type" : "string"
+        },
+        "inclusive_tax_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "additive_tax_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "tax_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "tip_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "discount_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "total_collected_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "processing_fee_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "net_total_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "refunded_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "additive_tax" : {
+          "type" : "array"
+        },
+        "tender" : {
+          "type" : "array"
+        },
+        "refunds" : {
+          "type" : "array"
+        },
+        "itemizations" : {
+          "type" : "array"
+        }
+      }
+    },
+    "categories" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "discountReq" : {
+      "type" : "object",
+      "properties" : {
+        "pin_required" : {
+          "type" : "boolean"
+        },
+        "discount_type" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "rate" : {
+          "type" : "string"
+        }
+      }
+    },
+    "modifierLists" : { },
+    "batchRequest" : {
+      "type" : "object"
+    },
+    "bankAccount" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "merchant_id" : {
+          "type" : "string"
+        },
+        "bank_name" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "routing_number" : {
+          "type" : "string"
+        },
+        "account_number_suffix" : {
+          "type" : "string"
+        },
+        "currency_code" : {
+          "type" : "string"
+        }
+      }
+    },
+    "item" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "visibility" : {
+          "type" : "string"
+        },
+        "available_online" : {
+          "type" : "boolean"
+        },
+        "category_id" : {
+          "type" : "string"
+        },
+        "category" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "modifierOptionReq" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "price_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "pageCell" : {
+      "type" : "object",
+      "properties" : {
+        "page_id" : {
+          "type" : "string"
+        },
+        "row" : {
+          "type" : "number"
+        },
+        "column" : {
+          "type" : "number"
+        },
+        "object_type" : {
+          "type" : "string"
+        },
+        "object_id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "createImage" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "inventoryEntrys" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "variation_id" : {
+                "type" : "string"
+              },
+              "quantity_on_hand" : {
+                "type" : "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "categoryReq" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "refundReq" : {
+      "type" : "object",
+      "properties" : {
+        "payment_id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "reason" : {
+          "type" : "string"
+        },
+        "refunded_money" : {
+          "type" : "object",
+          "properties" : {
+            "amount" : {
+              "type" : "number"
+            },
+            "currency_code" : {
+              "type" : "string"
+            }
+          }
+        },
+        "request_idempotence_key" : {
+          "type" : "string"
+        }
+      }
+    },
+    "itemReq" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "visibility" : {
+          "type" : "string"
+        },
+        "category_id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "merchant" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "country_code" : {
+          "type" : "string"
+        },
+        "language_code" : {
+          "type" : "string"
+        },
+        "business_name" : {
+          "type" : "string"
+        },
+        "business_address" : {
+          "type" : "object",
+          "properties" : {
+            "address_line_1" : {
+              "type" : "string"
+            },
+            "locality" : {
+              "type" : "string"
+            },
+            "administrative_district_level_1" : {
+              "type" : "string"
+            },
+            "postal_code" : {
+              "type" : "string"
+            }
+          }
+        },
+        "business_phone" : {
+          "type" : "object",
+          "properties" : {
+            "calling_code" : {
+              "type" : "string"
+            },
+            "number" : {
+              "type" : "string"
+            }
+          }
+        },
+        "business_type" : {
+          "type" : "string"
+        },
+        "account_type" : {
+          "type" : "string"
+        },
+        "location_details" : {
+          "type" : "object",
+          "properties" : {
+            "nickname" : {
+              "type" : "string"
+            }
+          }
+        },
+        "market_url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "modifierList" : {
+      "type" : "object",
+      "properties" : {
+        "selection_type" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "feeReq" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "rate" : {
+          "type" : "string"
+        }
+      }
+    },
+    "success" : {
+      "type" : "object",
+      "properties" : {
+        "success" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "itemVariationReq" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "price_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "track_inventory" : {
+          "type" : "boolean"
+        },
+        "inventory_alert_type" : {
+          "type" : "string"
+        },
+        "inventory_alert_threshold" : {
+          "type" : "number"
+        },
+        "user_data" : {
+          "type" : "string"
+        }
+      }
+    },
+    "locations" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "email" : {
+                "type" : "string"
+              },
+              "country_code" : {
+                "type" : "string"
+              },
+              "language_code" : {
+                "type" : "string"
+              },
+              "business_name" : {
+                "type" : "string"
+              },
+              "business_address" : {
+                "type" : "object",
+                "properties" : {
+                  "address_line_1" : {
+                    "type" : "string"
+                  },
+                  "locality" : {
+                    "type" : "string"
+                  },
+                  "administrative_district_level_1" : {
+                    "type" : "string"
+                  },
+                  "postal_code" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "business_phone" : {
+                "type" : "object",
+                "properties" : {
+                  "calling_code" : {
+                    "type" : "string"
+                  },
+                  "number" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "business_type" : {
+                "type" : "string"
+              },
+              "account_type" : {
+                "type" : "string"
+              },
+              "location_details" : {
+                "type" : "object",
+                "properties" : {
+                  "nickname" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "market_url" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "page" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "page_index" : {
+          "type" : "number"
+        }
+      }
+    },
+    "category" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "modifierOption" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "price_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "on_by_default" : {
+          "type" : "boolean"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "ordinal" : {
+          "type" : "number"
+        },
+        "modifier_list_id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "items" : { },
+    "modifierListReq" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "selection_type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "refund" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "processed_at" : {
+          "type" : "string"
+        },
+        "reason" : {
+          "type" : "string"
+        },
+        "refunded_money" : {
+          "type" : "object",
+          "properties" : {
+            "currency_code" : {
+              "type" : "string"
+            },
+            "amount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "payment_id" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

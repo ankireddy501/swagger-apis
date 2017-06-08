@@ -1,0 +1,120 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Real-time weather information via the Internet.",
+    "version" : "v1",
+    "title" : "Weather Underground AutoComplete"
+  },
+  "host" : "autocomplete.wunderground.com",
+  "basePath" : "",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/aq" : {
+      "get" : {
+        "summary" : "Returns a list of locations or hurricanes which match against a partial query. For example, searching for San F will return San Francisco, California, San Fernando del Valle de Catamarca, Argentina, and San Felipe de Puerto Plata, Dominican Republic, among others.\r\n\r\nThe request options include the ability to query for cities, hurricanes, or both. The results can be used to form Weather API queries or to link directly to wunderground resources.\r\n\r\nThis feature does not require an API key.\r\n\r\n#Examples\r\nhttp://autocomplete.wunderground.com/aq?query=San%20F\r\nhttp://autocomplete.wunderground.com/aq?query=San%20F&c=US\r\nhttp://autocomplete.wunderground.com/aq?query=Kat&h=1&cities=0\r\nhttp://autocomplete.wunderground.com/aq?query=Katr&h=1\r\n(See description of the response.)\r\n",
+        "description" : "Returns a list of locations or hurricanes which match agains...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "cities",
+          "in" : "query",
+          "description" : "#cities\r\nInclude cities in the results. This is the default behavior. To remove cities from results, cities=0.\r\nOptional.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "c",
+          "in" : "query",
+          "description" : "#c\r\nSpecify country code. Example: c=US.\r\nOptional.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "cb",
+          "in" : "query",
+          "description" : "#cb\r\nJSONP callback method name.\r\nOptional.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "h",
+          "in" : "query",
+          "description" : "#h\r\nInclude hurricanes in results: h=1.\r\nOptional.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "description" : "#query\r\nThe search string. Usually a partial location or hurricane name.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "#format\r\nSpecifies response format. Possible values: JSON or XML. Default: JSON.\r\nOptional.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The response will be a JSON-encoded object.\r\n|name|description|\r\n|-|\r\n|RESULTS|Type: array. JSON type: array. The official API documentation provides no description. |\r\n|RESULTS.item|Type: object. JSON type: object. The official API documentation provides no description. |\r\n|RESULTS.item.c|Type: optional. JSON type: string. Specify country code. Example: c=US. |\r\n|RESULTS.item.l|Type: unknown. JSON type: string. URL path and query string for result. This can be used to construct full wunderground URLs and API requests. See Using Results. |\r\n|RESULTS.item.name|Type: unknown. JSON type: string. Name of city or hurricane. |\r\n|RESULTS.item.type|Type: unknown. JSON type: string. hurricanes or cityIndicates if item is a hurricane or city.. |\r\n|RESULTS.item.tz|Type: unknown. JSON type: string. (city only). |\r\n|RESULTS.item.tzs|Type: unknown. JSON type: string. (city only). |\r\n|RESULTS.item.zmw|Type: unknown. JSON type: string. (city only). |\r\n|RESULTS.item.lat|Type: unknown. JSON type: string. (city only). |\r\n|RESULTS.item.lon|Type: unknown. JSON type: string. (city only). |\r\n|RESULTS.item.date|Type: unknown. JSON type: string. (hurricane only). |\r\n|RESULTS.item.strmnum|Type: unknown. JSON type: string. (hurricane only). |\r\n|RESULTS.item.basin|Type: unknown. JSON type: string. (hurricane only). |\r\n|RESULTS.item.damage|Type: unknown. JSON type: string. (hurricane only). |\r\n\r\nEach autocomplete result object has an l field (short for link) that can be used for constructing wunderground URLs or API calls.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/autocomplete"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "autocomplete" : {
+      "type" : "object",
+      "properties" : {
+        "RESULTS" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "name" : {
+                "type" : "string"
+              },
+              "type" : {
+                "type" : "string"
+              },
+              "c" : {
+                "type" : "string"
+              },
+              "zmw" : {
+                "type" : "string"
+              },
+              "tz" : {
+                "type" : "string"
+              },
+              "tzs" : {
+                "type" : "string"
+              },
+              "l" : {
+                "type" : "string"
+              },
+              "lat" : {
+                "type" : "string"
+              },
+              "lon" : {
+                "type" : "string"
+              },
+              "date" : {
+                "type" : "string"
+              },
+              "strmnum" : {
+                "type" : "string"
+              },
+              "basin" : {
+                "type" : "string"
+              },
+              "damage" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

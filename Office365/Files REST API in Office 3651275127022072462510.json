@@ -1,0 +1,277 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Office 365 is the brand name used by Microsoft for a group of software plus services subscriptions that provides productivity software and related services to its subscribers.",
+    "version" : "1.0",
+    "title" : "Files REST API in Office 365"
+  },
+  "host" : "outlook.office365.com",
+  "basePath" : "/ews/odata/Me",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/files" : {
+      "get" : {
+        "summary" : "Recursively retrieves a list of all files and folder that reside in the default document library.",
+        "description" : "Recursively retrieves a list of all files and folder that re...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "orderby",
+          "in" : "query",
+          "description" : "Establishes sort order for a given query result set.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "top",
+          "in" : "query",
+          "description" : "Establishes the number of items returned starting from the top of a given query result set.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "skiptoken",
+          "in" : "query",
+          "description" : "Skip token",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "post" : {
+        "summary" : "Creates an empty file and provides it with a name. (If there is no folder in the specified location, the method creates a folder).",
+        "description" : "Creates an empty file and provides it with a name. (If there...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/newFile"
+          }
+        } ],
+        "responses" : { }
+      }
+    },
+    "/files/Add{name}{overwrite}" : {
+      "post" : {
+        "summary" : "Creates a new file and provisions the file with content. Provide the content as a bit stream in the POST body. The body is required. \r\nUpdates the content in an existing file with content provided as bit stream. Overwriting existing content is optional.\r\nThe body is required.\r\n",
+        "description" : "Creates a new file and provisions the file with content. Pro...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model872"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "name",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "overwrite",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/files{file_path}" : {
+      "get" : {
+        "summary" : "Retrieves all of the properties of a specified file.",
+        "description" : "Retrieves all of the properties of a specified file.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "Deletes a specified file",
+        "description" : "Deletes a specified file",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "file_path",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/files{file_path}/CopyTo{file_path}{overwrite}" : {
+      "post" : {
+        "summary" : "Working on a file from source location to target location. Note that if the target already exists and you have set overwrite to false, then the operation throws an error.",
+        "description" : "Working on a file from source location to target location. N...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "file_path",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "overwrite",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/files{file_path}/MoveTo{file_path}{overwrite}" : {
+      "post" : {
+        "summary" : "Working on a file from source location to target location. Note that if the target already exists and you have set overwrite to false, then the operation throws an error.",
+        "description" : "Working on a file from source location to target location. N...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "overwrite",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "file_path",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/files{file_path}/download" : {
+      "get" : {
+        "summary" : "Retrieves a file stream comprising the contents of the specified file.",
+        "description" : "Retrieves a file stream comprising the contents of the speci...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "file_path",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/files{folder_path}" : {
+      "get" : {
+        "summary" : "Retrieves all of the properties of a specified folder.",
+        "description" : "Retrieves all of the properties of a specified folder.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "Deletes a specified folder and all of its contents.",
+        "description" : "Deletes a specified folder and all of its contents.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "folder_path",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/files{folder_path}/Children" : {
+      "get" : {
+        "summary" : "Retrieves the files and/or folders that are direct children of the specified folder.",
+        "description" : "Retrieves the files and/or folders that are direct children ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "skiptoken",
+          "in" : "query",
+          "description" : "Skip token",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "top",
+          "in" : "query",
+          "description" : "Establishes the number of items returned starting from the top of a given query result set.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "orderby",
+          "in" : "query",
+          "description" : "Establishes sort order for a given query result set.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "folder_path",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/files{folder_path}/{property_name}" : {
+      "get" : {
+        "summary" : "Retrieves the specified property of a given folder.",
+        "description" : "Retrieves the specified property of a given folder.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "property_name",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "folder_path",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "newFile" : {
+      "type" : "object",
+      "properties" : {
+        "__metadata" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            }
+          }
+        },
+        "Name" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

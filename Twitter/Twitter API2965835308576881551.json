@@ -1,0 +1,4277 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Twitter is an online social networking and microblogging service that enables users to send and read short 140-character text messages, called \\\"tweets\\\". Registered users can read and post tweets, but unregistered users can only read them. Users access Twitter through the website interface, SMS, or mobile device app.",
+    "version" : "1.1",
+    "title" : "Twitter API"
+  },
+  "host" : "api.twitter.com",
+  "basePath" : "/1.1/",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/account/remove_profile_banner{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Removes the uploaded profile banner for the authenticating user. Returns\r\nHTTP 200 upon success.\r\n",
+        "description" : "Removes the uploaded profile banner for the authenticating u...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/account/settings{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns settings (including current trend, geo and sleep time information)\r\nfor the authenticating user.\r\n",
+        "description" : "Returns settings (including current trend, geo and sleep tim...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/account-settings"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Updates the authenticating user's settings.\r\nWhile all parameters for this method are optional, at least one or more\r\nshould be provided when executing this request.\r\n",
+        "description" : "Updates the authenticating user's settings.\r\nWhile all parame...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model35"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/account-settings"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/account/update_delivery_device{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Sets which device Twitter delivers updates to for the authenticating user.\r\nSending none as the device parameter will disable SMS updates.\r\n",
+        "description" : "Sets which device Twitter delivers updates to for the authen...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model679"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/account/update_profile_background_image{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Updates the authenticating user's profile background image. This method can\r\nalso be used to enable or disable the profile background image.\r\nAlthough each parameter is marked as optional, at least one of image, tile\r\nor use must be provided when making this request.\r\n",
+        "description" : "Updates the authenticating user's profile background image. ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model8"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/account-update_background"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/account/update_profile_banner{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Uploads a profile banner on behalf of the authenticating user. For bes\r\nresults, upload an <5MB image that is exactly 1252px by 626px. Images will\r\nbe resized for a number of display options. Users with an uploaded profile\r\nbanner will have a profile_banner_url node in their Users objects. More\r\ninformation about sizing variations can be found in User Profile Images\r\nand Banners and GET users/profile_banner.\r\n Profile banner images are processed asynchronously. The profile_banner_url\r\nand its variant sizes will not necessary be available directly after upload.\r\n Note: If providing any one of the height, width, offset_left, or offset_top\r\n parameters, you must provide all of the sizing parameters.\r\n",
+        "description" : "Uploads a profile banner on behalf of the authenticating use...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model630"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/account/update_profile_colors{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Sets one or more hex values that control the color scheme of the authenticating\r\nuser's profile page on twitter.com. Each parameter's value must be a valid\r\nhexidecimal value, and may be either three or six characters (ex: #fff or #ffffff).\r\n",
+        "description" : "Sets one or more hex values that control the color scheme of...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model402"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/account-update_profile_colors"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/account/update_profile_image{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Updates the authenticating user's profile image. Note that this method\r\nexpects raw multipart data, not a URL to an image.\r\nThis method asynchronously processes the uploaded file before updating the\r\nuser's profile image URL. You can either update your local cache the nex\r\ntime you request the user's information, or, at least 5 seconds after\r\nuploading the image, ask for the updated URL using GET users/show.\r\n",
+        "description" : "Updates the authenticating user's profile image. Note that t...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model572"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/account-update_profile_image"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/account/update_profile{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Sets values that users are able to set under the \"Account\" tab of their\r\nsettings page. Only the parameters specified will be updated.\r\nWhile no specific parameter is required, at least one of these parameters\r\nshould be provided when executing this method.\r\n",
+        "description" : "Sets values that users are able to set under the \"Account\" t...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model41"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/account/verify_credentials{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns an HTTP 200 OK response code and a representation of the requesting\r\nuser if authentication was successful; returns a 401 status code and an error\r\nmessage if not. Use this method to test if supplied user credentials are valid.\r\n",
+        "description" : "Returns an HTTP 200 OK response code and a representation of...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "skip_status",
+          "in" : "query",
+          "description" : "When set to either true, t or 1 statuses will not be included in the\r\nreturned user objects.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/account-verify_credentials"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/application/rate_limit_status{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the current rate limits for methods belonging to the specified\r\nresource families.\r\nEach 1.1 API resource belongs to a \"resource family\" which is indicated in\r\nits method documentation. You can typically determine a method's resource\r\nfamily from the first component of the path after the resource version.\r\nThis method responds with a map of methods belonging to the families specified\r\nby the resources parameter, the current remaining uses for each of those\r\nresources within the current rate limiting window, and its expiration time\r\nin epoch time. It also includes a rate_limit_context field that indicates\r\nthe current access token or application-only authentication context.\r\nYou may also issue requests to this method without any parameters to receive\r\na map of all rate limited GET methods. If your application only uses a few\r\nof methods, please explicitly provide a resources parameter with the specified\r\nresource families you work with.\r\nWhen using app-only auth, this method's response indicates the app-only auth\r\nrate limiting context.\r\nRead more about REST API Rate Limiting in v1.1 and review the limits.\r\n",
+        "description" : "Returns the current rate limits for methods belonging to the...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "resources",
+          "in" : "query",
+          "description" : "A comma-separated list of resource families you want to know the current rate limit disposition for. For best performance, only specify the resource families pertinent to your application.\r\nSee Rate Limiting in API v1.1 for more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/rate_limits"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/blocks/ids{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns an array of numeric user ids the authenticating user is blocking.\r\n",
+        "description" : "Returns an array of numeric user ids the authenticating user...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Breaks the results into pages. The number of items returned is not guaranteed \r\nas some results can be filtered. If no cursor is provided, a value of -1 will be assumed, which is the\r\nfirst \"page.\"\r\nThe response from the API will include a previous_cursor and next_cursor\r\nto allow paging back and forth. See Using cursors to navigate collections\r\nfor more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "stringify_ids",
+          "in" : "query",
+          "description" : "Many programming environments will not consume our Tweet ids due to their\r\nsize. Provide this option to have ids returned as strings instead. \r\nThis parameter is especially important to use in Javascript environments.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/blocks-ids"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/direct_messages/new{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Sends a new direct message to the specified user from the authenticating user.\r\nRequires both the user and text parameters and must be a POST. Returns the\r\nsent message in the requested format if successful.\r\n",
+        "description" : "Sends a new direct message to the specified user from the au...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model520"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/direct_messages/sent{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the 20 most recent direct messages sent by the authenticating user.\r\nIncludes detailed information about the sender and recipient user. You can\r\nrequest up to 200 direct messages per call, up to a maximum of 800 outgoing DMs.\r\nImportant: This method requires an access token with RWD (read, write &\r\ndirect message) permissions. Consult The Application Permission Model for\r\nmore information.\r\n",
+        "description" : "Returns the 20 most recent direct messages sent by the authe...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of records to retrieve. Must be less than or equal\r\nto 200.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page of results to retrieve.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "max_id",
+          "in" : "query",
+          "description" : "Returns results with an ID less than (that is, older than) or equal to\r\nthe specified ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "since_id",
+          "in" : "query",
+          "description" : "Returns results with an ID greater than (that is, more recent than) the\r\nspecified ID. There are limits to the number of Tweets which can be\r\naccessed through the API. If the limit of Tweets has occured since the\r\nsince_id, the since_id will be forced to the oldest ID available.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/direct_messages{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the 20 most recent direct messages sent to the authenticating user.\r\nIncludes detailed information about the sender and recipient user. You can\r\nrequest up to 200 direct messages per call, up to a maximum of 800 incoming DMs.\r\nImportant: This method requires an access token with RWD (read, write & direc\r\nmessage) permissions. Consult The Application Permission Model for more\r\ninformation. (https://dev.twitter.com/docs/application-permission-model)\r\n",
+        "description" : "Returns the 20 most recent direct messages sent to the authe...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "since_id",
+          "in" : "query",
+          "description" : "Returns results with an ID greater than (that is, more recent than) the\r\nspecified ID. There are limits to the number of Tweets which can be\r\naccessed through the API. If the limit of Tweets has occured since the\r\nsince_id, the since_id will be forced to the oldest ID available.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "max_id",
+          "in" : "query",
+          "description" : "Returns results with an ID less than (that is, older than) or equal to\r\nthe specified ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "skip_status",
+          "in" : "query",
+          "description" : "When set to either true, t or 1 statuses will not be included in the\r\nreturned user objects.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of records to retrieve. Must be less than or equal\r\nto 200.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/friendships/incoming{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a collection of numeric IDs for every user who has a pending reques\r\nto follow the authenticating user.\r\n",
+        "description" : "Returns a collection of numeric IDs for every user who has a...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Breaks the results into pages. The number of items returned is not guaranteed \r\nas some results can be filtered. If no cursor is provided, a value of -1 will be assumed, which is the\r\nfirst \"page.\"\r\nThe response from the API will include a previous_cursor and next_cursor\r\nto allow paging back and forth. See Using cursors to navigate collections\r\nfor more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "stringify_ids",
+          "in" : "query",
+          "description" : "Many programming environments will not consume our Tweet ids due to their\r\nsize. Provide this option to have ids returned as strings instead. \r\nThis parameter is especially important to use in Javascript environments.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/ids"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/friendships/no_retweets/ids{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a collection of user_ids that the currently authenticated user does\r\nnot want to receive retweets from.\r\nUse POST friendships/update to set the \"no retweets\" status for a given user\r\naccount on behalf of the current user.\r\n",
+        "description" : "Returns a collection of user_ids that the currently authenti...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "stringify_ids",
+          "in" : "query",
+          "description" : "Many programming environments will not consume our Tweet ids due to their\r\nsize. Provide this option to have ids returned as strings instead. \r\nThis parameter is especially important to use in Javascript environments.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/friendships-no_retweets-ids"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/friendships/outgoing{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a collection of numeric IDs for every protected user for whom the\r\nauthenticating user has a pending follow request.\r\n",
+        "description" : "Returns a collection of numeric IDs for every protected user...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Breaks the results into pages. The number of items returned is not guaranteed \r\nas some results can be filtered. If no cursor is provided, a value of -1 will be assumed, which is the\r\nfirst \"page.\"\r\nThe response from the API will include a previous_cursor and next_cursor\r\nto allow paging back and forth. See Using cursors to navigate collections\r\nfor more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "stringify_ids",
+          "in" : "query",
+          "description" : "Many programming environments will not consume our Tweet ids due to their\r\nsize. Provide this option to have ids returned as strings instead. More\r\nabout Twitter IDs, JSON and Snowflake.\r\n\r\nMany programming environments will not consume our ids due to their size.\r\nProvide this option to have ids returned as strings instead. Read more\r\nabout Twitter IDs, JSON and Snowflake.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/ids"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/geo/id/{place_id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns all the information about a known place.",
+        "description" : "Returns all the information about a known place.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/geo-id"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "place_id",
+        "in" : "path",
+        "description" : "A place in the world. These IDs can be retrieved from geo/reverse_geocode.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/geo/reverse_geocode{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Given a latitude and a longitude, searches for up to 20 places that can be\r\nused as a place_id when updating a status.\r\nThis request is an informative call and will deliver generalized results\r\nabout geography.\r\n",
+        "description" : "Given a latitude and a longitude, searches for up to 20 plac...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "accuracy",
+          "in" : "query",
+          "description" : "A hint on the \"region\" in which to search. If a number, then this is a\r\nradius in meters, but it can also take a string that is suffixed with\r\nft to specify feet. If this is not passed in, then it is assumed to be\r\n0m. If coming from a device, in practice, this value is whatever accuracy\r\nthe device has measuring its location (whether it be coming from a GPS,\r\nWiFi triangulation, etc.).\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "If supplied, the response will use the JSONP format with a callback of\r\nthe given name.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "long",
+          "in" : "query",
+          "description" : "The longitude to search around. The valid ranges for longitude is -180.0\r\nto +180.0 (East is positive) inclusive. This parameter will be ignored\r\nif outside that range, if it is not a number, if geo_enabled is disabled,\r\nor if there not a corresponding lat parameter.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "lat",
+          "in" : "query",
+          "description" : "The latitude to search around. This parameter will be ignored unless i\r\nis inside the range -90.0 to +90.0 (North is positive) inclusive. I\r\nwill also be ignored if there isn't a corresponding long parameter.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "max_results",
+          "in" : "query",
+          "description" : "A hint as to the number of results to return. This does not guarantee\r\nthat the number of results returned will equal max_results, but instead\r\ninforms how many \"nearby\" results to return. Ideally, only pass in the\r\nnumber of places you intend to display to the user here.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "granularity",
+          "in" : "query",
+          "description" : "This is the minimal granularity of place types to return and must be one\r\nof: poi, neighborhood, city, admin or country. If no granularity is\r\nprovided for the request neighborhood is assumed.\r\nSetting this to city, for example, will find places which have a type of\r\ncity, admin or country.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/geo-id"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/geo/search{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Search for places that can be attached to a statuses/update. Given a latitude\r\nand a longitude pair, an IP address, or a name, this request will return a\r\nlist of all the valid places that can be used as the place_id when updating\r\na status.\r\nConceptually, a query can be made from the user's location, retrieve a lis\r\nof places, have the user validate the location he or she is at, and then\r\nsend the ID of this location with a call to POST statuses/update.\r\nThis is the recommended method to use find places that can be attached to\r\nstatuses/update. Unlike GET geo/reverse_geocode which provides raw data\r\naccess, this endpoint can potentially re-order places with regards to the\r\nuser who is authenticated. This approach is also preferred for interactive\r\nplace matching with the user.\r\n",
+        "description" : "Search for places that can be attached to a statuses/update....",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "long",
+          "in" : "query",
+          "description" : "The longitude to search around. The valid ranges for longitude is -180.0\r\nto +180.0 (East is positive) inclusive. This parameter will be ignored\r\nif outside that range, if it is not a number, if geo_enabled is disabled,\r\nor if there not a corresponding lat parameter.\r\n",
+          "required" : false
+        }, {
+          "name" : "contained_within",
+          "in" : "query",
+          "description" : "This is the place_id which you would like to restrict the search results\r\nto. Setting this value means only places within the given place_id will\r\nbe found.\r\nSpecify a place_id. For example, to scope all results to places within\r\n\"San Francisco, CA USA\", you would specify a place_id of \"5a110d312052166f\"\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "If supplied, the response will use the JSONP format with a callback of\r\nthe given name.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "granularity",
+          "in" : "query",
+          "description" : "This is the minimal granularity of place types to return and must be one\r\nof: poi, neighborhood, city, admin or country. If no granularity is\r\nprovided for the request neighborhood is assumed.\r\nSetting this to city, for example, will find places which have a type of\r\ncity, admin or country.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "attribute:street_address",
+          "in" : "query",
+          "description" : "This parameter searches for places which have this given street address.\r\nThere are other well-known, and application specific attributes available.\r\nCustom attributes are also permitted. Learn more about Place Attributes.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "max_results",
+          "in" : "query",
+          "description" : "A hint as to the number of results to return. This does not guarantee\r\nthat the number of results returned will equal max_results, but instead\r\ninforms how many \"nearby\" results to return. Ideally, only pass in the\r\nnumber of places you intend to display to the user here.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ip",
+          "in" : "query",
+          "description" : "An IP address. Used when attempting to fix geolocation based off of the\r\nuser's IP address.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "lat",
+          "in" : "query",
+          "description" : "The latitude to search around. This parameter will be ignored unless i\r\nis inside the range -90.0 to +90.0 (North is positive) inclusive. I\r\nwill also be ignored if there isn't a corresponding long parameter.\r\n",
+          "required" : false
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "description" : "Free-form text to match against while executing a geo-based query, bes\r\nsuited for finding nearby locations by name. Remember to URL encode the query.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "accuracy",
+          "in" : "query",
+          "description" : "A hint on the \"region\" in which to search. If a number, then this is a\r\nradius in meters, but it can also take a string that is suffixed with\r\nft to specify feet. If this is not passed in, then it is assumed to be\r\n0m. If coming from a device, in practice, this value is whatever accuracy\r\nthe device has measuring its location (whether it be coming from a GPS,\r\nWiFi triangulation, etc.).\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/geo-id"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/geo/similar_places{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Locates places near the given coordinates which are similar in name.\r\nConceptually you would use this method to get a list of known places to choose from first. Then, if the desired place doesn't exist, make a request to POST geo/place to create a new one.\r\nThe token contained in the response is the token needed to be able to create a new place.\r\n",
+        "description" : "Locates places near the given coordinates which are similar ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "attribute:street_address",
+          "in" : "query",
+          "description" : "This parameter searches for places which have this given street address.\r\nThere are other well-known, and application specific attributes available.\r\nCustom attributes are also permitted. Learn more about Place Attributes.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "contained_within",
+          "in" : "query",
+          "description" : "This is the place_id which you would like to restrict the search results\r\nto. Setting this value means only places within the given place_id will\r\nbe found.\r\nSpecify a place_id. For example, to scope all results to places within\r\n\"San Francisco, CA USA\", you would specify a place_id of \"5a110d312052166f\"\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "long",
+          "in" : "query",
+          "description" : "The longitude to search around. The valid ranges for longitude is -180.0\r\nto +180.0 (East is positive) inclusive. This parameter will be ignored\r\nif outside that range, if it is not a number, if geo_enabled is disabled,\r\nor if there not a corresponding lat parameter.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "If supplied, the response will use the JSONP format with a callback of\r\nthe given name.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "lat",
+          "in" : "query",
+          "description" : "The latitude to search around. This parameter will be ignored unless i\r\nis inside the range -90.0 to +90.0 (North is positive) inclusive. I\r\nwill also be ignored if there isn't a corresponding long parameter.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "The name a place is known as.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/geo-id"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/help/configuration{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the current configuration used by Twitter including twitter.com\r\nslugs which are not usernames, maximum photo resolutions, and t.co URL\r\nlengths.\r\nIt is recommended applications request this endpoint when they are loaded,\r\nbut no more than once a day.\r\n",
+        "description" : "Returns the current configuration used by Twitter including ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/help-config"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/help/languages{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the list of languages supported by Twitter along with their ISO 639-1\r\ncode. The ISO 639-1 code is the two letter value to use if you include lang\r\nwith any of your requests.\r\n",
+        "description" : "Returns the list of languages supported by Twitter along wit...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/help-languages"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/help/privacy{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns Twitter's Privacy Policy.",
+        "description" : "Returns Twitter's Privacy Policy.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/privacy"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/help/tos{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the Twitter Terms of Service in the requested format. These are no\r\nthe same as the Developer Rules of the Road.\r\n",
+        "description" : "Returns the Twitter Terms of Service in the requested format...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tos"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/lists/members/create_all{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Adds multiple members to a list, by specifying a comma-separated list of\r\nmember ids or screen names. The authenticated user must own the list to be\r\nable to add members to it. Note that lists can't have more than 5,000 members,\r\nand you are limited to adding up to 100 members to a list at a time with this\r\nmethod.\r\nPlease note that there can be issues with lists that rapidly remove and add\r\nmemberships. Take care when using these methods such that you are not too\r\nrapidly switching between removals and adds on the same list.\r\nEither a list_id or a slug is required. If providing a list_slug, an\r\nowner_screen_name or owner_id is also required.\r\n",
+        "description" : "Adds multiple members to a list, by specifying a comma-separ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model854"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/lists/members/create{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Add a member to a list. The authenticated user must own the list to be able\r\nto add members to it. Note that lists can't have more than 500 members.\r\nEither a list_id or a slug is required. If providing a list_slug, an\r\nowner_screen_name or owner_id is also required.\r\n",
+        "description" : "Add a member to a list. The authenticated user must own the ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model671"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/lists/members/destroy_all{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Removes multiple members from a list, by specifying a comma-separated lis\r\nof member ids or screen names. The authenticated user must own the list to\r\nbe able to remove members from it. Note that lists can't have more than 500\r\nmembers, and you are limited to removing up to 100 members to a list at a\r\ntime with this method.\r\nPlease note that there can be issues with lists that rapidly remove and add\r\nmemberships. Take care when using these methods such that you are not too\r\nrapidly switching between removals and adds on the same list.\r\nEither a list_id or a slug is required. If providing a list_slug, an\r\nowner_screen_name or owner_id is also required.\r\n",
+        "description" : "Removes multiple members from a list, by specifying a comma-...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model654"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/lists/members/destroy{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Removes the specified member from the list. The authenticated user must be\r\nthe list's owner to remove members from the list.\r\nEither a list_id or a slug is required. If providing a list_slug, an\r\nowner_screen_name or owner_id is also required.\r\n",
+        "description" : "Removes the specified member from the list. The authenticate...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model736"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/lists/members/show{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Check if the specified user is a member of the specified list.\r\nEither a list_id or a slug is required. If providing a list_slug, an\r\nowner_screen_name or owner_id is also required.\r\n",
+        "description" : "Check if the specified user is a member of the specified lis...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "user_id",
+          "in" : "query",
+          "description" : "The ID of the user for whom to return results for. Helpful for\r\ndisambiguating when a valid user ID is also a valid screen name.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "screen_name",
+          "in" : "query",
+          "description" : "The screen name of the user for whom to return results for. Helpful\r\nfor disambiguating when a valid screen name is also a user ID.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "list_id",
+          "in" : "query",
+          "description" : "The numerical id of the list.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "owner_id",
+          "in" : "query",
+          "description" : "The user ID of the user who owns the list being requested by a slug.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "slug",
+          "in" : "query",
+          "description" : "You can identify a list by its slug instead of its numerical id. If you\r\ndecide to do so, note that you'll also have to specify the list owner\r\nusing the owner_id or owner_screen_name parameters.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "owner_screen_name",
+          "in" : "query",
+          "description" : "The screen name of the user who owns the list being requested by a slug.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "skip_status",
+          "in" : "query",
+          "description" : "When set to either true, t or 1 statuses will not be included in the\r\nreturned user objects.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/lists/memberships{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the lists the specified user has been added to. If user_id or\r\nscreen_name are not provided the memberships for the authenticating user\r\nare returned.\r\n",
+        "description" : "Returns the lists the specified user has been added to. If u...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "user_id",
+          "in" : "query",
+          "description" : "The ID of the user for whom to return results for.\r\nThe ID of the user for whom to return results for. Helpful for disambiguating\r\nwhen a valid user ID is also a valid screen name.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "screen_name",
+          "in" : "query",
+          "description" : "The screen name of the user for whom to return results for.\r\nThe screen name of the user for whom to return results for. Helpful for\r\ndisambiguating when a valid screen name is also a user ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Breaks the results into pages. The number of items returned is not guaranteed \r\nas some results can be filtered. If no cursor is provided, a value of -1 will be assumed, which is the\r\nfirst \"page.\"\r\nThe response from the API will include a previous_cursor and next_cursor\r\nto allow paging back and forth. See Using cursors to navigate collections\r\nfor more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filter_to_owned_lists",
+          "in" : "query",
+          "description" : "When set to true, t or 1, will return just lists the authenticating\r\nuser owns, and the user represented by user_id or screen_name is a\r\nmember of.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/lists"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/lists/ownerships{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the lists owned by the specified Twitter user. Private lists will\r\nonly be shown if the authenticated user is also the owner of the lists.\r\nA user_id or screen_name must be provided.\r\n",
+        "description" : "Returns the lists owned by the specified Twitter user. Priva...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "screen_name",
+          "in" : "query",
+          "description" : "The screen name of the user for whom to return results for.\r\nThe screen name of the user for whom to return results for. Helpful for\r\ndisambiguating when a valid screen name is also a user ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of records to retrieve. Must be less than or equal\r\nto 1000.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Breaks the results into pages. Provide a value of -1 to begin paging.\r\nProvide values as returned in the response body's next_cursor and\r\nprevious_cursor attributes to page back and forth in the list. It is\r\nrecommended to always use cursors when the method supports them. See\r\nUsing cursors to navigate collections for more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "user_id",
+          "in" : "query",
+          "description" : "The ID of the user for whom to return results for.\r\nThe ID of the user for whom to return results for. Helpful for disambiguating\r\nwhen a valid user ID is also a valid screen name.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/lists"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/lists/statuses{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a timeline of tweets authored by members of the specified list.\r\nRetweets are included by default. Use the include_rts=false parameter to\r\nomit retweets.\r\nEmbedded Timelines is a great way to embed list timelines on your website.\r\n",
+        "description" : "Returns a timeline of tweets authored by members of the spec...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "owner_id",
+          "in" : "query",
+          "description" : "The user ID of the user who owns the list being requested by a slug.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "include_rts",
+          "in" : "query",
+          "description" : "When set to either true, t or 1, the list timeline will contain native\r\nretweets (if they exist) in addition to the standard stream of tweets.\r\nThe output format of retweeted tweets is identical to the representation\r\nyou see in home_timeline.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "since_id",
+          "in" : "query",
+          "description" : "Returns results with an ID greater than (that is, more recent than) the\r\nspecified ID. There are limits to the number of Tweets which can be\r\naccessed through the API. If the limit of Tweets has occured since the\r\nsince_id, the since_id will be forced to the oldest ID available.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "owner_screen_name",
+          "in" : "query",
+          "description" : "The screen name of the user who owns the list being requested by a slug.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of results to retrieve per \"page.\"\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "list_id",
+          "in" : "query",
+          "description" : "The numerical id of the list.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "max_id",
+          "in" : "query",
+          "description" : "Returns results with an ID less than (that is, older than) or equal to\r\nthe specified ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "slug",
+          "in" : "query",
+          "description" : "You can identify a list by its slug instead of its numerical id. If you\r\ndecide to do so, note that you'll also have to specify the list owner\r\nusing the owner_id or owner_screen_name parameters.\r\n",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/lists/subscribers{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the subscribers of the specified list. Private list subscribers will\r\nonly be shown if the authenticated user owns the specified list.\r\nEither a list_id or a slug is required. If providing a list_slug, an\r\nowner_screen_name or owner_id is also required.\r\n",
+        "description" : "Returns the subscribers of the specified list. Private list ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Breaks the results into pages. The number of items returned is not guaranteed \r\nas some results can be filtered. If no cursor is provided, a value of -1 will be assumed, which is the\r\nfirst \"page.\"\r\nThe response from the API will include a previous_cursor and next_cursor\r\nto allow paging back and forth. See Using cursors to navigate collections\r\nfor more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "slug",
+          "in" : "query",
+          "description" : "You can identify a list by its slug instead of its numerical id. If you\r\ndecide to do so, note that you'll also have to specify the list owner\r\nusing the owner_id or owner_screen_name parameters.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "owner_id",
+          "in" : "query",
+          "description" : "The user ID of the user who owns the list being requested by a slug.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "skip_status",
+          "in" : "query",
+          "description" : "When set to either true, t or 1 statuses will not be included in the\r\nreturned user objects.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "list_id",
+          "in" : "query",
+          "description" : "The numerical id of the list.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "owner_screen_name",
+          "in" : "query",
+          "description" : "The screen name of the user who owns the list being requested by a slug.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/lists/subscriptions{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Obtain a collection of the lists the specified user is subscribed to, 20\r\nlists per page by default. Does not include the user's own lists.\r\nA user_id or screen_name must be provided.\r\n",
+        "description" : "Obtain a collection of the lists the specified user is subsc...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of records to retrieve. Must be less than or equal\r\nto 1000.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "screen_name",
+          "in" : "query",
+          "description" : "The screen name of the user for whom to return results for.\r\nThe screen name of the user for whom to return results for. Helpful for\r\ndisambiguating when a valid screen name is also a user ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Breaks the results into pages. The number of items returned is not guaranteed \r\nas some results can be filtered. If no cursor is provided, a value of -1 will be assumed, which is the\r\nfirst \"page.\"\r\nThe response from the API will include a previous_cursor and next_cursor\r\nto allow paging back and forth. See Using cursors to navigate collections\r\nfor more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "user_id",
+          "in" : "query",
+          "description" : "The ID of the user for whom to return results for.\r\nThe ID of the user for whom to return results for. Helpful for disambiguating\r\nwhen a valid user ID is also a valid screen name.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/lists"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/saved_searches/list{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the authenticated user's saved search queries.\r\n",
+        "description" : "Returns the authenticated user's saved search queries.\r\n",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/saved_searches"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/search/tweets{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a collection of relevant Tweets matching a specified query.\r\n",
+        "description" : "Returns a collection of relevant Tweets matching a specified...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Specify the language of the query you are sending (only ja is currently\r\neffective). This is intended for language-specific consumers and the\r\ndefault should work in the majority of cases.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "result_type",
+          "in" : "query",
+          "description" : "Specifies what type of search results you would prefer to receive. The\r\ncurrent default is \"mixed.\" Valid values include\r\n * mixed: Include both popular and real time results in the response.\r\n * recent: return only the most recent results in the response\r\n * popular: return only the most popular results in the response.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "description" : "A UTF-8, URL-encoded search query of 1,000 characters maximum,\r\nincluding operators. Queries may additionally be limited by complexity.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "geocode",
+          "in" : "query",
+          "description" : "Returns tweets by users located within a given radius of the given\r\nlatitude/longitude. The location is preferentially taking from the\r\nGeotagging API, but will fall back to their Twitter profile. The\r\nparameter value is specified by \"latitude,longitude,radius\", where\r\nradius units must be specified as either \"mi\" (miles) or \"km\" (kilometers).\r\nNote that you cannot use the near operator via the API to geocode arbitrary\r\nlocations; however you can use this geocode parameter to search near geocodes\r\ndirectly. A maximum of 1,000 distinct \"sub-regions\" will be considered when\r\nusing the radius modifier.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "lang",
+          "in" : "query",
+          "description" : "Restricts tweets to the given language, given by an ISO 639-1 code.\r\nLanguage detection is best-effort.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "If supplied, the response will use the JSONP format with a callback of\r\nthe given name.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of records to retrieve. Must be less than or equal\r\nto 1000.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "since_id",
+          "in" : "query",
+          "description" : "Returns results with an ID greater than (that is, more recent than) the\r\nspecified ID. There are limits to the number of Tweets which can be\r\naccessed through the API. If the limit of Tweets has occured since the\r\nsince_id, the since_id will be forced to the oldest ID available.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "until",
+          "in" : "query",
+          "description" : "Returns tweets generated before the given date. Date should be formatted\r\nas YYYY-MM-DD. Keep in mind that the search index may not go back as far\r\nas the date you specify here.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "max_id",
+          "in" : "query",
+          "description" : "Returns results with an ID less than (that is, older than) or equal to\r\nthe specified ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/destroy/{id}{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Destroys the status specified by the required ID parameter. The authenticating\r\nuser must be the author of the specified status. Returns the destroyed status\r\nif successful.\r\n",
+        "description" : "Destroys the status specified by the required ID parameter. ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model488"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "The numerical ID of the desired status.",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      } ]
+    },
+    "/statuses/filter{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Returns public statuses that match one or more filter predicates. Multiple\r\nparameters may be specified which allows most clients to use a single connection\r\nto the Streaming API. Both GET and POST requests are supported, but GET requests\r\nwith too many parameters may cause the request to be rejected for excessive URL\r\nlength. Use a POST request to avoid long URLs.\r\nThe track, follow, and locations fields should be considered to be combined\r\nwith an OR operator. track=foo&follow=1234 returns Tweets matching \"foo\" OR\r\ncreated by user 1234.\r\nThe default access level allows up to 400 track keywords, 5,000 follow userids\r\nand 25 0.1-360 degree location boxes. If you need elevated access to the Streaming\r\nAPI, you should explore our partner providers of Twitter data here.\r\nNote: At least one predicate parameter (follow, locations, or track) must be specified.\r\n",
+        "description" : "Returns public statuses that match one or more filter predic...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model988"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/firehose{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "This endpoint requires special permission to access.\r\nReturns all public statuses. Few applications require this level of access.\r\nCreative use of a combination of other resources and various access levels\r\ncan satisfy nearly every application use case.\r\n",
+        "description" : "This endpoint requires special permission to access.\r\nReturns...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "delimited",
+          "in" : "query",
+          "description" : "Specifies whether messages should be length-delimited. See the delimited\r\nparameter documentation for more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "The number of messages to backfill. See the count parameter documentation\r\nfor more information.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "stall_warnings",
+          "in" : "query",
+          "description" : "Specifies whether stall warnings should be delivered. See the stall_warnings\r\nparameter documentation for more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/home_timeline{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a collection of the most recent Tweets and retweets posted by the\r\nauthenticating user and the users they follow. The home timeline is central\r\nto how most users interact with the Twitter service.\r\nUp to 800 Tweets are obtainable on the home timeline. It is more volatile\r\nfor users that follow many users or follow users who tweet frequently.\r\nSee Working with Timelines for instructions on traversing timelines efficiently.\r\n",
+        "description" : "Returns a collection of the most recent Tweets and retweets ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "since_id",
+          "in" : "query",
+          "description" : "Returns results with an ID greater than (that is, more recent than) the\r\nspecified ID. There are limits to the number of Tweets which can be\r\naccessed through the API. If the limit of Tweets has occured since the\r\nsince_id, the since_id will be forced to the oldest ID available.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "max_id",
+          "in" : "query",
+          "description" : "Returns results with an ID less than (that is, older than) or equal to\r\nthe specified ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "exclude_replies",
+          "in" : "query",
+          "description" : "This parameter will prevent replies from appearing in the returned timeline.\r\nUsing exclude_replies with the count parameter will mean you will receive\r\nup-to count tweets  this is because the count parameter retrieves tha\r\nmany tweets before filtering out retweets and replies. This parameter is\r\nonly supported for JSON and XML responses.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "contributor_details",
+          "in" : "query",
+          "description" : "This parameter enhances the contributors element of the status response\r\nto include the screen_name of the contributor. By default only the user_id\r\nof the contributor is included.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of records to retrieve. Must be less than or equal\r\nto 200.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "trim_user",
+          "in" : "query",
+          "description" : "When set to either true, t or 1, each tweet returned in a timeline will\r\ninclude a user object including only the status authors numerical ID.\r\nOmit this parameter to receive the complete user object.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/mentions_timeline{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the 20 most recent mentions (tweets containing a users's @screen_name)\r\nfor the authenticating user.\r\nThe timeline returned is the equivalent of the one seen when you view your\r\nmentions on twitter.com.\r\nThis method can only return up to 800 tweets.\r\n",
+        "description" : "Returns the 20 most recent mentions (tweets containing a use...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "max_id",
+          "in" : "query",
+          "description" : "Returns results with an ID less than (that is, older than) or equal to\r\nthe specified ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "contributor_details",
+          "in" : "query",
+          "description" : "This parameter enhances the contributors element of the status response\r\nto include the screen_name of the contributor. By default only the user_id\r\nof the contributor is included.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "trim_user",
+          "in" : "query",
+          "description" : "When set to either true, t or 1, each tweet returned in a timeline will\r\ninclude a user object including only the status authors numerical ID.\r\nOmit this parameter to receive the complete user object.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "since_id",
+          "in" : "query",
+          "description" : "Returns results with an ID greater than (that is, more recent than) the\r\nspecified ID. There are limits to the number of Tweets which can be\r\naccessed through the API. If the limit of Tweets has occured since the\r\nsince_id, the since_id will be forced to the oldest ID available.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of tweets to try and retrieve, up to a maximum of\r\n200. The value of count is best thought of as a limit to the number of\r\ntweets to return because suspended or deleted content is removed after\r\nthe count has been applied. We include retweets in the count, even if\r\ninclude_rts is not supplied. It is recommended you always send include_rts=1\r\nwhen using this API method.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/oembed{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns information allowing the creation of an embedded representation\r\nof a Tweet on third party sites. See the oEmbed specification for information\r\nabout the response format.\r\nWhile this endpoint allows a bit of customization for the final appearance\r\nof the embedded Tweet, be aware that the appearance of the rendered Tweet may\r\nchange over time to be consistent with Twitter's Display Requirements. Do no\r\nrely on any class or id parameters to stay constant in the returned markup.\r\n",
+        "description" : "Returns information allowing the creation of an embedded rep...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "hide_media",
+          "in" : "query",
+          "description" : "Specifies whether the embedded Tweet should automatically expand\r\nimages which were uploaded via POST statuses/update_with_media.\r\nWhen set to either true, t or 1 images will not be expanded.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "maxwidth",
+          "in" : "query",
+          "description" : "The maximum width in pixels that the embed should be rendered at.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "lang",
+          "in" : "query",
+          "description" : "Language code for the rendered embed. This will affect the text and\r\nlocalization of the rendered HTML.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "hide_thread",
+          "in" : "query",
+          "description" : "Specifies whether the embedded Tweet should automatically show the\r\noriginal message in the case that the embedded Tweet is a reply. When\r\nset to either true, t or 1 the original Tweet will not be shown.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "id",
+          "in" : "query",
+          "description" : "The Tweet/status ID to return embed code for.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "omit_script",
+          "in" : "query",
+          "description" : "Specifies whether the embedded Tweet HTML should include a <script>\r\nelement pointing to widgets.js. In cases where a page already includes\r\nwidgets.js, setting this value to true will prevent a redundant scrip\r\nelement from being included. When set to either true, t or 1 the <script>\r\nelement will not be included in the embed HTML, meaning that pages mus\r\ninclude a reference to widgets.js manually.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "url",
+          "in" : "query",
+          "description" : "The URL of the Tweet/status to be embedded.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "align",
+          "in" : "query",
+          "description" : "Specifies whether the embedded Tweet should be left aligned, right aligned,\r\nor centered in the page. Valid values are left, right, center, and none.\r\nDefaults to none, meaning no alignment styles are specified for the Tweet.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "related",
+          "in" : "query",
+          "description" : "A value for the TWT related parameter, as described in Web Intents. This\r\nvalue will be forwarded to all Web Intents calls.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/retweet/{id}{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Retweets a tweet. Returns the original tweet with retweet details embedded.\r\n",
+        "description" : "Retweets a tweet. Returns the original tweet with retweet de...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model236"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "The numerical ID of the desired status.",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/retweeters/ids{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a collection of up to 100 user IDs belonging to users who have\r\nretweeted the tweet specified by the id parameter.\r\n",
+        "description" : "Returns a collection of up to 100 user IDs belonging to user...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "stringify_ids",
+          "in" : "query",
+          "description" : "Many programming environments will not consume our Tweet ids due to their\r\nsize. Provide this option to have ids returned as strings instead. More\r\nabout Twitter IDs, JSON and Snowflake.\r\n\r\nMany programming environments will not consume our ids due to their size.\r\nProvide this option to have ids returned as strings instead. Read more\r\nabout Twitter IDs, JSON and Snowflake.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Breaks the results into pages. The number of items returned is not guaranteed \r\nas some results can be filtered. If no cursor is provided, a value of -1 will be assumed, which is the\r\nfirst \"page.\"\r\nThe response from the API will include a previous_cursor and next_cursor\r\nto allow paging back and forth. See Using cursors to navigate collections\r\nfor more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "id",
+          "in" : "query",
+          "description" : "The numerical ID of the desired status.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/ids"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/retweets/{id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a collection of the 100 most recent retweets of the tweet specified\r\nby the id parameter.\r\n",
+        "description" : "Returns a collection of the 100 most recent retweets of the ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "trim_user",
+          "in" : "query",
+          "description" : "When set to either true, t or 1, each tweet returned in a timeline will\r\ninclude a user object including only the status authors numerical ID.\r\nOmit this parameter to receive the complete user object.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of records to retrieve. Must be less than or equal\r\nto 100.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "The numerical ID of the desired status.",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/retweets_of_me{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the most recent tweets authored by the authenticating user tha\r\nhave been retweeted by others. This timeline is a subset of the user's GET\r\nstatuses/user_timeline.\r\n",
+        "description" : "Returns the most recent tweets authored by the authenticatin...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "trim_user",
+          "in" : "query",
+          "description" : "When set to either true, t or 1, each tweet returned in a timeline will\r\ninclude a user object including only the status authors numerical ID.\r\nOmit this parameter to receive the complete user object.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of records to retrieve. Must be less than or equal\r\nto 100.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "max_id",
+          "in" : "query",
+          "description" : "Returns results with an ID less than (that is, older than) or equal to\r\nthe specified ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "since_id",
+          "in" : "query",
+          "description" : "Returns results with an ID greater than (that is, more recent than) the\r\nspecified ID. There are limits to the number of Tweets which can be\r\naccessed through the API. If the limit of Tweets has occured since the\r\nsince_id, the since_id will be forced to the oldest ID available.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "include_user_entities",
+          "in" : "query",
+          "description" : "The user entities node will be disincluded when set to false.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/sample{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a small random sample of all public statuses. The Tweets returned\r\nby the default access level are the same, so if two different clients connec\r\nto this endpoint, they will see the same Tweets.\r\n",
+        "description" : "Returns a small random sample of all public statuses. The Tw...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "stall_warnings",
+          "in" : "query",
+          "description" : "Specifies whether stall warnings should be delivered. See the stall_warnings\r\nparameter documentation for more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "delimited",
+          "in" : "query",
+          "description" : "Specifies whether messages should be length-delimited. See the delimited\r\nparameter documentation for more information.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/show/{id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a single Tweet, specified by the id parameter. The Tweet's author\r\nwill also be embedded within the tweet.\r\n\r\nExtended description\r\nAbout Geo\r\nIf there is no geotag for a status, then there will be an empty <geo/> or\r\n\"geo\" : {}. This can only be populated if the user has used the Geotagging\r\nAPI to send a statuses/update.\r\nThe JSON response mostly uses conventions laid out in GeoJSON. Unfortunately,\r\nthe coordinates that Twitter renders are reversed from the GeoJSON specification\r\n(GeoJSON specifies a longitude then a latitude, whereas we are currently\r\nrepresenting it as a latitude then a longitude). Our JSON renders as:\r\n-------------\r\n\"geo\": { \"type\":\"Point\", \"coordinates\":[37.78029, -122.39697] }\r\n\r\nContributors\r\nIf there are no contributors for a Tweet, then there will be an empty or\r\n\"contributors\" : {}. This field will only be populated if the user has\r\ncontributors enabled on his or her account -- this is a beta feature tha\r\nis not yet generally available to all.\r\nThis object contains an array of user IDs for users who have contributed\r\nto this status (an example of a status that has been contributed to is this\r\none). In practice, there is usually only one ID in this array. The JSON\r\nrenders as such\r\n-------------\r\n\"contributors\":[8285392].\r\n",
+        "description" : "Returns a single Tweet, specified by the id parameter. The T...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "include_my_retweet",
+          "in" : "query",
+          "description" : "When set to either true, t or 1, any Tweets returned that have been\r\nretweeted by the authenticating user will include an additional\r\ncurrent_user_retweet node, containing the ID of the source status for\r\nthe retweet.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "trim_user",
+          "in" : "query",
+          "description" : "When set to either true, t or 1, each tweet returned in a timeline will\r\ninclude a user object including only the status authors numerical ID.\r\nOmit this parameter to receive the complete user object.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "The numerical ID of the desired Tweet.",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/update_with_media{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Updates the authenticating user's current status and attaches media for\r\nupload. In other words, it creates a Tweet with a picture attached.\r\nUnlike POST statuses/update, this method expects raw multipart data. Your\r\nPOST request's Content-Type should be set to multipart/form-data with the\r\nmedia[] parameter\r\nThe Tweet text will be rewritten to include the media URL(s), which will\r\nreduce the number of characters allowed in the Tweet text. If the URL(s)\r\ncannot be appended without text truncation, the tweet will be rejected and\r\nthis method will return an HTTP 403 error.\r\n",
+        "description" : "Updates the authenticating user's current status and attache...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model864"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/update{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Updates the authenticating user's current status, also known as tweeting.\r\nTo upload an image to accompany the tweet, use `POST statuses/update_with_media`.\r\nFor each update attempt, the update text is compared with the authenticating\r\nuser's recent tweets. Any attempt that would result in duplication will be\r\nblocked, resulting in a 403 error. Therefore, a user cannot submit the same\r\nstatus twice in a row.\r\nWhile not rate limited by the API a user is limited in the number of tweets\r\nthey can create at a time. If the number of updates posted by the user reaches\r\nthe current allowed limit this method will return an HTTP 403 error.\r\n",
+        "description" : "Updates the authenticating user's current status, also known...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model804"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/statuses/user_timeline{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a collection of the most recent Tweets posted by the user indicated\r\nby the screen_name or user_id parameters.\r\nUser timelines belonging to protected users may only be requested when the\r\nauthenticated user either \"owns\" the timeline or is an approved follower of\r\nthe owner.\r\nThe timeline returned is the equivalent of the one seen when you view a user's\r\nprofile on twitter.com.\r\nThis method can only return up to 3,200 of a user's most recent Tweets. Native\r\nretweets of other statuses by the user is included in this total, regardless\r\nof whether include_rts is set to false when requesting this resource.\r\n",
+        "description" : "Returns a collection of the most recent Tweets posted by the...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "max_id",
+          "in" : "query",
+          "description" : "Returns results with an ID less than (that is, older than) or equal to\r\nthe specified ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "include_rts",
+          "in" : "query",
+          "description" : "When set to false, the timeline will strip any native retweets (though\r\nthey will still count toward both the maximal length of the timeline\r\nand the slice selected by the count parameter). Note: If you're using\r\nthe trim_user parameter in conjunction with include_rts, the retweets\r\nwill still contain a full user object.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "contributor_details",
+          "in" : "query",
+          "description" : "This parameter enhances the contributors element of the status response\r\nto include the screen_name of the contributor. By default only the user_id\r\nof the contributor is included.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "screen_name",
+          "in" : "query",
+          "description" : "The screen name of the user for whom to return results for.\r\nThe screen name of the user for whom to return results for. Helpful for\r\ndisambiguating when a valid screen name is also a user ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "exclude_replies",
+          "in" : "query",
+          "description" : "This parameter will prevent replies from appearing in the returned timeline.\r\nUsing exclude_replies with the count parameter will mean you will receive\r\nup-to count tweets  this is because the count parameter retrieves tha\r\nmany tweets before filtering out retweets and replies. This parameter is\r\nonly supported for JSON and XML responses.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of records to retrieve. Must be less than or equal\r\nto 200.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "since_id",
+          "in" : "query",
+          "description" : "Returns results with an ID greater than (that is, more recent than) the\r\nspecified ID. There are limits to the number of Tweets which can be\r\naccessed through the API. If the limit of Tweets has occured since the\r\nsince_id, the since_id will be forced to the oldest ID available.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "trim_user",
+          "in" : "query",
+          "description" : "When set to either true, t or 1, each tweet returned in a timeline will\r\ninclude a user object including only the status authors numerical ID.\r\nOmit this parameter to receive the complete user object.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "user_id",
+          "in" : "query",
+          "description" : "The ID of the user for whom to return results for.\r\nThe ID of the user for whom to return results for. Helpful for disambiguating\r\nwhen a valid user ID is also a valid screen name.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/tweets"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/trends/available{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the locations that Twitter has trending topic information for.\r\nThe response is an array of \"locations\" that encode the location's WOEID\r\nand some other human-readable information such as a canonical name and\r\ncountry the location belongs in.\r\nA WOEID is a Yahoo! Where On Earth ID.\r\n",
+        "description" : "Returns the locations that Twitter has trending topic inform...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/trends-available"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/trends/closest{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the locations that Twitter has trending topic information for,\r\nclosest to a specified location.\r\nThe response is an array of \"locations\" that encode the location's WOEID\r\nand some other human-readable information such as a canonical name and\r\ncountry the location belongs in.\r\nA WOEID is a Yahoo! Where On Earth ID.\r\n",
+        "description" : "Returns the locations that Twitter has trending topic inform...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "long",
+          "in" : "query",
+          "description" : "The longitude to search around. The valid ranges for longitude is -180.0\r\nto +180.0 (East is positive) inclusive. This parameter will be ignored\r\nif outside that range, if it is not a number, if geo_enabled is disabled,\r\nor if there not a corresponding lat parameter.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "lat",
+          "in" : "query",
+          "description" : "The latitude to search around. This parameter will be ignored unless i\r\nis inside the range -90.0 to +90.0 (North is positive) inclusive. I\r\nwill also be ignored if there isn't a corresponding long parameter.\r\n",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/trends-available"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/trends/place{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the top 10 trending topics for a specific WOEID, if trending information\r\nis available for it.\r\nThe response is an array of \"trend\" objects that encode the name of the\r\ntrending topic, the query parameter that can be used to search for the topic\r\non Twitter Search, and the Twitter Search URL.\r\nThis information is cached for 5 minutes. Requesting more frequently than\r\nthat will not return any more data, and will count against your rate limit usage.\r\n",
+        "description" : "Returns the top 10 trending topics for a specific WOEID, if ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "exclude",
+          "in" : "query",
+          "description" : "Setting this equal to hashtags will remove all hashtags from the trends list.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "id",
+          "in" : "query",
+          "description" : "The Yahoo! Where On Earth ID of the location to return trending information\r\nfor. Global information is available by using 1 as the WOEID.\r\n",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/trends"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/contributees{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a collection of users that the specified user can \"contribute\" to.\r\n",
+        "description" : "Returns a collection of users that the specified user can \"c...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "user_id",
+          "in" : "query",
+          "description" : "The ID of the user for whom to return results for.\r\nThe ID of the user for whom to return results for. Helpful for disambiguating\r\nwhen a valid user ID is also a valid screen name.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "skip_status",
+          "in" : "query",
+          "description" : "When set to either true, t or 1 statuses will not be included in the\r\nreturned user objects.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "screen_name",
+          "in" : "query",
+          "description" : "The screen name of the user for whom to return results for.\r\nThe screen name of the user for whom to return results for. Helpful for\r\ndisambiguating when a valid screen name is also a user ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/contributors{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a collection of users who can contribute to the specified account.\r\n",
+        "description" : "Returns a collection of users who can contribute to the spec...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "skip_status",
+          "in" : "query",
+          "description" : "When set to either true, t or 1 statuses will not be included in the\r\nreturned user objects.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "screen_name",
+          "in" : "query",
+          "description" : "The screen name of the user for whom to return results for.\r\nThe screen name of the user for whom to return results for. Helpful for\r\ndisambiguating when a valid screen name is also a user ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "user_id",
+          "in" : "query",
+          "description" : "The ID of the user for whom to return results for.\r\nThe ID of the user for whom to return results for. Helpful for disambiguating\r\nwhen a valid user ID is also a valid screen name.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/lookup{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns fully-hydrated user objects for up to 100 users per request, as\r\nspecified by comma-separated values passed to the user_id and/or\r\nscreen_name parameters.\r\nThis method is especially useful when used in conjunction with collections\r\nof user IDs returned from GET friends/ids and GET followers/ids.\r\nGET users/show is used to retrieve a single user object.\r\n",
+        "description" : "Returns fully-hydrated user objects for up to 100 users per ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "include_entities",
+          "in" : "query",
+          "description" : "The entities node will not be included when set to false.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "user_id",
+          "in" : "query",
+          "description" : "A comma separated list of user IDs, up to 100 are allowed in a single\r\nrequest. You are strongly encouraged to use a POST for larger requests.\r\n\r\nA comma separated list of user IDs, up to 100 are allowed in a single\r\nrequest.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "screen_name",
+          "in" : "query",
+          "description" : "A comma separated list of screen names, up to 100 are allowed in a single\r\nrequest. You are strongly encouraged to use a POST for larger (up to\r\n100 screen names) requests.\r\n\r\nA comma separated list of screen names, up to 100 are allowed in a single\r\nrequest.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/profile_banner{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a map of the available size variations of the specified user's profile\r\nbanner. If the user has not uploaded a profile banner, a HTTP 404 will be\r\nserved instead. This method can be used instead of string manipulation on the\r\nprofile_banner_url returned in user objects as described in User Profile Images\r\nand Banners.\r\nThe profile banner data available at each size variant's URL is in PNG format.\r\n",
+        "description" : "Returns a map of the available size variations of the specif...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "screen_name",
+          "in" : "query",
+          "description" : "The screen name of the user for whom to return results for.\r\nThe screen name of the user for whom to return results for. Helpful for\r\ndisambiguating when a valid screen name is also a user ID.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "user_id",
+          "in" : "query",
+          "description" : "The ID of the user for whom to return results for.\r\nThe ID of the user for whom to return results for. Helpful for disambiguating\r\nwhen a valid user ID is also a valid screen name.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/users-profile-banner"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/report_spam{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Report the specified user as a spam account to Twitter. Additionally performs\r\nthe equivalent of POST blocks/create on behalf of the authenticated user.\r\nOne of parameters must be provided.\r\n",
+        "description" : "Report the specified user as a spam account to Twitter. Addi...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model552"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/suggestions/{slug}/members{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Access the users in a given category of the Twitter suggested user lis\r\nand return their most recent status if they are not a protected user.\r\n",
+        "description" : "Access the users in a given category of the Twitter suggeste...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "slug",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/suggestions/{slug}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Access the users in a given category of the Twitter suggested user list.\r\nIt is recommended that applications cache this data for no more than one hour.\r\n",
+        "description" : "Access the users in a given category of the Twitter suggeste...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "lang",
+          "in" : "query",
+          "description" : "Restricts the suggested categories to the requested language. The\r\nlanguage must be specified by the appropriate two letter ISO 639-1\r\nrepresentation. Currently supported languages are provided by the GET\r\nhelp/languages API request. Unsupported language codes will receive\r\nEnglish (en) results. If you use lang in this request, ensure you also\r\ninclude it when requesting the GET users/suggestions/:slug list.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "$ref" : "#/definitions/users-suggestion"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "slug",
+        "in" : "path",
+        "description" : "The short name of list or a category",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/suggestions{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Access to Twitter's suggested user list. This returns the list of suggested\r\nuser categories. The category can be used in GET users/suggestions/{slug}.json\r\nto get the users in that category.\r\n",
+        "description" : "Access to Twitter's suggested user list. This returns the li...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "lang",
+          "in" : "query",
+          "description" : "Restricts the suggested categories to the requested language. The language\r\nmust be specified by the appropriate two letter ISO 639-1 representation.\r\nCurrently supported languages are provided by the GET help/languages API\r\nrequest. Unsupported language codes will receive English (en) results. If\r\nyou use lang in this request, ensure you also include it when requesting\r\nthe GET users/suggestions/{slug}.json list.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success!",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/user-suggestions"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Use .json to specify application/json media type.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "user-suggestions" : {
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "integer"
+        },
+        "slug" : {
+          "type" : "string"
+        }
+      }
+    },
+    "privacy" : {
+      "type" : "object",
+      "properties" : {
+        "privacy" : {
+          "type" : "string"
+        }
+      }
+    },
+    "account-update_profile_colors" : {
+      "type" : "object",
+      "properties" : {
+        "contributors_enabled" : {
+          "type" : "boolean"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "default_profile" : {
+          "type" : "boolean"
+        },
+        "default_profile_image" : {
+          "type" : "boolean"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "entities" : {
+          "type" : "object",
+          "properties" : {
+            "url" : {
+              "type" : "object",
+              "properties" : {
+                "urls" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "display_url" : {
+                        "type" : "string"
+                      },
+                      "expanded_url" : {
+                        "type" : "string"
+                      },
+                      "indices" : {
+                        "type" : "array",
+                        "items" : {
+                          "type" : "integer"
+                        }
+                      },
+                      "url" : {
+                        "type" : "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "favourites_count" : {
+          "type" : "integer"
+        },
+        "follow_request_sent" : {
+          "type" : "boolean"
+        },
+        "followers_count" : {
+          "type" : "integer"
+        },
+        "following" : {
+          "type" : "boolean"
+        },
+        "friends_count" : {
+          "type" : "integer"
+        },
+        "geo_enabled" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "integer"
+        },
+        "id_str" : {
+          "type" : "string"
+        },
+        "is_translator" : {
+          "type" : "boolean"
+        },
+        "lang" : {
+          "type" : "string"
+        },
+        "listed_count" : {
+          "type" : "integer"
+        },
+        "location" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "notifications" : {
+          "type" : "boolean"
+        },
+        "profile_background_color" : {
+          "type" : "string"
+        },
+        "profile_background_image_url" : {
+          "type" : "string"
+        },
+        "profile_background_image_url_https" : {
+          "type" : "string"
+        },
+        "profile_background_tile" : {
+          "type" : "boolean"
+        },
+        "profile_image_url" : {
+          "type" : "string"
+        },
+        "profile_image_url_https" : {
+          "type" : "string"
+        },
+        "profile_link_color" : {
+          "type" : "string"
+        },
+        "profile_sidebar_border_color" : {
+          "type" : "string"
+        },
+        "profile_sidebar_fill_color" : {
+          "type" : "string"
+        },
+        "profile_text_color" : {
+          "type" : "string"
+        },
+        "profile_use_background_image" : {
+          "type" : "boolean"
+        },
+        "protected" : {
+          "type" : "boolean"
+        },
+        "screen_name" : {
+          "type" : "string"
+        },
+        "show_all_inline_media" : {
+          "type" : "boolean"
+        },
+        "statuses_count" : {
+          "type" : "integer"
+        },
+        "time_zone" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "utc_offset" : {
+          "type" : "integer"
+        },
+        "verified" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "rate_limits" : {
+      "type" : "object",
+      "properties" : {
+        "rate_limit_context" : {
+          "type" : "object",
+          "properties" : {
+            "access_token" : {
+              "type" : "string"
+            }
+          }
+        },
+        "resources" : {
+          "type" : "object",
+          "properties" : {
+            "help" : {
+              "type" : "object",
+              "properties" : {
+                "/help/configuration" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/help/languages" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/help/privacy" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/help/tos" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                }
+              }
+            },
+            "search" : {
+              "type" : "object",
+              "properties" : {
+                "/search/tweets" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                }
+              }
+            },
+            "statuses" : {
+              "type" : "object",
+              "properties" : {
+                "/statuses/home_timeline" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/statuses/mentions_timeline" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/statuses/oembed" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/statuses/retweets/:id" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/statuses/show/:id" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/statuses/user_timeline" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                }
+              }
+            },
+            "users" : {
+              "type" : "object",
+              "properties" : {
+                "/users/contributees" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/users/contributors" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/users/lookup" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/users/search" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/users/show" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/users/suggestions/:slug/members" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/users/suggestions/:slug" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "/users/suggestions" : {
+                  "type" : "object",
+                  "properties" : {
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "remaining" : {
+                      "type" : "number"
+                    },
+                    "reset" : {
+                      "type" : "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "users-suggestion" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "slug" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "integer"
+        },
+        "users" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "name" : {
+                "type" : "string"
+              },
+              "profile_sidebar_border_color" : {
+                "type" : "string"
+              },
+              "profile_sidebar_fill_color" : {
+                "type" : "string"
+              },
+              "profile_background_tile" : {
+                "type" : "boolean"
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "profile_image_url" : {
+                "type" : "string"
+              },
+              "location" : {
+                "type" : "string"
+              },
+              "profile_link_color" : {
+                "type" : "string"
+              },
+              "follow_request_sent" : {
+                "type" : "boolean"
+              },
+              "is_translator" : {
+                "type" : "boolean"
+              },
+              "id_str" : {
+                "type" : "string"
+              },
+              "default_profile" : {
+                "type" : "boolean"
+              },
+              "url" : {
+                "type" : "string"
+              },
+              "favourites_count" : {
+                "type" : "integer"
+              },
+              "contributors_enabled" : {
+                "type" : "boolean"
+              },
+              "utc_offset" : {
+                "type" : "integer"
+              },
+              "id" : {
+                "type" : "integer"
+              },
+              "profile_image_url_https" : {
+                "type" : "string"
+              },
+              "listed_count" : {
+                "type" : "integer"
+              },
+              "profile_use_background_image" : {
+                "type" : "boolean"
+              },
+              "profile_text_color" : {
+                "type" : "string"
+              },
+              "protected" : {
+                "type" : "boolean"
+              },
+              "lang" : {
+                "type" : "string"
+              },
+              "followers_count" : {
+                "type" : "integer"
+              },
+              "geo_enabled" : {
+                "type" : "boolean"
+              },
+              "time_zone" : {
+                "type" : "string"
+              },
+              "notifications" : {
+                "type" : "boolean"
+              },
+              "verified" : {
+                "type" : "boolean"
+              },
+              "profile_background_image_url_https" : {
+                "type" : "string"
+              },
+              "profile_background_color" : {
+                "type" : "string"
+              },
+              "description" : {
+                "type" : "string"
+              },
+              "profile_background_image_url" : {
+                "type" : "string"
+              },
+              "friends_count" : {
+                "type" : "integer"
+              },
+              "statuses_count" : {
+                "type" : "integer"
+              },
+              "default_profile_image" : {
+                "type" : "boolean"
+              },
+              "show_all_inline_media" : {
+                "type" : "boolean"
+              },
+              "screen_name" : {
+                "type" : "string"
+              },
+              "following" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "geo-id" : {
+      "type" : "object",
+      "properties" : {
+        "attributes" : {
+          "type" : "object",
+          "properties" : {
+            "162834:id" : {
+              "type" : "string"
+            }
+          }
+        },
+        "bounding_box" : {
+          "type" : "object",
+          "properties" : {
+            "coordinates" : {
+              "type" : "array",
+              "items" : {
+                "type" : "array"
+              }
+            },
+            "type" : {
+              "type" : "string"
+            }
+          }
+        },
+        "contained_within" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "attributes" : {
+                "type" : "object",
+                "properties" : { }
+              },
+              "bounding_box" : {
+                "type" : "object",
+                "properties" : {
+                  "coordinates" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "array"
+                    }
+                  },
+                  "type" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "country_code" : {
+                "type" : "string"
+              },
+              "country" : {
+                "type" : "string"
+              },
+              "full_name" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "place_type" : {
+                "type" : "string"
+              },
+              "url" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "country_code" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        },
+        "full_name" : {
+          "type" : "string"
+        },
+        "geometry" : {
+          "type" : "object",
+          "properties" : {
+            "coordinates" : {
+              "type" : "array",
+              "items" : {
+                "type" : "array"
+              }
+            },
+            "type" : {
+              "type" : "string"
+            }
+          }
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "place_type" : {
+          "type" : "string"
+        },
+        "polylines" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "help-config" : {
+      "type" : "object",
+      "properties" : {
+        "characters_reserved_per_media" : {
+          "type" : "integer"
+        },
+        "max_media_per_upload" : {
+          "type" : "integer"
+        },
+        "non_username_paths" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "photo_size_limit" : {
+          "type" : "integer"
+        },
+        "short_url_length_https" : {
+          "type" : "integer"
+        },
+        "short_url_length" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "users-profile-banner" : {
+      "type" : "object"
+    },
+    "trends-available" : {
+      "properties" : {
+        "country" : {
+          "type" : "string"
+        },
+        "countryCode" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "parentid" : {
+          "type" : "integer"
+        },
+        "placeType" : {
+          "type" : "object",
+          "properties" : {
+            "code" : {
+              "type" : "integer"
+            },
+            "name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "woeid" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "lists" : {
+      "properties" : {
+        "created_at" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "following" : {
+          "type" : "boolean"
+        },
+        "full_name" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "integer"
+        },
+        "id_str" : {
+          "type" : "string"
+        },
+        "member_count" : {
+          "type" : "integer"
+        },
+        "mode" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "slug" : {
+          "type" : "string"
+        },
+        "subscriber_count" : {
+          "type" : "integer"
+        },
+        "uri" : {
+          "type" : "string"
+        },
+        "user" : {
+          "type" : "object",
+          "properties" : {
+            "profile_background_tile" : {
+              "type" : "boolean"
+            },
+            "profile_sidebar_border_color" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "profile_sidebar_fill_color" : {
+              "type" : "string"
+            },
+            "location" : {
+              "type" : "string"
+            },
+            "created_at" : {
+              "type" : "string"
+            },
+            "profile_image_url" : {
+              "type" : "string"
+            },
+            "is_translator" : {
+              "type" : "boolean"
+            },
+            "id_str" : {
+              "type" : "string"
+            },
+            "profile_link_color" : {
+              "type" : "string"
+            },
+            "follow_request_sent" : {
+              "type" : "boolean"
+            },
+            "favourites_count" : {
+              "type" : "integer"
+            },
+            "contributors_enabled" : {
+              "type" : "boolean"
+            },
+            "url" : {
+              "type" : "string"
+            },
+            "default_profile" : {
+              "type" : "boolean"
+            },
+            "profile_image_url_https" : {
+              "type" : "string"
+            },
+            "utc_offset" : {
+              "type" : "integer"
+            },
+            "profile_banner_url" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "integer"
+            },
+            "profile_use_background_image" : {
+              "type" : "boolean"
+            },
+            "listed_count" : {
+              "type" : "integer"
+            },
+            "profile_text_color" : {
+              "type" : "string"
+            },
+            "protected" : {
+              "type" : "boolean"
+            },
+            "lang" : {
+              "type" : "string"
+            },
+            "followers_count" : {
+              "type" : "integer"
+            },
+            "description" : {
+              "type" : "string"
+            },
+            "notifications" : {
+              "type" : "boolean"
+            },
+            "geo_enabled" : {
+              "type" : "boolean"
+            },
+            "verified" : {
+              "type" : "boolean"
+            },
+            "time_zone" : {
+              "type" : "string"
+            },
+            "profile_background_color" : {
+              "type" : "string"
+            },
+            "profile_background_image_url_https" : {
+              "type" : "string"
+            },
+            "statuses_count" : {
+              "type" : "integer"
+            },
+            "friends_count" : {
+              "type" : "integer"
+            },
+            "default_profile_image" : {
+              "type" : "boolean"
+            },
+            "profile_background_image_url" : {
+              "type" : "string"
+            },
+            "following" : {
+              "type" : "boolean"
+            },
+            "screen_name" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "account-update_profile_image" : {
+      "type" : "object",
+      "properties" : {
+        "contributors_enabled" : {
+          "type" : "boolean"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "default_profile" : {
+          "type" : "boolean"
+        },
+        "default_profile_image" : {
+          "type" : "boolean"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "favourites_count" : {
+          "type" : "integer"
+        },
+        "follow_request_sent" : {
+          "type" : "boolean"
+        },
+        "followers_count" : {
+          "type" : "integer"
+        },
+        "following" : {
+          "type" : "boolean"
+        },
+        "friends_count" : {
+          "type" : "integer"
+        },
+        "geo_enabled" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "integer"
+        },
+        "id_str" : {
+          "type" : "string"
+        },
+        "is_translator" : {
+          "type" : "boolean"
+        },
+        "lang" : {
+          "type" : "string"
+        },
+        "listed_count" : {
+          "type" : "integer"
+        },
+        "location" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "notifications" : {
+          "type" : "boolean"
+        },
+        "profile_background_color" : {
+          "type" : "string"
+        },
+        "profile_background_image_url" : {
+          "type" : "string"
+        },
+        "profile_background_image_url_https" : {
+          "type" : "string"
+        },
+        "profile_background_tile" : {
+          "type" : "boolean"
+        },
+        "profile_image_url" : {
+          "type" : "string"
+        },
+        "profile_image_url_https" : {
+          "type" : "string"
+        },
+        "profile_link_color" : {
+          "type" : "string"
+        },
+        "profile_sidebar_border_color" : {
+          "type" : "string"
+        },
+        "profile_sidebar_fill_color" : {
+          "type" : "string"
+        },
+        "profile_text_color" : {
+          "type" : "string"
+        },
+        "profile_use_background_image" : {
+          "type" : "boolean"
+        },
+        "protected" : {
+          "type" : "boolean"
+        },
+        "screen_name" : {
+          "type" : "string"
+        },
+        "show_all_inline_media" : {
+          "type" : "boolean"
+        },
+        "statuses_count" : {
+          "type" : "integer"
+        },
+        "time_zone" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "utc_offset" : {
+          "type" : "integer"
+        },
+        "verified" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "account-settings" : {
+      "type" : "object",
+      "properties" : {
+        "always_use_https" : {
+          "type" : "boolean"
+        },
+        "discoverable_by_email" : {
+          "type" : "boolean"
+        },
+        "geo_enabled" : {
+          "type" : "boolean"
+        },
+        "language" : {
+          "type" : "string"
+        },
+        "protected" : {
+          "type" : "boolean"
+        },
+        "screen_name" : {
+          "type" : "string"
+        },
+        "show_all_inline_media" : {
+          "type" : "boolean"
+        },
+        "sleep_time" : {
+          "type" : "object",
+          "properties" : {
+            "enabled" : {
+              "type" : "boolean"
+            },
+            "end_time" : {
+              "type" : "string"
+            },
+            "start_time" : {
+              "type" : "string"
+            }
+          }
+        },
+        "time_zone" : {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string"
+            },
+            "tzinfo_name" : {
+              "type" : "string"
+            },
+            "utc_offset" : {
+              "type" : "integer"
+            }
+          }
+        },
+        "trend_location" : {
+          "type" : "object",
+          "properties" : {
+            "country" : {
+              "type" : "string"
+            },
+            "countryCode" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "parentid" : {
+              "type" : "integer"
+            },
+            "placeType" : {
+              "type" : "object",
+              "properties" : {
+                "code" : {
+                  "type" : "integer"
+                },
+                "name" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "url" : {
+              "type" : "string"
+            },
+            "woeid" : {
+              "type" : "integer"
+            }
+          }
+        },
+        "use_cookie_personalization" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ids" : {
+      "type" : "object",
+      "properties" : {
+        "previous_cursor" : {
+          "type" : "integer"
+        },
+        "ids" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer"
+          }
+        },
+        "previous_cursor_str" : {
+          "type" : "string"
+        },
+        "next_cursor" : {
+          "type" : "integer"
+        },
+        "next_cursor_str" : {
+          "type" : "string"
+        }
+      }
+    },
+    "tos" : {
+      "type" : "object",
+      "properties" : {
+        "privacy" : {
+          "type" : "string"
+        }
+      }
+    },
+    "blocks-ids" : {
+      "type" : "object",
+      "properties" : {
+        "previous_cursor" : {
+          "type" : "integer"
+        },
+        "ids" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "previous_cursor_str" : {
+          "type" : "string"
+        },
+        "next_cursor" : {
+          "type" : "integer"
+        },
+        "next_cursor_str" : {
+          "type" : "string"
+        }
+      }
+    },
+    "help-languages" : {
+      "properties" : {
+        "code" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        }
+      }
+    },
+    "friendships-no_retweets-ids" : { },
+    "account-verify_credentials" : {
+      "type" : "object",
+      "properties" : {
+        "contributors_enabled" : {
+          "type" : "boolean"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "default_profile" : {
+          "type" : "boolean"
+        },
+        "default_profile_image" : {
+          "type" : "boolean"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "favourites_count" : {
+          "type" : "integer"
+        },
+        "follow_request_sent" : {
+          "type" : "string"
+        },
+        "followers_count" : {
+          "type" : "integer"
+        },
+        "following" : {
+          "type" : "string"
+        },
+        "friends_count" : {
+          "type" : "integer"
+        },
+        "geo_enabled" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "integer"
+        },
+        "id_str" : {
+          "type" : "string"
+        },
+        "is_translator" : {
+          "type" : "boolean"
+        },
+        "lang" : {
+          "type" : "string"
+        },
+        "listed_count" : {
+          "type" : "integer"
+        },
+        "location" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "notifications" : {
+          "type" : "string"
+        },
+        "profile_background_color" : {
+          "type" : "string"
+        },
+        "profile_background_image_url" : {
+          "type" : "string"
+        },
+        "profile_background_image_url_https" : {
+          "type" : "string"
+        },
+        "profile_background_tile" : {
+          "type" : "boolean"
+        },
+        "profile_image_url" : {
+          "type" : "string"
+        },
+        "profile_image_url_https" : {
+          "type" : "string"
+        },
+        "profile_link_color" : {
+          "type" : "string"
+        },
+        "profile_sidebar_border_color" : {
+          "type" : "string"
+        },
+        "profile_sidebar_fill_color" : {
+          "type" : "string"
+        },
+        "profile_text_color" : {
+          "type" : "string"
+        },
+        "profile_use_background_image" : {
+          "type" : "boolean"
+        },
+        "protected" : {
+          "type" : "boolean"
+        },
+        "screen_name" : {
+          "type" : "string"
+        },
+        "show_all_inline_media" : {
+          "type" : "boolean"
+        },
+        "status" : {
+          "type" : "object",
+          "properties" : {
+            "contributors" : {
+              "type" : "string"
+            },
+            "coordinates" : {
+              "type" : "object",
+              "properties" : {
+                "coordinates" : {
+                  "type" : "number"
+                },
+                "type" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "created_at" : {
+              "type" : "string"
+            },
+            "favorited" : {
+              "type" : "boolean"
+            },
+            "geo" : {
+              "type" : "object",
+              "properties" : {
+                "coordinates" : {
+                  "type" : "number"
+                },
+                "type" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "id" : {
+              "type" : "integer"
+            },
+            "id_str" : {
+              "type" : "string"
+            },
+            "in_reply_to_screen_name" : {
+              "type" : "string"
+            },
+            "in_reply_to_status_id" : {
+              "type" : "integer"
+            },
+            "in_reply_to_status_id_str" : {
+              "type" : "string"
+            },
+            "in_reply_to_user_id" : {
+              "type" : "integer"
+            },
+            "in_reply_to_user_id_str" : {
+              "type" : "string"
+            },
+            "place" : {
+              "type" : "object",
+              "properties" : {
+                "attributes" : {
+                  "type" : "string"
+                },
+                "bounding_box" : {
+                  "type" : "object",
+                  "properties" : {
+                    "type" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "country" : {
+                  "type" : "string"
+                },
+                "country_code" : {
+                  "type" : "string"
+                },
+                "full_name" : {
+                  "type" : "string"
+                },
+                "id" : {
+                  "type" : "string"
+                },
+                "name" : {
+                  "type" : "string"
+                },
+                "place_type" : {
+                  "type" : "string"
+                },
+                "url" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "retweet_count" : {
+              "type" : "integer"
+            },
+            "retweeted" : {
+              "type" : "boolean"
+            },
+            "source" : {
+              "type" : "string"
+            },
+            "text" : {
+              "type" : "string"
+            },
+            "truncated" : {
+              "type" : "boolean"
+            }
+          }
+        },
+        "statuses_count" : {
+          "type" : "integer"
+        },
+        "time_zone" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "utc_offset" : {
+          "type" : "integer"
+        },
+        "verified" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "trends" : {
+      "properties" : {
+        "as_of" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "locations" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "name" : {
+                "type" : "string"
+              },
+              "woeid" : {
+                "type" : "integer"
+              }
+            }
+          }
+        },
+        "trends" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "name" : {
+                "type" : "string"
+              },
+              "query" : {
+                "type" : "string"
+              },
+              "url" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "saved_searches" : {
+      "properties" : {
+        "created_at" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "integer"
+        },
+        "id_str" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "query" : {
+          "type" : "string"
+        }
+      }
+    },
+    "account-update_background" : {
+      "type" : "object",
+      "properties" : {
+        "contributors_enabled" : {
+          "type" : "boolean"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "default_profile" : {
+          "type" : "boolean"
+        },
+        "default_profile_image" : {
+          "type" : "boolean"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "favourites_count" : {
+          "type" : "integer"
+        },
+        "follow_request_sent" : {
+          "type" : "boolean"
+        },
+        "followers_count" : {
+          "type" : "integer"
+        },
+        "following" : {
+          "type" : "boolean"
+        },
+        "friends_count" : {
+          "type" : "integer"
+        },
+        "geo_enabled" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "integer"
+        },
+        "id_str" : {
+          "type" : "string"
+        },
+        "is_translator" : {
+          "type" : "boolean"
+        },
+        "lang" : {
+          "type" : "string"
+        },
+        "listed_count" : {
+          "type" : "integer"
+        },
+        "location" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "notifications" : {
+          "type" : "boolean"
+        },
+        "profile_background_color" : {
+          "type" : "string"
+        },
+        "profile_background_image_url" : {
+          "type" : "string"
+        },
+        "profile_background_image_url_https" : {
+          "type" : "string"
+        },
+        "profile_background_tile" : {
+          "type" : "boolean"
+        },
+        "profile_image_url" : {
+          "type" : "string"
+        },
+        "profile_image_url_https" : {
+          "type" : "string"
+        },
+        "profile_link_color" : {
+          "type" : "string"
+        },
+        "profile_sidebar_border_color" : {
+          "type" : "string"
+        },
+        "profile_sidebar_fill_color" : {
+          "type" : "string"
+        },
+        "profile_text_color" : {
+          "type" : "string"
+        },
+        "profile_use_background_image" : {
+          "type" : "boolean"
+        },
+        "protected" : {
+          "type" : "boolean"
+        },
+        "screen_name" : {
+          "type" : "string"
+        },
+        "show_all_inline_media" : {
+          "type" : "boolean"
+        },
+        "statuses_count" : {
+          "type" : "integer"
+        },
+        "time_zone" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "utc_offset" : {
+          "type" : "integer"
+        },
+        "verified" : {
+          "type" : "boolean"
+        }
+      }
+    }
+  }
+}

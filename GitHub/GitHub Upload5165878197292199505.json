@@ -1,0 +1,198 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : A web-based hosting service for software development projects that use the Git revision control system. Upload API.",
+    "version" : "v3",
+    "title" : "GitHub Upload"
+  },
+  "host" : "uploads.github.com",
+  "basePath" : "/",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/repos/{ownerId}/{repoId}/releases/{id}/assets" : {
+      "post" : {
+        "summary" : "Upload a release asset\r\nThis is a unique endpoint. The request domain changes from \"api.github.com\" to \"uploads.github.com\". You need to use an HTTP client which supports SNI to make calls to this endpoint.\r\nThe asset data is expected in its raw binary form, rather than JSON. Everything else about the endpoint is the same. Pass your authentication exactly the same as the rest of the API.\r\n",
+        "description" : "Upload a release asset\r\nThis is a unique endpoint. The reques...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "X-GitHub-Media-Type",
+          "in" : "header",
+          "description" : "You can check the current version of media type in responses.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "The file name of the asset. This should be set in the URI query parameter.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-GitHub-Request-Id",
+          "in" : "header",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "description" : "Is used to set specified media type.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "The content type of the asset. This should be set in the Header. For a list of acceptable types, refer this list of common media types.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-RateLimit-Reset",
+          "in" : "header",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "X-RateLimit-Remaining",
+          "in" : "header",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "X-RateLimit-Limit",
+          "in" : "header",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/assetsPost"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "repoId",
+        "in" : "path",
+        "description" : "Id of repository.",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "ownerId",
+        "in" : "path",
+        "description" : "Id of the owner.",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      } ]
+    }
+  },
+  "definitions" : {
+    "assetsPost" : {
+      "type" : "object",
+      "properties" : {
+        "url" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "label" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "content_type" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "number"
+        },
+        "download_count" : {
+          "type" : "number"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "updated_at" : {
+          "type" : "string"
+        },
+        "uploader" : {
+          "type" : "object",
+          "properties" : {
+            "login" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "number"
+            },
+            "avatar_url" : {
+              "type" : "string"
+            },
+            "gravatar_id" : {
+              "type" : "string"
+            },
+            "url" : {
+              "type" : "string"
+            },
+            "html_url" : {
+              "type" : "string"
+            },
+            "followers_url" : {
+              "type" : "string"
+            },
+            "following_url" : {
+              "type" : "string"
+            },
+            "gists_url" : {
+              "type" : "string"
+            },
+            "starred_url" : {
+              "type" : "string"
+            },
+            "subscriptions_url" : {
+              "type" : "string"
+            },
+            "organizations_url" : {
+              "type" : "string"
+            },
+            "repos_url" : {
+              "type" : "string"
+            },
+            "events_url" : {
+              "type" : "string"
+            },
+            "received_events_url" : {
+              "type" : "string"
+            },
+            "type" : {
+              "type" : "string"
+            },
+            "site_admin" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      }
+    }
+  }
+}

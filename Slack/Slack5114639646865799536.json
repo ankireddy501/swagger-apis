@@ -1,0 +1,1419 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Slack brings all your communication together in one place. It's real-time messaging, archiving and search for modern teams.",
+    "version" : "1.0",
+    "title" : "Slack"
+  },
+  "host" : "slack.com",
+  "basePath" : "/api",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/channels.history" : {
+      "get" : {
+        "summary" : "Fetches history of messages and events from a channel.",
+        "description" : "Fetches history of messages and events from a channel.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "has_more",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "latest",
+          "in" : "query",
+          "description" : "Timestamp of the oldest recent seen message.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of messages to return, between 1 and 1000.",
+          "required" : false
+        }, {
+          "name" : "is_limited",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "oldest",
+          "in" : "query",
+          "description" : "Timestamp of the latest previously seen message.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/channelsHistory"
+            }
+          }
+        }
+      }
+    },
+    "/channels.info" : {
+      "get" : {
+        "summary" : "Gets information about a channel.",
+        "description" : "Gets information about a channel.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/channalsInfo"
+            }
+          }
+        }
+      }
+    },
+    "/channels.invite" : {
+      "get" : {
+        "summary" : "Invites a user to a channel.",
+        "description" : "Invites a user to a channel.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "user",
+          "in" : "query",
+          "description" : "User to invite to channel.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/channelsInvite"
+            }
+          }
+        }
+      }
+    },
+    "/channels.join" : {
+      "get" : {
+        "summary" : "Joins a channel, creating it if needed.",
+        "description" : "Joins a channel, creating it if needed.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Name of channel to join",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/channelsInvite"
+            }
+          }
+        }
+      }
+    },
+    "/channels.leave" : {
+      "get" : {
+        "summary" : "Leaves a channel.",
+        "description" : "Leaves a channel.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ok"
+            }
+          }
+        }
+      }
+    },
+    "/channels.list" : {
+      "get" : {
+        "summary" : "Lists all channels in a Slack team.",
+        "description" : "Lists all channels in a Slack team.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "exclude_archived",
+          "in" : "query",
+          "description" : "Don't return archived channels.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/channels"
+            }
+          }
+        }
+      }
+    },
+    "/channels.mark" : {
+      "get" : {
+        "summary" : "Sets the read cursor in a channel.",
+        "description" : "Sets the read cursor in a channel.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "ts",
+          "in" : "query",
+          "description" : "Timestamp of the most recently seen message.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ok"
+            }
+          }
+        }
+      }
+    },
+    "/channels.setPurpose" : {
+      "get" : {
+        "summary" : "Sets the purpose for a channel.",
+        "description" : "Sets the purpose for a channel.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "purpose",
+          "in" : "query",
+          "description" : "The new purpose",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/purpose"
+            }
+          }
+        }
+      }
+    },
+    "/channels.setTopic" : {
+      "get" : {
+        "summary" : "Sets the topic for a channel.",
+        "description" : "Sets the topic for a channel.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "topic",
+          "in" : "query",
+          "description" : "The new topic",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/topic"
+            }
+          }
+        }
+      }
+    },
+    "/chat.delete" : {
+      "get" : {
+        "summary" : "Deletes a message.",
+        "description" : "Deletes a message.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "ts",
+          "in" : "query",
+          "description" : "Timestamp of the most recently seen message.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/chatOk"
+            }
+          }
+        }
+      }
+    },
+    "/chat.postMessage" : {
+      "get" : {
+        "summary" : "Sends a message to a channel.",
+        "description" : "Sends a message to a channel.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "link_names",
+          "in" : "query",
+          "description" : "Find and link channel names and usernames.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "unfurl_links",
+          "in" : "query",
+          "description" : "Pass 1 to enable unfurling of primarily text-based content.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "icon_emoji",
+          "in" : "query",
+          "description" : "emoji to use as the icon for this message. Overrides icon_url.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "attachments",
+          "in" : "query",
+          "description" : "Structured message attachments.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "text",
+          "in" : "query",
+          "description" : "Text of the message to send. See below for an explanation of formatting.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "parse",
+          "in" : "query",
+          "description" : "Change how messages are treated. See below.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "icon_url",
+          "in" : "query",
+          "description" : "URL to an image to use as the icon for this message",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "username",
+          "in" : "query",
+          "description" : "Name of bot.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/chatOk"
+            }
+          }
+        }
+      }
+    },
+    "/chat.update" : {
+      "get" : {
+        "summary" : "Updates a message.",
+        "description" : "Updates a message.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "ts",
+          "in" : "query",
+          "description" : "Timestamp of the most recently seen message.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "text",
+          "in" : "query",
+          "description" : "Text of the message to send. See below for an explanation of formatting.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/chatUpdate"
+            }
+          }
+        }
+      }
+    },
+    "/emoji.list" : {
+      "get" : {
+        "summary" : "Lists custom emoji for a team.",
+        "description" : "Lists custom emoji for a team.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/emojiList"
+            }
+          }
+        }
+      }
+    },
+    "/files.info" : {
+      "get" : {
+        "summary" : "Gets information about a team file.",
+        "description" : "Gets information about a team file.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number of results to return.",
+          "required" : false
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of items to return per page.",
+          "required" : false
+        }, {
+          "name" : "file",
+          "in" : "query",
+          "description" : "File to fetch info for",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/fileObj"
+            }
+          }
+        }
+      }
+    },
+    "/files.list" : {
+      "get" : {
+        "summary" : "Lists and filters team files.",
+        "description" : "Lists and filters team files.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "file",
+          "in" : "query",
+          "description" : "File to fetch info for",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "user",
+          "in" : "query",
+          "description" : "Filter files created by a single user.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "types",
+          "in" : "query",
+          "description" : "You can pass multiple values in the types argument, like types=posts,snippets.The default value is all, which does not filter the list.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ts_to",
+          "in" : "query",
+          "description" : "Filter files created before this timestamp (inclusive).",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ts_from",
+          "in" : "query",
+          "description" : "Filter files created after this timestamp (inclusive).",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/files"
+            }
+          }
+        }
+      }
+    },
+    "/files.upload" : {
+      "get" : {
+        "summary" : "Uploads or creates a file.",
+        "description" : "Uploads or creates a file.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "initial_comment",
+          "in" : "query",
+          "description" : "Initial comment to add to file.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "title",
+          "in" : "query",
+          "description" : "Title of file.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filetype",
+          "in" : "query",
+          "description" : "Slack-internal file type identifier.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filename",
+          "in" : "query",
+          "description" : "Filename of file.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "file",
+          "in" : "query",
+          "description" : "File contents via multipart/form-data.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "channels",
+          "in" : "query",
+          "description" : "Comma separated list of channels to share the file into.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "content",
+          "in" : "query",
+          "description" : "File contents via a POST var.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/fileObj"
+            }
+          }
+        }
+      }
+    },
+    "/groups.history" : {
+      "get" : {
+        "summary" : "Fetches history of messages and events from a private group.",
+        "description" : "Fetches history of messages and events from a private group.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "is_limited",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "oldest",
+          "in" : "query",
+          "description" : "Timestamp of the latest previously seen message.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Group to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of messages to return, between 1 and 1000.",
+          "required" : false
+        }, {
+          "name" : "latest",
+          "in" : "query",
+          "description" : "Timestamp of the oldest recent seen message.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "has_more",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/channelsHistory"
+            }
+          }
+        }
+      }
+    },
+    "/groups.list" : {
+      "get" : {
+        "summary" : "Lists private groups that the calling user has access to.",
+        "description" : "Lists private groups that the calling user has access to.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "exclude_archived",
+          "in" : "query",
+          "description" : "Don't return archived channels.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/groups"
+            }
+          }
+        }
+      }
+    },
+    "/groups.mark" : {
+      "get" : {
+        "summary" : "Sets the read cursor in a private group.",
+        "description" : "Sets the read cursor in a private group.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "ts",
+          "in" : "query",
+          "description" : "Timestamp of the most recently seen message.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Group to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ok"
+            }
+          }
+        }
+      }
+    },
+    "/groups.setPurpose" : {
+      "get" : {
+        "summary" : "Sets the purpose for a private group.",
+        "description" : "Sets the purpose for a private group.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Group to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "purpose",
+          "in" : "query",
+          "description" : "The new purpose",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/purpose"
+            }
+          }
+        }
+      }
+    },
+    "/groups.setTopic" : {
+      "get" : {
+        "summary" : "Sets the topic for a private group.",
+        "description" : "Sets the topic for a private group.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "topic",
+          "in" : "query",
+          "description" : "The new topic",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/topic"
+            }
+          }
+        }
+      }
+    },
+    "/im.history" : {
+      "get" : {
+        "summary" : "Fetches history of messages and events from direct message channel.",
+        "description" : "Fetches history of messages and events from direct message c...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of messages to return, between 1 and 1000.",
+          "required" : false
+        }, {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Direct message channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "is_limited",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "oldest",
+          "in" : "query",
+          "description" : "Timestamp of the latest previously seen message.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "has_more",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "latest",
+          "in" : "query",
+          "description" : "Timestamp of the oldest recent seen message.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/channelsHistory"
+            }
+          }
+        }
+      }
+    },
+    "/im.list" : {
+      "get" : {
+        "summary" : "Lists direct message channels for the calling user.",
+        "description" : "Lists direct message channels for the calling user.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ims"
+            }
+          }
+        }
+      }
+    },
+    "/im.mark" : {
+      "get" : {
+        "summary" : "Sets the read cursor in a direct message channel.",
+        "description" : "Sets the read cursor in a direct message channel.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "ts",
+          "in" : "query",
+          "description" : "Timestamp of the most recently seen message.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "channel",
+          "in" : "query",
+          "description" : "Channel to fetch history for.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ok"
+            }
+          }
+        }
+      }
+    },
+    "/search.all" : {
+      "get" : {
+        "summary" : "Searches for messages and files matching a query.",
+        "description" : "Searches for messages and files matching a query.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of items to return per page.",
+          "required" : false
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number of results to return.",
+          "required" : false
+        }, {
+          "name" : "sort_dir",
+          "in" : "query",
+          "description" : "Change sort direction to ascending (asc) or descending (desc).",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "description" : "Search query. May contains booleans, etc.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "sort",
+          "in" : "query",
+          "description" : "Return matches sorted by either score or timestamp.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "highlight",
+          "in" : "query",
+          "description" : "Pass a value of 1 to enable query highlight markers .",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/searchAll"
+            }
+          }
+        }
+      }
+    },
+    "/search.files" : {
+      "get" : {
+        "summary" : "Searches for files matching a query.",
+        "description" : "Searches for files matching a query.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "query",
+          "in" : "query",
+          "description" : "Search query. May contains booleans, etc.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of items to return per page.",
+          "required" : false
+        }, {
+          "name" : "highlight",
+          "in" : "query",
+          "description" : "Pass a value of 1 to enable query highlight markers .",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "sort_dir",
+          "in" : "query",
+          "description" : "Change sort direction to ascending (asc) or descending (desc).",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "sort",
+          "in" : "query",
+          "description" : "Return matches sorted by either score or timestamp.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number of results to return.",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/searchFiles"
+            }
+          }
+        }
+      }
+    },
+    "/search.messages" : {
+      "get" : {
+        "summary" : "Searches for messages matching a query.",
+        "description" : "Searches for messages matching a query.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "sort",
+          "in" : "query",
+          "description" : "Return matches sorted by either score or timestamp.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of items to return per page.",
+          "required" : false
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number of results to return.",
+          "required" : false
+        }, {
+          "name" : "sort_dir",
+          "in" : "query",
+          "description" : "Change sort direction to ascending (asc) or descending (desc).",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "description" : "Search query. May contains booleans, etc.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "highlight",
+          "in" : "query",
+          "description" : "Pass a value of 1 to enable query highlight markers .",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/searchMessages"
+            }
+          }
+        }
+      }
+    },
+    "/stars.list" : {
+      "get" : {
+        "summary" : "Lists stars for a user.",
+        "description" : "Lists stars for a user.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number of results to return.",
+          "required" : false
+        }, {
+          "name" : "user",
+          "in" : "query",
+          "description" : "Show stars by this user. Defaults to the authed user.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of items to return per page.",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/starList"
+            }
+          }
+        }
+      }
+    },
+    "/users.list" : {
+      "get" : {
+        "summary" : "Lists all users in a Slack team.",
+        "description" : "Lists all users in a Slack team.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/usersList"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "usersList" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "chatOk" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "ts" : {
+          "type" : "string"
+        },
+        "channel" : {
+          "type" : "string"
+        }
+      }
+    },
+    "emojiList" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "emoji" : {
+          "type" : "object",
+          "properties" : {
+            "bowtie" : {
+              "type" : "string"
+            },
+            "squirrel" : {
+              "type" : "string"
+            },
+            "shipit" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "purpose" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "purpose" : {
+          "type" : "string"
+        }
+      }
+    },
+    "searchAll" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "query" : {
+          "type" : "string"
+        },
+        "messages" : {
+          "type" : "string"
+        },
+        "files" : {
+          "type" : "string"
+        }
+      }
+    },
+    "groups" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "searchMessages" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "query" : {
+          "type" : "string"
+        },
+        "messages" : {
+          "type" : "object",
+          "properties" : {
+            "total" : {
+              "type" : "number"
+            },
+            "paging" : {
+              "type" : "object",
+              "properties" : {
+                "count" : {
+                  "type" : "number"
+                },
+                "total" : {
+                  "type" : "number"
+                },
+                "page" : {
+                  "type" : "number"
+                },
+                "pages" : {
+                  "type" : "number"
+                }
+              }
+            },
+            "matches" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "channalsInfo" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "channel" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "created" : {
+              "type" : "string"
+            },
+            "creator" : {
+              "type" : "string"
+            },
+            "is_archived" : {
+              "type" : "boolean"
+            },
+            "is_general" : {
+              "type" : "boolean"
+            },
+            "is_member" : {
+              "type" : "boolean"
+            },
+            "members" : {
+              "type" : "string"
+            },
+            "topic" : {
+              "type" : "string"
+            },
+            "purpose" : {
+              "type" : "string"
+            },
+            "last_read" : {
+              "type" : "string"
+            },
+            "latest" : {
+              "type" : "string"
+            },
+            "unread_count" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "ims" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "channelsHistory" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "latest" : {
+          "type" : "string"
+        },
+        "has_more" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "fileObj" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "file" : {
+          "type" : "object",
+          "properties" : { }
+        }
+      }
+    },
+    "channels" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "searchFiles" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "query" : {
+          "type" : "string"
+        },
+        "files" : {
+          "type" : "object",
+          "properties" : {
+            "total" : {
+              "type" : "number"
+            },
+            "paging" : {
+              "type" : "object",
+              "properties" : {
+                "count" : {
+                  "type" : "number"
+                },
+                "total" : {
+                  "type" : "number"
+                },
+                "page" : {
+                  "type" : "number"
+                },
+                "pages" : {
+                  "type" : "number"
+                }
+              }
+            },
+            "matches" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "topic" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "topic" : {
+          "type" : "string"
+        }
+      }
+    },
+    "files" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "files" : {
+          "type" : "string"
+        },
+        "paging" : {
+          "type" : "object",
+          "properties" : {
+            "count" : {
+              "type" : "number"
+            },
+            "total" : {
+              "type" : "number"
+            },
+            "page" : {
+              "type" : "number"
+            },
+            "pages" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "channelsInvite" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "channel" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "created" : {
+              "type" : "string"
+            },
+            "creator" : {
+              "type" : "string"
+            },
+            "is_archived" : {
+              "type" : "boolean"
+            },
+            "is_member" : {
+              "type" : "boolean"
+            },
+            "is_general" : {
+              "type" : "boolean"
+            },
+            "last_read" : {
+              "type" : "string"
+            },
+            "latest" : {
+              "type" : "string"
+            },
+            "unread_count" : {
+              "type" : "number"
+            },
+            "members" : {
+              "type" : "string"
+            },
+            "topic" : {
+              "type" : "object",
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "creator" : {
+                  "type" : "string"
+                },
+                "last_set" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "purpose" : {
+              "type" : "object",
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "creator" : {
+                  "type" : "string"
+                },
+                "last_set" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ok" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "chatUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "ok" : {
+          "type" : "boolean"
+        },
+        "channel" : {
+          "type" : "string"
+        },
+        "ts" : {
+          "type" : "string"
+        },
+        "text" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

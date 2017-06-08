@@ -1,0 +1,1400 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : The Google Calendar API lets you develop client applications that create new events, edit or delete existing events, and search for events. This document describes how to use RESTful calling style and client libraries for various programming languages (currently Java, Python, PHP, .NET and Ruby) to access and edit Google Calendar data.",
+    "version" : "v3",
+    "title" : "Google Calendar"
+  },
+  "host" : "www.googleapis.com",
+  "basePath" : "/calendar/v3",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/calendars" : {
+      "post" : {
+        "summary" : "Creates a secondary calendar.",
+        "description" : "Creates a secondary calendar.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/newCalendarRequest"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/calendarResponse"
+            }
+          }
+        }
+      }
+    },
+    "/calendars/{calendar_id}/acl" : {
+      "get" : {
+        "summary" : "Returns the rules in the access control list for the calendar.",
+        "description" : "Returns the rules in the access control list for the calenda...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "maxResults",
+          "in" : "query",
+          "description" : "Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.\r\nMaximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "syncToken",
+          "in" : "query",
+          "description" : "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "pageToken",
+          "in" : "query",
+          "description" : "Token specifying which result page to return. Optional.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "showDeleted",
+          "in" : "query",
+          "description" : "Whether to include deleted events (with status equals \"cancelled\") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/aclListResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creates an access control rule.",
+        "description" : "Creates an access control rule.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/createAccessRuleRequest"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/aclResourceResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "Calendar id",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/calendars/{calendar_id}/acl/{rule_id}" : {
+      "get" : {
+        "summary" : "Returns an access control rule.",
+        "description" : "Returns an access control rule.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/aclResourceResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates an access control rule.",
+        "description" : "Updates an access control rule.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updateAccessRuleRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/aclResourceResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes an access control rule.",
+        "description" : "Deletes an access control rule.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "patch" : {
+        "summary" : "Updates an access control rule. This method supports patch semantics.",
+        "description" : "Updates an access control rule. This method supports patch s...",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updateAccessRuleRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/aclResourceResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "rule_id",
+        "in" : "path",
+        "description" : "Id ACL",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "Calendar id",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/calendars/{calendar_id}/clear" : {
+      "post" : {
+        "summary" : "Clears a primary calendar. This operation deletes all data associated with the primary calendar of an account and cannot be undone.",
+        "description" : "Clears a primary calendar. This operation deletes all data a...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "Calendar id",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/calendars/{calendar_id}/events" : {
+      "get" : {
+        "summary" : "Returns events on the specified calendar.",
+        "description" : "Returns events on the specified calendar.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "showDeleted",
+          "in" : "query",
+          "description" : "Whether to include deleted events (with status equals \"cancelled\") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "timeMin",
+          "in" : "query",
+          "description" : "Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time.",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "orderBy",
+          "in" : "query",
+          "description" : "The order of the events returned in the result. Optional. The default is an unspecified, stable order.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "syncToken",
+          "in" : "query",
+          "description" : "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "alwaysIncludeEmail",
+          "in" : "query",
+          "description" : "Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "pageToken",
+          "in" : "query",
+          "description" : "Token specifying which result page to return. Optional.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "timeMax",
+          "in" : "query",
+          "description" : "Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time.",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "description" : "Free text search terms to find events that match these terms in any field, except for extended properties. Optional.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "iCalUID",
+          "in" : "query",
+          "description" : "Specifies event ID in the iCalendar format to be included in the response. Optional.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "privateExtendedProperty",
+          "in" : "query",
+          "description" : "Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "updatedMin",
+          "in" : "query",
+          "description" : "Lower bound for an event's last modification time (as a RFC 3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "timeZone",
+          "in" : "query",
+          "description" : "Time zone used in the response. Optional. The default is the time zone of the calendar.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "maxAttendees",
+          "in" : "query",
+          "description" : "The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "maxResults",
+          "in" : "query",
+          "description" : "Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "singleEvents",
+          "in" : "query",
+          "description" : "Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "showHiddenInvitations",
+          "in" : "query",
+          "description" : "Whether to include hidden invitations in the result. Optional. The default is False.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "sharedExtendedProperty",
+          "in" : "query",
+          "description" : "Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/instancesResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creates an event.",
+        "description" : "Creates an event.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "maxAttendees",
+          "in" : "query",
+          "description" : "The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "sendNotifications",
+          "in" : "query",
+          "description" : "Whether to send notifications about the creation of the new event. Optional. The default is False.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/createEventResourceRequest"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/eventResourceResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "Calendar id",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/calendars/{calendar_id}/events/import" : {
+      "post" : {
+        "summary" : "Imports an event. This operation is used to add a private copy of an existing event to a calendar.",
+        "description" : "Imports an event. This operation is used to add a private co...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/createEventResourceRequest"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/eventResourceResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "Calendar id",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/calendars/{calendar_id}/events/quickAdd" : {
+      "post" : {
+        "summary" : "Creates an event based on a simple text string.\r\nRequired query parameters: text\r\n",
+        "description" : "Creates an event based on a simple text string.\r\nRequired que...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "text",
+          "in" : "query",
+          "description" : "The text describing the event to be created.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "sendNotifications",
+          "in" : "query",
+          "description" : "Whether to send notifications about the creation of the new event. Optional. The default is False.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/eventResourceResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "Calendar id",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/calendars/{calendar_id}/events/watch" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/watchRequest"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/watchResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "Calendar id",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/calendars/{calendar_id}/events/{event_id}" : {
+      "get" : {
+        "summary" : "Returns an event.",
+        "description" : "Returns an event.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "maxAttendees",
+          "in" : "query",
+          "description" : "The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "timeZone",
+          "in" : "query",
+          "description" : "Time zone used in the response. Optional. The default is the time zone of the calendar.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "alwaysIncludeEmail",
+          "in" : "query",
+          "description" : "Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/eventResourceResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates an event.",
+        "description" : "Updates an event.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "alwaysIncludeEmail",
+          "in" : "query",
+          "description" : "Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "sendNotifications",
+          "in" : "query",
+          "description" : "Whether to send notifications about the creation of the new event. Optional. The default is False.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "maxAttendees",
+          "in" : "query",
+          "description" : "The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/createEventResourceRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/eventResourceResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes an event.",
+        "description" : "Deletes an event.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "sendNotifications",
+          "in" : "query",
+          "description" : "Whether to send notifications about the creation of the new event. Optional. The default is False.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : { }
+      },
+      "patch" : {
+        "summary" : "Updates an event. This method supports patch semantics.",
+        "description" : "Updates an event. This method supports patch semantics.",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "maxAttendees",
+          "in" : "query",
+          "description" : "The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "sendNotifications",
+          "in" : "query",
+          "description" : "Whether to send notifications about the creation of the new event. Optional. The default is False.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "eventResourceResponse",
+          "in" : "query",
+          "description" : "Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/createEventResourceRequest"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/eventResourceResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "event_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "Calendar id",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/calendars/{calendar_id}/events/{event_id}/instances" : {
+      "get" : {
+        "summary" : "Returns instances of the specified recurring event.",
+        "description" : "Returns instances of the specified recurring event.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "pageToken",
+          "in" : "query",
+          "description" : "Token specifying which result page to return. Optional.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "maxResults",
+          "in" : "query",
+          "description" : "Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.\r\nMaximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "maxAttendees",
+          "in" : "query",
+          "description" : "The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "timeMax",
+          "in" : "query",
+          "description" : "Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time.",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "timeMin",
+          "in" : "query",
+          "description" : "Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time.",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "timeZone",
+          "in" : "query",
+          "description" : "Time zone used in the response. Optional. The default is the time zone of the calendar.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "alwaysIncludeEmail",
+          "in" : "query",
+          "description" : "Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "originalStart",
+          "in" : "query",
+          "description" : "The original start time of the instance in the result. Optional.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "showDeleted",
+          "in" : "query",
+          "description" : "Whether to include deleted events (with status equals \"cancelled\") in the result. Cancelled instances of recurring events will still be included if singleEvents is False. Optional. The default is False.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/instancesResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "event_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "Calendar id",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/calendars/{calendar_id}/events/{event_id}/move" : {
+      "post" : {
+        "summary" : "Moves an event to another calendar, i.e. changes an event's organizer.\r\nRequired query parameters: destination\r\n",
+        "description" : "Moves an event to another calendar, i.e. changes an event's ...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "destination",
+          "in" : "query",
+          "description" : "Calendar identifier of the target calendar where the event is to be moved to.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "sendNotifications",
+          "in" : "query",
+          "description" : "Whether to send notifications about the creation of the new event. Optional. The default is False.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/eventResourceResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "event_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "Calendar id",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/channels/stop" : {
+      "post" : {
+        "summary" : "Stop watching resources through this channel.",
+        "description" : "Stop watching resources through this channel.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/stopWatchingRequest"
+          }
+        } ],
+        "responses" : { }
+      }
+    },
+    "/colors" : {
+      "get" : {
+        "summary" : "Returns the color definitions for calendars and events.",
+        "description" : "Returns the color definitions for calendars and events.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/colorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/freeBusy" : {
+      "post" : {
+        "summary" : "Returns free/busy information for a set of calendars.",
+        "description" : "Returns free/busy information for a set of calendars.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/freeBusyRequest"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/freeBusyResponse"
+            }
+          }
+        }
+      }
+    },
+    "/users/me/calendarList" : {
+      "get" : {
+        "summary" : "Returns entries on the user's calendar list.",
+        "description" : "Returns entries on the user's calendar list.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "showHidden",
+          "in" : "query",
+          "description" : "Whether to show hidden entries. Optional. The default is False.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "pageToken",
+          "in" : "query",
+          "description" : "Token specifying which result page to return. Optional.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "showDeleted",
+          "in" : "query",
+          "description" : "Whether to include deleted events (with status equals \"cancelled\") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "maxResults",
+          "in" : "query",
+          "description" : "Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.\r\nMaximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "syncToken",
+          "in" : "query",
+          "description" : "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "minAccessRole",
+          "in" : "query",
+          "description" : "The minimum access role for the user in the returned entires. Optional. The default is no restriction.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/calendarListResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Adds an entry to the user's calendar list.",
+        "description" : "Adds an entry to the user's calendar list.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/createUserCalendarRequest"
+          }
+        }, {
+          "name" : "colorRgbFormat",
+          "in" : "query",
+          "description" : "Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/userCalendarResponse"
+            }
+          }
+        }
+      }
+    },
+    "/users/me/calendarList/{calendar_id}" : {
+      "get" : {
+        "summary" : "Returns an entry on the user's calendar list.",
+        "description" : "Returns an entry on the user's calendar list.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/userCalendarResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates an entry on the user's calendar list.",
+        "description" : "Updates an entry on the user's calendar list.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updateUserCalendarRequest"
+          }
+        }, {
+          "name" : "colorRgbFormat",
+          "in" : "query",
+          "description" : "Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/userCalendarResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes an entry on the user's calendar list.",
+        "description" : "Deletes an entry on the user's calendar list.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "patch" : {
+        "summary" : "Updates an entry on the user's calendar list. This method supports patch semantics.",
+        "description" : "Updates an entry on the user's calendar list. This method su...",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updateUserCalendarRequest"
+          }
+        }, {
+          "name" : "colorRgbFormat",
+          "in" : "query",
+          "description" : "Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/userCalendarResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "Calendar id",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/me/settings" : {
+      "get" : {
+        "summary" : "Returns all user settings for the authenticated user.",
+        "description" : "Returns all user settings for the authenticated user.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "maxResults",
+          "in" : "query",
+          "description" : "Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.\r\nMaximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "pageToken",
+          "in" : "query",
+          "description" : "Token specifying which result page to return. Optional.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "syncToken",
+          "in" : "query",
+          "description" : "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/settingsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/users/me/settings/{setting}" : {
+      "get" : {
+        "summary" : "Returns a single user setting.",
+        "description" : "Returns a single user setting.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/settingResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "setting",
+        "in" : "path",
+        "description" : "Setting",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "instancesResponse" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "etag" : {
+          "type" : "string"
+        },
+        "summary" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "updated" : {
+          "type" : "string"
+        },
+        "timeZone" : {
+          "type" : "string"
+        },
+        "accessRole" : {
+          "type" : "string"
+        },
+        "nextPageToken" : {
+          "type" : "string"
+        },
+        "nextSyncToken" : {
+          "type" : "string"
+        },
+        "items" : {
+          "type" : "array"
+        }
+      }
+    },
+    "stopWatchingRequest" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "resourceId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "aclListResponse" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "etag" : {
+          "type" : "string"
+        },
+        "nextPageToken" : {
+          "type" : "string"
+        },
+        "nextSyncToken" : {
+          "type" : "string"
+        }
+      }
+    },
+    "aclResourceResponse" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "etag" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "scope" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "value" : {
+              "type" : "string"
+            }
+          }
+        },
+        "role" : {
+          "type" : "string"
+        }
+      }
+    },
+    "calendarResponse" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "etag" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "summary" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "location" : {
+          "type" : "string"
+        },
+        "timeZone" : {
+          "type" : "string"
+        }
+      }
+    },
+    "calendarListResponse" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "etag" : {
+          "type" : "string"
+        },
+        "nextPageToken" : {
+          "type" : "string"
+        },
+        "nextSyncToken" : {
+          "type" : "string"
+        }
+      }
+    },
+    "watchResponse" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "resourceId" : {
+          "type" : "string"
+        },
+        "resourceUri" : {
+          "type" : "string"
+        },
+        "token" : {
+          "type" : "string"
+        },
+        "expiration" : {
+          "type" : "string"
+        }
+      }
+    },
+    "settingResponse" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "etag" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "value" : {
+          "type" : "string"
+        }
+      }
+    },
+    "colorResponse" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "updated" : {
+          "type" : "string"
+        },
+        "calendar" : {
+          "type" : "object",
+          "properties" : {
+            "(key)" : {
+              "type" : "object",
+              "properties" : {
+                "background" : {
+                  "type" : "string"
+                },
+                "foreground" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "event" : {
+          "type" : "object",
+          "properties" : {
+            "(key)" : {
+              "type" : "object",
+              "properties" : {
+                "background" : {
+                  "type" : "string"
+                },
+                "foreground" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "newCalendarRequest" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "etag" : {
+          "type" : "string"
+        },
+        "summary" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "location" : {
+          "type" : "string"
+        },
+        "timeZone" : {
+          "type" : "string"
+        }
+      }
+    },
+    "createAccessRuleRequest" : {
+      "type" : "object",
+      "properties" : {
+        "scope" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "value" : {
+              "type" : "string"
+            }
+          }
+        },
+        "role" : {
+          "type" : "string"
+        }
+      }
+    },
+    "settingsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "etag" : {
+          "type" : "string"
+        },
+        "nextPageToken" : {
+          "type" : "string"
+        },
+        "nextSyncToken" : {
+          "type" : "string"
+        }
+      }
+    },
+    "freeBusyRequest" : {
+      "type" : "object",
+      "properties" : {
+        "timeMin" : {
+          "type" : "string"
+        },
+        "timeMax" : {
+          "type" : "string"
+        },
+        "timeZone" : {
+          "type" : "string"
+        },
+        "groupExpansionMax" : {
+          "type" : "string"
+        },
+        "calendarExpansionMax" : {
+          "type" : "string"
+        }
+      }
+    },
+    "updateAccessRuleRequest" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "etag" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "scope" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "value" : {
+              "type" : "string"
+            }
+          }
+        },
+        "role" : {
+          "type" : "string"
+        }
+      }
+    },
+    "watchRequest" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "token" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "address" : {
+          "type" : "string"
+        },
+        "params" : {
+          "type" : "object",
+          "properties" : {
+            "ttl" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

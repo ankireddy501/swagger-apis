@@ -1,0 +1,1926 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : PayPal is international digital wallet based e-commerce business allowing payments and money transfers to be made through the Internet.",
+    "version" : "v1",
+    "title" : "Pay Pal API"
+  },
+  "host" : "api.sandbox.paypal.com",
+  "basePath" : "/v1",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/identity/openidconnect/tokenservice" : {
+      "post" : {
+        "summary" : "Use this call to grant a new access token, using the previously obtained authorization code.",
+        "description" : "Use this call to grant a new access token, using the previou...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded", "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model293"
+          }
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model293"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/tokeninfo"
+            }
+          }
+        }
+      }
+    },
+    "/identity/openidconnect/userinfo" : {
+      "get" : {
+        "summary" : "Use this call to retrieve user profile attributes.",
+        "description" : "Use this call to retrieve user profile attributes.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "schema",
+          "in" : "query",
+          "description" : "Pass the schema that is used to return as per openidconnect protocol. The only supported schema value is openid.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/userAttributes"
+            }
+          }
+        }
+      }
+    },
+    "/invoicing/invoices" : {
+      "get" : {
+        "summary" : "Returns invoices that belong to the merchant who makes the call.",
+        "description" : "Returns invoices that belong to the merchant who makes the c...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "start_index",
+          "in" : "query",
+          "description" : "Start index of the resources to be returned. Typically used to jump to a specific position in the resource history based on its order.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of items to return. Default is 10 with a maximum value of 20.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "start_id",
+          "in" : "query",
+          "description" : "Resource ID that indicates the starting resource to return. When results are paged, you can use the next_id response value as the start_id to continue with the next set of results.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "sort_order",
+          "in" : "query",
+          "description" : "Sort based on order of results. Options include asc for ascending order or desc for descending order (default).",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "end_time",
+          "in" : "query",
+          "description" : "Resource creation time that indicates the end of a range of results.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "sort_by",
+          "in" : "query",
+          "description" : "Sort based on create_time or update_time.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "start_time",
+          "in" : "query",
+          "description" : "Resource creation time as defined in RFC 3339 Section 5.6 that indicates the start of a range of results",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/invoices"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creates an invoice in a draft state. After you create an invoice that includes an items array, you can send the invoice.",
+        "description" : "Creates an invoice in a draft state. After you create an inv...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/invoiceReq"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource created",
+            "schema" : {
+              "$ref" : "#/definitions/invoices"
+            }
+          }
+        }
+      }
+    },
+    "/invoicing/invoices/{InvoiceId}" : {
+      "get" : {
+        "summary" : "Returns the specified invoice.",
+        "description" : "Returns the specified invoice.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/invoices"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Makes the specified changes to the specified invoice.",
+        "description" : "Makes the specified changes to the specified invoice.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/invoice"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invoice"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a draft invoice. Note that this call works for invoices in the draft state only.",
+        "description" : "Deletes a draft invoice. Note that this call works for invoi...",
+        "operationId" : "DELETE",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model308"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "InvoiceId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/invoicing/invoices/{InvoiceId}/cancel" : {
+      "post" : {
+        "summary" : "Cancels an invoice and (optionally) notifies the payer of the cancellation.",
+        "description" : "Cancels an invoice and (optionally) notifies the payer of th...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/cancel_notification"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "InvoiceId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/invoicing/invoices/{InvoiceId}/qr-code" : {
+      "get" : {
+        "summary" : "Specify an invoice ID to get a QR code (image) that corresponds to the invoice ID.",
+        "description" : "Specify an invoice ID to get a QR code (image) that correspo...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "width",
+          "in" : "query",
+          "description" : "The width of the QR code image, in pixels. Range of 150 to 500.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "height",
+          "in" : "query",
+          "description" : "The height of the QR code image, in pixels. Range of 150 to 500.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "action",
+          "in" : "query",
+          "description" : "The type of URL for which a QR code is provided. The only supported value is pay, which is the default value.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/qrCode"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "InvoiceId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/invoicing/invoices/{InvoiceId}/record-payment" : {
+      "post" : {
+        "summary" : "Use this call to mark an invoice as paid.",
+        "description" : "Use this call to mark an invoice as paid.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/recordPayment"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "InvoiceId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/invoicing/invoices/{InvoiceId}/record-refund" : {
+      "post" : {
+        "summary" : "Use this call to mark an invoice as refunded.",
+        "description" : "Use this call to mark an invoice as refunded.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/recordRefund"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "InvoiceId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/invoicing/invoices/{InvoiceId}/remind" : {
+      "post" : {
+        "summary" : "Sends a reminder that a payment is due for an existing invoice.",
+        "description" : "Sends a reminder that a payment is due for an existing invoi...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/reminderReq"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "InvoiceId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/invoicing/invoices/{InvoiceId}/send" : {
+      "post" : {
+        "summary" : "Sends the specified invoice to the payer. An invoice cannot be sent unless it includes an items array.",
+        "description" : "Sends the specified invoice to the payer. An invoice cannot ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model760"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "InvoiceId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/invoicing/search" : {
+      "post" : {
+        "summary" : "Returns invoices that match the specified criteria.",
+        "description" : "Returns invoices that match the specified criteria.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/searchReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/searchInvoices"
+            }
+          }
+        }
+      }
+    },
+    "/payments/authorization/{AuthorizationId}" : {
+      "get" : {
+        "summary" : "Use this call to get details about authorizations.",
+        "description" : "Use this call to get details about authorizations.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/authorization"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "AuthorizationId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/authorization/{AuthorizationId}/capture" : {
+      "post" : {
+        "summary" : "Use this resource to capture and process a previously created authorization. To use this resource, the original payment call must have the intent set to authorize.",
+        "description" : "Use this resource to capture and process a previously create...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/captureReq"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource created",
+            "schema" : {
+              "$ref" : "#/definitions/capture"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "AuthorizationId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/authorization/{AuthorizationId}/reauthorize" : {
+      "post" : {
+        "summary" : "Pass the authorization id in the endpoint along with a new authorization object if you need to authorize a different amount.",
+        "description" : "Pass the authorization id in the endpoint along with a new a...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/refundReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/authorization"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "AuthorizationId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/authorization/{AuthorizationId}/void" : {
+      "post" : {
+        "summary" : "Use this call to void a previously authorized payment.",
+        "description" : "Use this call to void a previously authorized payment.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model635"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/authorization"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "AuthorizationId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/billing-agreements" : {
+      "post" : {
+        "summary" : "Use this call to create a billing agreement for the buyer.",
+        "description" : "Use this call to create a billing agreement for the buyer.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/agreementReq"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource created",
+            "schema" : {
+              "$ref" : "#/definitions/agreement"
+            }
+          }
+        }
+      }
+    },
+    "/payments/billing-agreements/{agreementId}" : {
+      "get" : {
+        "summary" : "Use this call to retrieve an agreement.",
+        "description" : "Use this call to retrieve an agreement.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/agreement"
+            }
+          }
+        }
+      },
+      "patch" : {
+        "summary" : "Use this call to update an agreement.",
+        "description" : "Use this call to update an agreement.",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updateAgreementReq"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "agreementId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/billing-agreements/{agreementId}/bill-balance" : {
+      "post" : {
+        "summary" : "Use this call to bill the outstanding amount of an agreement.",
+        "description" : "Use this call to bill the outstanding amount of an agreement...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/billAmount"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "agreementId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/billing-agreements/{agreementId}/re-activate" : {
+      "post" : {
+        "summary" : "Use this call to reactivate an agreement.",
+        "description" : "Use this call to reactivate an agreement.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/suspendReq"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "agreementId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/billing-agreements/{agreementId}/set-balance" : {
+      "post" : {
+        "summary" : "Use this call to set the outstanding amount of an agreement.",
+        "description" : "Use this call to set the outstanding amount of an agreement.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/currencyProperties"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "agreementId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/billing-agreements/{agreementId}/suspend" : {
+      "post" : {
+        "summary" : "Use this call to suspend an agreement.",
+        "description" : "Use this call to suspend an agreement.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/suspendReq"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "agreementId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/billing-agreements/{agreementId}/transactions" : {
+      "get" : {
+        "summary" : "Use this call to search for the transactions within a billing agreement.",
+        "description" : "Use this call to search for the transactions within a billin...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/agreementTransactions"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "agreementId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/billing-agreements/{payment-token}/agreement-execute" : {
+      "post" : {
+        "summary" : "Use this call to execute an agreement after the buyer approves it.",
+        "description" : "Use this call to execute an agreement after the buyer approv...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model801"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource created",
+            "schema" : {
+              "$ref" : "#/definitions/agreement"
+            }
+          }
+        }
+      }
+    },
+    "/payments/billing-plans" : {
+      "get" : {
+        "summary" : "Use this call to get a list of all billing plans based on their current state: created, active, or deactivated.",
+        "description" : "Use this call to get a list of all billing plans based on th...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "sort_order",
+          "in" : "query",
+          "description" : "Sort based on order of results. Options include asc for ascending order or desc for descending order (default).",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Pass created, active, or inactive in the URI path to request billings plans in the CREATED, ACTIVE, or INACTIVE states respectively.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "end_time",
+          "in" : "query",
+          "description" : "Resource creation time that indicates the end of a range of results.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "start_time",
+          "in" : "query",
+          "description" : "Resource creation time as defined in RFC 3339 Section 5.6 that indicates the start of a range of results",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of items to return. Default is 10 with a maximum value of 20.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "sort_by",
+          "in" : "query",
+          "description" : "Sort based on create_time or update_time.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "start_index",
+          "in" : "query",
+          "description" : "Start index of the resources to be returned. Typically used to jump to a specific position in the resource history based on its order.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "start_id",
+          "in" : "query",
+          "description" : "Resource ID that indicates the starting resource to return. When results are paged, you can use the next_id response value as the start_id to continue with the next set of results.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/plans"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Use this call to create a billing plan. The request sample shows the plan being created with a regular billing period.",
+        "description" : "Use this call to create a billing plan. The request sample s...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/planReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/plan"
+            }
+          }
+        }
+      }
+    },
+    "/payments/billing-plans/{PlanId}" : {
+      "get" : {
+        "summary" : "Use this call to get details about a specific billing plan.",
+        "description" : "Use this call to get details about a specific billing plan.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/plan"
+            }
+          }
+        }
+      },
+      "patch" : {
+        "summary" : "You can update the information for an existing billing plan. The state of a plan must be active before a billing agreement is created.",
+        "description" : "You can update the information for an existing billing plan....",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updatePlan"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "PlanId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/capture/{CaptureId}" : {
+      "get" : {
+        "summary" : "Use this call to get details about a captured payment.",
+        "description" : "Use this call to get details about a captured payment.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/capture"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "CaptureId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/capture/{CaptureId}/refund" : {
+      "post" : {
+        "summary" : "Use this call to refund a captured payment. Provide the captureId in the URI and an amount object. For partial refunds, you can include a lower amount object.",
+        "description" : "Use this call to refund a captured payment. Provide the capt...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/refundReq"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource created",
+            "schema" : {
+              "$ref" : "#/definitions/refund"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "CaptureId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/orders/{orderId}" : {
+      "get" : {
+        "summary" : "Specify an order ID to get details about an order.",
+        "description" : "Specify an order ID to get details about an order.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/order"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "orderId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/orders/{orderId}/authorization" : {
+      "post" : {
+        "summary" : "Use this call to authorize an order.",
+        "description" : "Use this call to authorize an order.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/refundReq"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource created",
+            "schema" : {
+              "$ref" : "#/definitions/authorization"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "orderId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/payment" : {
+      "get" : {
+        "summary" : "Use this call to get a list of payments in any state (created, approved, failed, etc.). The payments returned are the payments made to the merchant making the call.",
+        "description" : "Use this call to get a list of payments in any state (create...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "start_index",
+          "in" : "query",
+          "description" : "Start index of the resources to be returned. Typically used to jump to a specific position in the resource history based on its order.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "sort_by",
+          "in" : "query",
+          "description" : "Sort based on create_time or update_time.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of items to return. Default is 10 with a maximum value of 20.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "start_id",
+          "in" : "query",
+          "description" : "Resource ID that indicates the starting resource to return. When results are paged, you can use the next_id response value as the start_id to continue with the next set of results.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "end_time",
+          "in" : "query",
+          "description" : "Resource creation time that indicates the end of a range of results.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "start_time",
+          "in" : "query",
+          "description" : "Resource creation time as defined in RFC 3339 Section 5.6 that indicates the start of a range of results",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "sort_order",
+          "in" : "query",
+          "description" : "Sort based on order of results. Options include asc for ascending order or desc for descending order (default).",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/payments"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a payment",
+        "description" : "Create a payment",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/createPaymentReq"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource created",
+            "schema" : {
+              "$ref" : "#/definitions/payment"
+            }
+          }
+        }
+      }
+    },
+    "/payments/payment/{PaymentId}" : {
+      "get" : {
+        "summary" : "Use this call to get details about payments that have not completed, such as payments that are created and approved, or if a payment has failed.",
+        "description" : "Use this call to get details about payments that have not co...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/payment"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "PaymentId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/payment/{PaymentId}/execute" : {
+      "post" : {
+        "summary" : "Use this call to execute (complete) a PayPal payment that has been approved by the payer. You can optionally update transaction information when executing the payment by passing in one or more transactions.",
+        "description" : "Use this call to execute (complete) a PayPal payment that ha...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/approve"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource created",
+            "schema" : {
+              "$ref" : "#/definitions/payment"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "PaymentId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/refund/{RefundId}" : {
+      "get" : {
+        "summary" : "Use this call to get details about a specific refund.",
+        "description" : "Use this call to get details about a specific refund.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/refund"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "RefundId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payments/sale/{TransactionId}" : {
+      "get" : {
+        "summary" : "Use this call to get details about a sale transaction.",
+        "description" : "Use this call to get details about a sale transaction.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/sale"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "TransactionId",
+        "in" : "path",
+        "description" : "Pass the sale id in the endpoint.",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/vault/credit-card" : {
+      "post" : {
+        "summary" : "Use this call to store credit card details with PayPal.",
+        "description" : "Use this call to store credit card details with PayPal.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/creditCardReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/creditCard"
+            }
+          }
+        }
+      }
+    },
+    "/vault/credit-card/{CreditCardId}" : {
+      "get" : {
+        "summary" : "Use this call to look up details of a credit card. Simply include the credit card id in the request URI.",
+        "description" : "Use this call to look up details of a credit card. Simply in...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request OK",
+            "schema" : {
+              "$ref" : "#/definitions/creditCard"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Use this call to delete details of a credit card. Simply include the credit card id in the request URI.",
+        "description" : "Use this call to delete details of a credit card. Simply inc...",
+        "operationId" : "DELETE",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model425"
+          }
+        } ],
+        "responses" : { }
+      },
+      "patch" : {
+        "summary" : "Use this call to modify a credit card.",
+        "description" : "Use this call to modify a credit card.",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/creditCardModifyReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/creditCard"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "CreditCardId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "updateAgreementReq" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "op" : {
+                "type" : "string"
+              },
+              "path" : {
+                "type" : "string"
+              },
+              "value" : {
+                "type" : "object",
+                "properties" : {
+                  "description" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "shipping_address" : {
+                    "type" : "object",
+                    "properties" : {
+                      "line1" : {
+                        "type" : "string"
+                      },
+                      "line2" : {
+                        "type" : "string"
+                      },
+                      "city" : {
+                        "type" : "string"
+                      },
+                      "state" : {
+                        "type" : "string"
+                      },
+                      "postal_code" : {
+                        "type" : "string"
+                      },
+                      "country_code" : {
+                        "type" : "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "payments" : {
+      "type" : "object"
+    },
+    "updatePlan" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "op" : {
+                "type" : "string"
+              },
+              "path" : {
+                "type" : "string"
+              },
+              "value" : {
+                "type" : "object",
+                "properties" : {
+                  "state" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "recordPayment" : {
+      "type" : "object",
+      "properties" : {
+        "method" : {
+          "type" : "string"
+        },
+        "date" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        }
+      }
+    },
+    "currencyProperties" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string"
+        },
+        "currency" : {
+          "type" : "string"
+        }
+      }
+    },
+    "authorization" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "create_time" : {
+          "type" : "string"
+        },
+        "update_time" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "object",
+          "properties" : {
+            "total" : {
+              "type" : "string"
+            },
+            "currency" : {
+              "type" : "string"
+            },
+            "details" : {
+              "type" : "object",
+              "properties" : {
+                "subtotal" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "parent_payment" : {
+          "type" : "string"
+        }
+      }
+    },
+    "billAmount" : {
+      "type" : "object",
+      "properties" : {
+        "note" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "string"
+            },
+            "currency" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "qrCode" : {
+      "type" : "object",
+      "properties" : {
+        "image" : {
+          "type" : "string"
+        }
+      }
+    },
+    "searchInvoices" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "number"
+        }
+      }
+    },
+    "invoices" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "number"
+        }
+      }
+    },
+    "payment" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "create_time" : {
+          "type" : "string"
+        },
+        "update_time" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "intent" : {
+          "type" : "string"
+        },
+        "payer" : {
+          "type" : "object",
+          "properties" : {
+            "payment_method" : {
+              "type" : "string"
+            }
+          }
+        },
+        "transactions" : {
+          "type" : "array"
+        },
+        "links" : {
+          "type" : "array"
+        }
+      }
+    },
+    "cancel_notification" : {
+      "type" : "object",
+      "properties" : {
+        "subject" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        },
+        "send_to_merchant" : {
+          "type" : "boolean"
+        },
+        "send_to_payer" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "agreementTransactions" : {
+      "type" : "object"
+    },
+    "tokeninfo" : {
+      "type" : "object",
+      "properties" : {
+        "token_type" : {
+          "type" : "string"
+        },
+        "expires_in" : {
+          "type" : "string"
+        },
+        "refresh_token" : {
+          "type" : "string"
+        },
+        "access_token" : {
+          "type" : "string"
+        }
+      }
+    },
+    "order" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "create_time" : {
+          "type" : "string"
+        },
+        "update_time" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "object",
+          "properties" : {
+            "total" : {
+              "type" : "string"
+            },
+            "currency" : {
+              "type" : "string"
+            },
+            "details" : {
+              "type" : "object",
+              "properties" : {
+                "subtotal" : {
+                  "type" : "string"
+                },
+                "tax" : {
+                  "type" : "string"
+                },
+                "shipping" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "pending_reason" : {
+          "type" : "string"
+        },
+        "parent_payment" : {
+          "type" : "string"
+        }
+      }
+    },
+    "recordRefund" : {
+      "type" : "object",
+      "properties" : {
+        "date" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        }
+      }
+    },
+    "userAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "user_id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "given_name" : {
+          "type" : "string"
+        },
+        "family_name" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        }
+      }
+    },
+    "createPaymentReq" : {
+      "type" : "object",
+      "properties" : {
+        "intent" : {
+          "type" : "string"
+        },
+        "payer" : {
+          "type" : "object",
+          "properties" : {
+            "payment_method" : {
+              "type" : "string"
+            }
+          }
+        },
+        "transactions" : {
+          "type" : "array"
+        }
+      }
+    },
+    "refundReq" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "object",
+          "properties" : {
+            "total" : {
+              "type" : "string"
+            },
+            "currency" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "capture" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "create_time" : {
+          "type" : "string"
+        },
+        "update_time" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "object",
+          "properties" : {
+            "total" : {
+              "type" : "string"
+            },
+            "currency" : {
+              "type" : "string"
+            }
+          }
+        },
+        "is_final_capture" : {
+          "type" : "boolean"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "parent_payment" : {
+          "type" : "string"
+        }
+      }
+    },
+    "reminderReq" : {
+      "type" : "object",
+      "properties" : {
+        "subject" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        },
+        "send_to_merchant" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "searchReq" : {
+      "type" : "object",
+      "properties" : {
+        "start_invoice_date" : {
+          "type" : "string"
+        },
+        "end_invoice_date" : {
+          "type" : "string"
+        },
+        "page" : {
+          "type" : "number"
+        },
+        "page_size" : {
+          "type" : "number"
+        },
+        "total_count_required" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "sale" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "create_time" : {
+          "type" : "string"
+        },
+        "update_time" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "object",
+          "properties" : {
+            "total" : {
+              "type" : "string"
+            },
+            "currency" : {
+              "type" : "string"
+            }
+          }
+        },
+        "parent_payment" : {
+          "type" : "string"
+        }
+      }
+    },
+    "approve" : {
+      "type" : "object",
+      "properties" : {
+        "payer_id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "plans" : {
+      "type" : "object",
+      "properties" : {
+        "links" : {
+          "type" : "array"
+        }
+      }
+    },
+    "agreementReq" : {
+      "type" : "object",
+      "properties" : {
+        "description" : {
+          "type" : "string"
+        },
+        "start_date" : {
+          "type" : "string"
+        },
+        "plan" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            }
+          }
+        },
+        "payer" : {
+          "type" : "object",
+          "properties" : {
+            "payment_method" : {
+              "type" : "string"
+            }
+          }
+        },
+        "shipping_address" : {
+          "type" : "object",
+          "properties" : {
+            "line1" : {
+              "type" : "string"
+            },
+            "line2" : {
+              "type" : "string"
+            },
+            "city" : {
+              "type" : "string"
+            },
+            "state" : {
+              "type" : "string"
+            },
+            "postal_code" : {
+              "type" : "string"
+            },
+            "country_code" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "creditCardModifyReq" : {
+      "type" : "object",
+      "properties" : {
+        "op" : {
+          "type" : "string"
+        },
+        "path" : {
+          "type" : "string"
+        }
+      }
+    },
+    "suspendReq" : {
+      "type" : "object",
+      "properties" : {
+        "note" : {
+          "type" : "string"
+        }
+      }
+    },
+    "creditCard" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "valid_until" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "payer_id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "number" : {
+          "type" : "string"
+        },
+        "expire_month" : {
+          "type" : "string"
+        },
+        "expire_year" : {
+          "type" : "string"
+        },
+        "first_name" : {
+          "type" : "string"
+        },
+        "last_name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "creditCardReq" : {
+      "type" : "object",
+      "properties" : {
+        "payer_id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "number" : {
+          "type" : "string"
+        },
+        "expire_month" : {
+          "type" : "string"
+        },
+        "expire_year" : {
+          "type" : "string"
+        },
+        "first_name" : {
+          "type" : "string"
+        },
+        "last_name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "refund" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "create_time" : {
+          "type" : "string"
+        },
+        "update_time" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "object",
+          "properties" : {
+            "total" : {
+              "type" : "string"
+            },
+            "currency" : {
+              "type" : "string"
+            }
+          }
+        },
+        "parent_payment" : {
+          "type" : "string"
+        }
+      }
+    },
+    "captureReq" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "object",
+          "properties" : {
+            "total" : {
+              "type" : "string"
+            },
+            "currency" : {
+              "type" : "string"
+            }
+          }
+        },
+        "is_final_capture" : {
+          "type" : "boolean"
+        }
+      }
+    }
+  }
+}

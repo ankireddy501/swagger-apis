@@ -1,0 +1,2795 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Fitbit offers a free website that can be used with or without the Fitbit Tracker. Users have the ability to log their food, activities, weight, blood pressure, heart rate, and glucose levels to track over time. Users also have the ability to set daily and weekly goals for themselves for steps, calories burned and consumed, and distance walked.",
+    "version" : "1",
+    "title" : "Fitbit API"
+  },
+  "host" : "api.fitbit.com",
+  "basePath" : "/1/",
+  "schemes" : [ "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/activities{mediaTypeExtension}/{activityId}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get the details of a specific activity in Fitbit activities database in the\r\nformat requested. If activity has levels, also get a list of activity level\r\ndetails.\r\n",
+        "description" : "Get the details of a specific activity in Fitbit activities ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/activities-activityId-get"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "activityId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      } ]
+    },
+    "/foods/search{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Retrieve the list of Fitbit devices for a user in the format requested.\r\n",
+        "description" : "Retrieve the list of Fitbit devices for a user in the format...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "query",
+          "in" : "query",
+          "description" : "The search query, URL-encoded.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/foods-search"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/foods/units{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get a list of all valid Fitbit food units in the format requested.\r\nTypically, an application will retrieve the complete list of units once a\r\nstartup. From then on, the application will receive a food-specific lis\r\nof unit ids along with the Favorite, Recent or Frequent food or by making\r\na query to Search Foods endpoint. These are the ids of units that apply to\r\nthe favorite food. The application will refer to the complete list of units\r\nretrieved previously to get and display to the user the unit name or plural\r\nname for each unit id on food-specific list.\r\n",
+        "description" : "Get a list of all valid Fitbit food units in the format requ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/foods-units"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/foods/{foodId}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get the details of a specific food in Fitbit Food database (or private food\r\nfor the user) in the format requested. Note, that nutritional values currently\r\nincluded in response only for the PRIVATE or SHARED foods.\r\n",
+        "description" : "Get the details of a specific food in Fitbit Food database (...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/foods-foodId"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "foodId",
+        "in" : "path",
+        "description" : "Id of a food item.",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/activities{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get user's activity statistics in the format requested using units in the\r\nunit system which corresponds to the Accept-Language header provided.\r\nActivity statistics includes Lifetime and Best achievement values from the\r\nMy Achievements tile on the website dashboard. Response contains both\r\nstatistics from the tracker device and total numbers including tracker data\r\nand manual activity log entries as seen on the Fitbit website dashboard.\r\n",
+        "description" : "Get user's activity statistics in the format requested using...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-activities-get"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create log entry for an activity or user's private custom activity using units\r\nin the unit system which corresponds to the Accept-Language header provided\r\n(or using optional custom distanceUnit) and get a response in the forma\r\nrequested.\r\n",
+        "description" : "Create log entry for an activity or user's private custom ac...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-activities"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-activities-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/activities{mediaTypeExtension}/goals/daily{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get a user's current daily activity goals in the format requested using units\r\nin the unit system which corresponds to the Accept-Language header provided.\r\n",
+        "description" : "Get a user's current daily activity goals in the format requ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-activities-goals-daily-get"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create or updates user's daily activity goals and get a response in the\r\nformat requested using units in the unit system which corresponds to the\r\nAccept-Language header provided.\r\n",
+        "description" : "Create or updates user's daily activity goals and get a resp...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-activities-goals-daily"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-activities-goals-daily-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/activities{mediaTypeExtension}/goals/weekly{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get a user's current weekly activity goals in the format requested using\r\nunits in the unit system which corresponds to the Accept-Language header\r\nprovided.\r\n",
+        "description" : "Get a user's current weekly activity goals in the format req...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-activities-goals-weekly-get"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create or updates user's weekly activity goals and get a response in the\r\nformat requested using units in the unit system which corresponds to the\r\nAccept-Language header provided.\r\n",
+        "description" : "Create or updates user's weekly activity goals and get a res...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-activities-goals-weekly"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-activities-goals-weekly-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/activities{mediaTypeExtension}/steps/date/{baseDate}/{period}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get time series in the specified range for steps.",
+        "description" : "Get time series in the specified range for steps.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-activities-steps-date-baseDate-period-get"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "baseDate",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "period",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/apiSubscriptions{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Retrieve the list of Fitbit devices for a user in the format requested.\r\n",
+        "description" : "Retrieve the list of Fitbit devices for a user in the format...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-apiSubscriptions-subscribitionId-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/apiSubscriptions{mediaTypeExtension}/{subscribitionId}{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Add a subscription for the user to get notifications and get a response in\r\nthe format requested.\r\n",
+        "description" : "Add a subscription for the user to get notifications and get...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The given subscriber is already subscribed to this stream.",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-apiSubscriptions-subscribitionId-post-schema"
+            }
+          },
+          "201" : {
+            "description" : "New subscription was created in response to your request.",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-apiSubscriptions-subscribitionId-post-schema"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a subscription for the user and get a response in the format requested.\r\n",
+        "description" : "Delete a subscription for the user and get a response in the...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "subscribitionId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/badges{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get user's badges in the format requested. Response includes all badges\r\nfor the user as seen on the Fitbit website badge locker (both activity\r\nand weight related). We return weight and distance badges based on the\r\nuser's unit profile preference as on the website.\r\n",
+        "description" : "Get user's badges in the format requested. Response includes...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-badges-get"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/body{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Log body measurements using units in the unit system that corresponds to the\r\nAccept-Language header provided and get a response in the format requested.\r\n",
+        "description" : "Log body measurements using units in the unit system that co...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-body"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-body-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/body{mediaTypeExtension}/log/fat{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Create log entry for a body fat and get a response in the format requested.\r\n",
+        "description" : "Create log entry for a body fat and get a response in the fo...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-body-log-fat"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-body-log-fat-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/body{mediaTypeExtension}/log/fat{mediaTypeExtension}/date/{date}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get a list of all user's body fat log entries for a given day in the forma\r\nrequested. Body fat log entries are available only to authorized user, though\r\nif you need to fetch only the most recent entry, you can use Get Body\r\nMeasurements endpoint.\r\n",
+        "description" : "Get a list of all user's body fat log entries for a given da...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-body-log-fat-date-get"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "date",
+        "in" : "path",
+        "description" : "The date in the format YYYY-mm-dd.",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/body{mediaTypeExtension}/log/fat{mediaTypeExtension}/date/{date}{mediaTypeExtension}/{baseDate}/{endDate}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get a list of all user's body fat log entries for a given day in the forma\r\nrequested. Body fat log entries are available only to authorized user, though\r\nif you need to fetch only the most recent entry, you can use Get Body\r\nMeasurements endpoint.\r\n",
+        "description" : "Get a list of all user's body fat log entries for a given da...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-body-log-fat-date-get-schema"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "baseDate",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "date",
+        "in" : "path",
+        "description" : "The date in the format YYYY-mm-dd.",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "endDate",
+        "in" : "path",
+        "description" : "Range end date when date range is provided. Note that period should no\r\nbe longer than 31 day.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/body{mediaTypeExtension}/log/fat{mediaTypeExtension}/date/{date}{mediaTypeExtension}/{baseDate}/{period}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get a list of all user's body fat log entries for a given day in the forma\r\nrequested. Body fat log entries are available only to authorized user, though\r\nif you need to fetch only the most recent entry, you can use Get Body\r\nMeasurements endpoint.\r\n",
+        "description" : "Get a list of all user's body fat log entries for a given da...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-body-log-fat-date-get-schema"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "baseDate",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "date",
+        "in" : "path",
+        "description" : "The date in the format YYYY-mm-dd.",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "period",
+        "in" : "path",
+        "description" : "The date range period. One of 1d, 7d, 30d, 1w, 1m.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/body{mediaTypeExtension}/log/fat{mediaTypeExtension}/goal{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get a user's current fat goal in the format requested.\r\n",
+        "description" : "Get a user's current fat goal in the format requested.\r\n",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-body-log-fat-goal-get"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create or updates user's fat goal and get a response in the format requested.\r\n",
+        "description" : "Create or updates user's fat goal and get a response in the ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-body-log-fat-goal"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-body-log-fat-goal-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/body{mediaTypeExtension}/log/weight{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Create log entry for a body weight using units in the unit system tha\r\ncorresponds to the Accept-Language header provided and get a response in\r\nthe format requested.\r\n",
+        "description" : "Create log entry for a body weight using units in the unit s...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-body-log-weight"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-body-log-weight-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/body{mediaTypeExtension}/log/weight{mediaTypeExtension}/{id}{mediaTypeExtension}" : {
+      "delete" : {
+        "summary" : "Delete user's body weight log entry with the given id.",
+        "description" : "Delete user's body weight log entry with the given id.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "Log id.",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/body{mediaTypeExtension}/weight/date/{baseDate}/{period}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get time series in the specified range for weight in the format requested\r\nusing units in the unit system which corresponds to the Accept-Language\r\nheader provided.\r\n",
+        "description" : "Get time series in the specified range for weight in the for...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-body-weight-date-baseDate-period-get"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "period",
+        "in" : "path",
+        "description" : "The date range period. One of 1d, 7d, 30d, 1w, 1m.",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "baseDate",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/bp{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Create log entry for a blood pressure measurement and get a response in the\r\nformat requested.\r\n",
+        "description" : "Create log entry for a blood pressure measurement and get a ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-bp"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-bp-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/bp{mediaTypeExtension}/{logId}{mediaTypeExtension}" : {
+      "delete" : {
+        "summary" : "Delete user's blood pressure log entry with the given id.",
+        "description" : "Delete user's blood pressure log entry with the given id.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "logId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/devices{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Retrieve the list of Fitbit devices for a user in the format requested.\r\n",
+        "description" : "Retrieve the list of Fitbit devices for a user in the format...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/user-userId-devices-get"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/devices{mediaTypeExtension}/tracker/{trackerId}/alarms{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Create alarm entry for a given device and get a response in the forma\r\nrequested.  Only available for devices that support alarms.\r\n",
+        "description" : "Create alarm entry for a given device and get a response in ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-devices-tracker-trackerId-alarms"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-devices-tracker-trackerId-alarms-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "trackerId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/devices{mediaTypeExtension}/tracker/{trackerId}/alarms{mediaTypeExtension}/{alarmId}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Retrieve the list of Fitbit device alarms for a specific device in the forma\r\nrequested. Only available for devices that support alarms.\r\n",
+        "description" : "Retrieve the list of Fitbit device alarms for a specific dev...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-devices-tracker-trackerId-alarms-alarmId-get"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Update alarm entry with a give id for a given device and get a response in\r\nthe format requested.\r\n",
+        "description" : "Update alarm entry with a give id for a given device and get...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-devices-tracker-trackerId-alarms-alarmId"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-devices-tracker-trackerId-alarms-alarmId-post"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete user's device alarm entry with the given id for a given device.",
+        "description" : "Delete user's device alarm entry with the given id for a giv...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "trackerId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "alarmId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/foods{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Create new private food for a user and get a response in a format requested.\r\nCreated private food could be found in results of Search Foods call.\r\nNote: Foods created via endpoint will have PRIVATE value in the <accessLevel>\r\nfield when accessed on behalf of the authorized user, and SHARED when viewed\r\nby any other user (if authorized user granted respective Foods permission).\r\n",
+        "description" : "Create new private food for a user and get a response in a f...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-foods"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-foods-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/foods{mediaTypeExtension}/log{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Create log entry for a food and get a response in the format requested.\r\nYou need to select one of the unit ids to create a food log entry. It is\r\npossible to fetch unit ids allowed for specific food via previous calls to\r\nendpoints that retrieve food lists of the user. Each unit id maps to a uni\r\nin the list returned via the Get Food Units API call.\r\n",
+        "description" : "Create log entry for a food and get a response in the format...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-foods-log"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-foods-log-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/foods{mediaTypeExtension}/log{mediaTypeExtension}/favorite{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get a list of a user's favorite foods in the format requested. User marks\r\na food as favorite on the Food Log tab on the website. A favorite food in\r\nthe list provides a quick way to log the food via the Log Food endpoint.\r\n",
+        "description" : "Get a list of a user's favorite foods in the format requeste...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/user-userId-foods-log-favorite-get"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/foods{mediaTypeExtension}/log{mediaTypeExtension}/favorite{mediaTypeExtension}/{favId}{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Add the food with the given id to user's list of favorite foods.",
+        "description" : "Add the food with the given id to user's list of favorite fo...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "Delete the food with the given id from user's list of favorite foods.",
+        "description" : "Delete the food with the given id from user's list of favori...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "favId",
+        "in" : "path",
+        "description" : "Id of a food.\r\n",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/foods{mediaTypeExtension}/log{mediaTypeExtension}/frequent{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get a list of a user's frequent foods in the format requested. A frequen\r\nfood in the list provides a quick way to log the food via the Log Food\r\nendpoint.\r\n",
+        "description" : "Get a list of a user's frequent foods in the format requeste...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/user-userId-foods-log-recent-get"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/foods{mediaTypeExtension}/log{mediaTypeExtension}/recent{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get a list of a user's recent foods in the format requested. A recent food\r\nprovides a quick way to log the food via the Log Food endpoint.\r\n",
+        "description" : "Get a list of a user's recent foods in the format requested....",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/user-userId-foods-log-recent-get-schema"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/foods{mediaTypeExtension}/log{mediaTypeExtension}/water{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Create log entry for a water using units in the unit system that corresponds\r\nto the Accept-Language header provided (or custom water measurement unit) and\r\nget a response in the format requested.\r\n",
+        "description" : "Create log entry for a water using units in the unit system ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-foods-log-water"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-foods-log-water-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/friends{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get user's friends in the format requested using units in the unit system\r\nwhich corresponds to the Accept-Language header provided.\r\n",
+        "description" : "Get user's friends in the format requested using units in th...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-friends-get"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/friends{mediaTypeExtension}/invitations{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Retrieve the list of invites to become freinds for a user in the format requested.\r\n",
+        "description" : "Retrieve the list of invites to become freinds for a user in...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-friends-invitations-get"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Invite a user to become friends with authorized user.\r\nIf you provide invitedUserEmail parameter with the request, standard friendship\r\ninvitation email will be sent to the invited user, that he can accept later.\r\nContrary, invitedUserId parameter creates an invite silently, so it could only\r\nbe fetched through the Get Invites endpoint. You can accept or reject both\r\ninvitation types on behalf of the authorized user via Accept Invite API call.\r\nNote: Please be careful and respectful when using this endpoint, and, as\r\nalways, adhere to the Terms of Service. Though we have organic limits on\r\nallowed number of invites, your application's workflow should not allow users\r\nto send bulk invites to the huge list of users, which can be considered as spam.\r\n",
+        "description" : "Invite a user to become friends with authorized user.\r\nIf you...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-friends-invitations"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/friends{mediaTypeExtension}/invitations{mediaTypeExtension}/{fromUserId}{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Accept or reject an invite to become friends with inviting user.\r\n",
+        "description" : "Accept or reject an invite to become friends with inviting u...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-friends-invitations-fromUserId"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "fromUserId",
+        "in" : "path",
+        "description" : "User's encoded id to indicate user to accept or reject invite from.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/friends{mediaTypeExtension}/leaderboard{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get user's friends leaderboard in the format requested using units in the\r\nunit system which corresponds to the Accept-Language header provided.\r\nAuthorized user himself is also included in the response. Leaderboard has\r\nlast 7 days worth of data (includes data for the previous 6 days plus\r\ncurrent day's data in real time).\r\n",
+        "description" : "Get user's friends leaderboard in the format requested using...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-friends-leaderboard-get"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Update visibility of the user for friend's leaderboards and get response in\r\nthe format requested using units in the unit system which corresponds to the\r\nAccept-Language header provided.\r\n",
+        "description" : "Update visibility of the user for friend's leaderboards and ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-friends-leaderboard"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-friends-leaderboard-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/glucose{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Create log entry for a blood glucose measurement and/or HbA1c using units\r\nin the unit system which corresponds to the Accept-Language header provided\r\nand get a response in the format requested.\r\n",
+        "description" : "Create log entry for a blood glucose measurement and/or HbA1...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-glucose"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-glucose-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/heart{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Create log entry for a heart rate measurement and get a response in the forma\r\nrequested.\r\n",
+        "description" : "Create log entry for a heart rate measurement and get a resp...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-heart"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-heart-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/meals{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get a list of meals user created in his food log in the format requested. User\r\ncreates and manages his meals on the Food Log tab on the website. Meals in the\r\nlist provide a quick way to log several foods at a time via the calls to Log\r\nFood endpoint.\r\n",
+        "description" : "Get a list of meals user created in his food log in the form...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-meals-get"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/profile{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get user's profile in the format requested using units in the unit system\r\nwhich corresponds to the Accept-Language header provided.\r\n",
+        "description" : "Get user's profile in the format requested using units in th...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-get"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Update user's profile using units in the unit system that corresponds to\r\nthe Accept-Language header provided and get a response in the format requested.\r\n",
+        "description" : "Update user's profile using units in the unit system that co...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-post-body"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/sleep{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Create log entry for a sleep and get a response in the format requested.\r\nHave in mind that it is not possible to create overlapping log entries as\r\nwell as entries for time periods, which have no associated data from tracker\r\ndevice. Sleep log entry appears in the website's sleep tracker interface\r\naccording to its end date.\r\n",
+        "description" : "Create log entry for a sleep and get a response in the forma...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user-userId-sleep"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user-userId-sleep-post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/user/{userId}{mediaTypeExtension}/sleep{mediaTypeExtension}/{sleepId}{mediaTypeExtension}" : {
+      "delete" : {
+        "summary" : "Delete user's sleep log entry with the given id.",
+        "description" : "Delete user's sleep log entry with the given id.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "sleepId",
+        "in" : "path",
+        "description" : "Sleep log id.",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "User's encoded id or \"-\" (dash) to indicate user currently authenticated\r\nvia the token credentials provided.\r\n",
+        "required" : false,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "user-userId-activities-goals-daily" : {
+      "type" : "object",
+      "properties" : {
+        "caloriesOut" : {
+          "type" : "integer"
+        },
+        "activeMinutes" : {
+          "type" : "integer"
+        },
+        "floors" : {
+          "type" : "integer"
+        },
+        "distance" : {
+          "type" : "number"
+        },
+        "steps" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "user-userId-sleep-post" : {
+      "type" : "object",
+      "properties" : {
+        "sleep" : {
+          "type" : "object",
+          "properties" : {
+            "isMainSleep" : {
+              "type" : "boolean"
+            },
+            "logId" : {
+              "type" : "integer"
+            },
+            "efficiency" : {
+              "type" : "integer"
+            },
+            "startTime" : {
+              "type" : "string"
+            },
+            "duration" : {
+              "type" : "integer"
+            },
+            "minutesToFallAsleep" : {
+              "type" : "integer"
+            },
+            "minutesAsleep" : {
+              "type" : "integer"
+            },
+            "minutesAwake" : {
+              "type" : "integer"
+            },
+            "awakeningsCount" : {
+              "type" : "integer"
+            },
+            "timeInBed" : {
+              "type" : "integer"
+            }
+          }
+        }
+      }
+    },
+    "foods-units" : {
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "plural" : {
+          "type" : "string"
+        }
+      }
+    },
+    "user-userId-glucose-post" : {
+      "type" : "object",
+      "properties" : {
+        "hba1c" : {
+          "type" : "number"
+        }
+      }
+    },
+    "user-userId-activities-steps-date-baseDate-period-get" : {
+      "type" : "object"
+    },
+    "user-userId-body-log-fat" : {
+      "type" : "object",
+      "properties" : {
+        "fat" : {
+          "type" : "number",
+          "description" : "Body Fat; in the format X.XX, in the unit system that corresponds to the Accept-Language header provided."
+        },
+        "date" : {
+          "type" : "string",
+          "description" : "Log entry date; in the format yyyy-MM-dd"
+        },
+        "time" : {
+          "type" : "string",
+          "description" : "Time of the measurement; hours and minutes in the format HH:mm:ss; set to last second of the day if not provided."
+        }
+      }
+    },
+    "user-userId-body-log-weight-post" : {
+      "type" : "object",
+      "properties" : {
+        "weightLog" : {
+          "type" : "object",
+          "properties" : {
+            "bmi" : {
+              "type" : "number"
+            },
+            "date" : {
+              "type" : "string"
+            },
+            "logId" : {
+              "type" : "integer"
+            },
+            "time" : {
+              "type" : "string"
+            },
+            "weight" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-body" : {
+      "type" : "object",
+      "properties" : {
+        "date" : {
+          "type" : "string",
+          "description" : "Measurement date; in the format yyyy-MM-dd"
+        },
+        "bicep" : {
+          "type" : "number",
+          "description" : "Bicep; in the format X.XX"
+        },
+        "calf" : {
+          "type" : "number",
+          "description" : "Calf; in the format X.XX"
+        },
+        "chest" : {
+          "type" : "number",
+          "description" : "Chest; in the format X.XX"
+        },
+        "fat" : {
+          "type" : "number",
+          "description" : "Body Fat %; in the format X.XX"
+        },
+        "forearm" : {
+          "type" : "number",
+          "description" : "Forearm; in the format X.XX"
+        },
+        "hips" : {
+          "type" : "number",
+          "description" : "Hips; in the format X.XX"
+        },
+        "neck" : {
+          "type" : "number",
+          "description" : "Neck; in the format X.XX"
+        },
+        "thigh" : {
+          "type" : "number",
+          "description" : "Thigh; in the format X.XX"
+        },
+        "waist" : {
+          "type" : "number",
+          "description" : "Waist; in the format X.XX"
+        },
+        "weight" : {
+          "type" : "string",
+          "description" : "Weight; in the format X.XX"
+        }
+      }
+    },
+    "user-userId-devices-tracker-trackerId-alarms-alarmId-get" : {
+      "type" : "object",
+      "properties" : {
+        "trackerAlarms" : {
+          "type" : "array"
+        }
+      }
+    },
+    "user-userId-sleep" : {
+      "type" : "object",
+      "properties" : {
+        "startTime" : {
+          "type" : "string",
+          "description" : "Start time; hours and minutes in the format HH:mm"
+        },
+        "duration" : {
+          "type" : "integer",
+          "description" : "Duration; in milliseconds."
+        },
+        "date" : {
+          "type" : "integer",
+          "description" : "Log entry date; in the format yyyy-MM-dd."
+        }
+      }
+    },
+    "user-userId-glucose" : {
+      "type" : "object",
+      "properties" : {
+        "hba1c" : {
+          "type" : "number",
+          "description" : "HbA1c measurement; in the format X.X, either hba1c or tracker should be provided (or both)."
+        },
+        "tracker" : {
+          "type" : "string",
+          "description" : "Glucose tracker name; predefined or custom tracker name (matches tracker name on the website, e.g. 'Afternoon')"
+        },
+        "glucose" : {
+          "type" : "number",
+          "description" : "Glucose measurement; in the format X.X, required with tracker parameter, otherwise optional."
+        },
+        "date" : {
+          "type" : "string",
+          "description" : "Measurement date; in the format yyyy-MM-dd."
+        },
+        "time" : {
+          "type" : "string",
+          "description" : "Time of the measurement; hours and minutes in the format HH:mm."
+        }
+      }
+    },
+    "user-userId-body-log-fat-goal" : {
+      "type" : "object",
+      "properties" : {
+        "fat" : {
+          "type" : "number",
+          "description" : "Target body fat in %; in the format X.XX"
+        }
+      }
+    },
+    "user-userId-body-log-fat-goal-post" : {
+      "type" : "object",
+      "properties" : {
+        "goal" : {
+          "type" : "object",
+          "properties" : {
+            "fat" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-activities" : {
+      "type" : "object",
+      "properties" : {
+        "activityId" : {
+          "type" : "integer",
+          "description" : "Activity id; id of the activity, directory activity or intensity level activity; if you pass directory activity id Fitbit will calculate and substitute it with the intensity level activity id, based on distance/duration."
+        },
+        "activityName" : {
+          "type" : "string",
+          "description" : "Custom activity name; either activityId or activityName should be provided."
+        },
+        "manualCalories" : {
+          "type" : "integer",
+          "description" : "Manual calories; amount of calories defined manually; required with activityName parameter, otherwise optional."
+        },
+        "startTime" : {
+          "type" : "string",
+          "description" : "Start time; hours and minutes in the format HH:mm"
+        },
+        "durationMillis" : {
+          "type" : "integer",
+          "description" : "Duration; in milliseconds."
+        },
+        "date" : {
+          "type" : "string",
+          "description" : "Log entry date; in the format yyyy-MM-dd"
+        },
+        "distance" : {
+          "type" : "string",
+          "description" : "Distance; required for logging directory activity; in the format X.XX, in the selected distanceUnit or in the unit system that corresponds to the Accept-Language header provided."
+        },
+        "distanceUnit" : {
+          "type" : "string",
+          "description" : "Distance measurement unit; Steps units are available only for 'Walking' (activityId=90013) and 'Running' (activityId=90009) directory activities and their intensity levels"
+        }
+      }
+    },
+    "user-userId-badges-get" : {
+      "type" : "object",
+      "properties" : {
+        "badges" : {
+          "type" : "object",
+          "properties" : {
+            "badgeType" : {
+              "type" : "string"
+            },
+            "dateTime" : {
+              "type" : "string"
+            },
+            "image50px" : {
+              "type" : "string"
+            },
+            "image75px" : {
+              "type" : "string"
+            },
+            "timesAchieved" : {
+              "type" : "integer"
+            },
+            "value" : {
+              "type" : "integer"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-activities-goals-weekly-post" : {
+      "type" : "object",
+      "properties" : {
+        "goals" : {
+          "type" : "object",
+          "properties" : {
+            "steps" : {
+              "type" : "integer"
+            },
+            "distance" : {
+              "type" : "number"
+            },
+            "floors" : {
+              "type" : "integer"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-activities-goals-daily-post" : {
+      "type" : "object",
+      "properties" : {
+        "goals" : {
+          "type" : "object",
+          "properties" : {
+            "caloriesOut" : {
+              "type" : "integer"
+            },
+            "activeMinutes" : {
+              "type" : "integer"
+            },
+            "floors" : {
+              "type" : "integer"
+            },
+            "distance" : {
+              "type" : "number"
+            },
+            "steps" : {
+              "type" : "integer"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-activities-goals-weekly-get" : {
+      "type" : "object",
+      "properties" : {
+        "goals" : {
+          "type" : "object",
+          "properties" : {
+            "distance" : {
+              "type" : "integer"
+            },
+            "floors" : {
+              "type" : "integer"
+            },
+            "steps" : {
+              "type" : "integer"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-post" : {
+      "type" : "object",
+      "properties" : {
+        "user" : {
+          "type" : "object",
+          "properties" : {
+            "aboutMe" : {
+              "type" : "string"
+            },
+            "avatar" : {
+              "type" : "string"
+            },
+            "city" : {
+              "type" : "string"
+            },
+            "country" : {
+              "type" : "string"
+            },
+            "dateOfBirth" : {
+              "type" : "string"
+            },
+            "displayName" : {
+              "type" : "string"
+            },
+            "distanceUnit" : {
+              "type" : "string"
+            },
+            "encodedId" : {
+              "type" : "string"
+            },
+            "foodsLocale" : {
+              "type" : "string"
+            },
+            "fullName" : {
+              "type" : "string"
+            },
+            "gender" : {
+              "type" : "string"
+            },
+            "glucoseUnit" : {
+              "type" : "string"
+            },
+            "height" : {
+              "type" : "number"
+            },
+            "heightUnit" : {
+              "type" : "string"
+            },
+            "nickname" : {
+              "type" : "string"
+            },
+            "locale" : {
+              "type" : "string"
+            },
+            "memberSince" : {
+              "type" : "string"
+            },
+            "offsetFromUTCMillis" : {
+              "type" : "integer"
+            },
+            "state" : {
+              "type" : "string"
+            },
+            "strideLengthRunning" : {
+              "type" : "integer"
+            },
+            "strideLengthWalking" : {
+              "type" : "integer"
+            },
+            "timezone" : {
+              "type" : "integer"
+            },
+            "waterUnit" : {
+              "type" : "integer"
+            },
+            "weight" : {
+              "type" : "integer"
+            },
+            "weightUnit" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-activities-goals-daily-get" : {
+      "type" : "object",
+      "properties" : {
+        "goals" : {
+          "type" : "object",
+          "properties" : {
+            "caloriesOut" : {
+              "type" : "integer"
+            },
+            "distance" : {
+              "type" : "number"
+            },
+            "floors" : {
+              "type" : "integer"
+            },
+            "steps" : {
+              "type" : "integer"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-heart-post" : {
+      "type" : "object",
+      "properties" : {
+        "heartLog" : {
+          "type" : "object",
+          "properties" : {
+            "heartRate" : {
+              "type" : "integer"
+            },
+            "logId" : {
+              "type" : "integer"
+            },
+            "time" : {
+              "type" : "string"
+            },
+            "tracker" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-meals-get" : {
+      "type" : "object"
+    },
+    "user-userId-foods-log-water-post" : {
+      "type" : "object",
+      "properties" : {
+        "waterLog" : {
+          "type" : "object",
+          "properties" : {
+            "amount" : {
+              "type" : "number",
+              "description" : "Amount consumed; in the format X.X, in the selected waterUnit or in the unit system that corresponds to the Accept-Language header provided."
+            },
+            "date" : {
+              "type" : "string",
+              "description" : "Log entry date; in the format yyyy-MM-dd "
+            },
+            "unit" : {
+              "type" : "string",
+              "description" : "Water measurement unit; ('ml', fl oz' or 'cup') "
+            }
+          }
+        }
+      }
+    },
+    "user-userId-apiSubscriptions-subscribitionId-post-schema" : {
+      "type" : "object",
+      "properties" : {
+        "collectionType" : {
+          "type" : "string"
+        },
+        "ownerId" : {
+          "type" : "string"
+        },
+        "ownerType" : {
+          "type" : "string"
+        },
+        "subscriberId" : {
+          "type" : "string"
+        },
+        "subscriptionId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "user-userId-body-weight-date-baseDate-period-get" : {
+      "type" : "object",
+      "properties" : {
+        "body-log-weight" : {
+          "type" : "object",
+          "properties" : {
+            "dateTime" : {
+              "type" : "string"
+            },
+            "value" : {
+              "type" : "integer"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-friends-invitations" : {
+      "type" : "object",
+      "properties" : {
+        "invitedUserEmail" : {
+          "type" : "string"
+        },
+        "invitedUserId" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "user-userId-apiSubscriptions-subscribitionId-post" : {
+      "type" : "object",
+      "properties" : {
+        "collectionType" : {
+          "type" : "string"
+        },
+        "ownerId" : {
+          "type" : "string"
+        },
+        "ownerType" : {
+          "type" : "string"
+        },
+        "subscriberId" : {
+          "type" : "string"
+        },
+        "subscriptionId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "user-userId-body-post" : {
+      "type" : "object"
+    },
+    "user-userId-body-log-fat-goal-get" : {
+      "type" : "object",
+      "properties" : {
+        "goal" : {
+          "type" : "object",
+          "properties" : {
+            "bodyFat" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-foods-log" : {
+      "type" : "object",
+      "properties" : {
+        "oneOf" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "foodId" : {
+                "type" : "integer"
+              },
+              "favorite" : {
+                "type" : "boolean",
+                "description" : "Add food to favorites"
+              }
+            }
+          }
+        },
+        "mealTypeId" : {
+          "type" : "integer",
+          "description" : "1 – Breakfast; 2 – Morning Snack; 3 – Lunch; 4 – Afternoon Snack; 5 – Dinner; 7 – Anytime",
+          "minimum" : 1.0,
+          "maximum" : 7.0
+        },
+        "unitId" : {
+          "type" : "integer",
+          "description" : "Unit id; typically retrieved via a previous calls to Get Foods (Recent, Frequent, Favorite), Search Foods or Get Food Units"
+        },
+        "amount" : {
+          "type" : "number",
+          "description" : "Amount consumed; in the format X.XX, in a selected unit (unitId)."
+        },
+        "date" : {
+          "type" : "string",
+          "description" : "Log entry date; in the format yyyy-MM-dd"
+        }
+      }
+    },
+    "user-userId-activities-post" : {
+      "type" : "object",
+      "properties" : {
+        "activityLog" : {
+          "type" : "object",
+          "properties" : {
+            "activityId" : {
+              "type" : "integer"
+            },
+            "activityName" : {
+              "type" : "string"
+            },
+            "manualCalories" : {
+              "type" : "integer"
+            },
+            "startTime" : {
+              "type" : "string"
+            },
+            "durationMillis" : {
+              "type" : "integer"
+            },
+            "date" : {
+              "type" : "string"
+            },
+            "distance" : {
+              "type" : "string"
+            },
+            "distanceUnit" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-get" : {
+      "type" : "object",
+      "properties" : {
+        "user" : {
+          "type" : "object",
+          "properties" : {
+            "aboutMe" : {
+              "type" : "string"
+            },
+            "avatar" : {
+              "type" : "string"
+            },
+            "avatar150" : {
+              "type" : "string"
+            },
+            "city" : {
+              "type" : "string"
+            },
+            "country" : {
+              "type" : "string"
+            },
+            "dateOfBirth" : {
+              "type" : "string"
+            },
+            "displayName" : {
+              "type" : "string"
+            },
+            "distanceUnit" : {
+              "type" : "string"
+            },
+            "encodedId" : {
+              "type" : "string"
+            },
+            "fullName" : {
+              "type" : "string"
+            },
+            "gender" : {
+              "type" : "string"
+            },
+            "glucoseUnit" : {
+              "type" : "string"
+            },
+            "height" : {
+              "type" : "number"
+            },
+            "heightUnit" : {
+              "type" : "string"
+            },
+            "nickname" : {
+              "type" : "string"
+            },
+            "locale" : {
+              "type" : "string"
+            },
+            "memberSince" : {
+              "type" : "string"
+            },
+            "offsetFromUTCMillis" : {
+              "type" : "integer"
+            },
+            "state" : {
+              "type" : "string"
+            },
+            "strideLengthRunning" : {
+              "type" : "integer"
+            },
+            "strideLengthWalking" : {
+              "type" : "integer"
+            },
+            "timezone" : {
+              "type" : "integer"
+            },
+            "waterUnit" : {
+              "type" : "integer"
+            },
+            "weight" : {
+              "type" : "integer"
+            },
+            "weightUnit" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-bp-post" : {
+      "type" : "object",
+      "properties" : {
+        "bpLog" : {
+          "type" : "object",
+          "properties" : {
+            "diastolic" : {
+              "type" : "integer"
+            },
+            "logId" : {
+              "type" : "integer"
+            },
+            "systolic" : {
+              "type" : "integer"
+            },
+            "time" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-foods-log-post" : {
+      "type" : "object",
+      "properties" : {
+        "foodLog" : {
+          "type" : "object",
+          "properties" : {
+            "oneOf" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "foodId" : {
+                    "type" : "integer"
+                  },
+                  "favorite" : {
+                    "type" : "boolean",
+                    "description" : "Add food to favorites"
+                  }
+                }
+              }
+            },
+            "mealTypeId" : {
+              "type" : "integer",
+              "description" : "1 – Breakfast; 2 – Morning Snack; 3 – Lunch; 4 – Afternoon Snack; 5 – Dinner; 7 – Anytime",
+              "minimum" : 1.0,
+              "maximum" : 7.0
+            },
+            "unitId" : {
+              "type" : "integer",
+              "description" : "Unit id; typically retrieved via a previous calls to Get Foods (Recent, Frequent, Favorite), Search Foods or Get Food Units"
+            },
+            "amount" : {
+              "type" : "number",
+              "description" : "Amount consumed; in the format X.XX, in a selected unit (unitId)."
+            },
+            "date" : {
+              "type" : "string",
+              "description" : "Log entry date; in the format yyyy-MM-dd"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-body-log-weight" : {
+      "type" : "object",
+      "properties" : {
+        "weight" : {
+          "type" : "number",
+          "description" : "Weight; in the format X.XX, in the unit system that corresponds to the Accept-Language header provided."
+        },
+        "date" : {
+          "type" : "string",
+          "description" : "Log entry date; in the format yyyy-MM-dd"
+        },
+        "time" : {
+          "type" : "string",
+          "description" : "Time of the measurement; hours and minutes in the format HH:mm:ss; set to last second of the day if not provided."
+        }
+      }
+    },
+    "user-userId-friends-invitations-fromUserId" : {
+      "type" : "object",
+      "properties" : {
+        "accept" : {
+          "type" : "boolean",
+          "description" : "Accept or reject an invite."
+        }
+      }
+    },
+    "user-userId-foods-log-water" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "number",
+          "description" : "Amount consumed; in the format X.X, in the selected waterUnit or in the unit system that corresponds to the Accept-Language header provided."
+        },
+        "date" : {
+          "type" : "string",
+          "description" : "Log entry date; in the format yyyy-MM-dd "
+        },
+        "unit" : {
+          "type" : "string",
+          "description" : "Water measurement unit; ('ml', fl oz' or 'cup') "
+        }
+      }
+    },
+    "user-userId-activities-get" : {
+      "type" : "object",
+      "properties" : {
+        "best" : {
+          "type" : "object",
+          "properties" : {
+            "total" : {
+              "type" : "object",
+              "properties" : {
+                "caloriesOut" : {
+                  "type" : "object",
+                  "properties" : {
+                    "date" : {
+                      "type" : "string"
+                    },
+                    "value" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "distance" : {
+                  "type" : "object",
+                  "properties" : {
+                    "date" : {
+                      "type" : "string"
+                    },
+                    "value" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "floors" : {
+                  "type" : "object",
+                  "properties" : {
+                    "date" : {
+                      "type" : "string"
+                    },
+                    "value" : {
+                      "type" : "number"
+                    }
+                  }
+                },
+                "steps" : {
+                  "type" : "object",
+                  "properties" : {
+                    "date" : {
+                      "type" : "string"
+                    },
+                    "value" : {
+                      "type" : "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "lifetime" : {
+          "type" : "object",
+          "properties" : {
+            "total" : {
+              "type" : "object",
+              "properties" : {
+                "caloriesOut" : {
+                  "type" : "number"
+                },
+                "distance" : {
+                  "type" : "number"
+                },
+                "floors" : {
+                  "type" : "string"
+                },
+                "steps" : {
+                  "type" : "integer"
+                }
+              }
+            },
+            "tracker" : {
+              "type" : "object",
+              "properties" : {
+                "caloriesOut" : {
+                  "type" : "number"
+                },
+                "distance" : {
+                  "type" : "number"
+                },
+                "floors" : {
+                  "type" : "integer"
+                },
+                "steps" : {
+                  "type" : "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "user-userId-body-log-fat-date-get" : {
+      "type" : "object",
+      "properties" : {
+        "fat" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "date" : {
+                "type" : "string"
+              },
+              "fat" : {
+                "type" : "integer"
+              },
+              "logId" : {
+                "type" : "integer"
+              },
+              "time" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "user-userId-activities-goals-weekly" : {
+      "type" : "object",
+      "properties" : {
+        "steps" : {
+          "type" : "integer"
+        },
+        "distance" : {
+          "type" : "number"
+        },
+        "floors" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "user-userId-body-log-fat-date-get-schema" : {
+      "type" : "object",
+      "properties" : {
+        "fat" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "date" : {
+                "type" : "string"
+              },
+              "fat" : {
+                "type" : "integer"
+              },
+              "logId" : {
+                "type" : "integer"
+              },
+              "time" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "user-userId-heart" : {
+      "type" : "object",
+      "properties" : {
+        "tracker" : {
+          "type" : "string",
+          "description" : "Heart rate tracker name; predefined ('Resting Heart Rate', 'Normal Heart Rate', 'Exertive Heart Rate') or custom tracker name (matches tracker name on the website)."
+        },
+        "heartRate" : {
+          "type" : "integer",
+          "description" : "Heart rate measurement."
+        },
+        "date" : {
+          "type" : "string",
+          "description" : "Log entry date; in the format yyyy-MM-dd."
+        },
+        "time" : {
+          "type" : "string",
+          "description" : "Time of the measurement; hours and minutes in the format HH:mm"
+        }
+      }
+    },
+    "user-userId-bp" : {
+      "type" : "object",
+      "properties" : {
+        "systolic" : {
+          "type" : "integer",
+          "description" : "Systolic measurement."
+        },
+        "diastolic" : {
+          "type" : "integer",
+          "description" : "Diastolic measurement."
+        },
+        "date" : {
+          "type" : "string",
+          "description" : "Log entry date; in the format yyyy-MM-dd."
+        },
+        "time" : {
+          "type" : "string",
+          "description" : "Time of the measurement; hours and minutes in the format HH:mm."
+        }
+      }
+    },
+    "user-userId-body-log-fat-post" : {
+      "type" : "object",
+      "properties" : {
+        "weightLog" : {
+          "type" : "object",
+          "properties" : {
+            "bmi" : {
+              "type" : "number"
+            },
+            "date" : {
+              "type" : "string"
+            },
+            "fat" : {
+              "type" : "number"
+            },
+            "logId" : {
+              "type" : "integer"
+            },
+            "time" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "user-userId-friends-leaderboard" : {
+      "type" : "object",
+      "properties" : {
+        "hideMeFromLeaderboard" : {
+          "type" : "boolean"
+        }
+      }
+    }
+  }
+}

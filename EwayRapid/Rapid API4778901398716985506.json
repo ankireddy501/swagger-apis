@@ -1,0 +1,928 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : eWAY’s products allow businesses to process credit card payments online through websites, email, mobile devices and manually.",
+    "version" : "3.1",
+    "title" : "Rapid API"
+  },
+  "host" : "api.ewaypayments.com",
+  "basePath" : "/",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/AccessCode/{AccessCode}" : {
+      "get" : {
+        "summary" : "Once the customer has been redirected to the next page, the merchant will\r\nneed to request the results from eWAY by calling the GetAccessCodeResult\r\nmethod of the Rapid 3.1 API web service.\r\n",
+        "description" : "Once the customer has been redirected to the next page, the ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/accessCode"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "AccessCode",
+        "in" : "path",
+        "description" : "ID of Access Code.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/AccessCodes" : {
+      "post" : {
+        "summary" : "To request an Access Code, the merchant will make a server-side call to the\r\nCreateAccessCode method of Rapid 3.1 API. The service will respond with an\r\nAccess Code and return the customer data.\r\nIf the request involves an existing Token customer, their details will be\r\nreturned in the response including the masked credit card number.\r\nIf Token Payments are not in use for this transaction, the returned customer\r\ndata will be an echo of the data in the request.\r\n\r\nAvailable Methods\r\nRapid 3.1 API supports both regular one-off payments, Token Payments, Beagle Fraud Alerts and\r\nBeagle Fraud Alerts (Enterprise). Additionally, merchants can create or update their Token customers\r\nthrough Rapid 3.1 API by sending the appropriate value in the initial request.\r\n\r\nProcessPayment\r\nThis method allows merchants to process a standard payment.\r\n\r\nTokenPayment\r\nThis method allows merchants to process payments using Token customers they have stored with\r\neWAY. Merchants can either load an existing token customer by passing in their TokenCustomerID in\r\nthe initial request, or create a new Token customer by leaving the TokenCustomerID field blank.\r\nAny values passed in the Customer part of the initial request will be used to either create or update\r\nthe Token customer, depending on the TokenCustomerID value.\r\nWhen loading an existing Token customer, the customer's details will be returned by eWAY, including\r\nthe masked credit card details. The masked card can be sent back to eWAY when the payment is\r\nprocessed if the customer wants to process the payment using the card on file.\r\n\r\nCreateTokenCustomer\r\nThis method allows merchants to create Token customers without processing a payment.\r\n\r\nUpdateTokenCustomer\r\nThis method allows merchants to update existing Token customers without processing a payment.\r\n",
+        "description" : "To request an Access Code, the merchant will make a server-s...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/customer-create"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/customer-response"
+            }
+          }
+        }
+      }
+    },
+    "/AccessCodesShared" : {
+      "post" : {
+        "summary" : "To request an Access Code, the merchant will make a server-side call to the\r\nCreateAccessCodeShared method of Rapid 3.1 API. The service will respond\r\nwith an Access Code and return the customer data.\r\nIf the request involves an existing Token customer, their details will be\r\nreturned in the response including the masked credit card number.\r\nIf Token Payments are not in use for this transaction, the returned customer\r\ndata will be an echo of the data in the request.\r\n",
+        "description" : "To request an Access Code, the merchant will make a server-s...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/customer-create-schema"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/customerSharedCode-response"
+            }
+          }
+        }
+      }
+    },
+    "/Transaction" : {
+      "post" : {
+        "summary" : "Where environments are PCI-DSS compliant, card data may be submitted directly\r\nto Rapid 3.1. This allows processing of transactions in one server side call.\r\nNote: Before being able to send credit card data via the direct API, eWAY must\r\nenable it on the account (both live and sandbox). To be enabled on a live\r\naccount we must receive proof that the environment is PCI-DSS compliant.\r\nTransactions not involving credit card data (such as a recurring token payment)\r\nmay be processed without proof of compliance.\r\n",
+        "description" : "Where environments are PCI-DSS compliant, card data may be s...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/customer-create-schema"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/customerTransaction-response"
+            }
+          }
+        }
+      }
+    },
+    "/Transaction/{ID}/Refund" : {
+      "get" : {
+        "summary" : "Request transaction results.\r\nThis is a direct call to the eWAY service allowing you to request the\r\ndetails that have been entered by the customer on the Responsive Shared\r\nPage. You only need to implement this if you have allowed the customer\r\ndetails to be modifiable on the Responsive Shared Page.\r\n",
+        "description" : "Request transaction results.\r\nThis is a direct call to the eW...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/transactions"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Process a refund.\r\nNote: Before accessing the direct refund API you must add the Refund ability\r\nto your API user role.\r\n",
+        "description" : "Process a refund.\r\nNote: Before accessing the direct refund A...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/refundTransaction"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/refundTransaction-response"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "ID",
+        "in" : "path",
+        "description" : "Transaction ID or Access Code.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "accessCode" : {
+      "type" : "object",
+      "properties" : {
+        "AccessCode" : {
+          "type" : "string",
+          "maxLength" : 512
+        },
+        "AuthorisationCode" : {
+          "type" : "string",
+          "maxLength" : 6
+        },
+        "BeagleScore" : {
+          "type" : "string",
+          "maxLength" : 6
+        },
+        "BeagleVerification" : {
+          "type" : "object",
+          "properties" : {
+            "Email" : {
+              "type" : "string",
+              "maxLength" : 11
+            },
+            "Phone" : {
+              "type" : "string",
+              "maxLength" : 11
+            }
+          }
+        },
+        "InvoiceNumber" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "InvoiceReference" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "Options" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "Value" : {
+                "type" : "string",
+                "maxLength" : 255
+              }
+            }
+          }
+        },
+        "ResponseCode" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "ResponseMessage" : {
+          "type" : "string",
+          "maxLength" : 512
+        },
+        "TokenCustomerID" : {
+          "type" : "string"
+        },
+        "TotalAmount" : {
+          "type" : "number"
+        },
+        "TransactionID" : {
+          "type" : "number"
+        },
+        "TransactionStatus" : {
+          "type" : "boolean"
+        },
+        "Verification" : {
+          "type" : "object",
+          "properties" : {
+            "Address" : {
+              "type" : "number"
+            },
+            "CVN" : {
+              "type" : "number"
+            },
+            "Email" : {
+              "type" : "number"
+            },
+            "Mobile" : {
+              "type" : "number"
+            },
+            "Phone" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "customerSharedCode-response" : {
+      "type" : "object",
+      "properties" : {
+        "AccessCode" : {
+          "type" : "string",
+          "maxLength" : 512
+        },
+        "Customer" : {
+          "type" : "object",
+          "properties" : {
+            "CardExpiryMonth" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "CardExpiryYear" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "CardIssueNumber" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "CardName" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "CardNumber" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "CardStartMonth" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "CardStartYear" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "City" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Comments" : {
+              "type" : "string",
+              "maxLength" : 255
+            },
+            "CompanyName" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Country" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "Email" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Fax" : {
+              "type" : "string",
+              "maxLength" : 32
+            },
+            "FirstName" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "IsActive" : {
+              "type" : "boolean"
+            },
+            "JobDescription" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "LastName" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Mobile" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Phone" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "PostalCode" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Reference" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "State" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Street1" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Street2" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Title" : {
+              "type" : "string",
+              "maxLength" : 5
+            },
+            "TokenCustomerID" : {
+              "type" : "string"
+            },
+            "Url" : {
+              "type" : "string",
+              "maxLength" : 512
+            }
+          }
+        },
+        "Errors" : {
+          "type" : "string"
+        },
+        "FormActionURL" : {
+          "type" : "string",
+          "maxLength" : 512
+        },
+        "Payment" : {
+          "type" : "object",
+          "properties" : {
+            "CurrencyCode" : {
+              "type" : "string",
+              "maxLength" : 3
+            },
+            "InvoiceDescription" : {
+              "type" : "string",
+              "maxLength" : 64
+            },
+            "InvoiceNumber" : {
+              "type" : "string",
+              "maxLength" : 16
+            },
+            "InvoiceReference" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "TotalAmount" : {
+              "type" : "number"
+            }
+          }
+        },
+        "SharedPaymentUrl" : {
+          "type" : "string",
+          "maxLength" : 512
+        }
+      }
+    },
+    "customer-response" : {
+      "type" : "object",
+      "properties" : {
+        "AccessCode" : {
+          "type" : "string",
+          "maxLength" : 512
+        },
+        "Customer" : {
+          "type" : "object",
+          "properties" : {
+            "CardExpiryMonth" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "CardExpiryYear" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "CardIssueNumber" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "CardName" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "CardNumber" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "CardStartMonth" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "CardStartYear" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "City" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Comments" : {
+              "type" : "string",
+              "maxLength" : 255
+            },
+            "CompanyName" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Country" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "Email" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Fax" : {
+              "type" : "string",
+              "maxLength" : 32
+            },
+            "FirstName" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "IsActive" : {
+              "type" : "boolean"
+            },
+            "JobDescription" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "LastName" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Mobile" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Phone" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "PostalCode" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Reference" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "State" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Street1" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Street2" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Title" : {
+              "type" : "string",
+              "maxLength" : 5
+            },
+            "TokenCustomerID" : {
+              "type" : "string"
+            },
+            "Url" : {
+              "type" : "string",
+              "maxLength" : 512
+            }
+          }
+        },
+        "Errors" : {
+          "type" : "string"
+        },
+        "Options" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "Value" : {
+                "type" : "string",
+                "maxLength" : 255
+              }
+            }
+          }
+        },
+        "FormActionURL" : {
+          "type" : "string",
+          "maxLength" : 512
+        },
+        "Payment" : {
+          "type" : "object",
+          "properties" : {
+            "CurrencyCode" : {
+              "type" : "string",
+              "maxLength" : 3
+            },
+            "InvoiceDescription" : {
+              "type" : "string",
+              "maxLength" : 64
+            },
+            "InvoiceNumber" : {
+              "type" : "string",
+              "maxLength" : 16
+            },
+            "InvoiceReference" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "TotalAmount" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    },
+    "transactions" : {
+      "type" : "object",
+      "properties" : {
+        "BeagleVerification" : {
+          "type" : "object",
+          "properties" : {
+            "Email" : {
+              "type" : "number"
+            },
+            "Phone" : {
+              "type" : "number"
+            }
+          }
+        },
+        "Errors" : {
+          "type" : "string"
+        },
+        "Transactions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "AuthorisationCode" : {
+                "type" : "string"
+              },
+              "BeagleScore" : {
+                "type" : "string"
+              },
+              "Customer" : {
+                "type" : "object",
+                "properties" : {
+                  "City" : {
+                    "type" : "string"
+                  },
+                  "Comments" : {
+                    "type" : "string"
+                  },
+                  "CompanyName" : {
+                    "type" : "string"
+                  },
+                  "Country" : {
+                    "type" : "string"
+                  },
+                  "Email" : {
+                    "type" : "string"
+                  },
+                  "Fax" : {
+                    "type" : "string"
+                  },
+                  "FirstName" : {
+                    "type" : "string"
+                  },
+                  "JobDescription" : {
+                    "type" : "string"
+                  },
+                  "LastName" : {
+                    "type" : "string"
+                  },
+                  "Mobile" : {
+                    "type" : "string"
+                  },
+                  "Phone" : {
+                    "type" : "string"
+                  },
+                  "PostalCode" : {
+                    "type" : "string"
+                  },
+                  "Reference" : {
+                    "type" : "string"
+                  },
+                  "State" : {
+                    "type" : "string"
+                  },
+                  "Street1" : {
+                    "type" : "string"
+                  },
+                  "Street2" : {
+                    "type" : "string"
+                  },
+                  "Title" : {
+                    "type" : "string"
+                  },
+                  "TokenCustomerID" : {
+                    "type" : "string"
+                  },
+                  "Url" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "InvoiceNumber" : {
+                "type" : "string"
+              },
+              "InvoiceReference" : {
+                "type" : "string"
+              },
+              "Options" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "ResponseCode" : {
+                "type" : "string"
+              },
+              "ResponseMessage" : {
+                "type" : "string"
+              },
+              "ShippingAddress" : {
+                "type" : "object",
+                "properties" : {
+                  "City" : {
+                    "type" : "string"
+                  },
+                  "Country" : {
+                    "type" : "string"
+                  },
+                  "Email" : {
+                    "type" : "string"
+                  },
+                  "Fax" : {
+                    "type" : "string"
+                  },
+                  "FirstName" : {
+                    "type" : "string"
+                  },
+                  "LastName" : {
+                    "type" : "string"
+                  },
+                  "Phone" : {
+                    "type" : "string"
+                  },
+                  "PostalCode" : {
+                    "type" : "string"
+                  },
+                  "ShippingMethod" : {
+                    "type" : "string"
+                  },
+                  "State" : {
+                    "type" : "string"
+                  },
+                  "Street1" : {
+                    "type" : "string"
+                  },
+                  "Street2" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "TokenCustomerID" : {
+                "type" : "string"
+              },
+              "TotalAmount" : {
+                "type" : "number"
+              },
+              "TransactionID" : {
+                "type" : "number"
+              },
+              "TransactionStatus" : {
+                "type" : "boolean"
+              },
+              "Verification" : {
+                "type" : "object",
+                "properties" : {
+                  "Address" : {
+                    "type" : "number"
+                  },
+                  "CVN" : {
+                    "type" : "number"
+                  },
+                  "Email" : {
+                    "type" : "number"
+                  },
+                  "Mobile" : {
+                    "type" : "number"
+                  },
+                  "Phone" : {
+                    "type" : "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "refundTransaction-response" : {
+      "type" : "object",
+      "properties" : {
+        "AuthorisationCode" : {
+          "type" : "string",
+          "maxLength" : 6
+        },
+        "Customer" : {
+          "type" : "object",
+          "properties" : {
+            "CardDetails" : {
+              "type" : "object",
+              "properties" : {
+                "ExpiryMonth" : {
+                  "type" : "string",
+                  "maxLength" : 2
+                },
+                "ExpiryYear" : {
+                  "type" : "string",
+                  "maxLength" : 2
+                },
+                "IssueNumber" : {
+                  "type" : "string",
+                  "maxLength" : 2
+                },
+                "Name" : {
+                  "type" : "string",
+                  "maxLength" : 50
+                },
+                "Number" : {
+                  "type" : "string",
+                  "maxLength" : 50
+                },
+                "StartMonth" : {
+                  "type" : "string",
+                  "maxLength" : 2
+                },
+                "StartYear" : {
+                  "type" : "string",
+                  "maxLength" : 2
+                }
+              }
+            },
+            "City" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Comments" : {
+              "type" : "string",
+              "maxLength" : 255
+            },
+            "CompanyName" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Country" : {
+              "type" : "string",
+              "maxLength" : 2
+            },
+            "Email" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Fax" : {
+              "type" : "string",
+              "maxLength" : 32
+            },
+            "FirstName" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "JobDescription" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "LastName" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Mobile" : {
+              "type" : "string",
+              "maxLength" : 32
+            },
+            "Phone" : {
+              "type" : "string",
+              "maxLength" : 32
+            },
+            "PostalCode" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Reference" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "State" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Street1" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Street2" : {
+              "type" : "string",
+              "maxLength" : 50
+            },
+            "Title" : {
+              "type" : "string",
+              "maxLength" : 5
+            },
+            "TokenCustomerID" : {
+              "type" : "string",
+              "maxLength" : 16
+            },
+            "Url" : {
+              "type" : "string",
+              "maxLength" : 512
+            }
+          }
+        },
+        "Errors" : {
+          "type" : "string"
+        },
+        "Refund" : {
+          "type" : "object",
+          "properties" : {
+            "CurrencyCode" : {
+              "type" : "string",
+              "maxLength" : 3
+            },
+            "InvoiceDescription" : {
+              "type" : "string"
+            },
+            "InvoiceNumber" : {
+              "type" : "string",
+              "maxLength" : 64
+            },
+            "InvoiceReference" : {
+              "type" : "string",
+              "maxLength" : 64
+            },
+            "TotalAmount" : {
+              "type" : "number"
+            },
+            "TransactionID" : {
+              "type" : "string",
+              "maxLength" : 8
+            }
+          }
+        },
+        "ResponseCode" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "ResponseMessage" : {
+          "type" : "string",
+          "maxLength" : 512
+        },
+        "TransactionID" : {
+          "type" : "string",
+          "maxLength" : 8
+        },
+        "TransactionStatus" : {
+          "type" : "boolean"
+        },
+        "Verification" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

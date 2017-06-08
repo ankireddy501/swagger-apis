@@ -1,0 +1,470 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Postmark helps deliver and track transactional emails for web applications. In a nutshell, the service replaces SMTP (or Sendmail) with a far more reliable, scalable and care-free environment. In addition, you can track statistics such as number of emails sent or processed, opens, bounces and spam complaints.",
+    "version" : "1.0",
+    "title" : "Postmark"
+  },
+  "host" : "api.postmarkapp.com",
+  "basePath" : "",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/bounces" : {
+      "get" : {
+        "summary" : "Note:  the count and offset parameters are mandatory except of  messageID search.",
+        "description" : "Note:  the count and offset parameters are mandatory except ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "type",
+          "in" : "query",
+          "description" : "filter by bounce type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "inactive",
+          "in" : "query",
+          "description" : "filter by active/inactive status.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "messageID",
+          "in" : "query",
+          "description" : "return only bounces that match the messageID in the query string. (count and offset not required for this search)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "emailFilter",
+          "in" : "query",
+          "description" : " return only bounces whose recipient address contains the provided string.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/bounces"
+            }
+          }
+        }
+      }
+    },
+    "/bounces/tags" : {
+      "get" : {
+        "summary" : "[\r\n  \"Signup\",\r\n  \"Commit Notification\"\r\n]\r\n",
+        "description" : "[\r\n  \"Signup\",\r\n  \"Commit Notification\"\r\n]\r\n",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/tags"
+            }
+          }
+        }
+      }
+    },
+    "/bounces/{bounceID}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/bounce"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "bounceID",
+        "in" : "path",
+        "description" : "Note that the bounce ID is a numeric value that you typically obtain after a getting a list of bounces.",
+        "required" : true
+      } ]
+    },
+    "/bounces/{bounceID}/activate" : {
+      "put" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/bounceAndStatus"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "bounceID",
+        "in" : "path",
+        "description" : "Note that the bounce ID is a numeric value that you typically obtain after a getting a list of bounces.",
+        "required" : true
+      } ]
+    },
+    "/bounces/{bounceID}/dump" : {
+      "get" : {
+        "summary" : "Returns the raw source of the bounce we accepted. If Postmark does not have a dump for that bounce, it will return an empty string.",
+        "description" : "Returns the raw source of the bounce we accepted. If Postmar...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/bounceDump"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "bounceID",
+        "in" : "path",
+        "description" : "Note that the bounce ID is a numeric value that you typically obtain after a getting a list of bounces.",
+        "required" : true
+      } ]
+    },
+    "/deliverystats" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      }
+    },
+    "/email" : {
+      "post" : {
+        "summary" : "Sending mails through Postmark is as simple as sending HTTP Post request to the service. \r\n\r\nCurrently Postmark supports JSON message format.\r\n\r\nYou should pass the json encoded message in the body of the request. Both from and to accept name, in the format of John Doe <email@example.com>. You can provide HtmlBody for html formatted messages, TextBody for plain text, or both for multipart. Multipart sends html with a text version for clients that don't support html. Passing headers is optional.\r\n\r\nYou should have a registered and confirmed sender signature with the sender email. Otherwise you will receive HTTP Response 422 (Unprocessable Entity).\r\nIt is possible to override the Name in the sender signature through the API. This is useful if you want to use member's information in the email while keeping your from email address. just pass the name in the From parameter, From: \"John Smith <sender@example.com>\".\r\n\r\nYou can pass multiple recipient addresses in the 'To' field and the optional 'Cc' and 'Bcc' fields. Separate multiple addresses with a comma. Note that Postmark has a limit of twenty recipients per message in total. You need to take care not to exceed that limit. Otherwise you will get an error.\r\nYou can categorize outgoing email using the optional Tag property. If you use different tags for the different types of emails your application generates, you will be able to get detailed statistics for them through the Postmark user interface.\r\n\r\n*Limitations:*\r\n\r\nOnly allowed file types can be sent as attachments. The message will be rejected (or you will get an SMTP API bounce if using SMTP) with a description of the rejected file, if you try to send a file with a disallowed extension.\r\n\r\nAttachment size can be 10 MB at most. That means you can send three attachments weighing at three megabytes each, but you won't be able to send a single 11MB attachment. Don't worry about base64 encoding making your data larger than it really is. Attachment size is calculated using the real binary data (after base64-decoding it).\r\n\r\nMany applications can get away with sending email as a response to a user action and do that right in the same web request handler. Sending attachments changes that. Message size can and will get bigger and the time to submit it to the Postmark servers will get longer. That is why we recommend that you send email with attachments from a background job. Your users will love you for that!\r\n",
+        "description" : "Sending mails through Postmark is as simple as sending HTTP ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/mail"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/sendResponse"
+            }
+          }
+        }
+      }
+    },
+    "/email/batch" : {
+      "post" : {
+        "summary" : "While Postmark is focused on transactional email, we understand that developers with higher volumes or processing time constraints need to send their messages in batches. To facilitate this we provide a batching endpoint that permits you to send up to 500 well-formed Postmark messages in a single API call.\r\n\r\nThe format of the batched message is a JSON array containing multiple message requests.\r\n",
+        "description" : "While Postmark is focused on transactional email, we underst...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/emails"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/sendEmailsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/server" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/inboundServerInfo"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "emails" : { },
+    "mail" : {
+      "type" : "object",
+      "properties" : {
+        "From" : {
+          "type" : "string"
+        },
+        "To" : {
+          "type" : "string"
+        },
+        "Cc" : {
+          "type" : "string"
+        },
+        "Bcc" : {
+          "type" : "string"
+        },
+        "Subject" : {
+          "type" : "string"
+        },
+        "Tag" : {
+          "type" : "string"
+        },
+        "HtmlBody" : {
+          "type" : "string"
+        },
+        "TextBody" : {
+          "type" : "string"
+        },
+        "ReplyTo" : {
+          "type" : "string"
+        },
+        "Attachments" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "Name" : {
+                "type" : "string"
+              },
+              "Content" : {
+                "type" : "string"
+              },
+              "ContentType" : {
+                "type" : "string"
+              },
+              "ContentID" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "bounce" : {
+      "type" : "object",
+      "properties" : {
+        "ID" : {
+          "type" : "number"
+        },
+        "Type" : {
+          "type" : "string"
+        },
+        "MessageID" : {
+          "type" : "string"
+        },
+        "TypeCode" : {
+          "type" : "number"
+        },
+        "Details" : {
+          "type" : "string"
+        },
+        "Email" : {
+          "type" : "string"
+        },
+        "BouncedAt" : {
+          "type" : "string"
+        },
+        "DumpAvailable" : {
+          "type" : "boolean"
+        },
+        "Inactive" : {
+          "type" : "boolean"
+        },
+        "CanActivate" : {
+          "type" : "boolean"
+        },
+        "Content" : {
+          "type" : "string"
+        },
+        "Subject" : {
+          "type" : "string"
+        }
+      }
+    },
+    "sendEmailsResponse" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "ErrorCode" : {
+                "type" : "number"
+              },
+              "Message" : {
+                "type" : "string"
+              },
+              "MessageID" : {
+                "type" : "string"
+              },
+              "SubmittedAt" : {
+                "type" : "string"
+              },
+              "To" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "sendResponse" : {
+      "type" : "object",
+      "properties" : {
+        "ErrorCode" : {
+          "type" : "number"
+        },
+        "Message" : {
+          "type" : "string"
+        },
+        "MessageID" : {
+          "type" : "string"
+        },
+        "SubmittedAt" : {
+          "type" : "string"
+        },
+        "To" : {
+          "type" : "string"
+        }
+      }
+    },
+    "bounces" : {
+      "type" : "object",
+      "properties" : {
+        "TotalCount" : {
+          "type" : "number"
+        }
+      }
+    },
+    "bounceDump" : {
+      "type" : "object",
+      "properties" : {
+        "Body" : {
+          "type" : "string"
+        }
+      }
+    },
+    "inboundServerInfo" : {
+      "type" : "object",
+      "properties" : {
+        "Name" : {
+          "type" : "string"
+        },
+        "Color" : {
+          "type" : "string"
+        },
+        "InboundHash" : {
+          "type" : "string"
+        },
+        "SmtpApiActivated" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "bounceAndStatus" : {
+      "type" : "object",
+      "properties" : {
+        "Message" : {
+          "type" : "string"
+        },
+        "Bounce" : {
+          "type" : "object",
+          "properties" : {
+            "ID" : {
+              "type" : "number"
+            },
+            "Type" : {
+              "type" : "string"
+            },
+            "MessageID" : {
+              "type" : "string"
+            },
+            "TypeCode" : {
+              "type" : "number"
+            },
+            "Details" : {
+              "type" : "string"
+            },
+            "Email" : {
+              "type" : "string"
+            },
+            "BouncedAt" : {
+              "type" : "string"
+            },
+            "DumpAvailable" : {
+              "type" : "boolean"
+            },
+            "Inactive" : {
+              "type" : "boolean"
+            },
+            "CanActivate" : {
+              "type" : "boolean"
+            },
+            "Content" : {
+              "type" : "string"
+            },
+            "Subject" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "tags" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}

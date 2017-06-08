@@ -1,0 +1,94 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : A webcomic of romance, sarcasm, math, and language.",
+    "version" : "1.0",
+    "title" : "XKCD"
+  },
+  "host" : "xkcd.com",
+  "basePath" : "",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/info.0.json" : {
+      "get" : {
+        "summary" : "Fetch current comic and metadata.\r\n",
+        "description" : "Fetch current comic and metadata.\r\n",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/comic"
+            }
+          }
+        }
+      }
+    },
+    "/{comicId}/info.0.json" : {
+      "get" : {
+        "summary" : "Fetch comics and metadata  by comic id.\r\n",
+        "description" : "Fetch comics and metadata  by comic id.\r\n",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/comic"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "comicId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "comic" : {
+      "type" : "object",
+      "properties" : {
+        "month" : {
+          "type" : "string"
+        },
+        "num" : {
+          "type" : "number"
+        },
+        "link" : {
+          "type" : "string"
+        },
+        "year" : {
+          "type" : "string"
+        },
+        "news" : {
+          "type" : "string"
+        },
+        "safe_title" : {
+          "type" : "string"
+        },
+        "transcript" : {
+          "type" : "string"
+        },
+        "alt" : {
+          "type" : "string"
+        },
+        "img" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "day" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

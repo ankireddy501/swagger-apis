@@ -1,0 +1,1507 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Scheduled posting to social profiles.",
+    "version" : "1",
+    "title" : "Bufferapp"
+  },
+  "host" : "api.bufferapp.com",
+  "basePath" : "/1/",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/info/configuration{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns an object with the current configuration that Buffer is using, including supported services, their icons and the varying limits of character and schedules.",
+        "description" : "Returns an object with the current configuration that Buffer...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/configuration"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/links/shares{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns an object with a the numbers of shares a link has had using Buffer.",
+        "description" : "Returns an object with a the numbers of shares a link has ha...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "url",
+          "in" : "query",
+          "description" : "URL-encoded URL of the page for which the number of shares is requested.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/shares"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/profiles/{id}/schedules/update{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "\"Set the posting schedules for the specified social media profile.\r\n",
+        "description" : "\"Set the posting schedules for the specified social media pr...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model410"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/schedules-update"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/profiles/{id}/schedules{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns details of the posting schedules associated with a social media profile.",
+        "description" : "Returns details of the posting schedules associated with a s...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/schedules"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/profiles/{id}/updates/pending{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "\"Returns an array of updates that are currently in the buffer for an individual social media profile.\r\n",
+        "description" : "\"Returns an array of updates that are currently in the buffe...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of status updates to receive. If provided, must be between 1 and 100.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "since",
+          "in" : "query",
+          "description" : "Specifies a unix timestamp which only status updates created after this time will be retrieved.",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "utc",
+          "in" : "query",
+          "description" : "If utc is set times will be returned relative to UTC rather than the users associated timezone.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page of status updates to receive. If not specified the first page of results will be returned.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/updates-array"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/profiles/{id}/updates/reorder{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Edit the order at which statuses for the specified social media profile will be sent out of the buffer.\r\n",
+        "description" : "Edit the order at which statuses for the specified social me...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model353"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/reorder"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/profiles/{id}/updates/sent{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns an array of updates that have been sent from the buffer for an individual social media profile.\r\n",
+        "description" : "Returns an array of updates that have been sent from the buf...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page of status updates to receive. If not specified the first page of results will be returned.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "utc",
+          "in" : "query",
+          "description" : "If utc is set times will be returned relative to UTC rather than the users associated timezone.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "since",
+          "in" : "query",
+          "description" : "Specifies a unix timestamp which only status updates created after this time will be retrieved.",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of status updates to receive. If provided, must be between 1 and 100.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/updates-array"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/profiles/{id}/updates/shuffle{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Randomize the order at which statuses for the specified social media profile will be sent out of the buffer.\r\n",
+        "description" : "Randomize the order at which statuses for the specified soci...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model723"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/shuffle"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/profiles{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns an array of social media profiles connected to a users account.",
+        "description" : "Returns an array of social media profiles connected to a use...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/profiles"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/updates/create{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Create one or more new status updates.\r\n",
+        "description" : "Create one or more new status updates.\r\n",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model564"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/newUpdate"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/updates/{id}/destroy{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Permanently delete an existing status update.",
+        "description" : "Permanently delete an existing status update.",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/success"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/updates/{id}/interactions{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns the detailed information on individual interactions with the social media update such as favorites, retweets and likes.\r\n",
+        "description" : "Returns the detailed information on individual interactions ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Specifies the number of status updates to receive. If provided, must be between 1 and 100.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "event",
+          "in" : "query",
+          "description" : "Specifies a type of event to be retrieved, for example \"retweet\", \"like\", \"comment\", \"mention\" or \"reshare\". They can also be plural (e.g., \"reshares\"). Plurality has no effect other than visual semantics. See /info/configuration for more information on supported interaction events.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page of status updates to receive. If not specified the first page of results will be returned.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/interactions"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/updates/{id}/move_to_top{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Move an existing status update to the top of the queue and recalculate times for all updates in the queue. Returns the update with its new posting time.",
+        "description" : "Move an existing status update to the top of the queue and r...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/update"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/updates/{id}/share{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Immediately shares a single pending update and recalculates times for updates remaining in the queue.",
+        "description" : "Immediately shares a single pending update and recalculates ...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/success"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/updates/{id}/update{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Edit an existing, individual status update.\r\n",
+        "description" : "Edit an existing, individual status update.\r\n",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model913"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/individual-update"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/updates/{id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a single social media update.",
+        "description" : "Returns a single social media update.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/update"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/user{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns a single user.",
+        "description" : "Returns a single user.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "newUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "success" : {
+          "type" : "boolean"
+        },
+        "buffer_count" : {
+          "type" : "number"
+        },
+        "buffer_percentage" : {
+          "type" : "number"
+        },
+        "updates" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "number"
+              },
+              "day" : {
+                "type" : "string"
+              },
+              "due_at" : {
+                "type" : "number"
+              },
+              "due_time" : {
+                "type" : "string"
+              },
+              "media" : {
+                "type" : "object",
+                "properties" : {
+                  "link" : {
+                    "type" : "string"
+                  },
+                  "title" : {
+                    "type" : "string"
+                  },
+                  "description" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "profile_id" : {
+                "type" : "string"
+              },
+              "profile_service" : {
+                "type" : "string"
+              },
+              "status" : {
+                "type" : "string"
+              },
+              "text" : {
+                "type" : "string"
+              },
+              "text_formatted" : {
+                "type" : "string"
+              },
+              "user_id" : {
+                "type" : "string"
+              },
+              "via" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "configuration" : {
+      "type" : "object",
+      "properties" : {
+        "services" : {
+          "type" : "object",
+          "properties" : {
+            "twitter" : {
+              "type" : "object",
+              "properties" : {
+                "types" : {
+                  "type" : "object",
+                  "properties" : {
+                    "profile" : {
+                      "type" : "object",
+                      "properties" : {
+                        "name" : {
+                          "type" : "string"
+                        },
+                        "character_limit" : {
+                          "type" : "number"
+                        },
+                        "schedule_limit" : {
+                          "type" : "number"
+                        },
+                        "icons" : {
+                          "type" : "object",
+                          "properties" : {
+                            "16" : {
+                              "type" : "string"
+                            },
+                            "32" : {
+                              "type" : "string"
+                            },
+                            "64" : {
+                              "type" : "string"
+                            }
+                          }
+                        },
+                        "supported_interactions" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "urls" : {
+                  "type" : "object",
+                  "properties" : {
+                    "user" : {
+                      "type" : "string"
+                    },
+                    "hashtag" : {
+                      "type" : "string"
+                    },
+                    "cashtag" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            },
+            "facebook" : {
+              "type" : "object",
+              "properties" : {
+                "types" : {
+                  "type" : "object",
+                  "properties" : {
+                    "profile" : {
+                      "type" : "object",
+                      "properties" : {
+                        "name" : {
+                          "type" : "string"
+                        },
+                        "character_limit" : {
+                          "type" : "number"
+                        },
+                        "schedule_limit" : {
+                          "type" : "number"
+                        },
+                        "icons" : {
+                          "type" : "object",
+                          "properties" : {
+                            "16" : {
+                              "type" : "string"
+                            },
+                            "32" : {
+                              "type" : "string"
+                            },
+                            "64" : {
+                              "type" : "string"
+                            }
+                          }
+                        },
+                        "supported_interactions" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "page" : {
+                      "type" : "object",
+                      "properties" : {
+                        "name" : {
+                          "type" : "string"
+                        },
+                        "character_limit" : {
+                          "type" : "number"
+                        },
+                        "schedule_limit" : {
+                          "type" : "number"
+                        },
+                        "icons" : {
+                          "type" : "object",
+                          "properties" : {
+                            "16" : {
+                              "type" : "string"
+                            },
+                            "32" : {
+                              "type" : "string"
+                            },
+                            "64" : {
+                              "type" : "string"
+                            }
+                          }
+                        },
+                        "supported_interactions" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "urls" : {
+                  "type" : "object",
+                  "properties" : {
+                    "user" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            },
+            "linkedin" : {
+              "type" : "object",
+              "properties" : {
+                "types" : {
+                  "type" : "object",
+                  "properties" : {
+                    "profile" : {
+                      "type" : "object",
+                      "properties" : {
+                        "name" : {
+                          "type" : "string"
+                        },
+                        "character_limit" : {
+                          "type" : "number"
+                        },
+                        "schedule_limit" : {
+                          "type" : "number"
+                        },
+                        "icons" : {
+                          "type" : "object",
+                          "properties" : {
+                            "16" : {
+                              "type" : "string"
+                            },
+                            "32" : {
+                              "type" : "string"
+                            },
+                            "64" : {
+                              "type" : "string"
+                            }
+                          }
+                        },
+                        "supported_interactions" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "group" : {
+                      "type" : "object",
+                      "properties" : {
+                        "name" : {
+                          "type" : "string"
+                        },
+                        "character_limit" : {
+                          "type" : "number"
+                        },
+                        "schedule_limit" : {
+                          "type" : "number"
+                        },
+                        "icons" : {
+                          "type" : "object",
+                          "properties" : {
+                            "16" : {
+                              "type" : "string"
+                            },
+                            "32" : {
+                              "type" : "string"
+                            },
+                            "64" : {
+                              "type" : "string"
+                            }
+                          }
+                        },
+                        "supported_interactions" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "urls" : {
+                  "type" : "object",
+                  "properties" : {
+                    "user" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            },
+            "appdotnet" : {
+              "type" : "object",
+              "properties" : {
+                "types" : {
+                  "type" : "object",
+                  "properties" : {
+                    "profile" : {
+                      "type" : "object",
+                      "properties" : {
+                        "name" : {
+                          "type" : "string"
+                        },
+                        "character_limit" : {
+                          "type" : "number"
+                        },
+                        "schedule_limit" : {
+                          "type" : "number"
+                        },
+                        "icons" : {
+                          "type" : "object",
+                          "properties" : {
+                            "16" : {
+                              "type" : "string"
+                            },
+                            "32" : {
+                              "type" : "string"
+                            },
+                            "64" : {
+                              "type" : "string"
+                            }
+                          }
+                        },
+                        "supported_interactions" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "array"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "urls" : {
+                  "type" : "object",
+                  "properties" : {
+                    "user" : {
+                      "type" : "string"
+                    },
+                    "hashtag" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "media" : {
+          "type" : "object",
+          "properties" : {
+            "picture_size_min" : {
+              "type" : "number"
+            },
+            "picture_size_max" : {
+              "type" : "number"
+            },
+            "picture_filetypes" : {
+              "type" : "array",
+              "items" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "profiles" : {
+      "type" : "object",
+      "properties" : {
+        "avatar" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "number"
+        },
+        "default" : {
+          "type" : "boolean"
+        },
+        "formatted_username" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "schedules" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "days" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "times" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "service" : {
+          "type" : "string"
+        },
+        "service_id" : {
+          "type" : "string"
+        },
+        "service_username" : {
+          "type" : "string"
+        },
+        "statistics" : {
+          "type" : "object",
+          "properties" : {
+            "followers" : {
+              "type" : "number"
+            }
+          }
+        },
+        "team_members" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "timezone" : {
+          "type" : "string"
+        },
+        "user_id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "update" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "number"
+        },
+        "day" : {
+          "type" : "string"
+        },
+        "due_at" : {
+          "type" : "number"
+        },
+        "due_time" : {
+          "type" : "string"
+        },
+        "profile_id" : {
+          "type" : "string"
+        },
+        "profile_service" : {
+          "type" : "string"
+        },
+        "sent_at" : {
+          "type" : "number"
+        },
+        "service_update_id" : {
+          "type" : "string"
+        },
+        "statistics" : {
+          "type" : "object",
+          "properties" : {
+            "reach" : {
+              "type" : "number"
+            },
+            "clicks" : {
+              "type" : "number"
+            },
+            "retweets" : {
+              "type" : "number"
+            },
+            "favorites" : {
+              "type" : "number"
+            },
+            "mentions" : {
+              "type" : "number"
+            }
+          }
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "text" : {
+          "type" : "string"
+        },
+        "text_formatted" : {
+          "type" : "string"
+        },
+        "user_id" : {
+          "type" : "string"
+        },
+        "via" : {
+          "type" : "string"
+        }
+      }
+    },
+    "individual-update" : {
+      "type" : "object",
+      "properties" : {
+        "success" : {
+          "type" : "boolean"
+        },
+        "buffer_count" : {
+          "type" : "number"
+        },
+        "buffer_percentage" : {
+          "type" : "number"
+        },
+        "update" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "client_id" : {
+              "type" : "string"
+            },
+            "created_at" : {
+              "type" : "number"
+            },
+            "day" : {
+              "type" : "string"
+            },
+            "due_at" : {
+              "type" : "number"
+            },
+            "due_time" : {
+              "type" : "string"
+            },
+            "media" : {
+              "type" : "object",
+              "properties" : {
+                "link" : {
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "description" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "profile_id" : {
+              "type" : "string"
+            },
+            "profile_service" : {
+              "type" : "string"
+            },
+            "status" : {
+              "type" : "string"
+            },
+            "text" : {
+              "type" : "string"
+            },
+            "text_formatted" : {
+              "type" : "string"
+            },
+            "user_id" : {
+              "type" : "string"
+            },
+            "via" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "reorder" : {
+      "type" : "object",
+      "properties" : {
+        "success" : {
+          "type" : "boolean"
+        },
+        "updates" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "number"
+              },
+              "day" : {
+                "type" : "string"
+              },
+              "due_at" : {
+                "type" : "number"
+              },
+              "due_time" : {
+                "type" : "string"
+              },
+              "profile_id" : {
+                "type" : "string"
+              },
+              "profile_service" : {
+                "type" : "string"
+              },
+              "status" : {
+                "type" : "string"
+              },
+              "text" : {
+                "type" : "string"
+              },
+              "text_formatted" : {
+                "type" : "string"
+              },
+              "user_id" : {
+                "type" : "string"
+              },
+              "via" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "schedules-update" : {
+      "type" : "object",
+      "properties" : {
+        "success" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "interactions" : {
+      "type" : "object",
+      "properties" : {
+        "total" : {
+          "type" : "number"
+        },
+        "interactions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "_id" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "number"
+              },
+              "event" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "interaction_id" : {
+                "type" : "string"
+              },
+              "user" : {
+                "type" : "object",
+                "properties" : {
+                  "username" : {
+                    "type" : "string"
+                  },
+                  "followers" : {
+                    "type" : "number"
+                  },
+                  "avatar" : {
+                    "type" : "string"
+                  },
+                  "avatar_https" : {
+                    "type" : "string"
+                  },
+                  "twitter_id" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "shares" : {
+      "type" : "object",
+      "properties" : {
+        "shares" : {
+          "type" : "number"
+        }
+      }
+    },
+    "updates-array" : {
+      "type" : "object",
+      "properties" : {
+        "total" : {
+          "type" : "number"
+        },
+        "updates" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "number"
+              },
+              "day" : {
+                "type" : "string"
+              },
+              "due_at" : {
+                "type" : "number"
+              },
+              "due_time" : {
+                "type" : "string"
+              },
+              "profile_id" : {
+                "type" : "string"
+              },
+              "profile_service" : {
+                "type" : "string"
+              },
+              "status" : {
+                "type" : "string"
+              },
+              "text" : {
+                "type" : "string"
+              },
+              "text_formatted" : {
+                "type" : "string"
+              },
+              "user_id" : {
+                "type" : "string"
+              },
+              "via" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "success" : {
+      "type" : "object",
+      "properties" : {
+        "success" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "schedules" : {
+      "type" : "object",
+      "properties" : {
+        "days" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "times" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "shuffle" : {
+      "type" : "object",
+      "properties" : {
+        "success" : {
+          "type" : "boolean"
+        },
+        "updates" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "number"
+              },
+              "day" : {
+                "type" : "string"
+              },
+              "due_at" : {
+                "type" : "number"
+              },
+              "due_time" : {
+                "type" : "string"
+              },
+              "profile_id" : {
+                "type" : "string"
+              },
+              "profile_service" : {
+                "type" : "string"
+              },
+              "status" : {
+                "type" : "string"
+              },
+              "text" : {
+                "type" : "string"
+              },
+              "text_formatted" : {
+                "type" : "string"
+              },
+              "user_id" : {
+                "type" : "string"
+              },
+              "via" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "user" : {
+      "type" : "object",
+      "properties" : {
+        "_id" : {
+          "type" : "string"
+        },
+        "activity_at" : {
+          "type" : "number"
+        },
+        "created_at" : {
+          "type" : "number"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "plan" : {
+          "type" : "string"
+        },
+        "referral_link" : {
+          "type" : "string"
+        },
+        "referral_token" : {
+          "type" : "string"
+        },
+        "secret_email" : {
+          "type" : "string"
+        },
+        "timezone" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

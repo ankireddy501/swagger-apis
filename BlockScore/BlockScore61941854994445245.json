@@ -1,0 +1,1322 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : BlockScore is a customer authentication and verification service that aims to assists users with handling the regulatory compliance issues surrounding international payment and transfers. The BlockScore API uses REST calls and allows users to submit data for authentication, off-load data, verify passports, and perform other tasks. An account, and an API key are required for use. SSL is required for all calls.",
+    "version" : "4",
+    "title" : "BlockScore"
+  },
+  "host" : "api.blockscore.com",
+  "basePath" : "",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/candidates" : {
+      "get" : {
+        "summary" : "List all candidates\r\n\r\nThis endpoint will allow you to see a historical record of all candidates you have created.\r\n\r\nThe list is displayed in reverse chronological order (newer candidates appear first).\r\n",
+        "description" : "List all candidates\r\n\r\nThis endpoint will allow you to see a h...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/listAllCandidatesResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a new candidate.\r\nThis endpoint creates a new candidate.\r\n",
+        "description" : "Create a new candidate.\r\nThis endpoint creates a new candidat...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "name_middle",
+          "in" : "query",
+          "description" : "The legal middle name of the customer.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_subdivision",
+          "in" : "query",
+          "description" : "The subdivision of the entered country. For instance in the United States, this would be a 'state'.\r\nThe state of the customer. Should be of the FIPS code form. For example California would be CA.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_street2",
+          "in" : "query",
+          "description" : "The second address line typically used for apartment or suite numbers. This is automatically normalized.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_city",
+          "in" : "query",
+          "description" : "The city name of the customer. This is automatically normalized.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ssn",
+          "in" : "query",
+          "description" : "This can be either the last 4 digits of the US Social Security Number or the whole SSN.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "name_last",
+          "in" : "query",
+          "description" : "The legal middle name of the customer.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_country_code",
+          "in" : "query",
+          "description" : "The country of the customer. Should be of the ISO code form.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_street1",
+          "in" : "query",
+          "description" : "The primary street address of the customer. This is automatically normalized.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_postal_code",
+          "in" : "query",
+          "description" : "The postal code of the person. Also known as a ZIP code.\r\nThe country of the customer. Should be of the ISO code form.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "name_first",
+          "in" : "query",
+          "description" : "The legal first name of the customer.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "passport",
+          "in" : "query",
+          "description" : "The passport number of the individual being verified. This is only used for verifying non-US customers.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "date_of_birth",
+          "in" : "query",
+          "description" : "The date of birth of the candidate in ISO form.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "note",
+          "in" : "query",
+          "description" : "You can store additional information about the candidate here such as your internal system's identifier for this individual. This will allow you to keep track of them.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/candidateResponse"
+            }
+          }
+        }
+      }
+    },
+    "/candidates/{CANDIDATE_ID}" : {
+      "get" : {
+        "summary" : "Retrieve an existing candidate\r\n\r\nThis endpoint allows you to retrieve the record of a candidate using their stored candidate_id.\r\n",
+        "description" : "Retrieve an existing candidate\r\n\r\nThis endpoint allows you to ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/candidateResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a candidate\r\nThis endpoint allows you to remove a candidate from our system. If you have signed up for continuous verification, then the deleted candidate will no longer be scanned.\r\n",
+        "description" : "Delete a candidate\r\nThis endpoint allows you to remove a cand...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/candidateDeleteResponse"
+            }
+          }
+        }
+      },
+      "patch" : {
+        "summary" : "Edit a candidate\r\nIf you'd like to amend the information associated with a candidate, you can modify it using this route. For instance, if your candidate changes addresses or you learn additional information about them. Only the information you send us will be updated - the rest will remain the same.\r\n",
+        "description" : "Edit a candidate\r\nIf you'd like to amend the information asso...",
+        "operationId" : "PATCH",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "address_subdivision",
+          "in" : "query",
+          "description" : "The subdivision of the entered country. For instance in the United States, this would be a 'state'.\r\nThe state of the customer. Should be of the FIPS code form. For example California would be CA.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "name_first",
+          "in" : "query",
+          "description" : "The legal first name of the customer.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "name_middle",
+          "in" : "query",
+          "description" : "The legal middle name of the customer.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "note",
+          "in" : "query",
+          "description" : "You can store additional information about the candidate here such as your internal system's identifier for this individual. This will allow you to keep track of them.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_country_code",
+          "in" : "query",
+          "description" : "The country of the customer. Should be of the ISO code form.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "passport",
+          "in" : "query",
+          "description" : "The passport number of the individual being verified. This is only used for verifying non-US customers.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "date_of_birth",
+          "in" : "query",
+          "description" : "The date of birth of the candidate in ISO form.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "name_last",
+          "in" : "query",
+          "description" : "The legal middle name of the customer.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_postal_code",
+          "in" : "query",
+          "description" : "The postal code of the person. Also known as a ZIP code.\r\nThe country of the customer. Should be of the ISO code form.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_city",
+          "in" : "query",
+          "description" : "The city name of the customer. This is automatically normalized.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_street2",
+          "in" : "query",
+          "description" : "The second address line typically used for apartment or suite numbers. This is automatically normalized.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ssn",
+          "in" : "query",
+          "description" : "This can be either the last 4 digits of the US Social Security Number or the whole SSN.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_street1",
+          "in" : "query",
+          "description" : "The primary street address of the customer. This is automatically normalized.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/candidateResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "CANDIDATE_ID",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/candidates/{CANDIDATE_ID}/history" : {
+      "get" : {
+        "summary" : "View a candidate's revision history\r\n\r\nWe store a complete revision history of a candidate's edits. This allows you to maintain a full audit trail of when and how you update a client's profile over time.\r\n\r\nThe latest revision is presented at the top of the array, and the original is at the end of the array.\r\n",
+        "description" : "View a candidate's revision history\r\n\r\nWe store a complete rev...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/candidatesHistoryResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "CANDIDATE_ID",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/candidates/{CANDIDATE_ID}/hits" : {
+      "get" : {
+        "summary" : "View a candidate's past hits\r\n\r\nWhenever a search is executed for a candidate, we store the results of that search with timestamps of when those hits occurred. This endpoint allows you to view all historical watchlist hits for a given candidate.\r\n",
+        "description" : "View a candidate's past hits\r\n\r\nWhenever a search is executed ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/candidateHitsResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "CANDIDATE_ID",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/companies" : {
+      "get" : {
+        "summary" : "List all companies\r\n\r\nThis endpoint will allow you to see a historical record of all company verifications that you have completed.\r\n\r\nThe list is displayed in reverse chronological order (newer company verifications appear first).\r\n",
+        "description" : "List all companies\r\n\r\nThis endpoint will allow you to see a hi...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/listAllCompaniesResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a new company\r\n\r\nThis endpoint creates a new company. The information will be run through our company verification process and then returned with additional information that will help you determine the authenticity of the information given.\r\n\r\nPlease be aware that the response time can sometimes be more than 6 seconds due to the speed of some government data sources.\r\n",
+        "description" : "Create a new company\r\n\r\nThis endpoint creates a new company. T...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "ip_address",
+          "in" : "query",
+          "description" : "Your customers' IP address can be passed to us for storage purposes. Soon we will be using this information for anti-fraud and verification purposes. With this information we will be able to back-test your verifications when this feature is released.\r\nBoth IPv4 and IPv6 style IP addresses are acceptable.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_postal_code",
+          "in" : "query",
+          "description" : "The country of the customer. Should be of the ISO code form.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "address_country_code",
+          "in" : "query",
+          "description" : "The country of the customer. Should be of the ISO code form.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "registration_number",
+          "in" : "query",
+          "description" : "Should only include the digits of the registration number with no extraneous characters like dashes.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "dbas",
+          "in" : "query",
+          "description" : "Both commas and spaces are acceptable for delimiting multiple names.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "incorporation_country_code",
+          "in" : "query",
+          "description" : "Should be of the ISO alpha-2 code form.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "incorporation_month",
+          "in" : "query",
+          "description" : "The month in integer form of the company's incorporation.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "entity_name",
+          "in" : "query",
+          "description" : "This should exclude any legal endings like 'Co' or 'Inc' for best results.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "address_street2",
+          "in" : "query",
+          "description" : "The second address line typically used for apartment or suite numbers. This is automatically normalized.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "incorporation_year",
+          "in" : "query",
+          "description" : "The year in 4-digit integer form of the company's incorporation.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_street1",
+          "in" : "query",
+          "description" : "The primary street address of the customer. This is automatically normalized.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "tax_id",
+          "in" : "query",
+          "description" : "The tax ID should only include the digits of the ID with no extraneous characters like dashes.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "url",
+          "in" : "query",
+          "description" : "Can either contain protocol information or not (ex. www.example.com and http://www.example.com).",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "incorporation_type",
+          "in" : "query",
+          "description" : "Must be one of the pre-defined incorporation types listed in the 'Incorporation types' table.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "email",
+          "in" : "query",
+          "description" : "Any form of valid email is accepted.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "incorporation_day",
+          "in" : "query",
+          "description" : "The day in integer form of the company's incorporation.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_subdivision",
+          "in" : "query",
+          "description" : "The state of the customer. Should be of the FIPS code form. For example California would be CA.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "incorporation_state",
+          "in" : "query",
+          "description" : "Can be either of ISO code form or the full length name of the state.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "note",
+          "in" : "query",
+          "description" : "You can store additional information about the candidate here such as your internal system's identifier for this individual. This will allow you to keep track of them.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "phone_number",
+          "in" : "query",
+          "description" : "If you pass in the phone number, we will use it as an additional 'positive' data point for the consumer. That is, if it is provided, it will help us identify them, but if we cannot, they will not be penalized.\r\nExtra characters like parenthesis and dashes are accepted - can either contain the country code or not.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_city",
+          "in" : "query",
+          "description" : "The city name of the customer. This is automatically normalized.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/companyResponse"
+            }
+          }
+        }
+      }
+    },
+    "/companies/{COMPANY_ID}" : {
+      "get" : {
+        "summary" : "Retrieve an existing company\r\n\r\nYou can pull up a single company verification at any time (typically this is used for auditing purposes).\r\n",
+        "description" : "Retrieve an existing company\r\n\r\nYou can pull up a single compa...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/companyResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "COMPANY_ID",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/people" : {
+      "get" : {
+        "summary" : "This endpoint will allow you to see a historical record of all verifications that you have completed.\r\n\r\nThe list is displayed in reverse chronological order (newer people appear first).\r\n",
+        "description" : "This endpoint will allow you to see a historical record of a...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/verificationsListResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "This endpoint creates a new person. The information will be run through our verification process and then returned with additional information that will help you determine the authenticity of the information given.",
+        "description" : "This endpoint creates a new person. The information will be ...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "name_last",
+          "in" : "query",
+          "description" : "The legal middle name of the customer.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "name_middle",
+          "in" : "query",
+          "description" : "The legal middle name of the customer.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "document_type",
+          "in" : "query",
+          "description" : "Must be one of the document types described in the Documents section.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "phone_number",
+          "in" : "query",
+          "description" : "If you pass in the phone number, we will use it as an additional 'positive' data point for the consumer. That is, if it is provided, it will help us identify them, but if we cannot, they will not be penalized.\r\nExtra characters like parenthesis and dashes are accepted - can either contain the country code or not.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "document_value",
+          "in" : "query",
+          "description" : "The number associated with the form of documentation used.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "birth_year",
+          "in" : "query",
+          "description" : "The full 4-digit year of birth.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "birth_month",
+          "in" : "query",
+          "description" : "The integer associated with the month of birth.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "name_first",
+          "in" : "query",
+          "description" : "The legal first name of the customer.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "ip_address",
+          "in" : "query",
+          "description" : "Your customers' IP address can be passed to us for storage purposes. Soon we will be using this information for anti-fraud and verification purposes. With this information we will be able to back-test your verifications when this feature is released.\r\nBoth IPv4 and IPv6 style IP addresses are acceptable.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_street1",
+          "in" : "query",
+          "description" : "The primary street address of the customer. This is automatically normalized.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "address_subdivision",
+          "in" : "query",
+          "description" : "The subdivision of the entered country. For instance in the United States, this would be a 'state'.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "address_street2",
+          "in" : "query",
+          "description" : "The second address line typically used for apartment or suite numbers. This is automatically normalized.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "note",
+          "in" : "query",
+          "description" : "You can store additional information about the candidate here such as your internal system's identifier for this individual. This will allow you to keep track of them.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "address_postal_code",
+          "in" : "query",
+          "description" : "The postal code of the person. Also known as a ZIP code.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "address_city",
+          "in" : "query",
+          "description" : "The city name of the customer. This is automatically normalized.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "address_country_code",
+          "in" : "query",
+          "description" : "The country of the customer. Should be of the ISO code form.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "birth_day",
+          "in" : "query",
+          "description" : "The integer associated with the day of birth.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/peopleResponse"
+            }
+          }
+        }
+      }
+    },
+    "/people/{PERSON_ID}" : {
+      "get" : {
+        "summary" : "You can pull up a single person at any time (typically this is used for auditing purposes).",
+        "description" : "You can pull up a single person at any time (typically this ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/peopleResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "PERSON_ID",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/question_sets" : {
+      "get" : {
+        "summary" : "List all question sets\r\n\r\nThis endpoint will allow you to see a historical record of all question sets that you have created.\r\n\r\nThe list is displayed in reverse chronological order (newer question sets appear first).\r\n",
+        "description" : "List all question sets\r\n\r\nThis endpoint will allow you to see ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/historicalQuestionSetsResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "This method will create a new question set to ask your users. You can call this endpoint multiple times with the same person ID and the questions asked as well as the order that everything is presented in will be randomized.",
+        "description" : "This method will create a new question set to ask your users...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "person_id",
+          "in" : "query",
+          "description" : "The ID of the person, and thus the identity, on which to base the question sets. You can create multiple question sets using the same question set ID.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "time_limit",
+          "in" : "query",
+          "description" : "How long after creating a question set that the `expired` boolean will remain `false`. This is inputted in seconds and defaults to `0`, which means no time limit. This allows you to make sure that your customer does not take too long to answer a question set.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/questionResponse"
+            }
+          }
+        }
+      }
+    },
+    "/question_sets/{QUESTION_SET_ID}" : {
+      "get" : {
+        "summary" : "Retrieve an existing question set\r\n\r\nThis allows you to retrieve a question set you have created. If you have already scored the question set, we will also return the last score of your submitted answers.\r\n",
+        "description" : "Retrieve an existing question set\r\n\r\nThis allows you to retrie...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/questionResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "QUESTION_SET_ID",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/question_sets/{QUESTION_SET_ID}/score" : {
+      "post" : {
+        "summary" : "Once the user has finished answering the questions, you will need to send us their answers so that we can score it. The scoring system will score it based on how many questions you submit, so if you would only like to ask 3 questions, only submit the 3 questions which you would like scored.",
+        "description" : "Once the user has finished answering the questions, you will...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "answers[][answer_id]",
+          "in" : "query",
+          "description" : "The ID of the answer that the user picks while answering questions. The ID is found in the response when creating a question set.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "answers[][question_id]",
+          "in" : "query",
+          "description" : "The ID of the question to which the user is responding. This ID is found in the response when creating a question set.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "answers",
+          "in" : "query",
+          "description" : "An array of objects containing question_id and answer_id pairs. This is the container for all of the user's answers.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/questionResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "QUESTION_SET_ID",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/watchlists" : {
+      "post" : {
+        "summary" : "This endpoint creates a new verification. The information will be run through our verification process and then returned with additional information that will help you determine the authenticity of the information given.",
+        "description" : "This endpoint creates a new verification. The information wi...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "similarity_threshold",
+          "in" : "query",
+          "description" : "The sensitivity of search results. Expects a float between 0.0 and 1.0 where 1.0 is exact matches only and 0.0 is lenient matching. The default value is 0.7.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "match_type",
+          "in" : "query",
+          "description" : "Can be either the value person or company and will restrict the search to only search for people or entities on the watchlists.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "candidate_id",
+          "in" : "query",
+          "description" : "The ID the candidate you have created. We search on all of the information provided in the associated profile.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/watchlistsResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "questionResponse" : {
+      "type" : "object",
+      "properties" : {
+        "object" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "number"
+        },
+        "updated_at" : {
+          "type" : "number"
+        },
+        "livemode" : {
+          "type" : "boolean"
+        },
+        "person_id" : {
+          "type" : "string"
+        },
+        "score" : {
+          "type" : "number"
+        },
+        "expired" : {
+          "type" : "boolean"
+        },
+        "time_limit" : {
+          "type" : "number"
+        }
+      }
+    },
+    "candidateHitsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "object" : {
+          "type" : "string"
+        }
+      }
+    },
+    "listAllCandidatesResponse" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "number"
+        },
+        "has_more" : {
+          "type" : "boolean"
+        },
+        "object" : {
+          "type" : "string"
+        }
+      }
+    },
+    "historicalQuestionSetsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "number"
+        },
+        "has_more" : {
+          "type" : "boolean"
+        },
+        "object" : {
+          "type" : "string"
+        }
+      }
+    },
+    "verificationsListResponse" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "number"
+        },
+        "has_more" : {
+          "type" : "boolean"
+        },
+        "object" : {
+          "type" : "string"
+        }
+      }
+    },
+    "candidateResponse" : {
+      "type" : "object",
+      "properties" : {
+        "object" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "number"
+        },
+        "updated_at" : {
+          "type" : "number"
+        },
+        "livemode" : {
+          "type" : "boolean"
+        },
+        "note" : {
+          "type" : "string"
+        },
+        "ssn" : {
+          "type" : "string"
+        },
+        "passport" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "date_of_birth" : {
+          "type" : "string"
+        },
+        "name_first" : {
+          "type" : "string"
+        },
+        "name_middle" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "name_last" : {
+          "type" : "string"
+        },
+        "address_street1" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "address_street2" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "address_city" : {
+          "type" : "string"
+        },
+        "address_subdivision" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "address_postal_code" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "address_country_code" : {
+          "type" : "string"
+        }
+      }
+    },
+    "listAllCompaniesResponse" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "number"
+        },
+        "has_more" : {
+          "type" : "boolean"
+        },
+        "object" : {
+          "type" : "string"
+        }
+      }
+    },
+    "watchlistsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "livemode" : {
+          "type" : "boolean"
+        },
+        "count" : {
+          "type" : "number"
+        },
+        "matches" : {
+          "type" : "array"
+        }
+      }
+    },
+    "companyResponse" : {
+      "type" : "object",
+      "properties" : {
+        "object" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "number"
+        },
+        "updated_at" : {
+          "type" : "number"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "livemode" : {
+          "type" : "boolean"
+        },
+        "entity_name" : {
+          "type" : "string"
+        },
+        "tax_id" : {
+          "type" : "string"
+        },
+        "incorporation_day" : {
+          "type" : "number"
+        },
+        "incorporation_month" : {
+          "type" : "number"
+        },
+        "incorporation_year" : {
+          "type" : "number"
+        },
+        "incorporation_state" : {
+          "type" : "string"
+        },
+        "incorporation_country_code" : {
+          "type" : "string"
+        },
+        "incorporation_type" : {
+          "type" : "string"
+        },
+        "dbas" : {
+          "type" : "string"
+        },
+        "registration_number" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "phone_number" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        },
+        "ip_address" : {
+          "type" : "string"
+        },
+        "address_street1" : {
+          "type" : "string"
+        },
+        "address_street2" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "address_city" : {
+          "type" : "string"
+        },
+        "address_subdivision" : {
+          "type" : "string"
+        },
+        "address_postal_code" : {
+          "type" : "string"
+        },
+        "address_country_code" : {
+          "type" : "string"
+        },
+        "details" : {
+          "type" : "object",
+          "properties" : {
+            "ofac" : {
+              "type" : "string"
+            },
+            "state" : {
+              "type" : "string"
+            },
+            "tax_id" : {
+              "type" : "string"
+            },
+            "address" : {
+              "type" : "string"
+            },
+            "entity_name" : {
+              "type" : "string"
+            },
+            "incorp_date" : {
+              "type" : "string"
+            },
+            "country_code" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "peopleResponse" : {
+      "type" : "object",
+      "properties" : {
+        "object" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "number"
+        },
+        "updated_at" : {
+          "type" : "number"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "livemode" : {
+          "type" : "boolean"
+        },
+        "phone_number" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "ip_address" : {
+          "type" : "string"
+        },
+        "birth_day" : {
+          "type" : "number"
+        },
+        "birth_month" : {
+          "type" : "number"
+        },
+        "birth_year" : {
+          "type" : "number"
+        },
+        "name_first" : {
+          "type" : "string"
+        },
+        "name_middle" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "name_last" : {
+          "type" : "string"
+        },
+        "address_street1" : {
+          "type" : "string"
+        },
+        "address_street2" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "address_city" : {
+          "type" : "string"
+        },
+        "address_subdivision" : {
+          "type" : "string"
+        },
+        "address_postal_code" : {
+          "type" : "string"
+        },
+        "address_country_code" : {
+          "type" : "string"
+        },
+        "document_type" : {
+          "type" : "string"
+        },
+        "document_value" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        },
+        "details" : {
+          "type" : "object",
+          "properties" : {
+            "address" : {
+              "type" : "string"
+            },
+            "address_risk" : {
+              "type" : "string"
+            },
+            "identification" : {
+              "type" : "string"
+            },
+            "date_of_birth" : {
+              "type" : "string"
+            },
+            "ofac" : {
+              "type" : "string"
+            },
+            "pep" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "candidatesHistoryResponse" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "object" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "number"
+              },
+              "updated_at" : {
+                "type" : "number"
+              },
+              "livemode" : {
+                "type" : "boolean"
+              },
+              "note" : {
+                "type" : "object",
+                "properties" : { }
+              },
+              "ssn" : {
+                "type" : "object",
+                "properties" : { }
+              },
+              "passport" : {
+                "type" : "object",
+                "properties" : { }
+              },
+              "date_of_birth" : {
+                "type" : "object",
+                "properties" : { }
+              },
+              "name_first" : {
+                "type" : "string"
+              },
+              "name_middle" : {
+                "type" : "object",
+                "properties" : { }
+              },
+              "name_last" : {
+                "type" : "string"
+              },
+              "address_street1" : {
+                "type" : "object",
+                "properties" : { }
+              },
+              "address_street2" : {
+                "type" : "object",
+                "properties" : { }
+              },
+              "address_city" : {
+                "type" : "object",
+                "properties" : { }
+              },
+              "address_subdivision" : {
+                "type" : "object",
+                "properties" : { }
+              },
+              "address_postal_code" : {
+                "type" : "object",
+                "properties" : { }
+              },
+              "address_country_code" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "candidateDeleteResponse" : {
+      "type" : "object",
+      "properties" : {
+        "object" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "deleted" : {
+          "type" : "boolean"
+        },
+        "created_at" : {
+          "type" : "number"
+        },
+        "updated_at" : {
+          "type" : "number"
+        },
+        "livemode" : {
+          "type" : "boolean"
+        },
+        "note" : {
+          "type" : "string"
+        },
+        "ssn" : {
+          "type" : "string"
+        },
+        "passport" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "date_of_birth" : {
+          "type" : "string"
+        },
+        "name_first" : {
+          "type" : "string"
+        },
+        "name_middle" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "name_last" : {
+          "type" : "string"
+        },
+        "address_street1" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "address_street2" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "address_city" : {
+          "type" : "string"
+        },
+        "address_subdivision" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "address_postal_code" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "address_country_code" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

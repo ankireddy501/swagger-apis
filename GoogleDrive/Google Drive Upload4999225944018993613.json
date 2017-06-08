@@ -1,0 +1,267 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Google Drive is a file storage and synchronization service created and managed by Google. It allows users to store documents in the cloud, share files, and edit documents with collaborators. Google Drive encompasses Google Docs, Sheets and Slides, an office suite that permits collaborative editing of documents, spreadsheets, presentations, drawings, forms, and more.",
+    "version" : "v2",
+    "title" : "Google Drive Upload"
+  },
+  "host" : "www.googleapis.com",
+  "basePath" : "/upload/drive/v2",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/files" : {
+      "post" : {
+        "summary" : "Insert a new file.",
+        "description" : "Insert a new file.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "X-Upload-Content-Length",
+          "in" : "header",
+          "description" : "Set to the number of bytes of upload data to be transferred in subsequent requests.  If the length is unknown at the time of this request, you can omit this header.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "timedTextLanguage",
+          "in" : "query",
+          "description" : "The language of the timed text.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "X-Upload-Content-Type",
+          "in" : "header",
+          "description" : "Set to the media MIME type of the upload data to be transferred in subsequent requests.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ocr",
+          "in" : "query",
+          "description" : "Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads. (Default: false)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/newFileRequest"
+          }
+        }, {
+          "name" : "convert",
+          "in" : "query",
+          "description" : "Whether to convert this file to the corresponding Google Docs format. (Default: false)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "timedTextTrackName",
+          "in" : "query",
+          "description" : "The timed text track name.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ocrLanguage",
+          "in" : "query",
+          "description" : "If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "pinned",
+          "in" : "query",
+          "description" : "Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions. (Default: false)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "useContentAsIndexableText",
+          "in" : "query",
+          "description" : "Whether to use the content as indexable text. (Default: false)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "uploadType",
+          "in" : "query",
+          "description" : "The type of upload request to the /upload URI. Acceptable values are:\r\nmedia - Simple upload. Upload the media only, without any metadata.\r\nmultipart - Multipart upload. Upload both the media and its metadata, in a single request.\r\nresumable - Resumable upload. Upload the file in a resumable fashion, using a series of at least two requests where the first request includes the metadata.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "visibility",
+          "in" : "query",
+          "description" : "The visibility of the new file. This parameter is only relevant when convert=false. \r\n\r\nAcceptable values are:\r\n\"DEFAULT\": The visibility of the new file is determined by the user's default visibility/sharing policies. (default)\r\n\"PRIVATE\": The new file will be visible to only the owner.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/file"
+            }
+          }
+        }
+      }
+    },
+    "/files/{fileId}" : {
+      "put" : {
+        "summary" : "Updates file metadata and/or content.",
+        "description" : "Updates file metadata and/or content.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "removeParents",
+          "in" : "query",
+          "description" : "Comma-separated list of parent IDs to remove.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "timedTextTrackName",
+          "in" : "query",
+          "description" : "The timed text track name.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ocr",
+          "in" : "query",
+          "description" : "Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads. (Default: false)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "X-Upload-Content-Type",
+          "in" : "header",
+          "description" : "Set to the media MIME type of the upload data to be transferred in subsequent requests.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "updateViewedDate",
+          "in" : "query",
+          "description" : "Whether to update the view date after successfully updating the file. (Default: true)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "pinned",
+          "in" : "query",
+          "description" : "Whether to pin the new revision. A file can have a maximum of 200 pinned revisions. (Default: false)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "ocrLanguage",
+          "in" : "query",
+          "description" : "If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "newRevision",
+          "in" : "query",
+          "description" : "Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota). (Default: true)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "X-Upload-Content-Length",
+          "in" : "header",
+          "description" : "Set to the number of bytes of upload data to be transferred in subsequent requests.  If the length is unknown at the time of this request, you can omit this header.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "timedTextLanguage",
+          "in" : "query",
+          "description" : "The language of the timed text.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/newFileRequest"
+          }
+        }, {
+          "name" : "convert",
+          "in" : "query",
+          "description" : "Whether to convert this file to the corresponding Google Docs format. (Default: false)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "setModifiedDate",
+          "in" : "query",
+          "description" : "Whether to set the modified date with the supplied modified date. (Default: false)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "uploadType",
+          "in" : "query",
+          "description" : "The type of upload request to the /upload URI. Acceptable values are:\r\nmedia - Simple upload. Upload the media only, without any metadata.\r\nmultipart - Multipart upload. Upload both the media and its metadata, in a single request.\r\nresumable - Resumable upload. Upload the file in a resumable fashion, using a series of at least two requests where the first request includes the metadata.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "addParents",
+          "in" : "query",
+          "description" : "Comma-separated list of parent IDs to add.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "useContentAsIndexableText",
+          "in" : "query",
+          "description" : "Whether to use the content as indexable text. (Default: false)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/file"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "fileId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/files/{fileId}/realtime" : {
+      "put" : {
+        "summary" : "Overwrites the Realtime API data model associated with this file with the provided JSON data model.\r\n\r\nThis method supports an /upload URI and accepts uploaded media with the following characteristics:\r\n\r\nMaximum file size: 10MB\r\nAccepted Media MIME types: */*\r\n\r\nIf successful, this method returns an empty response body.\r\n",
+        "description" : "Overwrites the Realtime API data model associated with this ...",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "baseRevision",
+          "in" : "query",
+          "description" : "The revision of the model to diff the uploaded model against. If set, the uploaded model is diffed against the provided revision and those differences are merged with any changes made to the model after the provided revision. If not set, the uploaded model replaces the current model on the server.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "uploadType",
+          "in" : "query",
+          "description" : "The type of upload request to the /upload URI. Acceptable values are:\r\nmedia - Simple upload. Upload the media data.\r\nresumable - Resumable upload. Upload the file in a resumable fashion, using a series of at least two requests.\r\n",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "fileId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "newFileRequest" : {
+      "type" : "object",
+      "properties" : {
+        "title" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

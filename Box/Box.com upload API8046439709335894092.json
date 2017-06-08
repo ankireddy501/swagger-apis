@@ -1,0 +1,243 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : The Box Content API gives you access to the content management features you see in our web app and lets you extend them for use in your own app. It strives to be RESTful and is organized around the main resources you're familiar with from the Box web interface.",
+    "version" : "2.0",
+    "title" : "Box.com upload API"
+  },
+  "host" : "upload.box.com",
+  "basePath" : "/api/2.0",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/files/content" : {
+      "post" : {
+        "summary" : "Upload a File.\r\nUse the Uploads API to allow users to add a new file. The user can then\r\nupload a file by specifying the destination folder for the file. If the user\r\nprovides a file name that already exists in the destination folder, the\r\nuser will receive an error. A different Box URL,\r\nhttps://upload.box.com/api/2.0/files/content, handles uploads. This API\r\nuses the multipart post method to complete all upload tasks. You can\r\noptionally specify a Content-MD5 header with the SHA1 hash of the file\r\nto ensure that the file is not corrupted in transit.\r\nSupported Filenames - The only names that will not be supported are those\r\nthat contain / or \\, names with leading or trailing spaces, and the special\r\nnames '.' and '..'.\r\nA full file object is returned inside of a collection if the ID is valid and\r\nif the update is successful. An error is thrown when a name collision occurs.\r\n",
+        "description" : "Upload a File.\r\nUse the Uploads API to allow users to add a n...",
+        "operationId" : "POST",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "name" : "Content-MD5",
+          "in" : "header",
+          "description" : "The SHA1 hash of the file",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model569"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/uploadFile-response"
+            }
+          }
+        }
+      }
+    },
+    "/files/{fileId}/content" : {
+      "post" : {
+        "summary" : "Upload a New Version of a File.\r\nNote that uploads are handled through https://upload.box.com. This method is\r\nused to upload a new version of an existing file in a user's account. Similar\r\nto regular file uploads, these are performed as multipart form uploads An\r\noptional If-Match header can be included to ensure that client only overwrites\r\nthe file if it knows about the latest version. The filename on Box will remain\r\nthe same as the previous version. To update the file's name, use PUT /files/{id}\r\nSupported Filenames - The only names that will not be supported are those tha\r\ncontain / or \\, names with leading or trailing spaces, and the special names\r\n'.' and '..'.\r\nThe updated file object will be returned inside of a file collection. Errors\r\nmay occur due to bad filenames and invalid file IDs.\r\n",
+        "description" : "Upload a New Version of a File.\r\nNote that uploads are handle...",
+        "operationId" : "POST",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "name" : "If-Match",
+          "in" : "header",
+          "description" : "This is in the field of the file object.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model555"
+          }
+        }, {
+          "name" : "Content-MD5",
+          "in" : "header",
+          "description" : "The SHA1 hash of the file.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/uploadFile-response"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "fileId",
+        "in" : "path",
+        "description" : "Box's unique string identifying this file.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "uploadFile-response" : {
+      "type" : "object",
+      "properties" : {
+        "total_count" : {
+          "type" : "integer"
+        },
+        "entries" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "content_created_at" : {
+                "type" : "string"
+              },
+              "content_modified_at" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "created_by" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "description" : {
+                "type" : "string"
+              },
+              "etag" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "item_status" : {
+                "type" : "string"
+              },
+              "modified_at" : {
+                "type" : "string"
+              },
+              "modified_by" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "owned_by" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "login" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "parent" : {
+                "type" : "object",
+                "properties" : {
+                  "type" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "string"
+                  },
+                  "sequence_id" : {
+                    "type" : "string"
+                  },
+                  "etag" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "path_collection" : {
+                "type" : "object",
+                "properties" : {
+                  "total_count" : {
+                    "type" : "integer"
+                  },
+                  "entries" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "object",
+                      "properties" : {
+                        "id" : {
+                          "type" : "string"
+                        },
+                        "name" : {
+                          "type" : "string"
+                        },
+                        "type" : {
+                          "type" : "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "sequence_id" : {
+                "type" : "string"
+              },
+              "sha1" : {
+                "type" : "string"
+              },
+              "size" : {
+                "type" : "integer"
+              },
+              "type" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

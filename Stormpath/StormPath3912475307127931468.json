@@ -1,0 +1,1634 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Stormpath is the first easy, secure user management and authentication service for developers. Fast and intuitive to use, Stormpath enables plug-and-play security and accelerates application development on any platform. Built for developers, it offers an easy API, open source SDKs, and an active community. The flexible cloud service can manage millions of users with a scalable pricing model that is ideal for projects of any size. By offloading user management and authentication to Stormpath, developers can bring new applications to market faster, reduce development and operations costs, and protect their users with best-in-class security.",
+    "version" : "v1",
+    "title" : "StormPath"
+  },
+  "host" : "api.stormpath.com",
+  "basePath" : "/v1",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/accountStoreMappings/{accountStoreMappingId}" : {
+      "get" : {
+        "summary" : "Retreive an account store mapping.",
+        "description" : "Retreive an account store mapping.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/RetrieveAccountStoreMappings"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Update an account store mapping",
+        "description" : "Update an account store mapping",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateAccountStoreMapping"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/UpdateAccountStoreMappingresp"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete an account store mapping",
+        "description" : "Delete an account store mapping",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "accountStoreMappingId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/accounts/emailVerificationTokens/{verificationToken}" : {
+      "post" : {
+        "summary" : "Verify the email.",
+        "description" : "Verify the email.",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/EmailVerificationTokens"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "verificationToken",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/accounts/{accountId}" : {
+      "get" : {
+        "summary" : "Retrieve an account",
+        "description" : "Retrieve an account",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "expand",
+          "in" : "query",
+          "description" : "The following Account attributes are expandable: customData, tenant, directory, groups, groupMemberships. Also, because groups and groupMemberships are Collection Resources themselves, you can additionally control pagination for either expanded collection.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/RetrieveAccount"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Update an account",
+        "description" : "Update an account",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateAccount"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/UpdateAccountresp"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete an account",
+        "description" : "Delete an account",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "accountId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/accounts/{accountId}/customData" : {
+      "get" : {
+        "summary" : "Retrieve an account custom data",
+        "description" : "Retrieve an account custom data",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/RetrieveAccountCustomData"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Update account custom data",
+        "description" : "Update account custom data",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateAccountCustomData"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/UpdateAccountCustomDataresp"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete all of an accounts custom data",
+        "description" : "Delete all of an accounts custom data",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "accountId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/accounts/{accountId}/customData/{fieldName}" : {
+      "delete" : {
+        "summary" : "Delete a customData field.",
+        "description" : "Delete a customData field.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "fieldName",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "accountId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/accounts/{accountId}/groupMemberships" : {
+      "get" : {
+        "summary" : "Retreive a paginated list of the group memberships where the account is involved.",
+        "description" : "Retreive a paginated list of the group memberships where the...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/GroupMembershipsList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/accounts/{accountId}/groups" : {
+      "get" : {
+        "summary" : "Retreive a Collection Resource containing links for all groups where a specific account is a member.",
+        "description" : "Retreive a Collection Resource containing links for all grou...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/AccountGroupsList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/applications/{applicationId}" : {
+      "get" : {
+        "summary" : "Retrieve application contents.",
+        "description" : "Retrieve application contents.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "expand",
+          "in" : "query",
+          "description" : "The following Application attributes are expandable: tenant, accounts, groups. Also, because accounts and groups are Collection Resources themselves, you can additionally control pagination for either expanded collection.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/ReturnHrefAttribute"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Update an application. Unspecified attributes are not changed, but at least one attribute must be specified.\r\n",
+        "description" : "Update an application. Unspecified attributes are not change...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateApplication"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/UpdateApplicationresp"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete an application",
+        "description" : "Delete an application",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "applicationId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/applications/{applicationId}/accountStoreMappings" : {
+      "get" : {
+        "summary" : "List an applications assigned account stores.",
+        "description" : "List an applications assigned account stores.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/StoreMappingsList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "applicationId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/applications/{applicationId}/loginAttempts" : {
+      "post" : {
+        "summary" : "Execute an account login attempt. An HTTP POST authenticates an associated application account. Only HTTP POST is supported.\r\n\r\n|Parameter|Required|Description|          \r\n|---|---|\r\n|type|true|The type of the login attempt. The only currently supported type is basic. Additional types will likely be supported in the future.|\r\n|value|true|The Base64 encoded username:plaintextPassword pair. For example, for username jsmith or email jsmith@email.com and plaintext password mySecretPassword this value attribute would be set to the following computed result: base64_encode(\"jsmith:mySecretPassword\"); The base64_encode method call is only an example. You will need to use the Base64 encoding method is available to you in your chosen programming language and/or software frameworks.|\r\n|accountStore|false|An optional link to the application's accountStore (directory or group) that you are certain contains the account attempting to login. Specifying this attribute can speed up logins if you know exactly which of the application's assigned account stores contains the account: Stormpath will not have to iterate over the assigned account stores to find the account to authenticate it. This can speed up logins significantly if you have many account stores (> 15) assigned to the application.|\r\n",
+        "description" : "Execute an account login attempt. An HTTP POST authenticates...",
+        "operationId" : "POST",
+        "consumes" : [ "application/josn" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/loginAttempt"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/LoginAttemp"
+            }
+          },
+          "400" : {
+            "description" : "If the login attempt fails, a 400 Bad Request is returned with an error payload explaining why the attempt failed",
+            "schema" : {
+              "$ref" : "#/definitions/LoginAttemptFailure"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "applicationId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/applications/{applicationId}/passwordResetTokens" : {
+      "post" : {
+        "summary" : "A successful HTTP POST sends a password reset email to the first discovered account associated with the corresponding application. The email recipient can then click a password reset URL in the email to reset their password in a web form.",
+        "description" : "A successful HTTP POST sends a password reset email to the f...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ResetEmail"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ResetEmailresp"
+            }
+          },
+          "400" : {
+            "description" : "If the password reset token creation fails, a 400 Bad Request is returned with an error payload explaining why the attempt failed.",
+            "schema" : {
+              "$ref" : "#/definitions/ResetEmailFailure"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "applicationId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/applications/{applicationId}/passwordResetTokens/{token}" : {
+      "get" : {
+        "summary" : "Retrieving a token resource successfully using an HTTP GET indicates that the token is valid. Thus, to validate a token, you call to the passwordResetTokens end point and specify the token captured from the query string as the specific resource to request",
+        "description" : "Retrieving a token resource successfully using an HTTP GET i...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/RetrievingTokenResource"
+            }
+          },
+          "404" : {
+            "description" : "If the password reset token is invalid - it never existed or has expired - a 404 Not Found response is returned.",
+            "schema" : {
+              "$ref" : "#/definitions/RetrievingTokenResourceFailure"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "token",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "applicationId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/directories/{directoryId}" : {
+      "get" : {
+        "summary" : "Retrieve a cloud directory",
+        "description" : "Retrieve a cloud directory",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/RetrieveDirectory"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Update a cloud directory",
+        "description" : "Update a cloud directory",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateDirectory"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/UpdateDirectoryresp"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a cloud directory",
+        "description" : "Delete a cloud directory",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "directoryId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/groupMemberships/{groupMembershipId}" : {
+      "get" : {
+        "summary" : "Retrieve a group membership.\r\n",
+        "description" : "Retrieve a group membership.\r\n",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/RetrieveGroupMembership"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a group membership",
+        "description" : "Delete a group membership",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "groupMembershipId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/groups/{groupId}" : {
+      "get" : {
+        "summary" : "Retrieve a group",
+        "description" : "Retrieve a group",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "expand",
+          "in" : "query",
+          "description" : "The following Groups attributes are expandable: tenant, directory, accounts. Also, because accounts is a Collection Resources itself, you can additionally control pagination for either expanded collection.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/RetrieveGroup"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Update a group",
+        "description" : "Update a group",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateGroup"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a group",
+        "description" : "Delete a group",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "groupId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/groups/{groupId}/accountMemberships" : {
+      "get" : {
+        "summary" : "Retreive a Collection Resource containing the group memberships to which a specific group is a member",
+        "description" : "Retreive a Collection Resource containing the group membersh...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/GroupMembershipsList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "groupId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/groups/{groupId}/accounts" : {
+      "get" : {
+        "summary" : "Retreive group accounts.",
+        "description" : "Retreive group accounts.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "q",
+          "in" : "query",
+          "description" : "A filter search consists of specifying a q query parameter and a corresponding search value on a Collection",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "The zero-based starting index in the entire collection of the first item to return. The default value is 0. This is a pagination-specific attribute.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The maximum number of collection items to return for a single request. Minimum value is 1. The maximum value is 100 and the default value is 25. This is a pagination-specific attribute.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "orderBy",
+          "in" : "query",
+          "description" : "A request for a Collection Resource can contain an optional orderBy query parameter. The query parameter value is a URL-encoded comma-delimited list of ordering statements.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "groupId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/tenants/current" : {
+      "get" : {
+        "summary" : "Because a REST caller can retrieve one and only one Tenant resource, it is often more convenient not to be concerned with the Tenant-specific URL is when performing a request, and instead use a simpler permanent alias.\r\n\r\nYou can request the current Tenant resource, and the API server will automatically issue a 302 redirect to the Tenant resource corresponding to the currently executing API caller. In other words, this endpoint redirects the API caller to their own Tenantâ€™s URI.\r\n",
+        "description" : "Because a REST caller can retrieve one and only one Tenant r...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      }
+    },
+    "/tenants/{tenantId}" : {
+      "get" : {
+        "summary" : "Execute a GET request with the tenant URI to retrieve the Tenant resource. You may only retrieve your own Tenant: every API Key that executes REST requests is associated with a Tenant, and the request caller may only retrieve the Tenant corresponding to the API Key used.",
+        "description" : "Execute a GET request with the tenant URI to retrieve the Te...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/RetrieveTenant"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "tenantId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/tenants/{tenantId}/applications" : {
+      "get" : {
+        "summary" : "You can list your tenants applications by sending a GET request to your tenants applications Collection Resource href URL. The response is a paginated list of tenant applications.",
+        "description" : "You can list your tenants applications by sending a GET requ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "q",
+          "in" : "query",
+          "description" : "A filter search consists of specifying a q query parameter and a corresponding search value on a Collection",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "The zero-based starting index in the entire collection of the first item to return. The default value is 0. This is a pagination-specific attribute.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "orderBy",
+          "in" : "query",
+          "description" : "A request for a Collection Resource can contain an optional orderBy query parameter. The query parameter value is a URL-encoded comma-delimited list of ordering statements.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The maximum number of collection items to return for a single request. Minimum value is 1. The maximum value is 100 and the default value is 25. This is a pagination-specific attribute.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "The name of the application. Must be unique across all applications within a tenant.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/TenantAplications"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "tenantId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/tenants/{tenantId}/directories" : {
+      "get" : {
+        "summary" : "List your tenent's directories.",
+        "description" : "List your tenent's directories.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "orderBy",
+          "in" : "query",
+          "description" : "A request for a Collection Resource can contain an optional orderBy query parameter. The query parameter value is a URL-encoded comma-delimited list of ordering statements.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "description" : "A filter search consists of specifying a q query parameter and a corresponding search value on a Collection",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The maximum number of collection items to return for a single request. Minimum value is 1. The maximum value is 100 and the default value is 25. This is a pagination-specific attribute.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "The zero-based starting index in the entire collection of the first item to return. The default value is 0. This is a pagination-specific attribute.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK. The request was successful and the response body contains the representation requested.",
+            "schema" : {
+              "$ref" : "#/definitions/DirectoriesList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "tenantId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "LoginAttemptFailure" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "number"
+        },
+        "code" : {
+          "type" : "number"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "developerMessage" : {
+          "type" : "string"
+        },
+        "moreInfo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RetrieveAccount" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "username" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "fullName" : {
+          "type" : "string"
+        },
+        "givenName" : {
+          "type" : "string"
+        },
+        "middleName" : {
+          "type" : "string"
+        },
+        "surname" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "customData" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "groups" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "groupMemberships" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "directory" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "tenant" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "emailVerificationToken" : {
+          "type" : "object",
+          "properties" : { }
+        }
+      }
+    },
+    "UpdateDirectory" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UpdateAccount" : {
+      "type" : "object",
+      "properties" : {
+        "username" : {
+          "type" : "string"
+        },
+        "givenName" : {
+          "type" : "string"
+        },
+        "surname" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UpdateApplicationresp" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "tenant" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "accounts" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "groups" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "passwordResetTokens" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "RetrieveTenant" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "key" : {
+          "type" : "string"
+        },
+        "applications" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "directories" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "AccountGroupsList" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "offset" : {
+          "type" : "number"
+        },
+        "limit" : {
+          "type" : "number"
+        }
+      }
+    },
+    "loginAttempt" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "value" : {
+          "type" : "string"
+        },
+        "accountStore" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ResetEmailresp" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "account" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "RetrieveAccountStoreMappings" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "accountStore" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "application" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "listIndex" : {
+          "type" : "number"
+        },
+        "isDefaultAccountStore" : {
+          "type" : "boolean"
+        },
+        "isDefaultGroupStore" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "GroupMembershipsList" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "offset" : {
+          "type" : "number"
+        },
+        "limit" : {
+          "type" : "number"
+        }
+      }
+    },
+    "RetrieveGroupMembership" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "account" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "group" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "UpdateAccountStoreMapping" : {
+      "type" : "object",
+      "properties" : {
+        "isDefaultAccountStore" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "RetrievingTokenResource" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "account" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "UpdateAccountresp" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "username" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "fullName" : {
+          "type" : "string"
+        },
+        "givenName" : {
+          "type" : "string"
+        },
+        "middleName" : {
+          "type" : "string"
+        },
+        "surname" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "customData" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "groups" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "groupMemberships" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "directory" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "tenant" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "emailVerificationToken" : {
+          "type" : "object",
+          "properties" : { }
+        }
+      }
+    },
+    "ResetEmail" : {
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TenantAplications" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "offset" : {
+          "type" : "number"
+        },
+        "limit" : {
+          "type" : "number"
+        }
+      }
+    },
+    "ResetEmailFailure" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "number"
+        },
+        "code" : {
+          "type" : "number"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "developerMessage" : {
+          "type" : "string"
+        },
+        "moreInfo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UpdateApplication" : {
+      "type" : "object",
+      "properties" : {
+        "description" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RetrieveDirectory" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "accounts" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "groups" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "tenant" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "RetrieveGroup" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "directory" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "tenant" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "accounts" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "LoginAttemp" : {
+      "type" : "object",
+      "properties" : {
+        "account" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "UpdateAccountCustomData" : {
+      "type" : "object",
+      "properties" : {
+        "favoriteColor" : {
+          "type" : "string"
+        },
+        "hobby" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RetrievingTokenResourceFailure" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "number"
+        },
+        "code" : {
+          "type" : "number"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "developerMessage" : {
+          "type" : "string"
+        },
+        "moreInfo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UpdateAccountStoreMappingresp" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "accountStore" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "application" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "listIndex" : {
+          "type" : "number"
+        },
+        "isDefaultAccountStore" : {
+          "type" : "boolean"
+        },
+        "isDefaultGroupStore" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "UpdateAccountCustomDataresp" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "createdAt" : {
+          "type" : "string"
+        },
+        "modifiedAt" : {
+          "type" : "string"
+        },
+        "birthDate" : {
+          "type" : "string"
+        },
+        "favoriteColor" : {
+          "type" : "string"
+        },
+        "hobby" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ReturnHrefAttribute" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "tenant" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "accounts" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "groups" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "passwordResetTokens" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "DirectoriesList" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "offset" : {
+          "type" : "number"
+        },
+        "limit" : {
+          "type" : "number"
+        }
+      }
+    },
+    "UpdateDirectoryresp" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "tenant" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "accounts" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "groups" : {
+          "type" : "object",
+          "properties" : {
+            "href" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "EmailVerificationTokens" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        }
+      }
+    },
+    "StoreMappingsList" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "offset" : {
+          "type" : "number"
+        },
+        "limit" : {
+          "type" : "number"
+        }
+      }
+    },
+    "RetrieveAccountCustomData" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        },
+        "createdAt" : {
+          "type" : "string"
+        },
+        "modifiedAt" : {
+          "type" : "string"
+        },
+        "birthDate" : {
+          "type" : "string"
+        },
+        "favoriteColor" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UpdateGroup" : {
+      "type" : "object",
+      "properties" : {
+        "description" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,438 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : The Gmail API is a RESTful API that can be used to access Gmail mailboxes and send mail. The API can be used by Gmail and Google Apps users alike as an alternative to IMAP. It is intended primarily for programmatic, batch mailbox access as a web service. The API supports many of the basic operations available through the Gmail user interface like reading, composing, and sending mail. It also lets you manage labels on threads and messages and query for specific messages and threads. This API provides methods fo transferring data itself. See for details: https://developers.google.com/gmail/api/guides/uploads#uploads.",
+    "version" : "v1",
+    "title" : "GMail Media Upload"
+  },
+  "host" : "www.googleapis.com",
+  "basePath" : "/upload/gmail/v1/users",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/{userId}/drafts" : {
+      "post" : {
+        "summary" : "Media upload request. Creates a new draft with the DRAFT label.",
+        "description" : "Media upload request. Creates a new draft with the DRAFT lab...",
+        "operationId" : "POST",
+        "consumes" : [ "message/rfc822" ],
+        "parameters" : [ {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model359"
+          }
+        }, {
+          "name" : "uploadType",
+          "in" : "query",
+          "description" : "The type of upload request to the /upload URI. Acceptable values are\r\n\r\nmedia - Simple upload. Upload the media only, without any metadata.\r\n\r\nmultipart - Multipart upload. Upload both the media and its metadata, in a single request.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/drafts/send" : {
+      "post" : {
+        "summary" : "Media upload request. Sends the specified, existing draft to the recipients in the 'To', 'Cc', and 'Bcc' headers. ",
+        "description" : "Media upload request. Sends the specified, existing draft to...",
+        "operationId" : "POST",
+        "consumes" : [ "message/rfc822" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model565"
+          }
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "uploadType",
+          "in" : "query",
+          "description" : "The type of upload request to the /upload URI. Acceptable values are\r\n\r\nmedia - Simple upload. Upload the media only, without any metadata.\r\n\r\nmultipart - Multipart upload. Upload both the media and its metadata, in a single request.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/drafts/{id}" : {
+      "put" : {
+        "summary" : "Media upload request. Replaces a draft's content.",
+        "description" : "Media upload request. Replaces a draft's content.",
+        "operationId" : "PUT",
+        "consumes" : [ "message/rfc822" ],
+        "parameters" : [ {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "uploadType",
+          "in" : "query",
+          "description" : "The type of upload request to the /upload URI. Acceptable values are\r\n\r\nmedia - Simple upload. Upload the media only, without any metadata.\r\n\r\nmultipart - Multipart upload. Upload both the media and its metadata, in a single request.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model101"
+          }
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/messages" : {
+      "post" : {
+        "summary" : "Media upload request. Directly inserts a message into only this user's mailbox. Does not send a message.",
+        "description" : "Media upload request. Directly inserts a message into only t...",
+        "operationId" : "POST",
+        "consumes" : [ "message/rfc822" ],
+        "parameters" : [ {
+          "name" : "uploadType",
+          "in" : "query",
+          "description" : "The type of upload request to the /upload URI. Acceptable values are\r\n\r\nmedia - Simple upload. Upload the media only, without any metadata.\r\n\r\nmultipart - Multipart upload. Upload both the media and its metadata, in a single request.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model242"
+          }
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/messages/import" : {
+      "post" : {
+        "summary" : "Media upload request. Directly imports a message into only this user's mailbox, similar to receiving via SMTP. Does not send a message.",
+        "description" : "Media upload request. Directly imports a message into only t...",
+        "operationId" : "POST",
+        "consumes" : [ "message/rfc822" ],
+        "parameters" : [ {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model59"
+          }
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "uploadType",
+          "in" : "query",
+          "description" : "The type of upload request to the /upload URI. Acceptable values are\r\n\r\nmedia - Simple upload. Upload the media only, without any metadata.\r\n\r\nmultipart - Multipart upload. Upload both the media and its metadata, in a single request.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "notFound" : {
+      "type" : "object",
+      "properties" : {
+        "error" : {
+          "type" : "object",
+          "properties" : {
+            "code" : {
+              "type" : "number"
+            },
+            "message" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "invalidCredentials" : {
+      "type" : "object",
+      "properties" : {
+        "error" : {
+          "type" : "object",
+          "properties" : {
+            "code" : {
+              "type" : "number"
+            },
+            "message" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

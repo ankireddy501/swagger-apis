@@ -1,0 +1,44 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Tracker is a simple, story-based project planning tool that allows teams to collaborate and react instantly to real-world changes. It's based on agile software development methods, but it can be used on a variety of types of projects. Tracker frees you up to focus on getting things done, without getting bogged down keeping your plans in sync with reality. This API consists of a single method which is responsible for attachment downloads.",
+    "version" : "v5",
+    "title" : "PivotalTracker Attachment Download"
+  },
+  "host" : "www.pivotaltracker.com",
+  "basePath" : "/",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/file_attachments/{file_attachment_id}/download" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "inline",
+          "in" : "query",
+          "description" : "Determines if server should include response headers that would cause a browser to show the attachment in a new tab or window (inline=true) or show a Save dialog box (inline=false). Default is false.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "file_attachment_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  }
+}

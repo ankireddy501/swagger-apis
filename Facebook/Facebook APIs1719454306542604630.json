@@ -1,0 +1,82 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Facebook is a social utility that connects people with friends and others who work, study and live around them.",
+    "version" : "1.1",
+    "title" : "Facebook APIs"
+  },
+  "host" : "www.graph-video.facebook.com",
+  "basePath" : "",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/{event-id}/videos" : {
+      "post" : {
+        "summary" : "You can publish a video to an event by issuing an HTTP POST request to https://graph-video.facebook.com/EVENT_ID/videos with a user access_token",
+        "description" : "You can publish a video to an event by issuing an HTTP POST ...",
+        "operationId" : "POST",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "name" : "method",
+          "in" : "query",
+          "description" : "\"To support clients that do not support all HTTP methods, you can alternatively issue a POST request to an endpoint with the \r\nadditional argument method=delete to override the HTTP method.\"\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model796"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/id"
+            }
+          },
+          "400" : {
+            "description" : "458 App Not Installed\r\nThe user has not logged into your app, try logging them in again.\r\n459 User Checkpointed\r\nPerson needs to log onto www.facebook.com, or m.facebook.com to correct issue.\r\n460 Password Changed\r\nOn iOS 6 and above, if the person logged in using the OS-integrated flow, they should be directed to Facebook OS settings on the device to update their password. \r\nOtherwise they must login to the app again.\r\n463 Expired\r\nLogin status or access token has expired, been revoked, or is otherwise invalid - Handle expired access tokens.\r\n464 Unconfirmed User\r\nPerson needs to log onto www.facebook.com, or m.facebook.com to correct issue.\r\n467 Invalid access token\r\nAccess token has expired, been revoked, or is otherwise invalid - Handle expired access tokens.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "id" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "error" : {
+      "type" : "object",
+      "properties" : {
+        "error" : {
+          "type" : "object",
+          "properties" : {
+            "message" : {
+              "type" : "string"
+            },
+            "type" : {
+              "type" : "string"
+            },
+            "code" : {
+              "type" : "number"
+            },
+            "error_subcode" : {
+              "type" : "number"
+            }
+          }
+        }
+      }
+    }
+  }
+}

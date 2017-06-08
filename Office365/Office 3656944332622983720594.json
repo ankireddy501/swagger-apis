@@ -1,0 +1,1257 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Office 365 is the brand name used by Microsoft for a group of software plus services subscriptions that provides productivity software and related services to its subscribers.",
+    "version" : "1.0",
+    "title" : "Office 365"
+  },
+  "host" : "outlook.office365.com",
+  "basePath" : "/ews/odata/Me",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/AllServices" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      }
+    },
+    "/Calendar" : {
+      "get" : {
+        "summary" : "Retrieve information about the default calendar by using the Calendar property on the User entity.",
+        "description" : "Retrieve information about the default calendar by using the...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request completed successfully.",
+            "schema" : {
+              "$ref" : "#/definitions/calendar"
+            }
+          }
+        }
+      }
+    },
+    "/CalendarGroups" : {
+      "get" : {
+        "summary" : "You can request all the calendar groups in a mailbox (or a filtered list by using the $filter OData query parameter) via the CalendarGroups property on the User entity.",
+        "description" : "You can request all the calendar groups in a mailbox (or a f...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "You can create a calendar group by sending a POST request with a JSON representation of a CalendarGroup entity to the CalendarGroups property on the User entity.",
+        "description" : "You can create a calendar group by sending a POST request wi...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/addCalendarGroup"
+          }
+        } ],
+        "responses" : { }
+      }
+    },
+    "/CalendarGroups{calendargroup_id}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The server responds with a JSON representation of the calendar group.",
+            "schema" : {
+              "$ref" : "#/definitions/calendarRepresentation"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "Deleting a calendar group is as simple as sending a DELETE request to the URL of the CalendarGroup entity.",
+        "description" : "Deleting a calendar group is as simple as sending a DELETE r...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "patch" : {
+        "summary" : "You can update a calendar group by sending a PATCH request with a JSON payload that contains the properties to update. The Name property is the only writeable property on a CalendarGroup entity.",
+        "description" : "You can update a calendar group by sending a PATCH request w...",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updateCalendar"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "calendargroup_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/CalendarGroups{calendargroup_id}/Calendars" : {
+      "get" : {
+        "summary" : "You can request all the user's calendars (or a filtered list by using the $filter OData query parameter) via the Calendars property on the User entity, or request all calendars just in a specific calendar group via the Calendars property on the CalendarGroup entity.",
+        "description" : "You can request all the user's calendars (or a filtered list...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "post" : {
+        "summary" : "You can create a calendar by sending a POST request with a JSON representation of a Calendar entity to the Calendars property on a CalendarGroup entity (to create a calendar in that calendar group).",
+        "description" : "You can create a calendar by sending a POST request with a J...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/addCalendarGroup"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "calendargroup_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Calendars{calendar_id}" : {
+      "get" : {
+        "summary" : "You can also retrieve information about a specific calendar by using the Id property of the Calendar entity.",
+        "description" : "You can also retrieve information about a specific calendar ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/calendar"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deleting a calendar is as simple as sending a DELETE request to the URL of the Calendar entity.",
+        "description" : "Deleting a calendar is as simple as sending a DELETE request...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "patch" : {
+        "summary" : "You can update a calendar by sending a PATCH request with a JSON payload containing the properties to update. There's only one writeable property on a Calendar entity, the Name property.",
+        "description" : "You can update a calendar by sending a PATCH request with a ...",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updateCalendar"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Calendars{calendar_id}/Events" : {
+      "get" : {
+        "summary" : "You can request all the events across all calendars (or a filtered list by using the $filter OData query parameter) via the Events property on the User entity, or request all events in a specific calendar via the Events property on the Calendar entity.",
+        "description" : "You can request all the events across all calendars (or a fi...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/newEvent"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "calendar_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/ContactFolders{contact_folder_id}" : {
+      "get" : {
+        "summary" : "You can access the default contact folder by using the constant entity key \"Contacts\" to select a ContactFolder entity from the ContactsFolder property on the User entity. Alternatively, you can access a specific non-default contact folder by using the Id property of the corresponding ContactFolder entity.",
+        "description" : "You can access the default contact folder by using the const...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request completed successfully.",
+            "schema" : {
+              "$ref" : "#/definitions/contacts"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "contact_folder_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/ContactFolders{contact_folder_id}/ChildFolders" : {
+      "get" : {
+        "summary" : "All non-default contact folders are stored as children of the default contact folder. You can query for all non-default contact folders (or a filtered list by using the $filter OData query parameter) via the ChildFolders property on the default contact folder.",
+        "description" : "All non-default contact folders are stored as children of th...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "contact_folder_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/ContactFolders{contact_folder_id}/Contacts" : {
+      "get" : {
+        "summary" : "You can request all contacts (or a filtered set by using the $filter OData query parameter) in the user's default contact folder via the Contacts property on the User entity. To request contacts in a non-default contact folder, use the Contacts property on the corresponding ContactFolder entity.",
+        "description" : "You can request all contacts (or a filtered set by using the...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "post" : {
+        "summary" : "You can create a contact by sending a POST request with a JSON representation in the payload of a Contact entity to the Contacts property on either the User entity (to create a contact in the default contact folder), or on the ContactFolder entity (to create a contact in that contact folder).",
+        "description" : "You can create a contact by sending a POST request with a JS...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/createContact"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "contact_folder_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Contacts{contact_id}" : {
+      "get" : {
+        "summary" : "You can retrieve information about a specific contact by using the Id property of the Contact entity.",
+        "description" : "You can retrieve information about a specific contact by usi...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/contact"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "You can create a contact by sending a POST request with a JSON representation in the payload of a Contact entity to the Contacts property on either the User entity (to create a contact in the default contact folder), or on the ContactFolder entity (to create a contact in that contact folder).",
+        "description" : "You can create a contact by sending a POST request with a JS...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/createContact"
+          }
+        } ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "You can delete a contact by simply sending a DELETE request to the URL of the Contact entity.",
+        "description" : "You can delete a contact by simply sending a DELETE request ...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "patch" : {
+        "summary" : "To update a contact, send a PATCH request to the URL of the contact with a JSON object that contains the properties to update. Only the properties that you include in the payload are changed.",
+        "description" : "To update a contact, send a PATCH request to the URL of the ...",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updateContact"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "contact_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Contacts{contact_id}/Attachments" : {
+      "get" : {
+        "summary" : "To get attachments, send a GET request to the Attachments property on the entity that contains the attachments.",
+        "description" : "To get attachments, send a GET request to the Attachments pr...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "post" : {
+        "summary" : "To add an attachment to an item, send a POST request to the Attachments property on the item with a JSON representation of the new attachment in the request payload. The following example adds an item attachment to an existing message.",
+        "description" : "To add an attachment to an item, send a POST request to the ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/newAttachment"
+          }
+        } ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "To delete an attachment, send a DELETE request to the URL of the Attachment entity.",
+        "description" : "To delete an attachment, send a DELETE request to the URL of...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "contact_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Events{event_id}" : {
+      "get" : {
+        "summary" : "You can also retrieve information about a specific event by using the Id property on the Event entity.",
+        "description" : "You can also retrieve information about a specific event by ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request completed successfully.",
+            "schema" : {
+              "$ref" : "#/definitions/event"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Upon success, the appointment is moved to the user's Deleted Items folder. If the appointment is a meeting, a cancellation will be sent to all attendees.",
+        "description" : "Upon success, the appointment is moved to the user's Deleted...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "patch" : {
+        "summary" : "To update an event, send a PATCH request to the URL of the event with a JSON object that contains the properties to update. Only the properties that you include in the payload are changed.",
+        "description" : "To update an event, send a PATCH request to the URL of the e...",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updateEvent"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "event_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Events{event_id}/Accept" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/replyComment"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "event_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Events{event_id}/Decline" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/replyComment"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "event_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Events{event_id}/TentativelyAccept" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/replyComment"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "event_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/FirstSignIn" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      }
+    },
+    "/Folders{folder_id}" : {
+      "get" : {
+        "summary" : "You can retrieve information about other folders by using the Id property on the Folder entity via the Folders property on the User entity.",
+        "description" : "You can retrieve information about other folders by using th...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The server responds with a JSON representation of the folder.",
+            "schema" : {
+              "$ref" : "#/definitions/getFolderById"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "You can create a folder by sending a POST request with a JSON representation of the new folder to the parent folder's ChildFolders property.",
+        "description" : "You can create a folder by sending a POST request with a JSO...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/addNewMailFolderRequest"
+          }
+        } ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "To delete a folder, send a DELETE request to the URL of the folder.",
+        "description" : "To delete a folder, send a DELETE request to the URL of the ...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "patch" : {
+        "summary" : "You can update a folder by sending a PATCH request with a JSON payload that contains the properties to update to the URL of the folder.",
+        "description" : "You can update a folder by sending a PATCH request with a JS...",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updateNewMailFolderRequest"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "folder_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Folders{folder_id}/Messages" : {
+      "get" : {
+        "summary" : "You can request all the emails and meeting requests in a folder (or a filtered list by using the $filter OData query parameter) via the Messages property on the Folder entity.",
+        "description" : "You can request all the emails and meeting requests in a fol...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "post" : {
+        "summary" : "You can create an email by sending a POST request with a JSON representation of a Message entity to the Messages property on the Folder entity for the folder that you want to create the email in. Alternatively, you can send the POST request to the Messages property on the User entity.",
+        "description" : "You can create an email by sending a POST request with a JSO...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/newEmail"
+          }
+        }, {
+          "name" : "MessageDisposition",
+          "in" : "query",
+          "description" : "When sending a POST request to create an email, there is an optional MessageDisposition query parameter that controls what happens to the message as it is created. The behavior and the default value depends on whether you are sending the POST request to the Messages property on a Folder entity or on the User entity.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "folder_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Messages{event_id}/Send" : {
+      "post" : {
+        "summary" : "You can send an existing email that has the IsDraft property set to true by using the Send action on the Message entity.",
+        "description" : "You can send an existing email that has the IsDraft property...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "event_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Messages{message_id}" : {
+      "get" : {
+        "summary" : "You can request information about a specific email or meeting request by using the Id property on the Message entity.",
+        "description" : "You can request information about a specific email or meetin...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The request completed successfully.",
+            "schema" : {
+              "$ref" : "#/definitions/specificEmailById"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "You can delete email by simply sending a DELETE request to the URL of the Message entity.",
+        "description" : "You can delete email by simply sending a DELETE request to t...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "patch" : {
+        "summary" : "You can update an existing email by sending a PATCH request to the URL for that item. The payload of the PATCH request is a JSON representation of the properties that you want to update. Only the properties that you include in the payload are changed.",
+        "description" : "You can update an existing email by sending a PATCH request ...",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updateEmail"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "message_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Messages{message_id}/Copy" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/copyFolder"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "message_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Messages{message_id}/CreateForward" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "message_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Messages{message_id}/CreateReply" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "message_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Messages{message_id}/CreateReplyAll" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "message_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Messages{message_id}/Forward" : {
+      "post" : {
+        "summary" : "You can forward an email by using the Forward action on the Message entity.",
+        "description" : "You can forward an email by using the Forward action on the ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/forwardEmail"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "message_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Messages{message_id}/Move" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/copyFolder"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "message_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Messages{message_id}/Reply" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/replyComment"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "message_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Messages{message_id}/ReplyAll" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/replyComment"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "message_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/Services" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      }
+    }
+  },
+  "definitions" : {
+    "calendar" : {
+      "type" : "object",
+      "properties" : {
+        "@odata.id" : {
+          "type" : "string"
+        },
+        "@odata.editLink" : {
+          "type" : "string"
+        },
+        "Id" : {
+          "type" : "string"
+        },
+        "Name" : {
+          "type" : "string"
+        },
+        "ChangeKey" : {
+          "type" : "string"
+        },
+        "Events@odata.navigationLink" : {
+          "type" : "string"
+        }
+      }
+    },
+    "forwardEmail" : {
+      "type" : "object",
+      "properties" : {
+        "Comment" : {
+          "type" : "string"
+        },
+        "ToRecipients" : {
+          "type" : "string"
+        }
+      }
+    },
+    "copyFolder" : {
+      "type" : "object",
+      "properties" : {
+        "DestinationId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "getFolderById" : {
+      "type" : "object",
+      "properties" : {
+        "@odata.id" : {
+          "type" : "string"
+        },
+        "@odata.editLink" : {
+          "type" : "string"
+        },
+        "Id" : {
+          "type" : "string"
+        },
+        "ParentFolderId" : {
+          "type" : "string"
+        },
+        "DisplayName" : {
+          "type" : "string"
+        },
+        "ClassName" : {
+          "type" : "string"
+        },
+        "TotalCount" : {
+          "type" : "number"
+        },
+        "ChildFolderCount" : {
+          "type" : "number"
+        },
+        "UnreadItemCount" : {
+          "type" : "number"
+        },
+        "ChildFolders@odata.navigationLink" : {
+          "type" : "string"
+        },
+        "Messages@odata.navigationLink" : {
+          "type" : "string"
+        }
+      }
+    },
+    "addCalendarGroup" : {
+      "type" : "object",
+      "properties" : {
+        "@odata.type" : {
+          "type" : "string"
+        },
+        "Name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "newEvent" : {
+      "type" : "object",
+      "properties" : {
+        "@odata.type" : {
+          "type" : "string"
+        },
+        "Subject" : {
+          "type" : "string"
+        },
+        "Body" : {
+          "type" : "object",
+          "properties" : {
+            "ContentType" : {
+              "type" : "string"
+            },
+            "Content" : {
+              "type" : "string"
+            }
+          }
+        },
+        "Start" : {
+          "type" : "string"
+        },
+        "End" : {
+          "type" : "string"
+        },
+        "Location" : {
+          "type" : "object",
+          "properties" : {
+            "DisplayName" : {
+              "type" : "string"
+            }
+          }
+        },
+        "ShowAs" : {
+          "type" : "string"
+        }
+      }
+    },
+    "updateEmail" : {
+      "type" : "object",
+      "properties" : {
+        "Body" : {
+          "type" : "object",
+          "properties" : {
+            "ContentType" : {
+              "type" : "string"
+            },
+            "Content" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "addNewMailFolderRequest" : {
+      "type" : "object",
+      "properties" : {
+        "@odata.type" : {
+          "type" : "string"
+        },
+        "DisplayName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "updateEvent" : {
+      "type" : "object",
+      "properties" : {
+        "Location" : {
+          "type" : "object",
+          "properties" : {
+            "DisplayName" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "replyComment" : {
+      "type" : "object",
+      "properties" : {
+        "Comment" : {
+          "type" : "string"
+        }
+      }
+    },
+    "updateNewMailFolderRequest" : {
+      "type" : "object",
+      "properties" : {
+        "DisplayName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "newAttachment" : {
+      "type" : "object",
+      "properties" : {
+        "@odata.type" : {
+          "type" : "string"
+        },
+        "Name" : {
+          "type" : "string"
+        },
+        "Item" : {
+          "type" : "object",
+          "properties" : {
+            "@odata.type" : {
+              "type" : "string"
+            },
+            "Subject" : {
+              "type" : "string"
+            },
+            "Body" : {
+              "type" : "object",
+              "properties" : {
+                "ContentType" : {
+                  "type" : "string"
+                },
+                "Content" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "Importance" : {
+              "type" : "string"
+            },
+            "From" : {
+              "type" : "object",
+              "properties" : {
+                "Name" : {
+                  "type" : "string"
+                },
+                "Address" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "createContact" : {
+      "type" : "object",
+      "properties" : {
+        "@odata.type" : {
+          "type" : "string"
+        },
+        "GivenName" : {
+          "type" : "string"
+        },
+        "Surname" : {
+          "type" : "string"
+        },
+        "EmailAddress1" : {
+          "type" : "string"
+        },
+        "BusinessPhone1" : {
+          "type" : "string"
+        },
+        "Birthday" : {
+          "type" : "string"
+        }
+      }
+    },
+    "newEmail" : {
+      "type" : "object",
+      "properties" : {
+        "@odata.type" : {
+          "type" : "string"
+        },
+        "Subject" : {
+          "type" : "string"
+        },
+        "Importance" : {
+          "type" : "string"
+        },
+        "Body" : {
+          "type" : "object",
+          "properties" : {
+            "ContentType" : {
+              "type" : "string"
+            },
+            "Content" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "updateContact" : {
+      "type" : "object",
+      "properties" : {
+        "MobilePhone1" : {
+          "type" : "string"
+        }
+      }
+    },
+    "updateCalendar" : {
+      "type" : "object",
+      "properties" : {
+        "Name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "calendarRepresentation" : {
+      "type" : "object",
+      "properties" : {
+        "@odata.id" : {
+          "type" : "string"
+        },
+        "@odata.editLink" : {
+          "type" : "string"
+        },
+        "Id" : {
+          "type" : "string"
+        },
+        "Name" : {
+          "type" : "string"
+        },
+        "ChangeKey" : {
+          "type" : "string"
+        },
+        "ClassId" : {
+          "type" : "string"
+        },
+        "Calendars@odata.navigationLink" : {
+          "type" : "string"
+        }
+      }
+    },
+    "contacts" : {
+      "type" : "object",
+      "properties" : {
+        "@odata.id" : {
+          "type" : "string"
+        },
+        "@odata.editLink" : {
+          "type" : "string"
+        },
+        "Id" : {
+          "type" : "string"
+        },
+        "ParentFolderId" : {
+          "type" : "string"
+        },
+        "DisplayName" : {
+          "type" : "string"
+        },
+        "Contacts@odata.navigationLink" : {
+          "type" : "string"
+        },
+        "ChildFolders@odata.navigationLink" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

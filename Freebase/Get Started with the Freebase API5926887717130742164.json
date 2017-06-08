@@ -1,0 +1,478 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Freebase is a large collaborative knowledge base consisting of metadata composed mainly by its community members.",
+    "version" : "v1",
+    "title" : "Get Started with the Freebase API"
+  },
+  "host" : "www.googleapis.com",
+  "basePath" : "/freebase/v1",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/mqlread" : {
+      "get" : {
+        "summary" : "The mqlread API provides access to the Freebase database using the Metaweb query language (MQL).",
+        "description" : "The mqlread API provides access to the Freebase database usi...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "indent",
+          "in" : "query",
+          "description" : "Whether to indent the JSON results or not.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "dateline",
+          "in" : "query",
+          "description" : "The dateline that you get in a mqlwrite response to ensure consistent results.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "cost",
+          "in" : "query",
+          "description" : "Toggles whether or not to show the costs. (Default: false)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "as_of_time  ",
+          "in" : "query",
+          "description" : "A MQL as_of_time value to use with mql_output queries.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "description" : "Query term to search for.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "lang",
+          "in" : "query",
+          "description" : "The code of the language with which to run the query. Default is 'en'.\r\nThe language you'd like the content in - a Freebase /type/lang language key. \r\nLanguages for names and values. First language is used for display. Default is 'en'.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "html_escape",
+          "in" : "query",
+          "description" : "Whether or not to escape entities. (Default: true)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "uniqueness_failure",
+          "in" : "query",
+          "description" : "How MQL responds to uniqueness failures.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "JS method name for JSONP callbacks.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "The cursor parameter along with the limit parameter allows you to page through a defined number of results at a time. For example, to present 3 pages of successive 10 results, use  limit=10 and cursor=0, then cursor=10, and cursor=20.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/mqlread"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/mqlwrite" : {
+      "get" : {
+        "summary" : "The mqlwrite API provides access to the Freebase database using the Metaweb query language (MQL).",
+        "description" : "The mqlwrite API provides access to the Freebase database us...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "use_permission_of",
+          "in" : "query",
+          "description" : "Use the same permission node of the object with the specified id.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "JS method name for JSONP callbacks.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "dateline",
+          "in" : "query",
+          "description" : "The dateline that you get in a mqlwrite response to ensure consistent results.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "indent",
+          "in" : "query",
+          "description" : "Whether to indent the JSON results or not.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "description" : "Query term to search for.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/rdf{/id}" : {
+      "get" : {
+        "summary" : "The Freebase RDF API is a web service that will return all the known facts for a given topic including images and text blurbs. You can apply filters to the Topic API so that it only returns the property values that you're interested. This is ideal for building topic pages and short summaries of an entity.\r\nThe RDF API returns an Turtle serialization of the first 100 values for each predicate for a given Freebase topic.\r\n",
+        "description" : "The Freebase RDF API is a web service that will return all t...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/reconcile" : {
+      "get" : {
+        "summary" : "The Reconciliation API matches structured data about entities against potential matching entiities in Freebase. Please consult Reconciliation Overview for more information on how to reconcile your data.",
+        "description" : "The Reconciliation API matches structured data about entitie...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "confidence",
+          "in" : "query",
+          "description" : "Required confidence for a candidate to match. Must be between .5 and 1.0 and defaults to .99",
+          "required" : false
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "The name of root entity to reconcile.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Maximum number of candidates to return. Defaults to 3.\r\nThe maximum number of property values to return for each property. Must be a positive integer. Default is 10.\r\nMaximum number of results to return. By default, 20 matches in decreasing order of relevance are returned, if that many exist. Fewer or more matches may be requested by using the limit parameter with a different value. (Example.)\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "prop",
+          "in" : "query",
+          "description" : "Property values for entity formatted as <predicate>:<value>",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "kind",
+          "in" : "query",
+          "description" : "Classifications of entity e.g. type, category, title. Should be a type id if possible.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "lang",
+          "in" : "query",
+          "description" : "The code of the language with which to run the query. Default is 'en'.\r\nThe language you'd like the content in - a Freebase /type/lang language key. \r\nLanguages for names and values. First language is used for display. Default is 'en'.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/reconcile"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/search" : {
+      "get" : {
+        "summary" : "The Search API provides access to Freebase data given a free text query. Please consult Search Overview and the Search Cookbook for more information on how to construct detailed search queries.",
+        "description" : "The Search API provides access to Freebase data given a free...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "lang",
+          "in" : "query",
+          "description" : "The code of the language with which to run the query. Default is 'en'.\r\nThe language you'd like the content in - a Freebase /type/lang language key. \r\nLanguages for names and values. First language is used for display. Default is 'en'.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "scoring",
+          "in" : "query",
+          "description" : "Relevance scoring algorithm to use.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "The cursor parameter along with the limit parameter allows you to page through a defined number of results at a time. For example, to present 3 pages of successive 10 results, use  limit=10 and cursor=0, then cursor=10, and cursor=20.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "prefixed",
+          "in" : "query",
+          "description" : "Prefix match against names and aliases.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "as_of_time  ",
+          "in" : "query",
+          "description" : "A MQL as_of_time value to use with mql_output queries.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "exact",
+          "in" : "query",
+          "description" : "Query on exact name and keys only.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "JS method name for JSONP callbacks.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "with",
+          "in" : "query",
+          "description" : "A filter rule to match against.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "type",
+          "in" : "query",
+          "description" : "Restrict to topics with this Freebase type id.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "stemmed",
+          "in" : "query",
+          "description" : "Query on stemmed names and aliases. May not be used with prefixed.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "mql_output",
+          "in" : "query",
+          "description" : "The MQL query to run againist the results to extract more data. After the query is run, the matching documents' IDs are passed to the mql_output MQL query to retrieve actual data about the matches. The MQL results are sorted by decreasing relevance score. ",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "spell",
+          "in" : "query",
+          "description" : "Request 'did you mean' suggestions",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "indent",
+          "in" : "query",
+          "description" : "Whether to indent the JSON results or not.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Maximum number of candidates to return. Defaults to 3.\r\nThe maximum number of property values to return for each property. Must be a positive integer. Default is 10.\r\nMaximum number of results to return. By default, 20 matches in decreasing order of relevance are returned, if that many exist. Fewer or more matches may be requested by using the limit parameter with a different value. (Example.)\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "encode",
+          "in" : "query",
+          "description" : "The encoding of the response. You can use this parameter to enable HTML encoding.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "domain",
+          "in" : "query",
+          "description" : "Restrict to topics with this Freebase domain ID.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "description" : "Query term to search for.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "Structural format of the JSON response.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "without",
+          "in" : "query",
+          "description" : "A filter rule to not match against.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/search"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/topic{/id}" : {
+      "get" : {
+        "summary" : "If successful, this method returns a response body that depends on the query. Please see Topic API Responses for an overview of the response format and types of responses.",
+        "description" : "If successful, this method returns a response body that depe...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Maximum number of candidates to return. Defaults to 3.\r\nThe maximum number of property values to return for each property. Must be a positive integer. Default is 10.\r\nMaximum number of results to return. By default, 20 matches in decreasing order of relevance are returned, if that many exist. Fewer or more matches may be requested by using the limit parameter with a different value. (Example.)\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "lang",
+          "in" : "query",
+          "description" : "The code of the language with which to run the query. Default is 'en'.\r\nThe language you'd like the content in - a Freebase /type/lang language key. \r\nLanguages for names and values. First language is used for display. Default is 'en'.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filter",
+          "in" : "query",
+          "description" : "A Freebase domain, type or property ID. suggest, commons, or all. Filter the results and return only appropriate properties. See filters parameter details for more information.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "raw",
+          "in" : "query",
+          "description" : "Do not apply any constraints, or get any names. (Default: false)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "dateline",
+          "in" : "query",
+          "description" : "Determines how up-to-date the data returned is. A UNIX epoch time, a guid or now.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/topic"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "search" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string"
+        },
+        "cursor" : {
+          "type" : "number"
+        },
+        "cost" : {
+          "type" : "number"
+        },
+        "hits" : {
+          "type" : "number"
+        }
+      }
+    },
+    "topic" : {
+      "type" : "object",
+      "properties" : {
+        "valuetype" : {
+          "type" : "string"
+        },
+        "count" : {
+          "type" : "number"
+        }
+      }
+    },
+    "error" : {
+      "type" : "object",
+      "properties" : {
+        "error" : {
+          "type" : "object",
+          "properties" : {
+            "code" : {
+              "type" : "number"
+            },
+            "message" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "mqlread" : {
+      "type" : "object",
+      "properties" : {
+        "result" : {
+          "type" : "object",
+          "properties" : {
+            "type" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "artist" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

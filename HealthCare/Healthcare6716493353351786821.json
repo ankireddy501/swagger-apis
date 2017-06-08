@@ -1,0 +1,997 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Healthcare.gov is a healthcare exchange website created by and operated under the United States federal government as per the provisions of the Patient Protection and Affordable Care Act (PPACA, often known as 'Obamacare'), designed to serve the residents of the thirty-six U.S. states that opted not to create their own state exchanges. The site functions as a clearing house to allow Americans to compare prices on health insurance plans in their states, to begin enrollment in a chosen plan, and to simultaneously find out if they qualify for government healthcare subsidies. Visitors sign up and create their own specific user account first, listing some personal information, before receiving detailed information about what is available in their area. Designed to assist the millions of uninsured Americans, the comparison shopping features involve a visual format somewhat analogous to websites such as Amazon.com and Etsy. Healthcare.gov also details Medicaid options for individuals. This relates to an expansion of the long-running program undertaken as a joint effort under the PPACA. The Congressional Budget Office (CBO) projected that the exchange would be used by an estimated seven million Americans to obtain coverage during the first year after its launch. As of October 27, about seven hundred thousand people have filed applications, with fewer fully enrolled in plans.",
+    "version" : "1.0",
+    "title" : "Healthcare"
+  },
+  "host" : "www.healthcare.gov",
+  "basePath" : "/",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/api/articles{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns pages content.",
+        "description" : "Returns pages content.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/articlesList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Omiting the param causes html to be returned.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/api/blog{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns pages content.",
+        "description" : "Returns pages content.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/blogList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Omiting the param causes html to be returned.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/api/glossary{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns pages content.",
+        "description" : "Returns pages content.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/glossaryList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Omiting the param causes html to be returned.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/api/questions{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns pages content.",
+        "description" : "Returns pages content.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/questionsList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Omiting the param causes html to be returned.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/api/states{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns pages content.",
+        "description" : "Returns pages content.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/statesList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Omiting the param causes html to be returned.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/api/topics{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns pages content.",
+        "description" : "Returns pages content.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/topicsList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Omiting the param causes html to be returned.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/es/blog/{pageName}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns pages content.",
+        "description" : "Returns pages content.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "pageName",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Omiting the param causes html to be returned.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/es/glossary/{pageName}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns pages content.",
+        "description" : "Returns pages content.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Omiting the param causes html to be returned.",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "pageName",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/es/question/{pageName}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns pages content.",
+        "description" : "Returns pages content.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/questionPage"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "pageName",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Omiting the param causes html to be returned.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/es/{pageName}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns pages content.",
+        "description" : "Returns pages content.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/page"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "pageName",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Omiting the param causes html to be returned.",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/es/{stateName}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Returns pages content.",
+        "description" : "Returns pages content.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/statePage"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "Omiting the param causes html to be returned.",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "stateName",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "questionsList" : {
+      "type" : "object",
+      "properties" : {
+        "questions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "categories" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "tags" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "published" : {
+                "type" : "boolean"
+              },
+              "title" : {
+                "type" : "string"
+              },
+              "lang" : {
+                "type" : "string"
+              },
+              "url" : {
+                "type" : "string"
+              },
+              "content" : {
+                "type" : "string"
+              },
+              "date" : {
+                "type" : "string"
+              },
+              "sort" : {
+                "type" : "number"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "excerpt" : {
+                "type" : "string"
+              },
+              "path" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "statesList" : {
+      "type" : "object",
+      "properties" : {
+        "states" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "lang" : {
+                  "type" : "string"
+                },
+                "tags" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "stateurl" : {
+                  "type" : "string"
+                },
+                "url" : {
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "content" : {
+                  "type" : "string"
+                },
+                "date" : {
+                  "type" : "string"
+                },
+                "sort" : {
+                  "type" : "number"
+                },
+                "id" : {
+                  "type" : "string"
+                },
+                "categories" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array"
+                  }
+                },
+                "excerpt" : {
+                  "type" : "string"
+                },
+                "path" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "glossaryPage" : {
+      "type" : "object",
+      "properties" : {
+        "categories" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "layout" : {
+          "type" : "string"
+        },
+        "published" : {
+          "type" : "boolean"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "lang" : {
+          "type" : "string"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "content" : {
+          "type" : "string"
+        },
+        "date" : {
+          "type" : "string"
+        },
+        "sort" : {
+          "type" : "number"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "excerpt" : {
+          "type" : "string"
+        },
+        "path" : {
+          "type" : "string"
+        }
+      }
+    },
+    "glossaryList" : {
+      "type" : "object",
+      "properties" : {
+        "glossary" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "categories" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "layout" : {
+                "type" : "string"
+              },
+              "published" : {
+                "type" : "boolean"
+              },
+              "title" : {
+                "type" : "string"
+              },
+              "lang" : {
+                "type" : "string"
+              },
+              "tags" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "url" : {
+                "type" : "string"
+              },
+              "content" : {
+                "type" : "string"
+              },
+              "date" : {
+                "type" : "string"
+              },
+              "sort" : {
+                "type" : "number"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "excerpt" : {
+                "type" : "string"
+              },
+              "path" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "statePage" : {
+      "type" : "object",
+      "properties" : {
+        "lang" : {
+          "type" : "string"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        },
+        "stateurl" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "content" : {
+          "type" : "string"
+        },
+        "date" : {
+          "type" : "string"
+        },
+        "sort" : {
+          "type" : "number"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "categories" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array"
+          }
+        },
+        "excerpt" : {
+          "type" : "string"
+        },
+        "path" : {
+          "type" : "string"
+        }
+      }
+    },
+    "page" : {
+      "type" : "object",
+      "properties" : {
+        "published" : {
+          "type" : "boolean"
+        },
+        "layout" : {
+          "type" : "string"
+        },
+        "lang" : {
+          "type" : "string"
+        },
+        "experience" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "content" : {
+          "type" : "string"
+        },
+        "date" : {
+          "type" : "string"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array"
+          }
+        },
+        "sort" : {
+          "type" : "number"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "categories" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array"
+          }
+        },
+        "excerpt" : {
+          "type" : "string"
+        },
+        "path" : {
+          "type" : "string"
+        }
+      }
+    },
+    "articlesList" : {
+      "type" : "object",
+      "properties" : {
+        "articles" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "published" : {
+                "type" : "boolean"
+              },
+              "title" : {
+                "type" : "string"
+              },
+              "lang" : {
+                "type" : "string"
+              },
+              "layout" : {
+                "type" : "string"
+              },
+              "categories" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "featured" : {
+                "type" : "boolean"
+              },
+              "meta-description" : {
+                "type" : "string"
+              },
+              "meta-title" : {
+                "type" : "string"
+              },
+              "bite" : {
+                "type" : "string"
+              },
+              "title-short" : {
+                "type" : "string"
+              },
+              "topics" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "related" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "seo-keywords" : {
+                "type" : "string"
+              },
+              "url" : {
+                "type" : "string"
+              },
+              "content" : {
+                "type" : "string"
+              },
+              "date" : {
+                "type" : "string"
+              },
+              "tags" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "array"
+                }
+              },
+              "sort" : {
+                "type" : "number"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "excerpt" : {
+                "type" : "string"
+              },
+              "path" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "blogList" : {
+      "type" : "object",
+      "properties" : {
+        "blog" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "categories" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "lang" : {
+                  "type" : "string"
+                },
+                "published" : {
+                  "type" : "boolean"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "layout" : {
+                  "type" : "string"
+                },
+                "meta-title" : {
+                  "type" : "string"
+                },
+                "meta-description" : {
+                  "type" : "string"
+                },
+                "seo-keywords" : {
+                  "type" : "string"
+                },
+                "topics" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "url" : {
+                  "type" : "string"
+                },
+                "content" : {
+                  "type" : "string"
+                },
+                "date" : {
+                  "type" : "string"
+                },
+                "tags" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array"
+                  }
+                },
+                "sort" : {
+                  "type" : "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "questionPage" : {
+      "type" : "object",
+      "properties" : {
+        "categories" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "published" : {
+          "type" : "boolean"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "lang" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "content" : {
+          "type" : "string"
+        },
+        "date" : {
+          "type" : "string"
+        },
+        "sort" : {
+          "type" : "number"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "excerpt" : {
+          "type" : "string"
+        },
+        "path" : {
+          "type" : "string"
+        }
+      }
+    },
+    "blogPage" : {
+      "type" : "object",
+      "properties" : {
+        "categories" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        },
+        "published" : {
+          "type" : "boolean"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "lang" : {
+          "type" : "string"
+        },
+        "layout" : {
+          "type" : "string"
+        },
+        "meta-title" : {
+          "type" : "string"
+        },
+        "meta-description" : {
+          "type" : "string"
+        },
+        "seo-keywords" : {
+          "type" : "string"
+        },
+        "topics" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "content" : {
+          "type" : "string"
+        },
+        "date" : {
+          "type" : "string"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array"
+          }
+        },
+        "sort" : {
+          "type" : "number"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "excerpt" : {
+          "type" : "string"
+        },
+        "path" : {
+          "type" : "string"
+        }
+      }
+    },
+    "topicsList" : {
+      "type" : "object",
+      "properties" : {
+        "topics" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "title" : {
+                "type" : "string"
+              },
+              "layout" : {
+                "type" : "string"
+              },
+              "lang" : {
+                "type" : "string"
+              },
+              "order" : {
+                "type" : "number"
+              },
+              "tags" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "published" : {
+                "type" : "boolean"
+              },
+              "meta-title" : {
+                "type" : "string"
+              },
+              "meta-description" : {
+                "type" : "string"
+              },
+              "articleorder" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "url" : {
+                "type" : "string"
+              },
+              "content" : {
+                "type" : "string"
+              },
+              "date" : {
+                "type" : "string"
+              },
+              "sort" : {
+                "type" : "number"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "categories" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "array"
+                }
+              },
+              "excerpt" : {
+                "type" : "string"
+              },
+              "path" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

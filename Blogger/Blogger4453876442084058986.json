@@ -1,0 +1,1200 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : The Blogger API v3 allows client applications to view and update Blogger content. Your client application can use Blogger API v3 to create new blog posts, edit or delete existing posts, and query for posts that match particular criteria.",
+    "version" : "v3",
+    "title" : "Blogger"
+  },
+  "host" : "www.googleapis.com",
+  "basePath" : "/blogger/v3",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/blogs/byurl" : {
+      "get" : {
+        "summary" : "Retrieves a blog by URL.",
+        "description" : "Retrieves a blog by URL.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "url",
+          "in" : "query",
+          "description" : "The URL of the blog to retrieve.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/blogResource"
+            }
+          }
+        }
+      }
+    },
+    "/blogs/{blogId}/pages" : {
+      "get" : {
+        "summary" : "Retrieves the list of pages for a blog.",
+        "description" : "Retrieves the list of pages for a blog.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Acceptable values are:\r\n\"draft\": Draft (unpublished) Pages\r\n\"imported\": Pages that have had their content removed\r\n\"live\": Pages that are publicly visible\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fetchBodies",
+          "in" : "query",
+          "description" : "Whether to retrieve the Page bodies.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "view",
+          "in" : "query",
+          "description" : "Acceptable values are:\r\n\"ADMIN\": Admin level detail\r\n\"AUTHOR\": Author level detail\r\n\"READER\": Admin level detail\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/pages"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Add a page.",
+        "description" : "Add a page.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/page"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/page"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/blogs/{blogId}/pages/{pageId}" : {
+      "get" : {
+        "summary" : "Retrieves one pages resource by its page ID.",
+        "description" : "Retrieves one pages resource by its page ID.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "view",
+          "in" : "query",
+          "description" : "Acceptable values are:\r\n\"ADMIN\": Admin level detail\r\n\"AUTHOR\": Author level detail\r\n\"READER\": Admin level detail\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/page"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update a page.",
+        "description" : "Update a page.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/page"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/page"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a page by ID.",
+        "description" : "Delete a page by ID.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "patch" : {
+        "summary" : "Update a page. This method supports patch semantics.",
+        "description" : "Update a page. This method supports patch semantics.",
+        "operationId" : "PATCH",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/page"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/page"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "pageId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/blogs/{blogId}/pageviews" : {
+      "get" : {
+        "summary" : "Retrieve pageview stats for a Blog.",
+        "description" : "Retrieve pageview stats for a Blog.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "range",
+          "in" : "query",
+          "description" : "Acceptable values are:\r\n\"30DAYS\": Page view counts from the last thirty days.\r\n\"7DAYS\": Page view counts from the last seven days.\r\n\"all\": Total page view counts from all time.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/pageViews"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/blogs/{blogId}/posts/bypath" : {
+      "get" : {
+        "summary" : "Retrieves a post by path.",
+        "description" : "Retrieves a post by path.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "view",
+          "in" : "query",
+          "description" : "Acceptable values are:\r\n\"ADMIN\": Admin level detail\r\n\"AUTHOR\": Author level detail\r\n\"READER\": Admin level detail\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "maxComments",
+          "in" : "query",
+          "description" : "Maximum number of comments to retrieve for a post. If this parameter is left unspecified, no comments will be returned as part of the post resource.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "path",
+          "in" : "query",
+          "description" : "Path of the Post to retrieve.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/blogs/{blogId}/posts/search" : {
+      "get" : {
+        "summary" : "Searches for a post that matches the given query terms.",
+        "description" : "Searches for a post that matches the given query terms.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "fetchBodies",
+          "in" : "query",
+          "description" : "Whether the body content of posts is included. To minimize traffic, set this parameter to false when the post's body content is not required. (Default: true)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "orderBy",
+          "in" : "query",
+          "description" : "The sort order applied to the search results. \r\n\r\nAcceptable values are:\r\n\"published\": Order by the date the post was published\r\n\"updated\": Order by the date the post was last updated\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "description" : "Query terms to search for.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/postsList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/blogs/{blogId}/posts/{postId}/comments" : {
+      "get" : {
+        "summary" : "Retrieves the list of comments for a post.",
+        "description" : "Retrieves the list of comments for a post.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "view",
+          "in" : "query",
+          "description" : "Acceptable values are:\r\n\"ADMIN\": Admin level detail\r\n\"AUTHOR\": Author level detail\r\n\"READER\": Admin level detail\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "startDate",
+          "in" : "query",
+          "description" : "Earliest date of comment to fetch, a date-time with RFC 3339 formatting.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "pageToken",
+          "in" : "query",
+          "description" : "Continuation token if request is paged.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Acceptable values are:\r\n\"emptied\": Comments that have had their content removed\r\n\"live\": Comments that are publicly visible\r\n\"pending\": Comments that are awaiting administrator approval\r\n\"spam\": Comments marked as spam by the administrator\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "maxResults",
+          "in" : "query",
+          "description" : "Maximum number of comments to include in the result.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fetchBodies",
+          "in" : "query",
+          "description" : "Whether the body content of the comments is included.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "endDate",
+          "in" : "query",
+          "description" : "Latest date of comment to fetch, a date-time with RFC 3339 formatting.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/commentsList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "postId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/blogs/{blogId}/posts/{postId}/comments/{commentId}" : {
+      "get" : {
+        "summary" : "Retrieves one comment resource by its commentId.",
+        "description" : "Retrieves one comment resource by its commentId.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/comment"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a comment by ID.",
+        "description" : "Delete a comment by ID.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "postId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "commentId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/blogs/{blogId}/posts/{postId}/comments/{commentId}/approve" : {
+      "post" : {
+        "summary" : "Marks a comment as not spam.",
+        "description" : "Marks a comment as not spam.",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/comment"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "postId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "commentId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/blogs/{blogId}/posts/{postId}/comments/{commentId}/removecontent" : {
+      "post" : {
+        "summary" : "Removes the content of a comment.",
+        "description" : "Removes the content of a comment.",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/comment"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "commentId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "postId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/blogs/{blogId}/posts/{postId}/comments/{commentId}/spam" : {
+      "post" : {
+        "summary" : "Marks a comment as spam. This will set the status of the comment to spam, and hide it in the default comment rendering.",
+        "description" : "Marks a comment as spam. This will set the status of the com...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/comment"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "postId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "commentId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/blogs/{blogId}/posts/{postId}/publish" : {
+      "post" : {
+        "summary" : "Publish a draft post.",
+        "description" : "Publish a draft post.",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "publishDate",
+          "in" : "query",
+          "description" : "The date and time to schedule the publishing of the Post.",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "postId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/blogs/{blogId}/posts/{postId}/revert" : {
+      "post" : {
+        "summary" : "Revert a published or scheduled post to draft state, which removes the post from the publicly viewable content.",
+        "description" : "Revert a published or scheduled post to draft state, which r...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "201" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/post"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "postId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/{userId}" : {
+      "get" : {
+        "summary" : "Retrieves a user by user ID.",
+        "description" : "Retrieves a user by user ID.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/user"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/{userId}/blogs" : {
+      "get" : {
+        "summary" : "Retrieves a list of blogs.",
+        "description" : "Retrieves a list of blogs.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "view",
+          "in" : "query",
+          "description" : "Acceptable values are:\r\n\"ADMIN\": Admin level detail\r\n\"AUTHOR\": Author level detail\r\n\"READER\": Admin level detail\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fetchUserInfo",
+          "in" : "query",
+          "description" : "Whether the response is a list of blogs with per-user information instead of just blogs.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/getListByUser"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/{userId}/blogs/{blogId}" : {
+      "get" : {
+        "summary" : "Gets one blog and user info pair by blogId and userId.",
+        "description" : "Gets one blog and user info pair by blogId and userId.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "maxPosts",
+          "in" : "query",
+          "description" : "Maximum number of posts to pull back with the blog.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/blogUserInfo"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/{userId}/blogs/{blogId}/posts" : {
+      "get" : {
+        "summary" : "Retrieves a list of post and post user info pairs, possibly filtered. The post user info contains per-user information about the post, such as access rights, specific to the user.",
+        "description" : "Retrieves a list of post and post user info pairs, possibly ...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "view",
+          "in" : "query",
+          "description" : "Acceptable values are:\r\n\"ADMIN\": Admin level detail\r\n\"AUTHOR\": Author level detail\r\n\"READER\": Admin level detail\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "endDate",
+          "in" : "query",
+          "description" : "Latest date of comment to fetch, a date-time with RFC 3339 formatting.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Acceptable values are:\r\n\"emptied\": Comments that have had their content removed\r\n\"live\": Comments that are publicly visible\r\n\"pending\": Comments that are awaiting administrator approval\r\n\"spam\": Comments marked as spam by the administrator\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "labels",
+          "in" : "query",
+          "description" : "Comma-separated list of labels to search for.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fetchBodies",
+          "in" : "query",
+          "description" : "Whether the body content of the comments is included.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "orderBy",
+          "in" : "query",
+          "description" : "Sort order applied to search results. Default is published. \r\n\r\nAcceptable values are:\r\n\"published\": Order by the date the post was published\r\n\"updated\": Order by the date the post was last updated\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "startDate",
+          "in" : "query",
+          "description" : "Earliest date of comment to fetch, a date-time with RFC 3339 formatting.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "maxResults",
+          "in" : "query",
+          "description" : "Maximum number of comments to include in the result.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "pageToken",
+          "in" : "query",
+          "description" : "Continuation token if request is paged.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/postUserInfosList"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/{userId}/blogs/{blogId}/posts/{postId}" : {
+      "get" : {
+        "summary" : "Gets one post and user info pair by postId and userId.",
+        "description" : "Gets one post and user info pair by postId and userId.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "maxComments",
+          "in" : "query",
+          "description" : "Maximum number of comments to retrieve for the post.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/postUserInfo"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "postId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "blogId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "commentsList" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "nextPageToken" : {
+          "type" : "string"
+        },
+        "prevPageToken" : {
+          "type" : "string"
+        }
+      }
+    },
+    "blogResource" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "published" : {
+          "type" : "string"
+        },
+        "updated" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "selfLink" : {
+          "type" : "string"
+        },
+        "posts" : {
+          "type" : "object",
+          "properties" : {
+            "totalItems" : {
+              "type" : "string"
+            },
+            "selfLink" : {
+              "type" : "string"
+            }
+          }
+        },
+        "pages" : {
+          "type" : "object",
+          "properties" : {
+            "totalItems" : {
+              "type" : "string"
+            },
+            "selfLink" : {
+              "type" : "string"
+            }
+          }
+        },
+        "locale" : {
+          "type" : "object",
+          "properties" : {
+            "language" : {
+              "type" : "string"
+            },
+            "country" : {
+              "type" : "string"
+            },
+            "variant" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "pages" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        }
+      }
+    },
+    "pageViews" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "blogId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "postUserInfosList" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "nextPageToken" : {
+          "type" : "string"
+        }
+      }
+    },
+    "comment" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "inReplyTo" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            }
+          }
+        },
+        "post" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            }
+          }
+        },
+        "blog" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            }
+          }
+        },
+        "published" : {
+          "type" : "string"
+        },
+        "updated" : {
+          "type" : "string"
+        },
+        "selfLink" : {
+          "type" : "string"
+        },
+        "content" : {
+          "type" : "string"
+        },
+        "author" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "displayName" : {
+              "type" : "string"
+            },
+            "url" : {
+              "type" : "string"
+            },
+            "image" : {
+              "type" : "object",
+              "properties" : {
+                "url" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "blogUserInfo" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "blog" : {
+          "type" : "string"
+        },
+        "blog_user_info" : {
+          "type" : "object",
+          "properties" : {
+            "kind" : {
+              "type" : "string"
+            },
+            "userId" : {
+              "type" : "string"
+            },
+            "blogId" : {
+              "type" : "string"
+            },
+            "photosAlbumKey" : {
+              "type" : "string"
+            },
+            "hasAdminAccess" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "page" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "blog" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            }
+          }
+        },
+        "published" : {
+          "type" : "string"
+        },
+        "updated" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "selfLink" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "content" : {
+          "type" : "string"
+        },
+        "author" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "displayName" : {
+              "type" : "string"
+            },
+            "url" : {
+              "type" : "string"
+            },
+            "image" : {
+              "type" : "object",
+              "properties" : {
+                "url" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "postsList" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "nextPageToken" : {
+          "type" : "string"
+        }
+      }
+    },
+    "postUserInfo" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "post" : {
+          "type" : "string"
+        },
+        "post_user_info" : {
+          "type" : "object",
+          "properties" : {
+            "kind" : {
+              "type" : "string"
+            },
+            "userId" : {
+              "type" : "string"
+            },
+            "blogId" : {
+              "type" : "string"
+            },
+            "postId" : {
+              "type" : "string"
+            },
+            "hasEditAccess" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "user" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "created" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "selfLink" : {
+          "type" : "string"
+        },
+        "blogs" : {
+          "type" : "object",
+          "properties" : {
+            "selfLink" : {
+              "type" : "string"
+            }
+          }
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "about" : {
+          "type" : "string"
+        },
+        "locale" : {
+          "type" : "object",
+          "properties" : {
+            "language" : {
+              "type" : "string"
+            },
+            "country" : {
+              "type" : "string"
+            },
+            "variant" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "getListByUser" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "blogUserInfos" : {
+          "type" : "array"
+        }
+      }
+    }
+  }
+}

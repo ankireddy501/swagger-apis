@@ -1,0 +1,3372 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Tracker is a simple, story-based project planning tool that allows teams to collaborate and react instantly to real-world changes. It's based on agile software development methods, but it can be used on a variety of types of projects. Tracker frees you up to focus on getting things done, without getting bogged down keeping your plans in sync with reality.",
+    "version" : "v5",
+    "title" : "Pivotal Tracker"
+  },
+  "host" : "www.pivotaltracker.com",
+  "basePath" : "/services/v5",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/accounts" : {
+      "get" : {
+        "summary" : "Get all of the accounts a user is an owner or admin of.",
+        "description" : "Get all of the accounts a user is an owner or admin of.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/accounts"
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}" : {
+      "get" : {
+        "summary" : "Fetch the content of the specified account.",
+        "description" : "Fetch the content of the specified account.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/account"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "account_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/accounts/{account_id}/memberships" : {
+      "get" : {
+        "summary" : "List all of the memberships in an account.",
+        "description" : "List all of the memberships in an account.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/accountsMembership"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a new membership in an account.",
+        "description" : "Create a new membership in an account.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/accountCreateReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/membershipPerson"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "account_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/aggregator" : {
+      "post" : {
+        "summary" : "Unimplemented.\r\nThe aggregator allows the client to make a single request that returns the same information as several separate GETs to other endpoints.\r\n",
+        "description" : "Unimplemented.\r\nThe aggregator allows the client to make a si...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      }
+    },
+    "/epics/{epic_id}" : {
+      "get" : {
+        "summary" : "Returns the specified epic.",
+        "description" : "Returns the specified epic.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/epic"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "epic_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/file_attachments/{file_attachment_id}/download" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "inline",
+          "in" : "query",
+          "description" : "Determines if server should include response headers that would cause a browser to show the attachment in a new tab or window (inline=true) or show a Save dialog box (inline=false). Default is false.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "file_attachment_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/google_attachments" : {
+      "get" : {
+        "summary" : "Fetch items describing the user's available Google resources.",
+        "description" : "Fetch items describing the user's available Google resources...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/google_attachments"
+            }
+          }
+        }
+      }
+    },
+    "/me" : {
+      "get" : {
+        "summary" : "In addition to authenticating this request like other API requests, this request can be made with authentication using \"basic auth\" to pass the user's normal Pivotal Tracker login credentials (their email address or user name plus their password). In this way, client software can use the user's name and password to obtain their API Token, and then use that token to authenticate future API requests made on behalf of that user. Obviously, the user's password should not be stored or otherwise retained.\r\n",
+        "description" : "In addition to authenticating this request like other API re...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/me"
+            }
+          }
+        }
+      }
+    },
+    "/my/notifications" : {
+      "get" : {
+        "summary" : "Return list of the notifications",
+        "description" : "Return list of the notifications",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "created_after",
+          "in" : "query",
+          "description" : "Show notifications created after this date/time. If this parameter is not provided, the default is 10 days prior to the request time.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "The standard formatting parameters cannot be included in requests for this operation. In particular, envelope= is prohibited and Tracker behaves as if envelope=true had been provided.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notifications"
+            }
+          }
+        }
+      }
+    },
+    "/my/notifications/mark_read" : {
+      "put" : {
+        "summary" : "Marks the person's notifications as read up to the given notification id.",
+        "description" : "Marks the person's notifications as read up to the given not...",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "before",
+          "in" : "query",
+          "description" : "Mark all notifications before this id as read",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : { }
+      }
+    },
+    "/my/notifications/{notification_id}" : {
+      "get" : {
+        "summary" : "Retrieve particular notification",
+        "description" : "Retrieve particular notification",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notification"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Mark the notification as read.",
+        "description" : "Mark the notification as read.",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "read_at",
+          "in" : "query",
+          "description" : "Time notification was read.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notification"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "notification_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/my/workspaces" : {
+      "get" : {
+        "summary" : "Return list of workspaces for the authenticated person.",
+        "description" : "Return list of workspaces for the authenticated person.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/workspaces"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a new workspace for the authenticated person.",
+        "description" : "Create a new workspace for the authenticated person.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/workspaceReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/workspace"
+            }
+          }
+        }
+      }
+    },
+    "/my/workspaces/{workspace_id}" : {
+      "get" : {
+        "summary" : "Return a workspace for the authenticated person.",
+        "description" : "Return a workspace for the authenticated person.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/workspace"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Return the specified workspace.",
+        "description" : "Return the specified workspace.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/workspaceUpdate"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/workspace"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "permanently delete the workspace.",
+        "description" : "permanently delete the workspace.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "workspace_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/people/{person_id}/notifications/since/{timestamp}" : {
+      "get" : {
+        "summary" : "Returns list of notifications for the specified person whose updated_at values are less than the timestamp.",
+        "description" : "Returns list of notifications for the specified person whose...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notificationTimeStamp"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "person_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "timestamp",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects" : {
+      "get" : {
+        "summary" : "Get all of a user's active projects.",
+        "description" : "Get all of a user's active projects.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "account_ids",
+          "in" : "query",
+          "description" : "A comma separated list of account ids whose projects should be returned",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/projects"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a new empty project.",
+        "description" : "Create a new empty project.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/projectReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/project"
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}" : {
+      "get" : {
+        "summary" : "Fetch the content of the specified project.",
+        "description" : "Fetch the content of the specified project.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/project"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update the specified project.",
+        "description" : "Update the specified project.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/projectReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/project"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Permanently delete the specified project.",
+        "description" : "Permanently delete the specified project.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/epics" : {
+      "get" : {
+        "summary" : "Returns a list of all epics in the project.",
+        "description" : "Returns a list of all epics in the project.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "filter",
+          "in" : "query",
+          "description" : "This parameter supplies a search string; only epics that match the search criteria are returned.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/epics"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a new epic.",
+        "description" : "Create a new epic.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/epicReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/epic"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/epics/{epic_id}" : {
+      "get" : {
+        "summary" : "Returns the specified epic.",
+        "description" : "Returns the specified epic.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/epic"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates an epic.",
+        "description" : "Updates an epic.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/epicUpdate"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/epic"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes an epic.",
+        "description" : "Deletes an epic.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "epic_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/epics/{epic_id}/activity" : {
+      "get" : {
+        "summary" : "Return list of the selected epic's activity.",
+        "description" : "Return list of the selected epic's activity.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The number of iterations to return relative to the offset.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "occurred_before",
+          "in" : "query",
+          "description" : "Activity will be returned only for operations that occurred before the time specified by this parameter.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "The offset of first iteration to return, relative to the set of iterations specified by 'scope', with zero being the first iteration in the scope. Defaults to zero. For the 'Done' scope, negative numbers can be passed, which specifies the number of iterations preceding the 'Current' iteration.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "since_version",
+          "in" : "query",
+          "description" : "Activity will be returned only for operations that occurred after the specified version.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "occurred_after",
+          "in" : "query",
+          "description" : "Activity will be returned only for operations that occurred after the time specified by this parameter.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/activity_types"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "epic_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/epics/{epic_id}/comments" : {
+      "get" : {
+        "summary" : "Returns the specified epic's comments.",
+        "description" : "Returns the specified epic's comments.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/comments"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Add a new comment.",
+        "description" : "Add a new comment.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/commentReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/comment"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "epic_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/epics/{epic_id}/comments/{comment_id}" : {
+      "get" : {
+        "summary" : "Gets a comment.",
+        "description" : "Gets a comment.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/comment"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates a comment.",
+        "description" : "Updates a comment.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/commentReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/comment"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a comment.",
+        "description" : "Deletes a comment.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "epic_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "comment_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/export" : {
+      "post" : {
+        "summary" : "POSTing to an individual project resource's URL is used to send story-selection parameters. The server responds with a CSV export file containing data from the selected stories.",
+        "description" : "POSTing to an individual project resource's URL is used to s...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/integrations" : {
+      "get" : {
+        "summary" : "Returns a project's integrations.",
+        "description" : "Returns a project's integrations.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/integrations"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a new integration for a project.",
+        "description" : "Create a new integration for a project.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/integrationReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/integration"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/integrations/{integration_id}" : {
+      "get" : {
+        "summary" : "Returns a project integration.",
+        "description" : "Returns a project integration.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/integration"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates a project integration.",
+        "description" : "Updates a project integration.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model267"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/integration"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a project integration.",
+        "description" : "Deletes a project integration.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "integration_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/integrations/{integration_id}/stories" : {
+      "get" : {
+        "summary" : "Provides external_story records for all of the potential stories available through the selected integration (already configured on the selected project). The content of the objects returned is suitable for use as parameters to create stories 'imported from' the selected integration.",
+        "description" : "Provides external_story records for all of the potential sto...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "exclude_linked",
+          "in" : "query",
+          "description" : "When this parameter is present and true, response will not include external stories which already have matching Pivotal Tracker stories.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/stories"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "integration_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/iteration_overrides/{iteration_number}" : {
+      "put" : {
+        "summary" : "Updates an iterration's overrides.",
+        "description" : "Updates an iterration's overrides.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/iterationOverrideReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/iterationOverride"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "iteration_number",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/iterations" : {
+      "get" : {
+        "summary" : "Return a set of iterations from the project.",
+        "description" : "Return a set of iterations from the project.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "The offset of first iteration to return, relative to the set of iterations specified by 'scope', with zero being the first iteration in the scope. Defaults to zero. For the 'Done' scope, negative numbers can be passed, which specifies the number of iterations preceding the 'Current' iteration.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The number of iterations to return relative to the offset.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "scope",
+          "in" : "query",
+          "description" : "Restricts the state of iterations to return. If not specified, it defaults to all iterations including done.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/iterations"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/memberships/{membership_id}" : {
+      "get" : {
+        "summary" : "Returns the specified project membership.",
+        "description" : "Returns the specified project membership.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/member"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates the specified project membership.",
+        "description" : "Updates the specified project membership.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/updateMemberReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/member"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes the specified project membership.",
+        "description" : "Deletes the specified project membership.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "membership_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/my/searches" : {
+      "get" : {
+        "summary" : "Provides a list of the searches which have been saved by the current person.",
+        "description" : "Provides a list of the searches which have been saved by the...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/saved_search"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Saves a new search.",
+        "description" : "Saves a new search.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/saved_searchReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/saved_search"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/my/searches/{search_id}" : {
+      "delete" : {
+        "summary" : "Deletes a saved search.",
+        "description" : "Deletes a saved search.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "search_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/search" : {
+      "get" : {
+        "summary" : "Search for stories and epics.",
+        "description" : "Search for stories and epics.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "query",
+          "in" : "query",
+          "description" : "String containing the search terms and options.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/search_result_container"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/stories/{story_id}" : {
+      "get" : {
+        "summary" : "Returns the specified story.",
+        "description" : "Returns the specified story.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/story"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates a story.",
+        "description" : "Updates a story.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/storyReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/story"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a story.",
+        "description" : "Deletes a story.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "story_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/stories/{story_id}/comments/{comment_id}/file_attachments/{file_attachment_id}" : {
+      "delete" : {
+        "summary" : "Deletes a google attachment.",
+        "description" : "Deletes a google attachment.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "comment_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "file_attachment_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "story_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/stories/{story_id}/comments/{comment_id}/google_attachments/{google_attachment_id}" : {
+      "delete" : {
+        "summary" : "Deletes a google attachment.",
+        "description" : "Deletes a google attachment.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "google_attachment_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "story_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "comment_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/stories/{story_id}/labels" : {
+      "get" : {
+        "summary" : "Returns the labels on a specified story.\r\n",
+        "description" : "Returns the labels on a specified story.\r\n",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/lables"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Returns the label that was created.",
+        "description" : "Returns the label that was created.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/labelReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/label"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "story_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/stories/{story_id}/labels/{label_id}" : {
+      "delete" : {
+        "summary" : "Removes the label from the story.",
+        "description" : "Removes the label from the story.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "label_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "story_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/stories/{story_id}/owners" : {
+      "get" : {
+        "summary" : "Returns the owners of a specified story.",
+        "description" : "Returns the owners of a specified story.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/persons"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Add a user as an owner of the story.",
+        "description" : "Add a user as an owner of the story.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ownerReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/person"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "story_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/stories/{story_id}/owners/{person_id}" : {
+      "delete" : {
+        "summary" : "Removes ownership of a story from a person.",
+        "description" : "Removes ownership of a story from a person.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "person_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "story_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/stories/{story_id}/tasks" : {
+      "get" : {
+        "summary" : "Returns the tasks on a specified story.",
+        "description" : "Returns the tasks on a specified story.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/tasks"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Returns the task that was created.",
+        "description" : "Returns the task that was created.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/taskReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/task"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "story_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/stories/{story_id}/tasks/{task_id}" : {
+      "get" : {
+        "summary" : "Returns the specified task on a specified story.",
+        "description" : "Returns the specified task on a specified story.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/task"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates the specified task",
+        "description" : "Updates the specified task",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/taskReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/task"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes the specified task",
+        "description" : "Deletes the specified task",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "story_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "task_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/uploads" : {
+      "post" : {
+        "summary" : "Upload a file to the Tracker server. Tracker will create a matching file_attachment object which can be attached to a future comment on a story.",
+        "description" : "Upload a file to the Tracker server. Tracker will create a m...",
+        "operationId" : "POST",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model128"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/file_attachment"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/webhooks" : {
+      "get" : {
+        "summary" : "Return the project's webhooks.",
+        "description" : "Return the project's webhooks.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/webhooks"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creates a webhook on the project.",
+        "description" : "Creates a webhook on the project.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/webhookReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/webhook"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/projects/{project_id}/webhooks/{webhook_id}" : {
+      "get" : {
+        "summary" : "Return the specified project webhook.",
+        "description" : "Return the specified project webhook.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "envelope",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/webhook"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update the specified project webhook.",
+        "description" : "Update the specified project webhook.",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/webhookReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/webhook"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete the specified project webhook.",
+        "description" : "Delete the specified project webhook.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "webhook_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "project_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/source_commits" : {
+      "post" : {
+        "summary" : "Creates a comment associated with a commit in a Source Control system.",
+        "description" : "Creates a comment associated with a commit in a Source Contr...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/source_commitReq"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/stories"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "updateMemberReq" : {
+      "type" : "object",
+      "properties" : {
+        "role" : {
+          "type" : "string"
+        },
+        "project_color" : {
+          "type" : "string"
+        }
+      }
+    },
+    "workspace" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "person_id" : {
+          "type" : "number"
+        }
+      }
+    },
+    "webhook" : {
+      "type" : "object",
+      "properties" : {
+        "created_at" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "project_id" : {
+          "type" : "number"
+        },
+        "updated_at" : {
+          "type" : "string"
+        },
+        "webhook_url" : {
+          "type" : "string"
+        },
+        "webhook_version" : {
+          "type" : "string"
+        }
+      }
+    },
+    "projects" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "number"
+              },
+              "kind" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "version" : {
+                "type" : "number"
+              },
+              "iteration_length" : {
+                "type" : "number"
+              },
+              "week_start_day" : {
+                "type" : "string"
+              },
+              "point_scale" : {
+                "type" : "string"
+              },
+              "point_scale_is_custom" : {
+                "type" : "boolean"
+              },
+              "bugs_and_chores_are_estimatable" : {
+                "type" : "boolean"
+              },
+              "automatic_planning" : {
+                "type" : "boolean"
+              },
+              "enable_tasks" : {
+                "type" : "boolean"
+              },
+              "time_zone" : {
+                "type" : "object",
+                "properties" : {
+                  "kind" : {
+                    "type" : "string"
+                  },
+                  "olson_name" : {
+                    "type" : "string"
+                  },
+                  "offset" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "velocity_averaged_over" : {
+                "type" : "number"
+              },
+              "number_of_done_iterations_to_show" : {
+                "type" : "number"
+              },
+              "has_google_domain" : {
+                "type" : "boolean"
+              },
+              "enable_incoming_emails" : {
+                "type" : "boolean"
+              },
+              "initial_velocity" : {
+                "type" : "number"
+              },
+              "public" : {
+                "type" : "boolean"
+              },
+              "atom_enabled" : {
+                "type" : "boolean"
+              },
+              "start_time" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "updated_at" : {
+                "type" : "string"
+              },
+              "account_id" : {
+                "type" : "number"
+              },
+              "current_iteration_number" : {
+                "type" : "number"
+              },
+              "enable_following" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "taskReq" : {
+      "type" : "object",
+      "properties" : {
+        "complete" : {
+          "type" : "boolean"
+        },
+        "position" : {
+          "type" : "number"
+        }
+      }
+    },
+    "project" : {
+      "type" : "object",
+      "properties" : {
+        "account_id" : {
+          "type" : "number"
+        },
+        "atom_enabled" : {
+          "type" : "boolean"
+        },
+        "automatic_planning" : {
+          "type" : "boolean"
+        },
+        "bugs_and_chores_are_estimatable" : {
+          "type" : "boolean"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "current_iteration_number" : {
+          "type" : "number"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "enable_following" : {
+          "type" : "boolean"
+        },
+        "enable_incoming_emails" : {
+          "type" : "boolean"
+        },
+        "enable_tasks" : {
+          "type" : "boolean"
+        },
+        "has_google_domain" : {
+          "type" : "boolean"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "initial_velocity" : {
+          "type" : "number"
+        },
+        "iteration_length" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "number_of_done_iterations_to_show" : {
+          "type" : "number"
+        },
+        "point_scale" : {
+          "type" : "string"
+        },
+        "point_scale_is_custom" : {
+          "type" : "boolean"
+        },
+        "profile_content" : {
+          "type" : "string"
+        },
+        "public" : {
+          "type" : "boolean"
+        },
+        "start_date" : {
+          "type" : "string"
+        },
+        "start_time" : {
+          "type" : "string"
+        },
+        "time_zone" : {
+          "type" : "object",
+          "properties" : {
+            "kind" : {
+              "type" : "string"
+            },
+            "olson_name" : {
+              "type" : "string"
+            },
+            "offset" : {
+              "type" : "string"
+            }
+          }
+        },
+        "updated_at" : {
+          "type" : "string"
+        },
+        "velocity_averaged_over" : {
+          "type" : "number"
+        },
+        "version" : {
+          "type" : "number"
+        },
+        "week_start_day" : {
+          "type" : "string"
+        }
+      }
+    },
+    "notificationTimeStamp" : {
+      "type" : "object",
+      "properties" : {
+        "http_status" : {
+          "type" : "string"
+        }
+      }
+    },
+    "storyReq" : {
+      "type" : "object",
+      "properties" : {
+        "comment" : {
+          "type" : "object",
+          "properties" : {
+            "text" : {
+              "type" : "string"
+            }
+          }
+        },
+        "current_state" : {
+          "type" : "string"
+        }
+      }
+    },
+    "accountsMembership" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "kind" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "number"
+              },
+              "person" : {
+                "type" : "object",
+                "properties" : {
+                  "kind" : {
+                    "type" : "string"
+                  },
+                  "id" : {
+                    "type" : "number"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "email" : {
+                    "type" : "string"
+                  },
+                  "initials" : {
+                    "type" : "string"
+                  },
+                  "username" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "account_id" : {
+                "type" : "number"
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "updated_at" : {
+                "type" : "string"
+              },
+              "owner" : {
+                "type" : "boolean"
+              },
+              "admin" : {
+                "type" : "boolean"
+              },
+              "project_creator" : {
+                "type" : "boolean"
+              },
+              "timekeeper" : {
+                "type" : "boolean"
+              },
+              "time_enterer" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "integrationReq" : {
+      "type" : "object",
+      "properties" : {
+        "base_url" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "notification" : {
+      "type" : "object",
+      "properties" : {
+        "action" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "new_attachment_count" : {
+          "type" : "number"
+        },
+        "notification_type" : {
+          "type" : "string"
+        },
+        "performer" : {
+          "type" : "object",
+          "properties" : {
+            "kind" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "number"
+            },
+            "name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "project" : {
+          "type" : "object",
+          "properties" : {
+            "kind" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "number"
+            },
+            "name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "read_at" : {
+          "type" : "string"
+        },
+        "story" : {
+          "type" : "object",
+          "properties" : {
+            "kind" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "number"
+            },
+            "name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "updated_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "membershipPerson" : {
+      "type" : "object",
+      "properties" : {
+        "account_id" : {
+          "type" : "number"
+        },
+        "admin" : {
+          "type" : "boolean"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "owner" : {
+          "type" : "boolean"
+        },
+        "person" : {
+          "type" : "object",
+          "properties" : {
+            "kind" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "number"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "email" : {
+              "type" : "string"
+            },
+            "initials" : {
+              "type" : "string"
+            },
+            "username" : {
+              "type" : "string"
+            }
+          }
+        },
+        "project_creator" : {
+          "type" : "boolean"
+        },
+        "time_enterer" : {
+          "type" : "boolean"
+        },
+        "timekeeper" : {
+          "type" : "boolean"
+        },
+        "updated_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "workspaces" : { },
+    "epicUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "description" : {
+          "type" : "string"
+        }
+      }
+    },
+    "tasks" : {
+      "type" : "object",
+      "properties" : {
+        "complete" : {
+          "type" : "boolean"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "position" : {
+          "type" : "number"
+        },
+        "story_id" : {
+          "type" : "number"
+        },
+        "updated_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "google_attachments" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "title" : {
+                "type" : "string"
+              },
+              "kind" : {
+                "type" : "string"
+              },
+              "google_kind" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "commentReq" : {
+      "type" : "object",
+      "properties" : {
+        "text" : {
+          "type" : "string"
+        }
+      }
+    },
+    "epic" : {
+      "type" : "object",
+      "properties" : {
+        "created_at" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "label" : {
+          "type" : "object",
+          "properties" : {
+            "kind" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "number"
+            },
+            "project_id" : {
+              "type" : "number"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "created_at" : {
+              "type" : "string"
+            },
+            "updated_at" : {
+              "type" : "string"
+            }
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "project_id" : {
+          "type" : "number"
+        },
+        "updated_at" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "iterations" : { },
+    "webhookReq" : {
+      "type" : "object",
+      "properties" : {
+        "webhook_url" : {
+          "type" : "string"
+        },
+        "webhook_version" : {
+          "type" : "string"
+        }
+      }
+    },
+    "persons" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "kind" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "number"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "email" : {
+                "type" : "string"
+              },
+              "initials" : {
+                "type" : "string"
+              },
+              "username" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "task" : {
+      "type" : "object",
+      "properties" : {
+        "complete" : {
+          "type" : "boolean"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "position" : {
+          "type" : "number"
+        },
+        "story_id" : {
+          "type" : "number"
+        },
+        "updated_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "epicReq" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "person" : {
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "initials" : {
+          "type" : "string"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "username" : {
+          "type" : "string"
+        }
+      }
+    },
+    "activity_types" : { },
+    "saved_searchReq" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "query" : {
+          "type" : "string"
+        }
+      }
+    },
+    "integration" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "import_api_url" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "project_id" : {
+          "type" : "number"
+        },
+        "can_import" : {
+          "type" : "boolean"
+        },
+        "base_url" : {
+          "type" : "string"
+        },
+        "is_other" : {
+          "type" : "boolean"
+        },
+        "story_name" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "active" : {
+          "type" : "boolean"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "updated_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "iterationOverrideReq" : {
+      "type" : "object",
+      "properties" : {
+        "length" : {
+          "type" : "number"
+        },
+        "team_strength" : {
+          "type" : "number"
+        }
+      }
+    },
+    "labelReq" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "lables" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "kind" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "number"
+              },
+              "project_id" : {
+                "type" : "number"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "updated_at" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "integrations" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "kind" : {
+                "type" : "string"
+              },
+              "import_api_url" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "number"
+              },
+              "project_id" : {
+                "type" : "number"
+              },
+              "can_import" : {
+                "type" : "boolean"
+              },
+              "base_url" : {
+                "type" : "string"
+              },
+              "is_other" : {
+                "type" : "boolean"
+              },
+              "story_name" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "active" : {
+                "type" : "boolean"
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "updated_at" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "notifications" : {
+      "type" : "object",
+      "properties" : {
+        "http_status" : {
+          "type" : "string"
+        },
+        "last_notification_timestamp" : {
+          "type" : "number"
+        }
+      }
+    },
+    "ownerReq" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "number"
+        }
+      }
+    },
+    "epics" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "number"
+              },
+              "kind" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "updated_at" : {
+                "type" : "string"
+              },
+              "project_id" : {
+                "type" : "number"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "url" : {
+                "type" : "string"
+              },
+              "label" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "number"
+                  },
+                  "project_id" : {
+                    "type" : "number"
+                  },
+                  "kind" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "created_at" : {
+                    "type" : "string"
+                  },
+                  "updated_at" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "saved_search" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "project_id" : {
+          "type" : "number"
+        },
+        "query" : {
+          "type" : "string"
+        }
+      }
+    },
+    "file_attachment" : {
+      "type" : "object",
+      "properties" : {
+        "big_url" : {
+          "type" : "string"
+        },
+        "content_type" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "download_url" : {
+          "type" : "string"
+        },
+        "filename" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "number"
+        },
+        "thumbnail_url" : {
+          "type" : "string"
+        },
+        "thumbnailable" : {
+          "type" : "boolean"
+        },
+        "uploaded" : {
+          "type" : "boolean"
+        },
+        "uploader_id" : {
+          "type" : "number"
+        }
+      }
+    },
+    "projectReq" : {
+      "type" : "object",
+      "properties" : {
+        "account_id" : {
+          "type" : "number"
+        },
+        "atom_enabled" : {
+          "type" : "boolean"
+        },
+        "automatic_planning" : {
+          "type" : "boolean"
+        },
+        "bugs_and_chores_are_estimatable" : {
+          "type" : "boolean"
+        },
+        "enable_incoming_emails" : {
+          "type" : "boolean"
+        },
+        "enable_tasks" : {
+          "type" : "boolean"
+        },
+        "initial_velocity" : {
+          "type" : "number"
+        },
+        "iteration_length" : {
+          "type" : "number"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "number_of_done_iterations_to_show" : {
+          "type" : "number"
+        },
+        "point_scale" : {
+          "type" : "string"
+        },
+        "public" : {
+          "type" : "boolean"
+        },
+        "start_date" : {
+          "type" : "string"
+        },
+        "time_zone" : {
+          "type" : "object",
+          "properties" : {
+            "kind" : {
+              "type" : "string"
+            },
+            "olson_name" : {
+              "type" : "string"
+            },
+            "offset" : {
+              "type" : "string"
+            }
+          }
+        },
+        "velocity_averaged_over" : {
+          "type" : "number"
+        },
+        "week_start_day" : {
+          "type" : "string"
+        }
+      }
+    },
+    "member" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "last_viewed_at" : {
+          "type" : "string"
+        },
+        "person" : {
+          "type" : "object",
+          "properties" : {
+            "kind" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "number"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "email" : {
+              "type" : "string"
+            },
+            "initials" : {
+              "type" : "string"
+            },
+            "username" : {
+              "type" : "string"
+            }
+          }
+        },
+        "project_color" : {
+          "type" : "string"
+        },
+        "project_id" : {
+          "type" : "number"
+        },
+        "role" : {
+          "type" : "string"
+        },
+        "wants_comment_notification_emails" : {
+          "type" : "boolean"
+        },
+        "will_receive_mention_notifications_or_emails" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "accountCreateReq" : {
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string"
+        },
+        "initials" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "person_id" : {
+          "type" : "number"
+        }
+      }
+    },
+    "workspaceReq" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "workspaceUpdate" : {
+      "type" : "object"
+    },
+    "stories" : { },
+    "comments" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "kind" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "number"
+              },
+              "epic_id" : {
+                "type" : "number"
+              },
+              "text" : {
+                "type" : "string"
+              },
+              "person_id" : {
+                "type" : "number"
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "updated_at" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "label" : {
+      "type" : "object",
+      "properties" : {
+        "created_at" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "project_id" : {
+          "type" : "number"
+        },
+        "updated_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "source_commitReq" : {
+      "type" : "object",
+      "properties" : {
+        "source_commit" : {
+          "type" : "object",
+          "properties" : {
+            "commit_id" : {
+              "type" : "string"
+            },
+            "message" : {
+              "type" : "string"
+            },
+            "url" : {
+              "type" : "string"
+            },
+            "author" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "webhooks" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "kind" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "number"
+              },
+              "project_id" : {
+                "type" : "number"
+              },
+              "webhook_url" : {
+                "type" : "string"
+              },
+              "webhook_version" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "updated_at" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "iterationOverride" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "type" : "string"
+        },
+        "length" : {
+          "type" : "number"
+        },
+        "number" : {
+          "type" : "number"
+        },
+        "project_id" : {
+          "type" : "number"
+        },
+        "team_strength" : {
+          "type" : "number"
+        }
+      }
+    },
+    "comment" : {
+      "type" : "object",
+      "properties" : {
+        "created_at" : {
+          "type" : "string"
+        },
+        "epic_id" : {
+          "type" : "number"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "person_id" : {
+          "type" : "number"
+        },
+        "text" : {
+          "type" : "string"
+        },
+        "updated_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "accounts" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "kind" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "number"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "plan" : {
+                "type" : "string"
+              },
+              "status" : {
+                "type" : "string"
+              },
+              "created_at" : {
+                "type" : "string"
+              },
+              "updated_at" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "account" : {
+      "type" : "object",
+      "properties" : {
+        "created_at" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "plan" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "updated_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "story" : {
+      "type" : "object",
+      "properties" : {
+        "created_at" : {
+          "type" : "string"
+        },
+        "current_state" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "estimate" : {
+          "type" : "number"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "kind" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "owned_by_id" : {
+          "type" : "number"
+        },
+        "owner_ids" : {
+          "type" : "array"
+        },
+        "project_id" : {
+          "type" : "number"
+        },
+        "requested_by_id" : {
+          "type" : "number"
+        },
+        "story_type" : {
+          "type" : "string"
+        },
+        "updated_at" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

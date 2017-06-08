@@ -1,0 +1,1132 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : The Quizlet API lets developers interested in building study tools to interact with Quizlet's vast content database of over 2190 million flashcards. The Quizlet API lets you create, search, and modify flashcard sets and classes, and much more in your own application.",
+    "version" : "2.0",
+    "title" : "Quizlet"
+  },
+  "host" : "api.quizlet.com",
+  "basePath" : "/2.0",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/classes/{class_id}" : {
+      "get" : {
+        "summary" : "Returns the class details. The amount of detail returns depends on the authenticated user's permissions.",
+        "description" : "Returns the class details. The amount of detail returns depe...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "whitespace",
+          "in" : "query",
+          "description" : "Add this parameter (whitespace=1) to indent the results for easier human reading of the raw results. This can make testing/debugging easier, and has no effect on the results. Without this parameter, Quizlet will minimize whitespace and network traffic.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "A javascript function name for use inside a web application, using the JSON-P method. callback=foo will wrap the response in the foo function: foo({...data...})",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK - The request you sent was successful (and there is content in the body of the response).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/class"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - There is something wrong with the data you provided (e.g. You didn't send a \"title\" when creating a new set).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized - The access token you provided does not have permission to do what you asked (e.g. Viewing a private set using a public access token)\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "500" : {
+            "description" : "Server Error - An unknown internal error occurred. We're automatically notified of these.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "404" : {
+            "description" : "Not Found - The resource you specified doesn't exist (e.g. the set id you provided doesn't exist or has been deleted).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed - The resource exists, but what you requested is not allowed (e.g. we don't allow deleting users via the API).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Edits an existing Class",
+        "description" : "Edits an existing Class",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "Allow Discussion",
+          "in" : "query",
+          "description" : "Flag of whether users are allowed to use the discussion box in this class.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Name",
+          "in" : "query",
+          "description" : "The name of the class\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "description",
+          "in" : "query",
+          "description" : "A text description of the set.\r\n\r\nThe definition of the term\r\nBlock of text describing the class.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Admin Only",
+          "in" : "query",
+          "description" : "Flag of whether non-admin users are allowed to invite other members and add sets to this class.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK - The request you sent was successful (and there is content in the body of the response).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/classPut"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a class\r\nRequires a write_group-scoped access token authorized by the creator of the class.\r\n",
+        "description" : "Deletes a class\r\nRequires a write_group-scoped access token a...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "class_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/classes/{class_id}/members/{username}" : {
+      "put" : {
+        "summary" : "Join, or apply to join, a class\r\n",
+        "description" : "Join, or apply to join, a class\r\n",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "Application",
+          "in" : "query",
+          "description" : "A brief message to send to managers of the class when requesting access.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK - The request you sent was successful (and there is content in the body of the response).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/member"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Leave a class\r\n",
+        "description" : "Leave a class\r\n",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "username",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "class_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/images" : {
+      "post" : {
+        "summary" : "Upload one or more images\r\n",
+        "description" : "Upload one or more images\r\n",
+        "operationId" : "POST",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model704"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK - The request you sent was successful (and there is content in the body of the response).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/images"
+            }
+          }
+        }
+      }
+    },
+    "/search/classes" : {
+      "get" : {
+        "summary" : "General way to search for classes. Returns minimal information about classes.\r\n",
+        "description" : "General way to search for classes. Returns minimal informati...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "A javascript function name for use inside a web application, using the JSON-P method. callback=foo will wrap the response in the foo function: foo({...data...})",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "whitespace",
+          "in" : "query",
+          "description" : "Add this parameter (whitespace=1) to indent the results for easier human reading of the raw results. This can make testing/debugging easier, and has no effect on the results. Without this parameter, Quizlet will minimize whitespace and network traffic.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "The page of the result set to display.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Q",
+          "in" : "query",
+          "description" : "the search query (case-insensitive)\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "per_page",
+          "in" : "query",
+          "description" : "The number of sets to display per page (must be between 1 and 50).\r\n\r\nThe number of classes to display per page (must be between 1 and 50).\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK - The request you sent was successful (and there is content in the body of the response).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/searchClasses"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - There is something wrong with the data you provided (e.g. You didn't send a \"title\" when creating a new set).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized - The access token you provided does not have permission to do what you asked (e.g. Viewing a private set using a public access token)\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "500" : {
+            "description" : "Server Error - An unknown internal error occurred. We're automatically notified of these.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "404" : {
+            "description" : "Not Found - The resource you specified doesn't exist (e.g. the set id you provided doesn't exist or has been deleted).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed - The resource exists, but what you requested is not allowed (e.g. we don't allow deleting users via the API).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          }
+        }
+      }
+    },
+    "/search/definitions" : {
+      "get" : {
+        "summary" : "Find the definitions of a word.",
+        "description" : "Find the definitions of a word.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "Limi",
+          "in" : "query",
+          "description" : "Number of definitions to limit of each type. For example, if type is set to \"all\" and limit is set to 2, you will get 2 user and 2 official definitions (for a total of 4).\r\n",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "whitespace",
+          "in" : "query",
+          "description" : "Add this parameter (whitespace=1) to indent the results for easier human reading of the raw results. This can make testing/debugging easier, and has no effect on the results. Without this parameter, Quizlet will minimize whitespace and network traffic.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "Type",
+          "in" : "query",
+          "description" : "one of \"all\", \"user\", \"official\"\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "A javascript function name for use inside a web application, using the JSON-P method. callback=foo will wrap the response in the foo function: foo({...data...})",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Q",
+          "in" : "query",
+          "description" : "The search query (case-insensitive)\r\n",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK - The request you sent was successful (and there is content in the body of the response).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/searchDefinitions"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - There is something wrong with the data you provided (e.g. You didn't send a \"title\" when creating a new set).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized - The access token you provided does not have permission to do what you asked (e.g. Viewing a private set using a public access token)\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "500" : {
+            "description" : "Server Error - An unknown internal error occurred. We're automatically notified of these.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "404" : {
+            "description" : "Not Found - The resource you specified doesn't exist (e.g. the set id you provided doesn't exist or has been deleted).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed - The resource exists, but what you requested is not allowed (e.g. we don't allow deleting users via the API).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          }
+        }
+      }
+    },
+    "/search/universal" : {
+      "get" : {
+        "summary" : "General way to search for classes, sets, and users all in one.\r\n",
+        "description" : "General way to search for classes, sets, and users all in on...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "per_page",
+          "in" : "query",
+          "description" : "The number of sets to display per page (must be between 1 and 50).\r\n\r\nThe number of classes to display per page (must be between 1 and 50).\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Q",
+          "in" : "query",
+          "description" : "the search query (case-insensitive)\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "A javascript function name for use inside a web application, using the JSON-P method. callback=foo will wrap the response in the foo function: foo({...data...})",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "The page of the result set to display.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "whitespace",
+          "in" : "query",
+          "description" : "Add this parameter (whitespace=1) to indent the results for easier human reading of the raw results. This can make testing/debugging easier, and has no effect on the results. Without this parameter, Quizlet will minimize whitespace and network traffic.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Item object: The returned item objects are identical to the user, class, and set items returned in other areas of the API, with the exception that there is also a type field included with all returned items indicating whether the item is a class, set, or user. In all cases, only minimal information is returned about each item in the resulting JSON.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/searchUniversal"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - There is something wrong with the data you provided (e.g. You didn't send a \"title\" when creating a new set).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized - The access token you provided does not have permission to do what you asked (e.g. Viewing a private set using a public access token)\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "500" : {
+            "description" : "Server Error - An unknown internal error occurred. We're automatically notified of these.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "404" : {
+            "description" : "Not Found - The resource you specified doesn't exist (e.g. the set id you provided doesn't exist or has been deleted).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed - The resource exists, but what you requested is not allowed (e.g. we don't allow deleting users via the API).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          }
+        }
+      }
+    },
+    "/sets/{set_id}/password" : {
+      "post" : {
+        "summary" : "Submits the password for a password-protected set",
+        "description" : "Submits the password for a password-protected set",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "password",
+          "in" : "query",
+          "description" : "Your password",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "set_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/sets/{set_id}/terms" : {
+      "get" : {
+        "summary" : "View just the terms in a single set.\r\n",
+        "description" : "View just the terms in a single set.\r\n",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "A javascript function name for use inside a web application, using the JSON-P method. callback=foo will wrap the response in the foo function: foo({...data...})",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "whitespace",
+          "in" : "query",
+          "description" : "Add this parameter (whitespace=1) to indent the results for easier human reading of the raw results. This can make testing/debugging easier, and has no effect on the results. Without this parameter, Quizlet will minimize whitespace and network traffic.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "modified_since",
+          "in" : "query",
+          "description" : "If you specify this timestamp and the set has not changed, then a 304 not modified response will be returned with no content.\r\n",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK - The request you sent was successful (and there is content in the body of the response).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/terms"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - There is something wrong with the data you provided (e.g. You didn't send a \"title\" when creating a new set).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized - The access token you provided does not have permission to do what you asked (e.g. Viewing a private set using a public access token)\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "500" : {
+            "description" : "Server Error - An unknown internal error occurred. We're automatically notified of these.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "404" : {
+            "description" : "Not Found - The resource you specified doesn't exist (e.g. the set id you provided doesn't exist or has been deleted).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed - The resource exists, but what you requested is not allowed (e.g. we don't allow deleting users via the API).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Add a single term to a set.\r\n",
+        "description" : "Add a single term to a set.\r\n",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "description",
+          "in" : "query",
+          "description" : "A text description of the set.\r\n\r\nThe definition of the term\r\nBlock of text describing the class.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "term",
+          "in" : "query",
+          "description" : "Return sets that have the specified term in them.\r\n\r\nThe actual term (front side of card)\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Image",
+          "in" : "query",
+          "description" : "The identifier of the image for the term. You get image identifiers when you upload images.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "set_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/sets/{set_id}/terms/{term_id}" : {
+      "put" : {
+        "summary" : "Edit a single term within a se\r\n",
+        "description" : "Edit a single term within a se\r\n",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "Image",
+          "in" : "query",
+          "description" : "The identifier of the image for the term. You get image identifiers when you upload images.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "description",
+          "in" : "query",
+          "description" : "A text description of the set.\r\n\r\nThe definition of the term\r\nBlock of text describing the class.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "term",
+          "in" : "query",
+          "description" : "Return sets that have the specified term in them.\r\n\r\nThe actual term (front side of card)\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "Delete a single term from a set.\r\n",
+        "description" : "Delete a single term from a set.\r\n",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "description",
+          "in" : "query",
+          "description" : "A text description of the set.\r\n\r\nThe definition of the term\r\nBlock of text describing the class.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "term",
+          "in" : "query",
+          "description" : "Return sets that have the specified term in them.\r\n\r\nThe actual term (front side of card)\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Image",
+          "in" : "query",
+          "description" : "The identifier of the image for the term. You get image identifiers when you upload images.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "set_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "term_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/{username}" : {
+      "get" : {
+        "summary" : "Returns all the user's details, and minimal information of all their sets, classes, favorites and 25 most recent study sessions.\r\n",
+        "description" : "Returns all the user's details, and minimal information of a...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "A javascript function name for use inside a web application, using the JSON-P method. callback=foo will wrap the response in the foo function: foo({...data...})",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "whitespace",
+          "in" : "query",
+          "description" : "Add this parameter (whitespace=1) to indent the results for easier human reading of the raw results. This can make testing/debugging easier, and has no effect on the results. Without this parameter, Quizlet will minimize whitespace and network traffic.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK - The request you sent was successful (and there is content in the body of the response).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/user"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - There is something wrong with the data you provided (e.g. You didn't send a \"title\" when creating a new set).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "500" : {
+            "description" : "Server Error - An unknown internal error occurred. We're automatically notified of these.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized - The access token you provided does not have permission to do what you asked (e.g. Viewing a private set using a public access token)\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "404" : {
+            "description" : "Not Found - The resource you specified doesn't exist (e.g. the set id you provided doesn't exist or has been deleted).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed - The resource exists, but what you requested is not allowed (e.g. we don't allow deleting users via the API).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "username",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/{username}/favorites" : {
+      "get" : {
+        "summary" : "Returns full details of all the user's favorite sets.",
+        "description" : "Returns full details of all the user's favorite sets.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "whitespace",
+          "in" : "query",
+          "description" : "Add this parameter (whitespace=1) to indent the results for easier human reading of the raw results. This can make testing/debugging easier, and has no effect on the results. Without this parameter, Quizlet will minimize whitespace and network traffic.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "Modified Since",
+          "in" : "query",
+          "description" : "Limits results to sets that have been modified since the specified [UNIX timestamp](http://en.wikipedia.org/wiki/Unix_time)\r\n",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "A javascript function name for use inside a web application, using the JSON-P method. callback=foo will wrap the response in the foo function: foo({...data...})",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK - The request you sent was successful (and there is content in the body of the response).\r\n",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/setsGet"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - There is something wrong with the data you provided (e.g. You didn't send a \"title\" when creating a new set).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "500" : {
+            "description" : "Server Error - An unknown internal error occurred. We're automatically notified of these.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized - The access token you provided does not have permission to do what you asked (e.g. Viewing a private set using a public access token)\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "404" : {
+            "description" : "Not Found - The resource you specified doesn't exist (e.g. the set id you provided doesn't exist or has been deleted).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed - The resource exists, but what you requested is not allowed (e.g. we don't allow deleting users via the API).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "username",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/{username}/favorites/{set_id}" : {
+      "put" : {
+        "summary" : "Mark a set as favorite.\r\n",
+        "description" : "Mark a set as favorite.\r\n",
+        "operationId" : "PUT",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "Unmark a set as favorite\r\n",
+        "description" : "Unmark a set as favorite\r\n",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "set_id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "username",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/{username}/sets" : {
+      "get" : {
+        "summary" : "Returns full details about sets they created.",
+        "description" : "Returns full details about sets they created.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "Modified Since",
+          "in" : "query",
+          "description" : "Limits results to sets that have been modified since the specified [UNIX timestamp](http://en.wikipedia.org/wiki/Unix_time)\r\n",
+          "required" : false,
+          "type" : "string",
+          "format" : "date"
+        }, {
+          "name" : "whitespace",
+          "in" : "query",
+          "description" : "Add this parameter (whitespace=1) to indent the results for easier human reading of the raw results. This can make testing/debugging easier, and has no effect on the results. Without this parameter, Quizlet will minimize whitespace and network traffic.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "A javascript function name for use inside a web application, using the JSON-P method. callback=foo will wrap the response in the foo function: foo({...data...})",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK - The request you sent was successful (and there is content in the body of the response).\r\n",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/setsGet"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - There is something wrong with the data you provided (e.g. You didn't send a \"title\" when creating a new set).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized - The access token you provided does not have permission to do what you asked (e.g. Viewing a private set using a public access token)\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "500" : {
+            "description" : "Server Error - An unknown internal error occurred. We're automatically notified of these.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "404" : {
+            "description" : "Not Found - The resource you specified doesn't exist (e.g. the set id you provided doesn't exist or has been deleted).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed - The resource exists, but what you requested is not allowed (e.g. we don't allow deleting users via the API).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "username",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/{username}/studied" : {
+      "get" : {
+        "summary" : "Returns full details for their 100 most recent study sessions.\r\n",
+        "description" : "Returns full details for their 100 most recent study session...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "whitespace",
+          "in" : "query",
+          "description" : "Add this parameter (whitespace=1) to indent the results for easier human reading of the raw results. This can make testing/debugging easier, and has no effect on the results. Without this parameter, Quizlet will minimize whitespace and network traffic.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "A javascript function name for use inside a web application, using the JSON-P method. callback=foo will wrap the response in the foo function: foo({...data...})",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK - The request you sent was successful (and there is content in the body of the response).\r\n",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/studied"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - There is something wrong with the data you provided (e.g. You didn't send a \"title\" when creating a new set).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized - The access token you provided does not have permission to do what you asked (e.g. Viewing a private set using a public access token)\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "500" : {
+            "description" : "Server Error - An unknown internal error occurred. We're automatically notified of these.\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "404" : {
+            "description" : "Not Found - The resource you specified doesn't exist (e.g. the set id you provided doesn't exist or has been deleted).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed - The resource exists, but what you requested is not allowed (e.g. we don't allow deleting users via the API).\r\n",
+            "schema" : {
+              "$ref" : "#/definitions/error401-500"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "username",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "searchUniversal" : {
+      "type" : "object",
+      "properties" : {
+        "total_results" : {
+          "type" : "number"
+        },
+        "total_pages" : {
+          "type" : "number"
+        },
+        "page" : {
+          "type" : "number"
+        }
+      }
+    },
+    "images" : {
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "url" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "studied" : { },
+    "searchClasses" : {
+      "type" : "object",
+      "properties" : {
+        "total_results" : {
+          "type" : "number"
+        },
+        "total_pages" : {
+          "type" : "number"
+        },
+        "page" : {
+          "type" : "number"
+        }
+      }
+    },
+    "error" : {
+      "type" : "object",
+      "properties" : {
+        "http_code" : {
+          "type" : "number"
+        },
+        "error" : {
+          "type" : "string"
+        },
+        "error_title" : {
+          "type" : "string"
+        },
+        "error_description" : {
+          "type" : "string"
+        }
+      }
+    },
+    "classPut" : {
+      "type" : "object",
+      "properties" : {
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "terms" : {
+      "type" : "object"
+    },
+    "member" : {
+      "type" : "object",
+      "properties" : {
+        "username" : {
+          "type" : "string"
+        },
+        "role" : {
+          "type" : "string"
+        },
+        "email_notification" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "searchDefinitions" : {
+      "type" : "object",
+      "properties" : {
+        "user_definitions" : {
+          "type" : "array"
+        }
+      }
+    },
+    "setsGet" : { },
+    "error401-500" : {
+      "type" : "object",
+      "properties" : {
+        "http_code" : {
+          "type" : "number"
+        },
+        "error" : {
+          "type" : "string"
+        },
+        "error_title" : {
+          "type" : "string"
+        },
+        "error_description" : {
+          "type" : "string"
+        }
+      }
+    },
+    "user" : {
+      "type" : "object",
+      "properties" : {
+        "username" : {
+          "type" : "string"
+        },
+        "account_type" : {
+          "type" : "string"
+        },
+        "sign_up_date" : {
+          "type" : "number"
+        },
+        "profile_image" : {
+          "type" : "string"
+        },
+        "statistics" : {
+          "type" : "object",
+          "properties" : {
+            "study_session_count" : {
+              "type" : "number"
+            },
+            "message_count" : {
+              "type" : "number"
+            },
+            "total_answer_count" : {
+              "type" : "number"
+            },
+            "public_sets_created" : {
+              "type" : "number"
+            },
+            "public_terms_entered" : {
+              "type" : "number"
+            },
+            "total_sets_created" : {
+              "type" : "number"
+            },
+            "total_terms_entered" : {
+              "type" : "number"
+            }
+          }
+        },
+        "favorite_sets" : {
+          "type" : "array"
+        },
+        "studied" : {
+          "type" : "array"
+        },
+        "classes" : {
+          "type" : "array"
+        }
+      }
+    },
+    "class" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "number"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "set_count" : {
+          "type" : "number"
+        },
+        "user_count" : {
+          "type" : "number"
+        },
+        "created_date" : {
+          "type" : "number"
+        },
+        "is_public" : {
+          "type" : "boolean"
+        },
+        "admin_only" : {
+          "type" : "boolean"
+        },
+        "description" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

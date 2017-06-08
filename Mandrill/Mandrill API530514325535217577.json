@@ -1,0 +1,3262 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Mandrill is a transactional email platform.",
+    "version" : "1.0",
+    "title" : "Mandrill API"
+  },
+  "host" : "mandrillapp.com",
+  "basePath" : "/api/",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/exports/activity.json" : {
+      "post" : {
+        "summary" : "Begins an export of your activity history. The activity will be exported to a zip archive containing a single file named activity.csv in the same format as you would be able to export from your account's activity view. It includes the following fields: Date, Email Address, Sender, Subject, Status, Tags, Opens, Clicks, Bounce Detail. If you have configured any custom metadata fields, they will be included in the exported data.",
+        "description" : "Begins an export of your activity history. The activity will...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/exports_activity"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/exports_satus"
+            }
+          }
+        }
+      }
+    },
+    "/exports/rejects.json" : {
+      "post" : {
+        "summary" : "Begins an export of your rejection blacklist. The blacklist will be exported to a zip archive containing a single file named rejects.csv that includes the following fields: email, reason, detail, created_at, expires_at, last_event_at, expires_at.",
+        "description" : "Begins an export of your rejection blacklist. The blacklist ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/notify_email"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/exports_satus"
+            }
+          }
+        }
+      }
+    },
+    "/exports/whitelist.json" : {
+      "post" : {
+        "summary" : "Begins an export of your rejection whitelist. The whitelist will be exported to a zip archive containing a single file named whitelist.csv that includes the following fields: email, detail, created_at.",
+        "description" : "Begins an export of your rejection whitelist. The whitelist ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/notify_email"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/exports_satus"
+            }
+          }
+        }
+      }
+    },
+    "/inbound/add-route.json" : {
+      "post" : {
+        "summary" : "Add a new mailbox route to an inbound domain",
+        "description" : "Add a new mailbox route to an inbound domain",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/inbound_add-route"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/route"
+            }
+          }
+        }
+      }
+    },
+    "/inbound/delete-domain.json" : {
+      "post" : {
+        "summary" : "Delete an inbound domain from the account. All mail will stop routing for this domain immediately.",
+        "description" : "Delete an inbound domain from the account. All mail will sto...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/domain"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/inbound_info"
+            }
+          }
+        }
+      }
+    },
+    "/inbound/delete-route.json" : {
+      "post" : {
+        "summary" : "Delete an existing inbound mailbox route",
+        "description" : "Delete an existing inbound mailbox route",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/id"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/route"
+            }
+          }
+        }
+      }
+    },
+    "/inbound/routes.json" : {
+      "post" : {
+        "summary" : "List the mailbox routes defined for an inbound domain",
+        "description" : "List the mailbox routes defined for an inbound domain",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/domain"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/inbound_routes-response"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inbound/send-raw.json" : {
+      "post" : {
+        "summary" : "Take a raw MIME document destined for a domain with inbound domains set up, and send it to the inbound hook exactly as if it had been sent over SMTP",
+        "description" : "Take a raw MIME document destined for a domain with inbound ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/inbound_send-raw"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/inbound_send-raw-response"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inbound/update-route.json" : {
+      "post" : {
+        "summary" : "Update the pattern or webhook of an existing inbound mailbox route. If null is provided for any fields, the values will remain unchanged.",
+        "description" : "Update the pattern or webhook of an existing inbound mailbox...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/inbound_update-route"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/route"
+            }
+          }
+        }
+      }
+    },
+    "/ips/cancel-warmup.json" : {
+      "post" : {
+        "summary" : "Cancels the warmup process for a dedicated IP.",
+        "description" : "Cancels the warmup process for a dedicated IP.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ip"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ip_info"
+            }
+          }
+        }
+      }
+    },
+    "/ips/check-custom-dns.json" : {
+      "post" : {
+        "summary" : "Tests whether a domain name is valid for use as the custom reverse DNS for a dedicated IP.",
+        "description" : "Tests whether a domain name is valid for use as the custom r...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ip_domain"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ips_check-custom-dns-response"
+            }
+          }
+        }
+      }
+    },
+    "/ips/create-pool.json" : {
+      "post" : {
+        "summary" : "Creates a pool and returns it. If a pool already exists with this name, no action will be performed.",
+        "description" : "Creates a pool and returns it. If a pool already exists with...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ips_pool-key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ips_pool"
+            }
+          }
+        }
+      }
+    },
+    "/ips/delete-pool.json" : {
+      "post" : {
+        "summary" : "Deletes a pool. A pool must be empty before you can delete it, and you cannot delete your default pool.",
+        "description" : "Deletes a pool. A pool must be empty before you can delete i...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ips_pool-key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ips_delete-pool-response"
+            }
+          }
+        }
+      }
+    },
+    "/ips/list-pools.json" : {
+      "post" : {
+        "summary" : "Lists your dedicated IP pools.",
+        "description" : "Lists your dedicated IP pools.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/api_key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ips_list-pools-response"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ips/pool-info.json" : {
+      "post" : {
+        "summary" : "Describes a single dedicated IP pool.",
+        "description" : "Describes a single dedicated IP pool.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ips_pool-key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ips_pool"
+            }
+          }
+        }
+      }
+    },
+    "/ips/provision.json" : {
+      "post" : {
+        "summary" : "Requests an additional dedicated IP for your account. Accounts may have one outstanding request at any time, and provisioning requests are processed within 24 hours.",
+        "description" : "Requests an additional dedicated IP for your account. Accoun...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ips_provision"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ips_provision-response"
+            }
+          }
+        }
+      }
+    },
+    "/ips/set-custom-dns.json" : {
+      "post" : {
+        "summary" : "Configures the custom DNS name for a dedicated IP.",
+        "description" : "Configures the custom DNS name for a dedicated IP.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ip_domain"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ip_info"
+            }
+          }
+        }
+      }
+    },
+    "/ips/set-pool.json" : {
+      "post" : {
+        "summary" : "Moves a dedicated IP to a different pool.",
+        "description" : "Moves a dedicated IP to a different pool.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ips_set-pool"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ip_info"
+            }
+          }
+        }
+      }
+    },
+    "/ips/start-warmup.json" : {
+      "post" : {
+        "summary" : "Begins the warmup process for a dedicated IP. During the warmup process, Mandrill will gradually increase the percentage of your mail that is sent over the warming-up IP, over a period of roughly 30 days. The rest of your mail will be sent over shared IPs or other dedicated IPs in the same pool.",
+        "description" : "Begins the warmup process for a dedicated IP. During the war...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ip"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/ip_info"
+            }
+          }
+        }
+      }
+    },
+    "/messages/cancel-scheduled.json" : {
+      "post" : {
+        "summary" : "Cancels a scheduled email.",
+        "description" : "Cancels a scheduled email.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/messages_cancel-scheduled"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/schedulingchange_info"
+            }
+          }
+        }
+      }
+    },
+    "/messages/content.json" : {
+      "post" : {
+        "summary" : "Get the full content of a recently sent message",
+        "description" : "Get the full content of a recently sent message",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/id"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/messages_content-response"
+            }
+          }
+        }
+      }
+    },
+    "/messages/list-scheduled.json" : {
+      "post" : {
+        "summary" : "Queries your scheduled emails by sender or recipient, or both.",
+        "description" : "Queries your scheduled emails by sender or recipient, or bot...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/messages_list-scheduled"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/messages_list-scheduled-response"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/messages/parse.json" : {
+      "post" : {
+        "summary" : "Parse the full MIME document for an email message, returning the content of the message broken into its constituent pieces",
+        "description" : "Parse the full MIME document for an email message, returning...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/messages_parse"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/messages_parse-response"
+            }
+          }
+        }
+      }
+    },
+    "/messages/reschedule.json" : {
+      "post" : {
+        "summary" : "Reschedules a scheduled email.",
+        "description" : "Reschedules a scheduled email.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/messages_reschedule"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/schedulingchange_info"
+            }
+          }
+        }
+      }
+    },
+    "/messages/search-time-series.json" : {
+      "post" : {
+        "summary" : "Search the content of recently sent messages and return the aggregated hourly stats for matching messages",
+        "description" : "Search the content of recently sent messages and return the ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/messages_search-time-series"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/timeseries"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/messages/send-template.json" : {
+      "post" : {
+        "summary" : "Send a new transactional message through Mandrill using a template",
+        "description" : "Send a new transactional message through Mandrill using a te...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/messages_send-template"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/message_send-status"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/messages/send.json" : {
+      "post" : {
+        "summary" : "Send a new transactional message through Mandrill",
+        "description" : "Send a new transactional message through Mandrill",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/messages_send"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/message_send-status"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/senders/add-domain.json" : {
+      "post" : {
+        "summary" : "Adds a sender domain to your account. Sender domains are added automatically as you send, but you can use this call to add them ahead of time.",
+        "description" : "Adds a sender domain to your account. Sender domains are add...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/domain"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/sender_domain_info"
+            }
+          }
+        }
+      }
+    },
+    "/senders/check-domain.json" : {
+      "post" : {
+        "summary" : "Checks the SPF and DKIM settings for a domain. If you haven't already added this domain to your account, it will be added automatically.",
+        "description" : "Checks the SPF and DKIM settings for a domain. If you haven'...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/domain"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/sender_domain_info"
+            }
+          }
+        }
+      }
+    },
+    "/senders/domains.json" : {
+      "post" : {
+        "summary" : "Returns the sender domains that have been added to this account.",
+        "description" : "Returns the sender domains that have been added to this acco...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/api_key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/senders_domains-response"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/senders/verify-domain.json" : {
+      "post" : {
+        "summary" : "Sends a verification email in order to verify ownership of a domain. Domain verification is an optional step to confirm ownership of a domain. Once a domain has been verified in a Mandrill account, other accounts may not have their messages signed by that domain unless they also verify the domain. This prevents other Mandrill accounts from sending mail signed by your domain.",
+        "description" : "Sends a verification email in order to verify ownership of a...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/senders_verify-domain"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/senders_verify-domain-response"
+            }
+          }
+        }
+      }
+    },
+    "/subaccounts/pause.json" : {
+      "post" : {
+        "summary" : "Pause a subaccount's sending. Any future emails delivered to this subaccount will be queued for a maximum of 3 days until the subaccount is resumed.",
+        "description" : "Pause a subaccount's sending. Any future emails delivered to...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/id"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/subaccount_info2"
+            }
+          }
+        }
+      }
+    },
+    "/subaccounts/resume.json" : {
+      "post" : {
+        "summary" : "Resume a paused subaccount's sending",
+        "description" : "Resume a paused subaccount's sending",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/id"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/subaccount_info2"
+            }
+          }
+        }
+      }
+    },
+    "/tags/all-time-series.json" : {
+      "post" : {
+        "summary" : "Return the recent history (hourly stats for the last 30 days) for all tags",
+        "description" : "Return the recent history (hourly stats for the last 30 days...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/api_key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/timeseries"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tags/delete.json" : {
+      "post" : {
+        "summary" : "Deletes a tag permanently. Deleting a tag removes the tag from any messages that have been sent, and also deletes the tag's stats. There is no way to undo this operation, so use it carefully.",
+        "description" : "Deletes a tag permanently. Deleting a tag removes the tag fr...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/tag_key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/tags_delete-response"
+            }
+          }
+        }
+      }
+    },
+    "/tags/info.json" : {
+      "post" : {
+        "summary" : "Return more detailed information about a single tag, including aggregates of recent stats",
+        "description" : "Return more detailed information about a single tag, includi...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/tag_key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/tags_info-response"
+            }
+          }
+        }
+      }
+    },
+    "/tags/list.json" : {
+      "post" : {
+        "summary" : "Return all of the user-defined tag information",
+        "description" : "Return all of the user-defined tag information",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/api_key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/tags_list-response"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tags/time-series.json" : {
+      "post" : {
+        "summary" : "Return the recent history (hourly stats for the last 30 days) for a tag",
+        "description" : "Return the recent history (hourly stats for the last 30 days...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/tag_key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/timeseries"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/templates/publish.json" : {
+      "post" : {
+        "summary" : "Publish the content for the template. Any new messages sent using this template will start using the content that was previously in draft.",
+        "description" : "Publish the content for the template. Any new messages sent ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/name"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/template_detailed"
+            }
+          }
+        }
+      }
+    },
+    "/templates/render.json" : {
+      "post" : {
+        "summary" : "Inject content and optionally merge fields into a template, returning the HTML that results",
+        "description" : "Inject content and optionally merge fields into a template, ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/templates_render"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/templates_render-response"
+            }
+          }
+        }
+      }
+    },
+    "/urls/add-tracking-domain.json" : {
+      "post" : {
+        "summary" : "Add a tracking domain to your account",
+        "description" : "Add a tracking domain to your account",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/domain"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/tracking-domain-status"
+            }
+          }
+        }
+      }
+    },
+    "/urls/check-tracking-domain.json" : {
+      "post" : {
+        "summary" : "Checks the CNAME settings for a tracking domain. The domain must have been added already with the add-tracking-domain call",
+        "description" : "Checks the CNAME settings for a tracking domain. The domain ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/domain"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/tracking-domain-status"
+            }
+          }
+        }
+      }
+    },
+    "/urls/search.json" : {
+      "post" : {
+        "summary" : "Return the 100 most clicked URLs that match the search query given",
+        "description" : "Return the 100 most clicked URLs that match the search query...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/url_key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/url_infos"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/urls/tracking-domains.json" : {
+      "post" : {
+        "summary" : "Get the list of tracking domains set up for this account",
+        "description" : "Get the list of tracking domains set up for this account",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/api_key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/urls_tracking-domains-response"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/ping.json" : {
+      "post" : {
+        "summary" : "Validate an API key and respond to a ping",
+        "description" : "Validate an API key and respond to a ping",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/api_key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      }
+    },
+    "/users/ping2.json" : {
+      "post" : {
+        "summary" : "Validate an API key and respond to a ping (anal JSON parser version)",
+        "description" : "Validate an API key and respond to a ping (anal JSON parser ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/api_key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/users_ping2-response"
+            }
+          }
+        }
+      }
+    },
+    "/users/senders.json" : {
+      "post" : {
+        "summary" : "Return the senders that have tried to use this account, both verified and unverified",
+        "description" : "Return the senders that have tried to use this account, both...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/api_key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/senders"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webhooks/update.json" : {
+      "post" : {
+        "summary" : "Update an existing webhook",
+        "description" : "Update an existing webhook",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/webhooks_update"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/webhook"
+            }
+          }
+        }
+      }
+    },
+    "/whitelists/add.json" : {
+      "post" : {
+        "summary" : "Adds an email to your email rejection whitelist. If the address is currently on your blacklist, that blacklist entry will be removed automatically.",
+        "description" : "Adds an email to your email rejection whitelist. If the addr...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/email"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/whitelists_add-response"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "tracking-domain-status" : {
+      "type" : "object",
+      "properties" : {
+        "domain" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "last_tested_at" : {
+          "type" : "string"
+        },
+        "cname" : {
+          "type" : "object",
+          "properties" : {
+            "valid" : {
+              "type" : "boolean"
+            },
+            "valid_after" : {
+              "type" : "string"
+            },
+            "error" : {
+              "type" : "string"
+            }
+          }
+        },
+        "valid_tracking" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "template_detailed" : {
+      "type" : "object",
+      "properties" : {
+        "slug" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "labels" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "subject" : {
+          "type" : "string"
+        },
+        "from_email" : {
+          "type" : "string"
+        },
+        "from_name" : {
+          "type" : "string"
+        },
+        "text" : {
+          "type" : "string"
+        },
+        "publish_name" : {
+          "type" : "string"
+        },
+        "publish_code" : {
+          "type" : "string"
+        },
+        "publish_subject" : {
+          "type" : "string"
+        },
+        "publish_from_email" : {
+          "type" : "string"
+        },
+        "publish_from_name" : {
+          "type" : "string"
+        },
+        "publish_text" : {
+          "type" : "string"
+        },
+        "published_at" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "updated_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "inbound_update-route" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "pattern" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "webhook" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "auth_key" : {
+          "type" : "string"
+        },
+        "events" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "last_sent_at" : {
+          "type" : "string"
+        },
+        "batches_sent" : {
+          "type" : "integer"
+        },
+        "events_sent" : {
+          "type" : "integer"
+        },
+        "last_error" : {
+          "type" : "string"
+        }
+      }
+    },
+    "messages_list-scheduled" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "to" : {
+          "type" : "string"
+        }
+      }
+    },
+    "tags_list-response" : {
+      "properties" : {
+        "clicks" : {
+          "type" : "integer"
+        },
+        "complaints" : {
+          "type" : "integer"
+        },
+        "hard_bounces" : {
+          "type" : "integer"
+        },
+        "opens" : {
+          "type" : "integer"
+        },
+        "rejects" : {
+          "type" : "integer"
+        },
+        "reputation" : {
+          "type" : "integer"
+        },
+        "sent" : {
+          "type" : "integer"
+        },
+        "soft_bounces" : {
+          "type" : "integer"
+        },
+        "tag" : {
+          "type" : "string"
+        },
+        "unique_clicks" : {
+          "type" : "integer"
+        },
+        "unique_opens" : {
+          "type" : "integer"
+        },
+        "unsubs" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "webhooks_update" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "integer"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "events" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "schedulingchange_info" : {
+      "type" : "object",
+      "properties" : {
+        "_id" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "send_at" : {
+          "type" : "string"
+        },
+        "from_email" : {
+          "type" : "string"
+        },
+        "to" : {
+          "type" : "string"
+        },
+        "subject" : {
+          "type" : "string"
+        }
+      }
+    },
+    "tag_key" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "tag" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ips_pool" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "ips" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "created_at" : {
+                "type" : "string"
+              },
+              "custom_dns" : {
+                "type" : "object",
+                "properties" : {
+                  "enabled" : {
+                    "type" : "boolean"
+                  },
+                  "valid" : {
+                    "type" : "boolean"
+                  },
+                  "error" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "domain" : {
+                "type" : "string"
+              },
+              "ip" : {
+                "type" : "string"
+              },
+              "pool" : {
+                "type" : "string"
+              },
+              "warmup" : {
+                "type" : "object",
+                "properties" : {
+                  "warming_up" : {
+                    "type" : "boolean"
+                  },
+                  "start_at" : {
+                    "type" : "string"
+                  },
+                  "end_at" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "tags_delete-response" : {
+      "type" : "object",
+      "properties" : {
+        "tag" : {
+          "type" : "string"
+        },
+        "reputation" : {
+          "type" : "integer"
+        },
+        "sent" : {
+          "type" : "integer"
+        },
+        "hard_bounces" : {
+          "type" : "integer"
+        },
+        "soft_bounces" : {
+          "type" : "integer"
+        },
+        "rejects" : {
+          "type" : "integer"
+        },
+        "complaints" : {
+          "type" : "integer"
+        },
+        "unsubs" : {
+          "type" : "integer"
+        },
+        "opens" : {
+          "type" : "integer"
+        },
+        "clicks" : {
+          "type" : "integer"
+        },
+        "unique_opens" : {
+          "type" : "integer"
+        },
+        "unique_clicks" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "ips_check-custom-dns-response" : {
+      "type" : "object",
+      "properties" : {
+        "valid" : {
+          "type" : "boolean"
+        },
+        "error" : {
+          "type" : "string"
+        }
+      }
+    },
+    "timeseries" : {
+      "properties" : {
+        "clicks" : {
+          "type" : "integer"
+        },
+        "complaints" : {
+          "type" : "integer"
+        },
+        "hard_bounces" : {
+          "type" : "integer"
+        },
+        "opens" : {
+          "type" : "integer"
+        },
+        "rejects" : {
+          "type" : "integer"
+        },
+        "sent" : {
+          "type" : "integer"
+        },
+        "soft_bounces" : {
+          "type" : "integer"
+        },
+        "time" : {
+          "type" : "string"
+        },
+        "unique_clicks" : {
+          "type" : "integer"
+        },
+        "unique_opens" : {
+          "type" : "integer"
+        },
+        "unsubs" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "tags_info-response" : {
+      "type" : "object",
+      "properties" : {
+        "tag" : {
+          "type" : "string"
+        },
+        "sent" : {
+          "type" : "integer"
+        },
+        "hard_bounces" : {
+          "type" : "integer"
+        },
+        "soft_bounces" : {
+          "type" : "integer"
+        },
+        "rejects" : {
+          "type" : "integer"
+        },
+        "complaints" : {
+          "type" : "integer"
+        },
+        "unsubs" : {
+          "type" : "integer"
+        },
+        "opens" : {
+          "type" : "integer"
+        },
+        "clicks" : {
+          "type" : "integer"
+        },
+        "stats" : {
+          "type" : "object",
+          "properties" : {
+            "today" : {
+              "type" : "object",
+              "properties" : {
+                "sent" : {
+                  "type" : "integer"
+                },
+                "hard_bounces" : {
+                  "type" : "integer"
+                },
+                "soft_bounces" : {
+                  "type" : "integer"
+                },
+                "rejects" : {
+                  "type" : "integer"
+                },
+                "complaints" : {
+                  "type" : "integer"
+                },
+                "unsubs" : {
+                  "type" : "integer"
+                },
+                "opens" : {
+                  "type" : "integer"
+                },
+                "unique_opens" : {
+                  "type" : "integer"
+                },
+                "clicks" : {
+                  "type" : "integer"
+                },
+                "unique_clicks" : {
+                  "type" : "integer"
+                }
+              }
+            },
+            "last_7_days" : {
+              "type" : "object",
+              "properties" : {
+                "sent" : {
+                  "type" : "integer"
+                },
+                "hard_bounces" : {
+                  "type" : "integer"
+                },
+                "soft_bounces" : {
+                  "type" : "integer"
+                },
+                "rejects" : {
+                  "type" : "integer"
+                },
+                "complaints" : {
+                  "type" : "integer"
+                },
+                "unsubs" : {
+                  "type" : "integer"
+                },
+                "opens" : {
+                  "type" : "integer"
+                },
+                "unique_opens" : {
+                  "type" : "integer"
+                },
+                "clicks" : {
+                  "type" : "integer"
+                },
+                "unique_clicks" : {
+                  "type" : "integer"
+                }
+              }
+            },
+            "last_30_days" : {
+              "type" : "object",
+              "properties" : {
+                "sent" : {
+                  "type" : "integer"
+                },
+                "hard_bounces" : {
+                  "type" : "integer"
+                },
+                "soft_bounces" : {
+                  "type" : "integer"
+                },
+                "rejects" : {
+                  "type" : "integer"
+                },
+                "complaints" : {
+                  "type" : "integer"
+                },
+                "unsubs" : {
+                  "type" : "integer"
+                },
+                "opens" : {
+                  "type" : "integer"
+                },
+                "unique_opens" : {
+                  "type" : "integer"
+                },
+                "clicks" : {
+                  "type" : "integer"
+                },
+                "unique_clicks" : {
+                  "type" : "integer"
+                }
+              }
+            },
+            "last_60_days" : {
+              "type" : "object",
+              "properties" : {
+                "sent" : {
+                  "type" : "integer"
+                },
+                "hard_bounces" : {
+                  "type" : "integer"
+                },
+                "soft_bounces" : {
+                  "type" : "integer"
+                },
+                "rejects" : {
+                  "type" : "integer"
+                },
+                "complaints" : {
+                  "type" : "integer"
+                },
+                "unsubs" : {
+                  "type" : "integer"
+                },
+                "opens" : {
+                  "type" : "integer"
+                },
+                "unique_opens" : {
+                  "type" : "integer"
+                },
+                "clicks" : {
+                  "type" : "integer"
+                },
+                "unique_clicks" : {
+                  "type" : "integer"
+                }
+              }
+            },
+            "last_90_days" : {
+              "type" : "object",
+              "properties" : {
+                "sent" : {
+                  "type" : "integer"
+                },
+                "hard_bounces" : {
+                  "type" : "integer"
+                },
+                "soft_bounces" : {
+                  "type" : "integer"
+                },
+                "rejects" : {
+                  "type" : "integer"
+                },
+                "complaints" : {
+                  "type" : "integer"
+                },
+                "unsubs" : {
+                  "type" : "integer"
+                },
+                "opens" : {
+                  "type" : "integer"
+                },
+                "unique_opens" : {
+                  "type" : "integer"
+                },
+                "clicks" : {
+                  "type" : "integer"
+                },
+                "unique_clicks" : {
+                  "type" : "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ips_list-pools-response" : {
+      "properties" : {
+        "created_at" : {
+          "type" : "string"
+        },
+        "ips" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "created_at" : {
+                "type" : "string"
+              },
+              "custom_dns" : {
+                "type" : "object",
+                "properties" : {
+                  "enabled" : {
+                    "type" : "boolean"
+                  },
+                  "valid" : {
+                    "type" : "boolean"
+                  },
+                  "error" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "domain" : {
+                "type" : "string"
+              },
+              "ip" : {
+                "type" : "string"
+              },
+              "pool" : {
+                "type" : "string"
+              },
+              "warmup" : {
+                "type" : "object",
+                "properties" : {
+                  "warming_up" : {
+                    "type" : "boolean"
+                  },
+                  "start_at" : {
+                    "type" : "string"
+                  },
+                  "end_at" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "notify_email" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "notify_email" : {
+          "type" : "string"
+        }
+      }
+    },
+    "id" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ips_provision-response" : {
+      "type" : "object",
+      "properties" : {
+        "requested_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "urls_tracking-domains-response" : {
+      "properties" : {
+        "cname" : {
+          "type" : "object",
+          "properties" : {
+            "valid" : {
+              "type" : "boolean"
+            },
+            "valid_after" : {
+              "type" : "string"
+            },
+            "error" : {
+              "type" : "string"
+            }
+          }
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "domain" : {
+          "type" : "string"
+        },
+        "last_tested_at" : {
+          "type" : "string"
+        },
+        "valid_tracking" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ip_domain" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "ip" : {
+          "type" : "string"
+        },
+        "domain" : {
+          "type" : "string"
+        }
+      }
+    },
+    "exports_activity" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "notify_email" : {
+          "type" : "string"
+        },
+        "date_from" : {
+          "type" : "string"
+        },
+        "date_to" : {
+          "type" : "string"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "senders" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "states" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "api_keys" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "ip" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "ip" : {
+          "type" : "string"
+        }
+      }
+    },
+    "senders_verify-domain-response" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string"
+        },
+        "domain" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        }
+      }
+    },
+    "inbound_send-raw-response" : {
+      "properties" : {
+        "email" : {
+          "type" : "string"
+        },
+        "pattern" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "messages_parse-response" : {
+      "type" : "object",
+      "properties" : {
+        "subject" : {
+          "type" : "string"
+        },
+        "from_email" : {
+          "type" : "string"
+        },
+        "from_name" : {
+          "type" : "string"
+        },
+        "to" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "email" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "headers" : {
+          "type" : "object",
+          "properties" : {
+            "Reply-To" : {
+              "type" : "string"
+            }
+          }
+        },
+        "text" : {
+          "type" : "string"
+        },
+        "html" : {
+          "type" : "string"
+        },
+        "attachments" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "binary" : {
+                "type" : "boolean"
+              },
+              "content" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "type" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "images" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "content" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "type" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "inbound_add-route" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "domain" : {
+          "type" : "string"
+        },
+        "pattern" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ips_set-pool" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "ip" : {
+          "type" : "string"
+        },
+        "pool" : {
+          "type" : "string"
+        },
+        "create_pool" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "route" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "pattern" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "senders_domains-response" : {
+      "properties" : {
+        "created_at" : {
+          "type" : "string"
+        },
+        "dkim" : {
+          "type" : "object",
+          "properties" : {
+            "valid" : {
+              "type" : "boolean"
+            },
+            "valid_after" : {
+              "type" : "string"
+            },
+            "error" : {
+              "type" : "string"
+            }
+          }
+        },
+        "domain" : {
+          "type" : "string"
+        },
+        "last_tested_at" : {
+          "type" : "string"
+        },
+        "spf" : {
+          "type" : "object",
+          "properties" : {
+            "valid" : {
+              "type" : "boolean"
+            },
+            "valid_after" : {
+              "type" : "string"
+            },
+            "error" : {
+              "type" : "string"
+            }
+          }
+        },
+        "valid_signing" : {
+          "type" : "boolean"
+        },
+        "verified_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "domain" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "domain" : {
+          "type" : "string"
+        }
+      }
+    },
+    "name" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "subaccount_info2" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "custom_quota" : {
+          "type" : "integer"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "reputation" : {
+          "type" : "integer"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "first_sent_at" : {
+          "type" : "string"
+        },
+        "sent_weekly" : {
+          "type" : "integer"
+        },
+        "sent_monthly" : {
+          "type" : "integer"
+        },
+        "sent_total" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "messages_parse" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "raw_message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ip_info" : {
+      "type" : "object",
+      "properties" : {
+        "ip" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "pool" : {
+          "type" : "string"
+        },
+        "domain" : {
+          "type" : "string"
+        },
+        "custom_dns" : {
+          "type" : "object",
+          "properties" : {
+            "enabled" : {
+              "type" : "boolean"
+            },
+            "valid" : {
+              "type" : "boolean"
+            },
+            "error" : {
+              "type" : "string"
+            }
+          }
+        },
+        "warmup" : {
+          "type" : "object",
+          "properties" : {
+            "warming_up" : {
+              "type" : "boolean"
+            },
+            "start_at" : {
+              "type" : "string"
+            },
+            "end_at" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "messages_send" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "object",
+          "properties" : {
+            "html" : {
+              "type" : "string"
+            },
+            "text" : {
+              "type" : "string"
+            },
+            "subject" : {
+              "type" : "string"
+            },
+            "from_email" : {
+              "type" : "string"
+            },
+            "from_name" : {
+              "type" : "string"
+            },
+            "to" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "email" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "type" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            },
+            "headers" : {
+              "type" : "object",
+              "properties" : {
+                "Reply-To" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "important" : {
+              "type" : "boolean"
+            },
+            "bcc_address" : {
+              "type" : "string"
+            },
+            "merge" : {
+              "type" : "boolean"
+            },
+            "global_merge_vars" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "content" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            },
+            "merge_vars" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "rcpt" : {
+                    "type" : "string"
+                  },
+                  "vars" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "object",
+                      "properties" : {
+                        "content" : {
+                          "type" : "string"
+                        },
+                        "name" : {
+                          "type" : "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "tags" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "subaccount" : {
+              "type" : "string"
+            },
+            "google_analytics_domains" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "google_analytics_campaign" : {
+              "type" : "string"
+            },
+            "metadata" : {
+              "type" : "object",
+              "properties" : {
+                "website" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "recipient_metadata" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "rcpt" : {
+                    "type" : "string"
+                  },
+                  "values" : {
+                    "type" : "object",
+                    "properties" : {
+                      "user_id" : {
+                        "type" : "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "attachments" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "content" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "type" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            },
+            "images" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "content" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "type" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "async" : {
+          "type" : "boolean"
+        },
+        "ip_pool" : {
+          "type" : "string"
+        },
+        "send_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "inbound_send-raw" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "raw_message" : {
+          "type" : "string"
+        },
+        "to" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "mail_from" : {
+          "type" : "string"
+        },
+        "helo" : {
+          "type" : "string"
+        },
+        "client_address" : {
+          "type" : "string"
+        }
+      }
+    },
+    "templates_render-response" : {
+      "type" : "object",
+      "properties" : {
+        "html" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ips_provision" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "warmup" : {
+          "type" : "boolean"
+        },
+        "pool" : {
+          "type" : "string"
+        }
+      }
+    },
+    "messages_content-response" : {
+      "type" : "object",
+      "properties" : {
+        "ts" : {
+          "type" : "integer"
+        },
+        "_id" : {
+          "type" : "string"
+        },
+        "from_email" : {
+          "type" : "string"
+        },
+        "from_name" : {
+          "type" : "string"
+        },
+        "subject" : {
+          "type" : "string"
+        },
+        "to" : {
+          "type" : "object",
+          "properties" : {
+            "email" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "headers" : {
+          "type" : "object",
+          "properties" : {
+            "Reply-To" : {
+              "type" : "string"
+            }
+          }
+        },
+        "text" : {
+          "type" : "string"
+        },
+        "html" : {
+          "type" : "string"
+        },
+        "attachments" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "content" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "type" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "messages_send-template" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "template_name" : {
+          "type" : "string"
+        },
+        "template_content" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "content" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "message" : {
+          "type" : "object",
+          "properties" : {
+            "html" : {
+              "type" : "string"
+            },
+            "text" : {
+              "type" : "string"
+            },
+            "subject" : {
+              "type" : "string"
+            },
+            "from_email" : {
+              "type" : "string"
+            },
+            "from_name" : {
+              "type" : "string"
+            },
+            "to" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "email" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "type" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            },
+            "headers" : {
+              "type" : "object",
+              "properties" : {
+                "Reply-To" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "important" : {
+              "type" : "boolean"
+            },
+            "bcc_address" : {
+              "type" : "string"
+            },
+            "merge" : {
+              "type" : "boolean"
+            },
+            "global_merge_vars" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "content" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            },
+            "merge_vars" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "rcpt" : {
+                    "type" : "string"
+                  },
+                  "vars" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "object",
+                      "properties" : {
+                        "content" : {
+                          "type" : "string"
+                        },
+                        "name" : {
+                          "type" : "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "tags" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "subaccount" : {
+              "type" : "string"
+            },
+            "google_analytics_domains" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "google_analytics_campaign" : {
+              "type" : "string"
+            },
+            "metadata" : {
+              "type" : "object",
+              "properties" : {
+                "website" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "recipient_metadata" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "rcpt" : {
+                    "type" : "string"
+                  },
+                  "values" : {
+                    "type" : "object",
+                    "properties" : {
+                      "user_id" : {
+                        "type" : "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "attachments" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "content" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "type" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            },
+            "images" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "content" : {
+                    "type" : "string"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "type" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "async" : {
+          "type" : "boolean"
+        },
+        "ip_pool" : {
+          "type" : "string"
+        },
+        "send_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "inbound_routes-response" : {
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "pattern" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "sender_domain_info" : {
+      "type" : "object",
+      "properties" : {
+        "domain" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "last_tested_at" : {
+          "type" : "string"
+        },
+        "spf" : {
+          "type" : "object",
+          "properties" : {
+            "valid" : {
+              "type" : "boolean"
+            },
+            "valid_after" : {
+              "type" : "string"
+            },
+            "error" : {
+              "type" : "string"
+            }
+          }
+        },
+        "dkim" : {
+          "type" : "object",
+          "properties" : {
+            "valid" : {
+              "type" : "boolean"
+            },
+            "valid_after" : {
+              "type" : "string"
+            },
+            "error" : {
+              "type" : "string"
+            }
+          }
+        },
+        "verified_at" : {
+          "type" : "string"
+        },
+        "valid_signing" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "messages_search-time-series" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "query" : {
+          "type" : "string"
+        },
+        "date_from" : {
+          "type" : "string"
+        },
+        "date_to" : {
+          "type" : "string"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "senders" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "users_ping2-response" : {
+      "type" : "object",
+      "properties" : {
+        "PING" : {
+          "type" : "string"
+        }
+      }
+    },
+    "message_send-status" : {
+      "properties" : {
+        "_id" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "reject_reason" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        }
+      }
+    },
+    "messages_reschedule" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "send_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "senders_verify-domain" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "domain" : {
+          "type" : "string"
+        },
+        "mailbox" : {
+          "type" : "string"
+        }
+      }
+    },
+    "senders" : {
+      "properties" : {
+        "address" : {
+          "type" : "string"
+        },
+        "clicks" : {
+          "type" : "integer"
+        },
+        "complaints" : {
+          "type" : "integer"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "hard_bounces" : {
+          "type" : "integer"
+        },
+        "opens" : {
+          "type" : "integer"
+        },
+        "rejects" : {
+          "type" : "integer"
+        },
+        "sent" : {
+          "type" : "integer"
+        },
+        "soft_bounces" : {
+          "type" : "integer"
+        },
+        "unique_clicks" : {
+          "type" : "integer"
+        },
+        "unique_opens" : {
+          "type" : "integer"
+        },
+        "unsubs" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "email" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        }
+      }
+    },
+    "messages_list-scheduled-response" : {
+      "properties" : {
+        "_id" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "from_email" : {
+          "type" : "string"
+        },
+        "send_at" : {
+          "type" : "string"
+        },
+        "subject" : {
+          "type" : "string"
+        },
+        "to" : {
+          "type" : "string"
+        }
+      }
+    },
+    "inbound_info" : {
+      "type" : "object",
+      "properties" : {
+        "domain" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "valid_mx" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "whitelists_add-response" : {
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string"
+        },
+        "whether" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "exports_satus" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        }
+      }
+    },
+    "url_key" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "q" : {
+          "type" : "string"
+        }
+      }
+    },
+    "url_infos" : {
+      "properties" : {
+        "clicks" : {
+          "type" : "integer"
+        },
+        "sent" : {
+          "type" : "integer"
+        },
+        "unique_clicks" : {
+          "type" : "integer"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      }
+    },
+    "templates_render" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "template_name" : {
+          "type" : "string"
+        },
+        "template_content" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "content" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "merge_vars" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "content" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "ips_delete-pool-response" : {
+      "type" : "object",
+      "properties" : {
+        "pool" : {
+          "type" : "string"
+        },
+        "deleted" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "api_key" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ips_pool-key" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "pool" : {
+          "type" : "string"
+        }
+      }
+    },
+    "messages_cancel-scheduled" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

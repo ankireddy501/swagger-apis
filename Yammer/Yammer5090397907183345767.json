@@ -1,0 +1,1152 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : Yammer is a leading enterprise social network for businesses to get work done smarter and faster.",
+    "version" : "v1",
+    "title" : "Yammer"
+  },
+  "host" : "www.yammer.com",
+  "basePath" : "/api/v1",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/autocomplete/ranked" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "models",
+          "in" : "query",
+          "description" : "modelName:count -  Accepts a comma separated list of the models that should be searched on and the how many results should be returned for each model. This is specified in the format modelName1:count1,modelName2:count2 where count is an integer and modelName can be the following:",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "prefix",
+          "in" : "query",
+          "description" : "A string for matching against the searchable fields in the specified models. For example, specifying the parameter prefix=ab would return autocomplete results for models that have searchable fields that begin with \"ab\".",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      }
+    },
+    "/group_memberships{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "Join the group specified by the numeric string ID.",
+        "description" : "Join the group specified by the numeric string ID.",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "group_id",
+          "in" : "query",
+          "description" : "The group_id that the user is joining or leaving.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "Leave a group.",
+        "description" : "Leave a group.",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "group_id",
+          "in" : "query",
+          "description" : "The group_id that the user is joining or leaving.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/invitations{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "email",
+          "in" : "query",
+          "description" : "The email address of the user being invited. This can be specified multiple times to invite multiple users, or using email1 through email20.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/messages/about_topic/{id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "newer_than",
+          "in" : "query",
+          "description" : "Returns messages newer than the message ID specified as a numeric string. This should be used when polling for new messages. If you're looking at messages, and the most recent message returned is 3516, you can make a request with the parameter \"?newer_than=3516\" to ensure that you do not get duplicate copies of messages already on your page\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "older_than",
+          "in" : "query",
+          "description" : "Returns messages older than the message ID specified as a numeric string. This is useful for paginating messages. For example, if you're currently viewing 20 messages and the oldest is number 2912, you could append \"?older_than=2912\" to your request to get the 20 messages prior to those you're seeing.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Return only the specified number of messages. Works for threaded=true and threaded=extended.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "threaded",
+          "in" : "query",
+          "description" : "will only return the first message in each thread. This parameter is intended for apps which display message threads collapsed. threaded=extended will return the thread starter messages in order of most recently active as well as the two most recent messages, as they are viewed in the default view on the Yammer web interface.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/messages/algo{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Return only the specified number of messages. Works for threaded=true and threaded=extended.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "older_than",
+          "in" : "query",
+          "description" : "Returns messages older than the message ID specified as a numeric string. This is useful for paginating messages. For example, if you're currently viewing 20 messages and the oldest is number 2912, you could append \"?older_than=2912\" to your request to get the 20 messages prior to those you're seeing.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "newer_than",
+          "in" : "query",
+          "description" : "Returns messages newer than the message ID specified as a numeric string. This should be used when polling for new messages. If you're looking at messages, and the most recent message returned is 3516, you can make a request with the parameter \"?newer_than=3516\" to ensure that you do not get duplicate copies of messages already on your page\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "threaded",
+          "in" : "query",
+          "description" : "will only return the first message in each thread. This parameter is intended for apps which display message threads collapsed. threaded=extended will return the thread starter messages in order of most recently active as well as the two most recent messages, as they are viewed in the default view on the Yammer web interface.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/messages/following{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "newer_than",
+          "in" : "query",
+          "description" : "Returns messages newer than the message ID specified as a numeric string. This should be used when polling for new messages. If you're looking at messages, and the most recent message returned is 3516, you can make a request with the parameter \"?newer_than=3516\" to ensure that you do not get duplicate copies of messages already on your page\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "threaded",
+          "in" : "query",
+          "description" : "will only return the first message in each thread. This parameter is intended for apps which display message threads collapsed. threaded=extended will return the thread starter messages in order of most recently active as well as the two most recent messages, as they are viewed in the default view on the Yammer web interface.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "older_than",
+          "in" : "query",
+          "description" : "Returns messages older than the message ID specified as a numeric string. This is useful for paginating messages. For example, if you're currently viewing 20 messages and the oldest is number 2912, you could append \"?older_than=2912\" to your request to get the 20 messages prior to those you're seeing.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Return only the specified number of messages. Works for threaded=true and threaded=extended.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/messages/liked_by/current{mediaTypeExtension}" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "message_id",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "message_id",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/messages/my_feed{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Return only the specified number of messages. Works for threaded=true and threaded=extended.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "newer_than",
+          "in" : "query",
+          "description" : "Returns messages newer than the message ID specified as a numeric string. This should be used when polling for new messages. If you're looking at messages, and the most recent message returned is 3516, you can make a request with the parameter \"?newer_than=3516\" to ensure that you do not get duplicate copies of messages already on your page\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "threaded",
+          "in" : "query",
+          "description" : "will only return the first message in each thread. This parameter is intended for apps which display message threads collapsed. threaded=extended will return the thread starter messages in order of most recently active as well as the two most recent messages, as they are viewed in the default view on the Yammer web interface.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "older_than",
+          "in" : "query",
+          "description" : "Returns messages older than the message ID specified as a numeric string. This is useful for paginating messages. For example, if you're currently viewing 20 messages and the oldest is number 2912, you could append \"?older_than=2912\" to your request to get the 20 messages prior to those you're seeing.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/messages/private{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "newer_than",
+          "in" : "query",
+          "description" : "Returns messages newer than the message ID specified as a numeric string. This should be used when polling for new messages. If you're looking at messages, and the most recent message returned is 3516, you can make a request with the parameter \"?newer_than=3516\" to ensure that you do not get duplicate copies of messages already on your page\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "threaded",
+          "in" : "query",
+          "description" : "will only return the first message in each thread. This parameter is intended for apps which display message threads collapsed. threaded=extended will return the thread starter messages in order of most recently active as well as the two most recent messages, as they are viewed in the default view on the Yammer web interface.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "older_than",
+          "in" : "query",
+          "description" : "Returns messages older than the message ID specified as a numeric string. This is useful for paginating messages. For example, if you're currently viewing 20 messages and the oldest is number 2912, you could append \"?older_than=2912\" to your request to get the 20 messages prior to those you're seeing.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Return only the specified number of messages. Works for threaded=true and threaded=extended.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/messages/received{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Return only the specified number of messages. Works for threaded=true and threaded=extended.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "threaded",
+          "in" : "query",
+          "description" : "will only return the first message in each thread. This parameter is intended for apps which display message threads collapsed. threaded=extended will return the thread starter messages in order of most recently active as well as the two most recent messages, as they are viewed in the default view on the Yammer web interface.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "older_than",
+          "in" : "query",
+          "description" : "Returns messages older than the message ID specified as a numeric string. This is useful for paginating messages. For example, if you're currently viewing 20 messages and the oldest is number 2912, you could append \"?older_than=2912\" to your request to get the 20 messages prior to those you're seeing.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "newer_than",
+          "in" : "query",
+          "description" : "Returns messages newer than the message ID specified as a numeric string. This should be used when polling for new messages. If you're looking at messages, and the most recent message returned is 3516, you can make a request with the parameter \"?newer_than=3516\" to ensure that you do not get duplicate copies of messages already on your page\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/messages/sent{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Return only the specified number of messages. Works for threaded=true and threaded=extended.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "newer_than",
+          "in" : "query",
+          "description" : "Returns messages newer than the message ID specified as a numeric string. This should be used when polling for new messages. If you're looking at messages, and the most recent message returned is 3516, you can make a request with the parameter \"?newer_than=3516\" to ensure that you do not get duplicate copies of messages already on your page\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "older_than",
+          "in" : "query",
+          "description" : "Returns messages older than the message ID specified as a numeric string. This is useful for paginating messages. For example, if you're currently viewing 20 messages and the oldest is number 2912, you could append \"?older_than=2912\" to your request to get the 20 messages prior to those you're seeing.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "threaded",
+          "in" : "query",
+          "description" : "will only return the first message in each thread. This parameter is intended for apps which display message threads collapsed. threaded=extended will return the thread starter messages in order of most recently active as well as the two most recent messages, as they are viewed in the default view on the Yammer web interface.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/messages/{id}" : {
+      "post" : {
+        "summary" : "Send the current user a copy of the message specified by the numeric string ID.",
+        "description" : "Send the current user a copy of the message specified by the...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "Remove a message. The message must be owned by the current user.\r\nIf your app does not support the DELETE method you can do a POST with the parameter _method=DELETE.\r\n",
+        "description" : "Remove a message. The message must be owned by the current u...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/messages{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "threaded",
+          "in" : "query",
+          "description" : "will only return the first message in each thread. This parameter is intended for apps which display message threads collapsed. threaded=extended will return the thread starter messages in order of most recently active as well as the two most recent messages, as they are viewed in the default view on the Yammer web interface.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "older_than",
+          "in" : "query",
+          "description" : "Returns messages older than the message ID specified as a numeric string. This is useful for paginating messages. For example, if you're currently viewing 20 messages and the oldest is number 2912, you could append \"?older_than=2912\" to your request to get the 20 messages prior to those you're seeing.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Return only the specified number of messages. Works for threaded=true and threaded=extended.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "newer_than",
+          "in" : "query",
+          "description" : "Returns messages newer than the message ID specified as a numeric string. This should be used when polling for new messages. If you're looking at messages, and the most recent message returned is 3516, you can make a request with the parameter \"?newer_than=3516\" to ensure that you do not get duplicate copies of messages already on your page\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a new message. The response body will include the new message formatted the same way as message polling above. This allows your app to immediately display the newly-posted message back to the user.",
+        "description" : "Create a new message. The response body will include the new...",
+        "operationId" : "POST",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model666"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/networks/current{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "exclude_own_messages_from_unseen",
+          "in" : "query",
+          "description" : "Exclude the users own messages from the unseen count. This is good for unread badges.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "include_suspended",
+          "in" : "query",
+          "description" : "Include networks the user is suspended in.",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/pending_attachments" : {
+      "post" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "POST",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model815"
+          }
+        } ],
+        "responses" : { }
+      }
+    },
+    "/relationships/{id}{mediaTypeExtension}" : {
+      "delete" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "user_id",
+          "in" : "query",
+          "description" : "To view or edit the relationships for a user other than the logged-in user.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "type",
+          "in" : "query",
+          "description" : "relationship type",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/relationships{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "user_id",
+          "in" : "query",
+          "description" : "To view or edit the relationships for a user other than the logged-in user.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Add an org chart relationship. Specify id of the user for whom the relationship is being added as user_id, if the user is not the current user. Use [ subordinate | superior | colleague ] to create the relationship.",
+        "description" : "Add an org chart relationship. Specify id of the user for wh...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "superior",
+          "in" : "query",
+          "description" : "Pass email addresses as the value of the subordinate, superior or colleague parameters to add them to your org chart. All three can be passed in one request, and each can be passed multiple times",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "subordinate",
+          "in" : "query",
+          "description" : "Pass email addresses as the value of the subordinate, superior or colleague parameters to add them to your org chart. All three can be passed in one request, and each can be passed multiple times.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "user_id",
+          "in" : "query",
+          "description" : "To view or edit the relationships for a user other than the logged-in user.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "colleague",
+          "in" : "query",
+          "description" : "Pass email addresses as the value of the subordinate, superior or colleague parameters to add them to your org chart. All three can be passed in one request, and each can be passed multiple times.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/search{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "num_per_page",
+          "in" : "query",
+          "description" : "This allows you to limit the number of results of each type per page, up to a maximum of 20, the default value.",
+          "required" : false
+        }, {
+          "name" : "search ",
+          "in" : "query",
+          "description" : "The search query.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Only 20 results of each type will be returned for each page, but a total count is returned with each query. page=1 (the default) will return items 1-20, page=2 will return items 21-30, etc.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/streams/notifications{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Get the notifications feed for the current user.",
+        "description" : "Get the notifications feed for the current user.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/subscriptions" : {
+      "post" : {
+        "summary" : "Subscribe to a user or topic. Supports target_type and target_id parameters.",
+        "description" : "Subscribe to a user or topic. Supports target_type and targe...",
+        "operationId" : "POST",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "target_type",
+          "in" : "query",
+          "description" : "The target type (user or tag(legacy for topic)) to which user_current will subscribe/unsubscribe. Must be used in combination with target_id.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "target_id",
+          "in" : "query",
+          "description" : "The ID of the object to which user_current will subscribe/unsubscribe. Must be used in combination with target_type.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "Unsubscribe to a user or topic. Supports target_type and target_id parameters.",
+        "description" : "Unsubscribe to a user or topic. Supports target_type and tar...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "target_id",
+          "in" : "query",
+          "description" : "The ID of the object to which user_current will subscribe/unsubscribe. Must be used in combination with target_type.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "target_type",
+          "in" : "query",
+          "description" : "The target type (user or tag(legacy for topic)) to which user_current will subscribe/unsubscribe. Must be used in combination with target_id.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      }
+    },
+    "/subscriptions/to_thread/{id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/subscriptions/to_topic/{id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/subscriptions/to_user/{id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/suggestions/{id}{mediaTypeExtension}" : {
+      "delete" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/suggestions{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Return only the specified number of suggestions.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/threads/{id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/topics/{id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/by_email{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "email",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/current{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "View data about the current user.",
+        "description" : "View data about the current user.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users/in_group/{id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/users/{id}{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update information about a user. The target user should be the current user or a verified admin in a paid Yammer network.",
+        "description" : "Update information about a user. The target user should be t...",
+        "operationId" : "PUT",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model523"
+          }
+        } ],
+        "responses" : { }
+      },
+      "delete" : {
+        "summary" : "Suspend or delete a user. Current user should be a verified admin in a paid Yammer network to perform this action.",
+        "description" : "Suspend or delete a user. Current user should be a verified ...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    },
+    "/users{mediaTypeExtension}" : {
+      "get" : {
+        "summary" : "Retrieve users in the current user's Yammer network. Supports page, sort_by, reverse, and letter parameters.",
+        "description" : "Retrieve users in the current user's Yammer network. Support...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "sort_by",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "letter",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "reverse",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "(Untitled)",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a new user. Current user should be a verified admin in a paid Yammer network to perform this action.",
+        "description" : "Create a new user. Current user should be a verified admin i...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model276"
+          }
+        } ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "mediaTypeExtension",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : false,
+        "type" : "string"
+      } ]
+    }
+  }
+}

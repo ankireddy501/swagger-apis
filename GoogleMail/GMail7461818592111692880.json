@@ -1,0 +1,1291 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Headline : The Gmail API is a RESTful API that can be used to access Gmail mailboxes and send mail. The API can be used by Gmail and Google Apps users alike as an alternative to IMAP. It is intended primarily for programmatic, batch mailbox access as a web service. The API supports many of the basic operations available through the Gmail user interface like reading, composing, and sending mail. It also lets you manage labels on threads and messages and query for specific messages and threads.",
+    "version" : "v1",
+    "title" : "GMail"
+  },
+  "host" : "www.googleapis.com",
+  "basePath" : "/gmail/v1/users",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/{userId}/drafts" : {
+      "get" : {
+        "summary" : "Lists the drafts in the user's mailbox.",
+        "description" : "Lists the drafts in the user's mailbox.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "maxResults",
+          "in" : "query",
+          "description" : "Maximum number of drafts to return.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "pageToken",
+          "in" : "query",
+          "description" : "Page token to retrieve a specific page of results in the list.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/drafts"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Metadata-only request. Creates a new draft with the DRAFT label.",
+        "description" : "Metadata-only request. Creates a new draft with the DRAFT la...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/draftCreate"
+          }
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "uploadType",
+          "in" : "query",
+          "description" : "The type of upload request to the /upload URI. Acceptable values are\r\n\r\nmultipart - Multipart upload. Upload both the media and its metadata, in a single request.\r\n\r\nresumable - Resumable upload. Upload the file in a resumable fashion, using a series of at least two requests where the first request includes the metadata.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/draft"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/drafts/send" : {
+      "post" : {
+        "summary" : "Metadata-only request. Sends the specified, existing draft to the recipients in the 'To', 'Cc', and 'Bcc' headers.",
+        "description" : "Metadata-only request. Sends the specified, existing draft t...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model389"
+          }
+        }, {
+          "name" : "uploadType",
+          "in" : "query",
+          "description" : "The type of upload request to the /upload URI. Acceptable values are\r\n\r\nmultipart - Multipart upload. Upload both the media and its metadata, in a single request.\r\n\r\nresumable - Resumable upload. Upload the file in a resumable fashion, using a series of at least two requests where the first request includes the metadata.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/draft"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/history" : {
+      "get" : {
+        "summary" : "Lists the history of all changes to the given mailbox. History results are returned in chronological order (increasing 'historyId').",
+        "description" : "Lists the history of all changes to the given mailbox. Histo...",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "maxResults",
+          "in" : "query",
+          "description" : "Maximum number of history records to return.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "labelId",
+          "in" : "query",
+          "description" : "Only return messages with a label matching the ID.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "pageToken",
+          "in" : "query",
+          "description" : "Page token to retrieve a specific page of results in the list.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "startHistoryId",
+          "in" : "query",
+          "description" : "Returns history records after the specified startHistoryId. The supplied 'startHistoryId' should be obtained from the 'historyId' of a message, thread, or previous 'list' response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date 'startHistoryId' typically returns an HTTP 404 error code. A 'historyId' is typically valid for at least a week, but in some circumstances may be valid for only a few hours. If you receive an HTTP 404 error response, your application should perform a full sync. If you receive no 'nextPageToken' in the response, there are no updates to retrieve and you can store the returned 'historyId' for a future request.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/history"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/labels" : {
+      "get" : {
+        "summary" : "Lists all labels in the user's mailbox.",
+        "description" : "Lists all labels in the user's mailbox.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/labels"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creates a new label.",
+        "description" : "Creates a new label.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/labelCreate"
+          }
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/label"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/messages" : {
+      "get" : {
+        "summary" : "Lists the messages in the user's mailbox.",
+        "description" : "Lists the messages in the user's mailbox.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "includeSpamTrash",
+          "in" : "query",
+          "description" : "Include messages from SPAM and TRASH in the results.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "maxResults",
+          "in" : "query",
+          "description" : "Maximum number of messages to return.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "labelIds",
+          "in" : "query",
+          "description" : "Only return objects with labels that match all of the specified label IDs.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "description" : "Only return objects matching the specified query. Supports the same query format as the Gmail search box. For example, \"from:someuser@example.com rfc822msgid: is:unread\".\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "pageToken",
+          "in" : "query",
+          "description" : "Page token to retrieve a specific page of results in the list.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/messages"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Metadata-only request. Directly inserts a message into only this user's mailbox. Does not send a message.",
+        "description" : "Metadata-only request. Directly inserts a message into only ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/messageCreate"
+          }
+        }, {
+          "name" : "uploadType",
+          "in" : "query",
+          "description" : "The type of upload request to the /upload URI. Acceptable values are\r\n\r\nmultipart - Multipart upload. Upload both the media and its metadata, in a single request.\r\n\r\nresumable - Resumable upload. Upload the file in a resumable fashion, using a series of at least two requests where the first request includes the metadata.\r\n",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/messageCreated"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/messages/import" : {
+      "post" : {
+        "summary" : "Metadata-only request. Directly imports a message into only this user's mailbox, similar to receiving via SMTP. Does not send a message.",
+        "description" : "Metadata-only request. Directly imports a message into only ...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "uploadType",
+          "in" : "query",
+          "description" : "The type of upload request to the /upload URI. Acceptable values are\r\n\r\nmultipart - Multipart upload. Upload both the media and its metadata, in a single request.\r\n\r\nresumable - Resumable upload. Upload the file in a resumable fashion, using a series of at least two requests where the first request includes the metadata.\r\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/messageCreate"
+          }
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/messageImported"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/messages/{messageId}" : {
+      "get" : {
+        "summary" : "Gets the specified message.",
+        "description" : "Gets the specified message.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "format",
+          "in" : "query",
+          "description" : "The format to return the message in. \r\n\r\nAcceptable values are\r\nfull - Returns the parsed email message content in the payload field and the raw field is not used. (default)\r\n\r\nminimal - Only returns email message metadata such as identifiers and labels, it does not return the email headers, body, or payload.\r\n\r\nraw - Returns the entire email message content in the raw field as a string and the payload field is not used. This includes the identifiers, labels, metadata, MIME structure, and small body parts (typically less than 2KB).\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/messageFull"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Immediately and permanently deletes the specified message. This operation cannot be undone. Prefer 'messages.trash' instead.",
+        "description" : "Immediately and permanently deletes the specified message. T...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "messageId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/messages/{messageId}/attachments/{id}" : {
+      "get" : {
+        "summary" : "Gets the specified message attachment.",
+        "description" : "Gets the specified message attachment.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/attachment"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "messageId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/profile" : {
+      "get" : {
+        "summary" : "(Untitled)",
+        "description" : "(Untitled)",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/profileResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/threads" : {
+      "get" : {
+        "summary" : "Lists the threads in the user's mailbox.",
+        "description" : "Lists the threads in the user's mailbox.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "maxResults",
+          "in" : "query",
+          "description" : "Maximum number of threads to return.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "includeSpamTrash",
+          "in" : "query",
+          "description" : "Include threads from SPAM and TRASH in the results.\r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "pageToken",
+          "in" : "query",
+          "description" : "Page token to retrieve a specific page of results in the list.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "labelIds",
+          "in" : "query",
+          "description" : "Only return objects with labels that match all of the specified label IDs.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "description" : "Only return objects matching the specified query. Supports the same query format as the Gmail search box. For example, \"from:someuser@example.com rfc822msgid: is:unread\".\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/threads"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/threads/{id}" : {
+      "get" : {
+        "summary" : "Gets the specified thread.",
+        "description" : "Gets the specified thread.",
+        "operationId" : "GET",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/thread"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Immediately and permanently deletes the specified thread. This operation cannot be undone. Prefer 'threads.trash' instead.",
+        "description" : "Immediately and permanently deletes the specified thread. Th...",
+        "operationId" : "DELETE",
+        "consumes" : [ ],
+        "parameters" : [ ],
+        "responses" : { }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/threads/{id}/modify" : {
+      "post" : {
+        "summary" : "Modifies the labels applied to the thread. This applies to all messages in the thread.",
+        "description" : "Modifies the labels applied to the thread. This applies to a...",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/modifyLabels"
+          }
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/thread"
+            }
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/threads/{id}/trash" : {
+      "post" : {
+        "summary" : "Moves the specified thread to the trash.",
+        "description" : "Moves the specified thread to the trash.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model995"
+          }
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/{userId}/threads/{id}/untrash" : {
+      "post" : {
+        "summary" : "Removes the specified thread from the trash.",
+        "description" : "Removes the specified thread from the trash.",
+        "operationId" : "POST",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Callback function. Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "(Untitled)",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/model432"
+          }
+        }, {
+          "name" : "quotaUser",
+          "in" : "query",
+          "description" : "Alternative to 'userIp'. Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Overrides 'userIp' if both are provided.\r\nLearn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "prettyPrint",
+          "in" : "query",
+          "description" : "Returns response with indentations and line breaks. Returns the response in a human-readable format if 'true'. When this is 'false', it can reduce the response payload size, which might lead to better performance in some environments.    \r\n",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "userIp",
+          "in" : "query",
+          "description" : "IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application. Learn more about capping usage.\r\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fields",
+          "in" : "query",
+          "description" : "Selector specifying a subset of fields to include in the response. For more information, see the partial response section in the Performance Tips document. Use for better performance.\r\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "(Untitled)"
+          },
+          "401" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/invalidCredentials"
+            }
+          },
+          "404" : {
+            "description" : "(Untitled)",
+            "schema" : {
+              "$ref" : "#/definitions/notFound"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "id",
+        "in" : "path",
+        "description" : "(Untitled)",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "messageCreate" : {
+      "type" : "object",
+      "properties" : {
+        "threadId" : {
+          "type" : "string"
+        },
+        "raw" : {
+          "type" : "string"
+        }
+      }
+    },
+    "messageCreated" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "threadId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "threads" : {
+      "type" : "object"
+    },
+    "drafts" : {
+      "type" : "object"
+    },
+    "history" : {
+      "type" : "object"
+    },
+    "label" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "labelListVisibility" : {
+          "type" : "string"
+        },
+        "messageListVisibility" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "thread" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "historyId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "invalidCredentials" : {
+      "type" : "object",
+      "properties" : {
+        "error" : {
+          "type" : "object",
+          "properties" : {
+            "code" : {
+              "type" : "number"
+            },
+            "message" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "labels" : {
+      "type" : "object"
+    },
+    "draftCreate" : {
+      "type" : "object",
+      "properties" : {
+        "raw" : {
+          "type" : "string"
+        }
+      }
+    },
+    "attachment" : {
+      "type" : "object",
+      "properties" : {
+        "data" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "number"
+        }
+      }
+    },
+    "labelCreate" : {
+      "type" : "object",
+      "properties" : {
+        "labelListVisibility" : {
+          "type" : "string"
+        },
+        "messageListVisibility" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "modifyLabels" : {
+      "type" : "object",
+      "properties" : {
+        "removeLabelIds" : {
+          "type" : "array"
+        }
+      }
+    },
+    "draft" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "threadId" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "messages" : {
+      "type" : "object"
+    },
+    "notFound" : {
+      "type" : "object",
+      "properties" : {
+        "error" : {
+          "type" : "object",
+          "properties" : {
+            "code" : {
+              "type" : "number"
+            },
+            "message" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "messageImported" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "profileResponse" : {
+      "type" : "object",
+      "properties" : {
+        "emailAddress" : {
+          "type" : "string"
+        },
+        "messagesTotal" : {
+          "type" : "string"
+        },
+        "threadsTotal" : {
+          "type" : "string"
+        },
+        "historyId" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
